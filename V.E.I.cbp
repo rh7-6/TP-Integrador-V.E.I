@@ -44,6 +44,8 @@
 		<Unit filename="Producto.h" />
 		<Unit filename="Venta.cpp" />
 		<Unit filename="Venta.h" />
+		<Unit filename="cadena.cpp" />
+		<Unit filename="cadena.h" />
 		<Unit filename="clientes.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
