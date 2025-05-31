@@ -38,8 +38,9 @@
 1748723994 source:d:\documentos\github\tp-integrador-v.e.i\main.cpp
 	<iostream>
 
-1748723994 source:d:\documentos\github\tp-integrador-v.e.i\producto.cpp
+1748732208 source:d:\documentos\github\tp-integrador-v.e.i\producto.cpp
 	<iostream>
+	"Producto.h"
 
 1748723994 source:d:\documentos\github\tp-integrador-v.e.i\venta.cpp
 	<iostream>
@@ -49,4 +50,19 @@
 
 1747090439 c:\users\adr_\documents\github\tp-integrador-v.e.i\fecha.h
 	<string>
+
+1748729904 source:d:\documentos\github\tp-integrador-v.e.i\cadena.cpp
+	<iostream>
+	"cstring"
+	"cadena.h"
+
+1748729904 d:\documentos\github\tp-integrador-v.e.i\cadena.h
+
+1748729682 source:d:\documentos\github\tp-integrador-v.e.i\fecha.cpp
+	"Fecha.h"
+
+1748729682 d:\documentos\github\tp-integrador-v.e.i\fecha.h
+	<string>
+
+1748732463 d:\documentos\github\tp-integrador-v.e.i\producto.h
 
