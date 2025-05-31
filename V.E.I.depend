@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1747700331 source:c:\users\adr_\downloads\proyecto v.e.i\v.e.i\main.cpp
+	<iostream>
+
+1748700170 source:c:\users\adr_\downloads\proyecto v.e.i\v.e.i\clientes.cpp
+	<iostream>
+
+1748700170 source:c:\users\adr_\downloads\proyecto v.e.i\v.e.i\producto.cpp
+	<iostream>
+
+1748700170 source:c:\users\adr_\downloads\proyecto v.e.i\v.e.i\venta.cpp
+	<iostream>
+
+1748720940 source:c:\users\adr_\downloads\proyecto v.e.i\v.e.i\detalle_ventas.cpp
+	<iostream>
+
