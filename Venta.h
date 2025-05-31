@@ -2,7 +2,7 @@
 #define VENTA_H_INCLUDED
 
 
-class Cliente {
+class Venta {
 public:
 
 
