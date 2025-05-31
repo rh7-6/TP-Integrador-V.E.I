@@ -38,6 +38,8 @@
 		<Unit filename="Clientes.h" />
 		<Unit filename="Detalle_Venta.h" />
 		<Unit filename="Detalle_Ventas.cpp" />
+		<Unit filename="Fecha.cpp" />
+		<Unit filename="Fecha.h" />
 		<Unit filename="Producto.cpp" />
 		<Unit filename="Producto.h" />
 		<Unit filename="Venta.cpp" />
