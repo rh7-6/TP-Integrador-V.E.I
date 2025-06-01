@@ -4,30 +4,56 @@
 using namespace std;
 
 void SetCuit(const char *t);
-    void Cliente::SetNombre(const char *t){}
+    void Cliente::SetNombre(const char *t){
 
-    void Cliente::SetApellido(const char *t){}
+    }
 
-    void Cliente::SetTelefono(const char *t){}
+    void Cliente::SetApellido(const char *t){
 
-    void Cliente::SetMail(const char *t){}
+    }
 
-    void Cliente::SetDireccion(const char *t){}
+    void Cliente::SetTelefono(const char *t){
 
-    void Cliente::SetTipoCliente(int tc){}
+    }
 
+    void Cliente::SetMail(const char *t){
 
+    }
 
-    const char *Cliente::GetCuit(){}
+    void Cliente::SetDireccion(const char *t){
 
-    const char *Cliente::GetNombre(){}
+    }
 
-    const char *Cliente::GetApellido(){}
+    void Cliente::SetTipoCliente(int tc){
 
-    const char *Cliente::GetTelefono(){}
+    }
 
-    const char *Cliente::GetMail(){}
+///------------------------------------------------------
 
-    const char *Cliente::GetDireccion(){}
+    const char *Cliente::GetCuit(){
 
-    int Cliente::GetTipoCliente(){}
+    }
+
+    const char *Cliente::GetNombre(){
+
+    }
+
+    const char *Cliente::GetApellido(){
+
+    }
+
+    const char *Cliente::GetTelefono(){
+
+    }
+
+    const char *Cliente::GetMail(){
+
+    }
+
+    const char *Cliente::GetDireccion(){
+
+    }
+
+    int Cliente::GetTipoCliente(){
+
+    }
