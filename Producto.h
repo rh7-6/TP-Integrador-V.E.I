@@ -1,23 +1,24 @@
 #ifndef PRODUCTO_H_INCLUDED
 #define PRODUCTO_H_INCLUDED
+#include "cadena.h"
 
 class Producto {
 public:
-void set_numero_de_producto(int num);
-void set_precio(float num);
-void set_descripcion(const char palabra);
-void set_marca(const char palabra);
-void set_tipo_de_equipo(int num);
-void set_stock(int num);
+void SetIdProducto(int num);
+void SetPrecio(float num);
+void SetDescripcion(const char *palabra);
+void SetMarca(const char *palabra);
+void SetTipoEquipo(int num);
+void SetStock(int num);
 
 private:
 
-    int numero_de_producto;
-    float precio;
-    const char descripcion[50];
-    const char marca[20];
-    int tipo_de_equipo;
-    int stock;
+    int _IdProducto;
+    float _Precio;
+    Cadena _Descripcion;
+    Cadena _Marca;
+    int _TipoEquipo;
+    int _Stock;
 
 };
 #endif // PRODUCTO_H_INCLUDED

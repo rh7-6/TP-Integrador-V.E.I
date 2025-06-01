@@ -2,7 +2,7 @@
 using namespace std;
 #include "Producto.h"
 
-void Producto::set_numero_de_producto(int num)
+void Producto::SetIdProducto(int num)
 {
     bool a=true;
     while(a==true)
@@ -15,12 +15,12 @@ void Producto::set_numero_de_producto(int num)
         else
         {
             a=false;
-            numero_de_producto=a;
+            _IdProducto=a;
         }
     }
 }
 
-void Producto::set_precio(float num)
+void Producto::SetPrecio(float num)
 {
     bool a=true;
     while(a==true)
@@ -33,22 +33,22 @@ void Producto::set_precio(float num)
         else
         {
             a=false;
-            precio=a;
+            _Precio=a;
         }
     }
 }
 
-void Producto::set_descripcion(const char palabra)
+void Producto::SetDescripcion(const char *palabra)
 {
     ///descripcion=cargar cadena///
 }
 
-void Producto::set_marca(const char palabra)
+void Producto::SetMarca(const char *palabra)
 {
     ///marca=cargar cadena///
 }
 
-void Producto::set_tipo_de_equipo(int num)
+void Producto::SetTipoEquipo(int num)
 {
   bool a=true;
     while(a==true)
@@ -61,12 +61,12 @@ void Producto::set_tipo_de_equipo(int num)
         else
         {
             a=false;
-            precio=a;
+            _TipoEquipo=a;
         }
     }
 }
 
-void Producto::set_stock(int num)
+void Producto::SetStock(int num)
 {
     bool a=true;
     while(a==true)
@@ -79,7 +79,7 @@ void Producto::set_stock(int num)
         else
         {
             a=false;
-            precio=a;
+            _Stock=a;
         }
     }
 }
