@@ -1,0 +1,8 @@
+
+# Exclude binary and object files
+bin/
+obj/
+
+# Exclude dependency and layout files
+*.depend
+*.layout
