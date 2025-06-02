@@ -7,12 +7,12 @@
 class Venta {
 public:
 
-    void SetIdVenta(int id);
+    void SetNumeroVenta(int id);
     void SetCuit(const char *t);
     void SetFechaVenta(Fecha f);
     void SetImporteVenta(float v);
 
-    int GetIdVenta();
+    int GetNumeroVenta();
     const char *GetCuit();
     Fecha GetFecha();
     float GetImporteVenta();
@@ -20,7 +20,7 @@ public:
 
 private:
 
-    int _IdVenta;
+    int _NumeroVenta;
     Cadena _Cuit;
     Fecha _Fecha;
     float _ImporteVenta;

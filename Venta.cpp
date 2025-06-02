@@ -6,35 +6,36 @@
 using namespace std;
 
 
-    void SetIdVenta(int id){
+    void Venta::SetNumeroVenta(int id){
 
     }
 
-    void SetCuit(const char *t){
+    void Venta::SetCuit(const char *t){
 
     }
 
-    void SetFechaVenta(Fecha f){
+    void Venta::SetFechaVenta(Fecha f){
 
     }
 
-    void SetImporteVenta(float v){
+    void Venta::SetImporteVenta(float v){
 
     }
 
+///---------------------------------------------
 
-    int GetIdVenta(){
-
-    }
-
-    const char *GetCuit(){
+    int Venta::GetNumeroVenta(){
 
     }
 
-    Fecha GetFecha(){
+    const char *Venta::GetCuit(){
 
     }
 
-    float GetImporteVenta(){
+    Fecha Venta::GetFecha(){
+
+    }
+
+    float Venta::GetImporteVenta(){
 
     }

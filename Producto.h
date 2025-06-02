@@ -11,6 +11,13 @@ void SetMarca(const char *palabra);
 void SetTipoEquipo(int num);
 void SetStock(int num);
 
+int GetIdProducto();
+float GetPrecio();
+const char *GetDescripcion{};
+const char *GetMarca{};
+int GetTipoEquipo{};
+int GetStock();
+
 private:
 
     int _IdProducto;

@@ -1,11 +1,38 @@
 #include <iostream>
+#include "Detalle_Venta.h"
 using namespace std;
 
-int main(){
+    void SetNumeroVenta(int n){
 
+    }
 
+    void SetPrecioProducto(float p){
 
+    }
 
+    void SetIdProducto(int n){
 
-    return 0;
-}
+    }
+
+    void SetCantidad(int n){
+
+    }
+
+///----------------------------------------
+
+    int GetNumeroVentaDT(){
+
+    }
+
+    float GetPrecioProducto(){
+
+    }
+
+    int GetIdProductoDT(){
+
+    }
+
+    int GetCantidad(){
+
+    }
+
