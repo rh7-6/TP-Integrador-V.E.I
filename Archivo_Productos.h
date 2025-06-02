@@ -7,11 +7,11 @@ public:
 
     void GuardarProducto();
     int CantidadRegistros();
-    int BuscarProducto(const char *IdProducto);
+    int BuscarProducto(int IdProducto);
     void MostrarProducto(int pos);
     Producto LeerProducto(int pos);
-    void SetNombre(const char *nombre);
-    const char *GetNombre();
+    void SetNombreProducto(const char *nombre);
+    const char *GetNombreProducto();
 
     /// pendiente declarar constructor para crear el archivo .dat
 private:

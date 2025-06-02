@@ -11,7 +11,7 @@ using namespace std;
 
     }
 
-    int ArchivoProductos::BuscarProducto(const char *IdProducto){
+    int ArchivoProductos::BuscarProducto(int IdProducto){
 
     }
 
@@ -23,11 +23,11 @@ using namespace std;
 
     }
 
-    void ArchivoProductos::SetNombre(const char *nombre){
+    void ArchivoProductos::SetNombreProducto(const char *nombre){
 
     }
 
-    const char *ArchivoProductos::GetNombre(){
+    const char *ArchivoProductos::GetNombreProducto(){
 
     }
 

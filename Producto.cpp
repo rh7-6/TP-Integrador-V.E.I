@@ -15,7 +15,7 @@ void Producto::SetIdProducto(int num)
         else
         {
             a=false;
-            _IdProducto=a;
+            _IdProducto=num;
         }
     }
 }
@@ -33,7 +33,7 @@ void Producto::SetPrecio(float num)
         else
         {
             a=false;
-            _Precio=a;
+            _Precio=num;
         }
     }
 }
@@ -61,7 +61,7 @@ void Producto::SetTipoEquipo(int num)
         else
         {
             a=false;
-            _TipoEquipo=a;
+            _TipoEquipo=num;
         }
     }
 }
@@ -79,7 +79,7 @@ void Producto::SetStock(int num)
         else
         {
             a=false;
-            _Stock=a;
+            _Stock=num;
         }
     }
 }
