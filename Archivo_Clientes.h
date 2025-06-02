@@ -7,9 +7,12 @@ class ArchivoClientes {
 public:
 
     void GuardarCliente();
-    int BuscarCliente();
+    int CantidadRegistros();
+    int BuscarCliente(const char *CUIT);
     void MostrarCliente(int pos);
     Cliente LeerCliente(int pos);
+    void SetNombre(const char *nombre);
+    const char *GetNombre();
 
     /// pendiente declarar constructor para crear el archivo .dat
 private:

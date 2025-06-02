@@ -3,19 +3,31 @@
 using namespace std;
 
 
-    void GuardarCliente(){
+    void ArchivoClientes::GuardarCliente(){
 
     }
 
-    int BuscarCliente(){
+    int ArchivoClientes::CantidadRegistros(){
 
     }
 
-    void MostrarCliente(int pos){
+    int ArchivoClientes::BuscarCliente(const char *CUIT){
 
     }
 
-    Cliente LeerCliente(int pos){
+    void ArchivoClientes::MostrarCliente(int pos){
+
+    }
+
+    Cliente ArchivoClientes::LeerCliente(int pos){
+
+    }
+
+    void ArchivoClientes::SetNombre(const char *nombre){
+
+    }
+
+    const char *ArchivoClientes::GetNombre(){
 
     }
 

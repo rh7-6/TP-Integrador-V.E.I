@@ -10,9 +10,9 @@ public:
     void SetIdProducto(int n);
     void SetCantidad(int n);
 
-    int GetNumeroVenta();
+    int GetNumeroVentaDT();
     float GetPrecioProducto();
-    int GetIdProducto();
+    int GetIdProductoDT();
     int GetCantidad();
 
 private:
