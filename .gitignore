@@ -6,3 +6,4 @@ obj/
 # Exclude dependency and layout files
 *.depend
 *.layout
+*.tmp
