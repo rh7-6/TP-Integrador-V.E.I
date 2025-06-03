@@ -40,12 +40,12 @@ void Producto::SetPrecio(float num)
 
 void Producto::SetDescripcion(const char *palabra)
 {
-    ///descripcion=cargar cadena///
+    _Descripcion.setTexto(palabra);
 }
 
 void Producto::SetMarca(const char *palabra)
 {
-    ///marca=cargar cadena///
+    _Marca.setTexto(palabra);
 }
 
 void Producto::SetTipoEquipo(int num)
@@ -86,27 +86,39 @@ void Producto::SetStock(int num)
 
 ///--------------------------------------------------------------------------------------------------
 
-int GetIdProducto(){
+int Producto::GetIdProducto(){
+
+    return _IdProducto;
 
 }
 
-float GetPrecio(){
+float Producto::GetPrecio(){
+
+    return _Precio;
 
 }
 
-const char *GetDescripcion(){
+const char *Producto::GetDescripcion(){
+
+    return _Descripcion.getTexto();
 
 }
 
-const char *GetMarca(){
+const char *Producto::GetMarca(){
+
+    return _Marca.getTexto();
 
 }
 
-int GetTipoEquipo(){
+int Producto::GetTipoEquipo(){
+
+    return _TipoEquipo;
 
 }
 
-int GetStock(){
+int Producto::GetStock(){
+
+    return _Stock;
 
 }
 

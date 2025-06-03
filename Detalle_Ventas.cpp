@@ -2,19 +2,32 @@
 #include "Detalle_Venta.h"
 using namespace std;
 
-    void DetalleVenta::SetNumeroVenta(int n){
+    void DetalleVenta::SetNumeroVentaDT(int n){
+
+        _NumeroVenta=n;
 
     }
 
-    void DetalleVenta::SetPrecioProducto(float p){
+    void DetalleVenta::SetPrecioProductoDT(float p){
+
+        _PrecioProducto=p;
 
     }
 
-    void DetalleVenta::SetIdProducto(int n){
+    void DetalleVenta::SetIdProductoDT(int n){
+
+        _IdProducto=n;
 
     }
 
-    void DetalleVenta::SetCantidad(int n){
+    bool DetalleVenta::SetCantidad(int n){
+
+        if(n>0){
+            _Cantidad=n;
+            return true;
+        }else{
+            return false;
+        }
 
     }
 
@@ -22,17 +35,25 @@ using namespace std;
 
     int DetalleVenta::GetNumeroVentaDT(){
 
+        return _NumeroVenta;
+
     }
 
     float DetalleVenta::GetPrecioProducto(){
+
+        return _PrecioProducto;
 
     }
 
     int DetalleVenta::GetIdProductoDT(){
 
+        return _IdProducto;
+
     }
 
     int DetalleVenta::GetCantidad(){
+
+        return _Cantidad;
 
     }
 

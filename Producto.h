@@ -13,9 +13,9 @@ void SetStock(int num);
 
 int GetIdProducto();
 float GetPrecio();
-const char *GetDescripcion{}; ///corchetes?///
-const char *GetMarca{};
-int GetTipoEquipo{};
+const char *GetDescripcion(); ///corchetes?/// pero cambialo webon xddd
+const char *GetMarca();
+int GetTipoEquipo();
 int GetStock();
 
 private:

@@ -5,10 +5,10 @@ class DetalleVenta{
 
 public:
 
-    void SetNumeroVenta(int n);
-    void SetPrecioProducto(float p);
-    void SetIdProducto(int n);
-    void SetCantidad(int n);
+    void SetNumeroVentaDT(int n);
+    void SetPrecioProductoDT(float p);
+    void SetIdProductoDT(int n);
+    bool SetCantidad(int n);
 
     int GetNumeroVentaDT();
     float GetPrecioProducto();
