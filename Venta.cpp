@@ -6,19 +6,34 @@
 using namespace std;
 
 
-    void Venta::SetNumeroVenta(int id){
+    bool Venta::SetNumeroVenta(int id){
+
+        if(id > 0 ){
+            _NumeroVenta=id;
+        }
 
     }
 
     void Venta::SetCuit(const char *t){
 
+        _Cuit.setTexto(t);
+
     }
 
     void Venta::SetFechaVenta(Fecha f){
 
+        _FechaVenta=f;
+
     }
 
-    void Venta::SetImporteVenta(float v){
+    bool Venta::SetImporteVenta(float v){
+
+        if(v>0){
+            _ImporteVenta=v;
+            return true;
+        }else{
+            return false;
+        }
 
     }
 
@@ -26,16 +41,24 @@ using namespace std;
 
     int Venta::GetNumeroVenta(){
 
+        return _NumeroVenta;
+
     }
 
     const char *Venta::GetCuit(){
 
+        return _Cuit.getTexto();
+
     }
 
-    Fecha Venta::GetFecha(){
+    Fecha Venta::GetFechaVenta(){
+
+        return _FechaVenta;
 
     }
 
     float Venta::GetImporteVenta(){
+
+        return _ImporteVenta;
 
     }
