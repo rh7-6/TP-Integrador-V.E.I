@@ -13,7 +13,7 @@ void SetStock(int num);
 
 int GetIdProducto();
 float GetPrecio();
-const char *GetDescripcion(); ///corchetes?/// pero cambialo webon xddd
+const char *GetDescripcion();
 const char *GetMarca();
 int GetTipoEquipo();
 int GetStock();

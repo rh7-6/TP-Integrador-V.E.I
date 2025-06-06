@@ -7,6 +7,8 @@ using namespace std;
         FILE *pfile;
         pfile = fopen(_NombreArchivo.getTexto(),"ab");
 
+        /// pendiente verificar si se abrio correctamente el  archivo
+
         Cliente b;
 
         fseek(pfile, sizeof(Cliente) * pos, SEEK_SET);
@@ -18,8 +20,17 @@ using namespace std;
     }
 
     int ArchivoClientes::CantidadRegistros(){
+        FILE *pfile;
+        pfile = fopen(_NombreArchivo.getTexto(),"rb");
 
+        /// pendiente verificar si se abrio correctamente el  archivo
 
+        int contReg;
+        Cliente b;
+        while(fread(&b, sizeof(Cliente), 1, pfile)==1){
+            contReg++;
+        }
+        return contReg;
     }
 
     int ArchivoClientes::BuscarCliente(const char *CUIT){
