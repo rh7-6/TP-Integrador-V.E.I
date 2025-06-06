@@ -3,11 +3,22 @@
 using namespace std;
 
 
-    void ArchivoClientes::GuardarCliente(){
+    void ArchivoClientes::GuardarCliente(Cliente &cl, int pos){
+        FILE *pfile;
+        pfile = fopen(_NombreArchivo.getTexto(),"ab");
+
+        Cliente b;
+
+        fseek(pfile, sizeof(Cliente) * pos, SEEK_SET);
+
+        fwrite(&cl, sizeof(Cliente), 1, pfile);
+
+        fclose(pfile);
 
     }
 
     int ArchivoClientes::CantidadRegistros(){
+
 
     }
 
