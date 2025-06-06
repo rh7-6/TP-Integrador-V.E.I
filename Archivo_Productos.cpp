@@ -3,7 +3,7 @@
 using namespace std;
 
 
-    void ArchivoProductos::GuardarProducto(){
+    void ArchivoProductos::GuardarProducto(Producto *pr, int pos){
 
     }
 
