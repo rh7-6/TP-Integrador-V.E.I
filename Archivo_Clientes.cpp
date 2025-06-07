@@ -17,7 +17,7 @@ using namespace std;
 
         fclose(pfile);
 
-    }
+}
 
     int ArchivoClientes::CantidadRegistros(){
         FILE *pfile;
@@ -53,4 +53,6 @@ using namespace std;
 
     }
 
+
     /// pendiente desarrollar el constructor para crear el archivo .dat
+

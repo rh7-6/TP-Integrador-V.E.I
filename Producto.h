@@ -6,10 +6,11 @@ class Producto {
 public:
 void SetIdProducto(int num);
 void SetPrecio(float num);
-void SetDescripcion(const char *palabra);
-void SetMarca(const char *palabra);
+void SetDescripcion(char *palabra);
+void SetMarca(char *palabra);
 void SetTipoEquipo(int num);
 void SetStock(int num);
+void cargarproducto();
 
 int GetIdProducto();
 float GetPrecio();

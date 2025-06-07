@@ -16,7 +16,7 @@ public:
 
     /// pendiente declarar constructor para crear el archivo .dat
 private:
-
+    ///objeto cadena///
     Cadena _NombreArchivo;
 
 };

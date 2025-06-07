@@ -5,7 +5,7 @@
 class ArchivoProductos {
 public:
 
-    void GuardarProducto(Producto *pr, int pos);
+    void GuardarProducto(Producto pr, int pos);
     int CantidadRegistros();
     int BuscarProducto(int IdProducto);
     void MostrarProducto(int pos);

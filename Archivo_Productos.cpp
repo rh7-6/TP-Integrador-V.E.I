@@ -3,9 +3,17 @@
 using namespace std;
 
 
-    void ArchivoProductos::GuardarProducto(Producto *pr, int pos){
+    void ArchivoProductos::GuardarProducto(Producto pr, int pos){
+        FILE *pfile;
+        pfile = fopen(_NombreArchivo.getTexto(),"ab");
+        if(pfile == NULL)
+        {
+         cout<<"no se pudo crear el archibo"<<endl;
+        }
 
-    }
+
+        fclose(pfile);
+}
 
     int ArchivoProductos::CantidadRegistros(){
 

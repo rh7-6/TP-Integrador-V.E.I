@@ -38,12 +38,12 @@ void Producto::SetPrecio(float num)
     }
 }
 
-void Producto::SetDescripcion(const char *palabra)
+void Producto::SetDescripcion(char *palabra)
 {
     _Descripcion.setTexto(palabra);
 }
 
-void Producto::SetMarca(const char *palabra)
+void Producto::SetMarca(char *palabra)
 {
     _Marca.setTexto(palabra);
 }
@@ -82,6 +82,23 @@ void Producto::SetStock(int num)
             _Stock=num;
         }
     }
+}
+
+void Producto::cargarproducto()
+{int id;
+float precio;
+char descripcion[80];
+
+ cout<<"coloque el id del producto igual o mayor a 0"<<endl;
+ cin>>id;
+ SetIdProducto(id);
+ cout<<"coloque el precio del producto igual o mayor a 100"<<endl;
+ cin>>precio;
+ SetPrecio(precio);
+ cout<<"coloque la descripcion del producto"<<endl;
+ cin>>descripcion;
+ SetDescripcion(descripcion);
+
 }
 
 ///--------------------------------------------------------------------------------------------------
