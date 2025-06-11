@@ -15,12 +15,14 @@ using namespace std;
         ArchivoClientes a;
         if(int pos=a.BuscarCliente(cl.GetCuit())>=0){
 
-            fseek(pfile, sizeof(Cliente) * pos, SEEK_SET);
+            fwrite(&cl, sizeof(Cliente), 1, pfile);
+            fclose(pfile);
+            return true;
         }
 
         fwrite(&cl, sizeof(Cliente), 1, pfile);
-
         fclose(pfile);
+        return true;
     }
 
     int ArchivoClientes::CantidadRegistros(){
@@ -66,21 +68,31 @@ using namespace std;
         return -1;
     }
 
-    void ArchivoClientes::MostrarCliente(int pos){
-
-
-    }
-
     Cliente ArchivoClientes::LeerCliente(int pos){
 
+        FILE *pfile;
+        pfile = fopen(_NombreArchivo.getTexto(),"rb");
+
+        if(pfile==NULL){
+            return Cliente();
+        }
+
+        Cliente cl;
+
+        fseek(pfile, sizeof(Cliente) * pos, SEEK_SET);
+        fread(&cl, sizeof(Cliente), 1, pfile);
+        fclose(pfile);
+        return cl;
     }
 
     void ArchivoClientes::SetNombre(const char *nombre){
 
+        _NombreArchivo.setTexto(nombre);
     }
 
     const char *ArchivoClientes::GetNombre(){
 
+        return _NombreArchivo.getTexto();
     }
 
 

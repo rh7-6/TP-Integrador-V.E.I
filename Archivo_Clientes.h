@@ -9,7 +9,6 @@ public:
     bool GuardarCliente(Cliente &cl);
     int CantidadRegistros();
     int BuscarCliente(const char *CUIT);
-    void MostrarCliente(int pos);
     Cliente LeerCliente(int pos);
     void SetNombre(const char *nombre);
     const char *GetNombre();
