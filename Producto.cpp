@@ -85,20 +85,26 @@ void Producto::SetStock(int num)
 }
 
 void Producto::cargarproducto()
-{int id;
+{int id,tipo;
 float precio;
-char descripcion[80];
+char descripcion[80], marca[20];
 
- cout<<"coloque el id del producto igual o mayor a 0"<<endl;
+ cout<<"coloque el id del producto o equipo igual o mayor a 0"<<endl;
  cin>>id;
  SetIdProducto(id);
- cout<<"coloque el precio del producto igual o mayor a 100"<<endl;
+ cout<<"coloque el precio del producto o equipo tienen que ser igual o mayor a 100"<<endl;
  cin>>precio;
  SetPrecio(precio);
- cout<<"coloque la descripcion del producto"<<endl;
+ cout<<"coloque la descripcion del producto o equipo"<<endl;
  cin>>descripcion;
  SetDescripcion(descripcion);
-
+ cout<<"coloque la marca a la que pertenece el producto o equipo"<<endl;
+ cin>>marca;
+ SetMarca(marca);
+ cout<<"coloque el tipo de 1-productos o 2-equipos "<<endl;
+ cin>>tipo;
+ SetTipoEquipo(tipo);
+ cout<<"coloque la cantidad de stock del equipo o producto";
 }
 
 ///--------------------------------------------------------------------------------------------------
