@@ -5,10 +5,9 @@
 class ArchivoProductos {
 public:
 
-    void GuardarProducto(Producto pr, int pos);
+    bool GuardarProducto(Producto pr);
     int CantidadRegistros();
     int BuscarProducto(int IdProducto);
-    void MostrarProducto(int pos);
     Producto LeerProducto(int pos);
     void SetNombreProducto(const char *nombre);
     const char *GetNombreProducto();

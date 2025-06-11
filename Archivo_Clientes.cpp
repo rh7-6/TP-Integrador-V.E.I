@@ -31,7 +31,7 @@ using namespace std;
         pfile = fopen(_NombreArchivo.getTexto(),"rb");
 
         if(pfile==NULL){
-            return 0;
+            return -1;
         }
 
         int contReg=0;
@@ -49,7 +49,7 @@ using namespace std;
         pfile = fopen(_NombreArchivo.getTexto(),"rb");
 
         if(pfile==NULL){
-            return 0;
+            return -1;
         }
 
         Cliente cl;
@@ -65,7 +65,7 @@ using namespace std;
             posCliente++;
         }
         fclose(pfile);
-        return -1;
+        return -2;
     }
 
     Cliente ArchivoClientes::LeerCliente(int pos){
