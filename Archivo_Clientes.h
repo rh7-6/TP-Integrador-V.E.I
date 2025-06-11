@@ -6,7 +6,7 @@
 class ArchivoClientes {
 public:
 
-    void GuardarCliente(Cliente &cl, int pos);
+    bool GuardarCliente(Cliente &cl);
     int CantidadRegistros();
     int BuscarCliente(const char *CUIT);
     void MostrarCliente(int pos);
