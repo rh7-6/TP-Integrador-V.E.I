@@ -10,8 +10,8 @@ public:
     int CantidadRegistros();
     int BuscarCliente(const char *CUIT);
     Cliente LeerCliente(int pos);
-    void SetNombre(const char *nombre);
-    const char *GetNombre();
+    void SetNombreArchivoClientes(const char *nombre);
+    const char *GetNombreArchivoClientes();
 
     /// pendiente declarar constructor para crear el archivo .dat
 private:

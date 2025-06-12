@@ -10,15 +10,15 @@ public:
     int CantidadRegistrosVentas();
     int BuscarVenta(int NumeroDeVenta);
     Venta LeerVenta(int pos);
-    void SetNombreVenta(const char *nombre);
-    const char *GetNombreVenta();
+    void SetNombreArchVentas(const char *nombre);
+    const char *GetNombreArchVentas();
     ///detalle de ventas///
     bool GuardarDetalleVenta(DetalleVenta dv);
     int CantidadRegistrosDetalleDeVentas();
     int BuscarDetalleDeVenta(int NumeroDeVenta);
     DetalleVenta LeerDetalleDeVenta(int pos);
-    void SetNombreDetalleDeVenta(const char *nombre);
-    const char *GetNombreDetalleDeVenta();
+    void SetNombreAchDetalleVentas(const char *nombre);
+    const char *GetNombreArchDetalleVentas();
     /// pendiente declarar constructor para crear el archivo .dat
 
 

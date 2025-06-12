@@ -86,12 +86,12 @@ using namespace std;
         return p;
     }
 
-    void ArchivoProductos::SetNombreProducto(const char *nombre){
+    void ArchivoProductos::SetNombreArchivoProductos(const char *nombre){
 
         _NombreArchivo.setTexto(nombre);
     }
 
-    const char *ArchivoProductos::GetNombreProducto(){
+    const char *ArchivoProductos::GetNombreArchivoProductos(){
 
         return _NombreArchivo.getTexto();
     }

@@ -86,11 +86,11 @@ using namespace std;
         return v;
     }
 
-    void ArchivoVentas::SetNombreVenta(const char *nombre){
+    void ArchivoVentas::SetNombreArchVentas(const char *nombre){
         _NombreArchivoVentas.setTexto(nombre);
     }
 
-    const char *ArchivoVentas::GetNombreVenta(){
+    const char *ArchivoVentas::GetNombreArchVentas(){
         return _NombreArchivoVentas.getTexto();
     }
 
@@ -180,12 +180,12 @@ using namespace std;
         return dv;
     }
 
-    void ArchivoVentas::SetNombreDetalleDeVenta(const char *nombre){
+    void ArchivoVentas::SetNombreAchDetalleVentas(const char *nombre){
 
         _NombreArchivoDetalleVentas.setTexto(nombre);
     }
 
-    const char *ArchivoVentas::GetNombreDetalleDeVenta(){
+    const char *ArchivoVentas::GetNombreArchDetalleVentas(){
 
         return _NombreArchivoDetalleVentas.getTexto();
     }

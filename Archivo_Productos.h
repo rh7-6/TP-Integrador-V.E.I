@@ -9,8 +9,8 @@ public:
     int CantidadRegistros();
     int BuscarProducto(int IdProducto);
     Producto LeerProducto(int pos);
-    void SetNombreProducto(const char *nombre);
-    const char *GetNombreProducto();
+    void SetNombreArchivoProductos(const char *nombre);
+    const char *GetNombreArchivoProductos();
 
     /// pendiente declarar constructor para crear el archivo .dat
 private:
