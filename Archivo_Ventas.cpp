@@ -1,61 +1,121 @@
 #include <iostream>
 #include "Archivo_Ventas.h"
 using namespace std;
-///ventas///
-void ArchivoVentas::GuardarVenta(){
 
-}
+    ///ventas///
+    bool ArchivoVentas::GuardarVenta(Venta v){
 
-int ArchivoVentas::CantidadRegistrosVentas(){
+        FILE *pfile;
+        pfile = fopen(_NombreArchivoVentas.getTexto(),"ab");
+        if(pfile == NULL)
+        {
+         return false;
+        }
 
-}
+        ArchivoVentas av;
+        if(int pos=av.BuscarVenta(v.GetNumeroVenta())>=0){
 
-int ArchivoVentas::BuscarVenta(int Num){
+            fseek(pfile, sizeof(Venta) *pos, SEEK_SET);
+            fwrite(&v, sizeof(Venta), 1, pfile);
+            fclose(pfile);
+            return true;
+        }
 
-}
+        fwrite(&v, sizeof(Venta), 1, pfile);
+        fclose(pfile);
+        return true;
+    }
 
-void ArchivoVentas::MostrarVenta(int pos){
+    int ArchivoVentas::CantidadRegistrosVentas(){
 
-}
+        FILE *pfile;
+        pfile = fopen(_NombreArchivoVentas.getTexto(),"rb");
 
-Venta ArchivoVentas::LeerVenta(int pos){
+        if(pfile==NULL){
+            return -1;
+        }
 
-}
+        int contReg=0;
+        Venta v;
+        while(fread(&v, sizeof(Venta), 1, pfile)==1){
+            contReg++;
+        }
+        fclose(pfile);
+        return contReg;
+    }
 
-void ArchivoVentas::SetNombreVenta(const char *nombre){
+    int ArchivoVentas::BuscarVenta(int Num){
 
-}
+        FILE *pfile;
+        pfile = fopen(_NombreArchivoVentas.getTexto(),"rb");
 
-const char ArchivoVentas::*GetNombreVenta(){
+        if(pfile==NULL){
+            return -1;
+        }
 
-}
+        Venta v;
+        ArchivoVentas av;
+        int posVenta=0, cantReg=av.CantidadRegistrosVentas();
 
-///deatlle de Venta///
+        for(int i=0; i<cantReg; i++){
+            fread(&v, sizeof(Venta), 1, pfile);
+            if(v.GetNumeroVenta()==Num){
+                fclose(pfile);
+                return posVenta;
+            }
+            posVenta++;
+        }
+        fclose(pfile);
+        return -2;
+    }
 
-void ArchivoVentas::GuardarDetalleVenta(){
+    Venta ArchivoVentas::LeerVenta(int pos){
+        FILE *pfile;
+        pfile = fopen(_NombreArchivoVentas.getTexto(),"rb");
 
-}
+        if(pfile==NULL){
+            return Venta();
+        }
 
-int ArchivoVentas::CantidadRegistrosDetalleDeVentas(){
+        Venta v;
 
-}
+        fseek(pfile, sizeof(Venta) * pos, SEEK_SET);
+        fread(&v, sizeof(Venta), 1, pfile);
+        fclose(pfile);
+        return v;
+    }
 
-int ArchivoVentas::BuscarDetalleDeVenta(int NumeroDeVenta){
+    void ArchivoVentas::SetNombreVenta(const char *nombre){
+        _NombreArchivoVentas.setTexto(nombre);
+    }
 
-}
+    const char *ArchivoVentas::GetNombreVenta(){
+        return _NombreArchivoVentas.getTexto();
+    }
 
-void ArchivoVentas::MostrarDetalleDeVenta(int pos){
 
-}
+    ///deatlle de Venta///
 
-DetalleVenta ArchivoVentas::LeerDetalleDeVenta(int pos){
+    bool ArchivoVentas::GuardarDetalleVenta(DetalleVenta dv){
 
-}
+    }
 
-void ArchivoVentas::SetNombreDetalleDeVenta(const char *nombre){
+    int ArchivoVentas::CantidadRegistrosDetalleDeVentas(){
 
-}
+    }
 
-const char ArchivoVentas::*GetNombreDetalleDeVenta(){
+    int ArchivoVentas::BuscarDetalleDeVenta(int NumeroDeVenta){
 
-}
+    }
+
+    DetalleVenta ArchivoVentas::LeerDetalleDeVenta(int pos){
+
+    }
+
+    void ArchivoVentas::SetNombreDetalleDeVenta(const char *nombre){
+
+    }
+
+    const char *ArchivoVentas::GetNombreDetalleDeVenta(){
+
+    }

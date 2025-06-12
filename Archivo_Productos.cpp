@@ -14,6 +14,7 @@ using namespace std;
         ArchivoProductos ap;
         if(int pos=ap.BuscarProducto(pr.GetIdProducto())>=0){
 
+            fseek(pfile, sizeof(Producto) *pos, SEEK_SET);
             fwrite(&pr, sizeof(Producto), 1, pfile);
             fclose(pfile);
             return true;
@@ -34,8 +35,8 @@ using namespace std;
         }
 
         int contReg=0;
-        Producto b;
-        while(fread(&b, sizeof(Producto), 1, pfile)==1){
+        Producto p;
+        while(fread(&p, sizeof(Producto), 1, pfile)==1){
             contReg++;
         }
         fclose(pfile);

@@ -6,18 +6,16 @@
 class ArchivoVentas {
 public:
     ///ventas///
-    void GuardarVenta();
+    bool GuardarVenta(Venta v);
     int CantidadRegistrosVentas();
     int BuscarVenta(int NumeroDeVenta);
-    void MostrarVenta(int pos);
     Venta LeerVenta(int pos);
     void SetNombreVenta(const char *nombre);
     const char *GetNombreVenta();
     ///detalle de ventas///
-    void GuardarDetalleVenta();
+    bool GuardarDetalleVenta(DetalleVenta dv);
     int CantidadRegistrosDetalleDeVentas();
     int BuscarDetalleDeVenta(int NumeroDeVenta);
-    void MostrarDetalleDeVenta(int pos);
     DetalleVenta LeerDetalleDeVenta(int pos);
     void SetNombreDetalleDeVenta(const char *nombre);
     const char *GetNombreDetalleDeVenta();
@@ -25,6 +23,7 @@ public:
 
 
 private:
-    Cadena _NombreArchivo;
+    Cadena _NombreArchivoVentas;
+    Cadena _NombreArchivoDetalleVentas;
 };
 #endif // ARCHIVO_VENTAS_H_INCLUDED

@@ -15,6 +15,7 @@ using namespace std;
         ArchivoClientes a;
         if(int pos=a.BuscarCliente(cl.GetCuit())>=0){
 
+            fseek(pfile, sizeof(Cliente) *pos, SEEK_SET);
             fwrite(&cl, sizeof(Cliente), 1, pfile);
             fclose(pfile);
             return true;
