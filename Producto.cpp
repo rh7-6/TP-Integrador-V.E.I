@@ -1,4 +1,5 @@
 #include <iostream>
+#include "cstring"
 using namespace std;
 #include "Producto.h"
 
@@ -10,6 +11,7 @@ void Producto::SetIdProducto(int num)
         if(num<=0)
         {
             cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;
+            cin>>num;
             a=true;
         }
         else
@@ -25,9 +27,10 @@ void Producto::SetPrecio(float num)
     bool a=true;
     while(a==true)
     {
-        if(num<=100)
+        if(num<100)
         {
             cout<<"el precio tiene que ser minimo 100 por favor vuelva a cargar el precio"<<endl;
+            cin>>num;
             a=true;
         }
         else
@@ -53,9 +56,10 @@ void Producto::SetTipoEquipo(int num)
   bool a=true;
     while(a==true)
     {
-        if(num==1||num==2)
+        if(num<1||num>2)
         {
             cout<<"el tipo de equipo tiene que ser de 1-productos o 2-equipos"<<endl;
+            cin>>num;
             a=true;
         }
         else
@@ -71,9 +75,10 @@ void Producto::SetStock(int num)
     bool a=true;
     while(a==true)
     {
-        if(num<=0)
+        if(num<0)
         {
             cout<<"el stock no puede ser menor a 0"<<endl;
+            cin>>num;
             a=true;
         }
         else
@@ -84,27 +89,53 @@ void Producto::SetStock(int num)
     }
 }
 
-void Producto::cargarproducto()
-{int id,tipo;
+void Producto::CargarProducto()
+{
+int id,tipo,stock;
 float precio;
 char descripcion[80], marca[20];
 
- cout<<"coloque el id del producto o equipo igual o mayor a 0"<<endl;
+ cout<<"coloque el id del producto o equipo igual o mayor a 0: ";
  cin>>id;
  SetIdProducto(id);
- cout<<"coloque el precio del producto o equipo tienen que ser igual o mayor a 100"<<endl;
+ cout<<endl;
+ cout<<"coloque el precio del producto o equipo tienen que ser igual o mayor a 100: ";
  cin>>precio;
  SetPrecio(precio);
- cout<<"coloque la descripcion del producto o equipo"<<endl;
+ cout<<endl;
+ cout<<"coloque la descripcion del producto o equipo: ";
  cin>>descripcion;
  SetDescripcion(descripcion);
- cout<<"coloque la marca a la que pertenece el producto o equipo"<<endl;
+ cout<<endl;
+ cout<<"coloque la marca a la que pertenece el producto o equipo: ";
  cin>>marca;
  SetMarca(marca);
- cout<<"coloque el tipo de 1-productos o 2-equipos "<<endl;
+ cout<<endl;
+ cout<<"coloque el tipo de 1-productos o 2-equipos: ";
  cin>>tipo;
  SetTipoEquipo(tipo);
- cout<<"coloque la cantidad de stock del equipo o producto";
+ cout<<endl;
+ cout<<"coloque la cantidad de stock del equipo o producto: ";
+ cin>>stock;
+ SetStock(stock);
+ cout<<endl;
+}
+
+void Producto::MostrarProducto()
+{
+ cout<<"El id del producto o equipo es: "<<GetIdProducto()<<endl;
+ cout<<"El precio del producto o equipo es: $"<<GetPrecio()<<endl;
+ cout<<"La descripcion del producto o equipo: "<<GetDescripcion()<<endl;
+ cout<<"La marca a la que pertenece el producto o equipo: "<<GetMarca()<<endl;
+ if(GetTipoEquipo()==1)
+{
+ cout<<"El tipo es un Producto"<<endl;
+}
+else
+{
+ cout<<"El tipo es un Equipo"<<endl;
+}
+ cout<<"La cantidad de stock del equipo o producto: "<<GetStock()<<endl;
 }
 
 ///--------------------------------------------------------------------------------------------------

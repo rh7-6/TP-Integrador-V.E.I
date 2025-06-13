@@ -6,11 +6,14 @@ class Producto {
 public:
 void SetIdProducto(int num);
 void SetPrecio(float num);
-void SetDescripcion(char *palabra);
-void SetMarca(char *palabra);
+///arreglar problema con espacio en los char///////
+void SetDescripcion(char *palabra);             ///
+void SetMarca(char *palabra);                   ///
+///////////////////////////////////////////////////
 void SetTipoEquipo(int num);
 void SetStock(int num);
-void cargarproducto();
+void CargarProducto();
+void MostrarProducto();
 
 int GetIdProducto();
 float GetPrecio();

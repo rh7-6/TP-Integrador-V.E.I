@@ -1,9 +1,13 @@
 #include <iostream>
+#include "Producto.h"
 
 using namespace std;
 
-int main(){
+int main()
+{Producto prod;
 
+prod.CargarProducto();
+prod.MostrarProducto();
 
 
 
