@@ -5,7 +5,7 @@
 class Cliente {
 public:
 
-    void SetCuit(const char *t);
+    void SetCuil(const char *t);
     void SetNombre(const char *t);
     void SetApellido(const char *t);
     void SetTelefono(const char *t);
@@ -13,7 +13,7 @@ public:
     void SetDireccion(const char *t);
     void SetTipoCliente(int tc);
 
-    const char *GetCuit();
+    const char *GetCuil();
     const char *GetNombre();
     const char *GetApellido();
     const char *GetTelefono();

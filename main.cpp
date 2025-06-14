@@ -8,7 +8,7 @@ int main()
 {Cliente prod;
 
 prod.CargarCliente();
-
+prod.MostrarCliente();
 
 
 

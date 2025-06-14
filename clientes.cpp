@@ -3,7 +3,7 @@
 #include "Clientes.h"
 using namespace std;
 
-    void Cliente::SetCuit(const char *t){
+    void Cliente::SetCuil(const char *t){
 
         _Cuit.setTexto(t);
 
@@ -62,7 +62,7 @@ using namespace std;
 
 ///--------------------------------------------------------------------------------------------------
 
-    const char *Cliente::GetCuit(){
+    const char *Cliente::GetCuil(){
 
         return _Cuit.getTexto();
 
@@ -111,7 +111,7 @@ int tc;
 char cuil[20],nombre[10],apellido[15],telefono[20],mail[30],direccion[30];
 cout<<"Ingrese el cuil del cliente: ";
 cin>>cuil;
-SetCuit(cuil);
+SetCuil(cuil);
 cout<<endl;
 cout<<"Ingrese el nombre del cliente: ";
 cin>>nombre;
@@ -139,7 +139,22 @@ SetTipoCliente(tc);
 cout<<endl;
 }
 
-//void cli
+void Cliente::MostrarCliente(){
+cout<<"Cuil del cliente: "<<GetCuil()<<endl;
+cout<<"Nombre del cliente: "<<GetNombre()<<endl;
+cout<<"Apellido del cliente: "<<GetApellido()<<endl;
+cout<<"Telefono del cliente: "<<GetTelefono()<<endl;
+cout<<"Mail del cliente: "<<GetMail()<<endl;
+cout<<"Direccion del cliente: "<<GetDireccion()<<endl;
+if(GetTipoCliente()==1)
+{
+cout<<"tipo de cliente Particular"<<endl;
+}
+else
+{
+cout<<"tipo de cliente Empresa"<<endl;
+}
+}
 
 
 

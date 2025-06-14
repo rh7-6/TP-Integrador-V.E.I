@@ -7,7 +7,7 @@
 class Venta {
 public:
 
-    bool SetNumeroVenta(int id);
+    void SetNumeroVenta(int id);
     void SetCuit(const char *t);
     void SetFechaVenta(Fecha f);
     bool SetImporteVenta(float v);
@@ -16,6 +16,8 @@ public:
     const char *GetCuit();
     Fecha GetFechaVenta();
     float GetImporteVenta();
+
+    void CargarVenta();
 
 
 private:

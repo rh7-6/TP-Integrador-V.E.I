@@ -6,12 +6,20 @@
 using namespace std;
 
 
-    bool Venta::SetNumeroVenta(int id){
-
-        if(id > 0 ){
-            _NumeroVenta=id;
+    void Venta::SetNumeroVenta(int id){
+        while(id>0)
+        {
+            if(id>0)
+            {
+                _NumeroVenta=id;
+            }
+            else
+            {
+            cout<<"el numero de venta tiene que ser igual a 0 o mayor: ";
+            cin>>id;
+            cout<<endl;
+            }
         }
-
     }
 
     void Venta::SetCuit(const char *t){
@@ -62,3 +70,25 @@ using namespace std;
         return _ImporteVenta;
 
     }
+
+///--------------------------------------------------------------------------------------------------
+
+
+void Venta::CargarVenta(){
+
+int venta;
+char cuit[20];
+
+cout<<"ingrese numero de venta tiene que ser igual a 0 o mayor: ";
+cin>>venta;
+SetNumeroVenta(venta);
+cout<<endl;
+cout<<"ingrese el cuil de venta: ";
+cin>>cuit;
+SetCuit(cuit);
+cout<<endl;
+
+
+}
+
+

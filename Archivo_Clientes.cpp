@@ -13,7 +13,7 @@ using namespace std;
         }
 
         ArchivoClientes a;
-        if(int pos=a.BuscarCliente(cl.GetCuit())>=0){
+        if(int pos=a.BuscarCliente(cl.GetCuil())>=0){
 
             fseek(pfile, sizeof(Cliente) *pos, SEEK_SET);
             fwrite(&cl, sizeof(Cliente), 1, pfile);
@@ -59,7 +59,7 @@ using namespace std;
 
         for(int i=0; i<cantReg; i++){
             fread(&cl, sizeof(Cliente), 1, pfile);
-            if(cl.GetCuit()==CUIT){
+            if(cl.GetCuil()==CUIT){
                 fclose(pfile);
                 return posCliente;
             }
