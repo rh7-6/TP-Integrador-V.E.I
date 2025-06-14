@@ -39,15 +39,25 @@ using namespace std;
 
     }
 
-    bool Cliente::SetTipoCliente(int tc){
-
-        if(tc==1||tc==2){
+    void Cliente::SetTipoCliente(int tc){
+        bool a=false;
+        while(a==false)
+        {
+            if(tc==1||tc==2)
+            {
             _TipoCliente= tc;
-            return true;
-        }else{
-            return false;
+            a=true;
+            }
+            else
+            {
+            cout<<"por favor ingrese una de las dos opciones correspondientes";
+            cout<<endl;
+            cout<<"1-particular o 2-empresa: ";
+            cin>>tc;
+            cout<<endl;
+             a=false;
+            }
         }
-
     }
 
 ///--------------------------------------------------------------------------------------------------
@@ -93,3 +103,44 @@ using namespace std;
         return _TipoCliente;
 
     }
+
+///--------------------------------------------------------------------------------------------------
+
+void Cliente::CargarCliente(){
+int tc;
+char cuil[20],nombre[10],apellido[15],telefono[20],mail[30],direccion[30];
+cout<<"Ingrese el cuil del cliente: ";
+cin>>cuil;
+SetCuit(cuil);
+cout<<endl;
+cout<<"Ingrese el nombre del cliente: ";
+cin>>nombre;
+SetNombre(nombre);
+cout<<endl;
+cout<<"Ingrese el apellido del cliente: ";
+cin>>apellido;
+SetApellido(apellido);
+cout<<endl;
+cout<<"Ingrese el telefono del cliente: ";
+cin>>telefono;
+SetTelefono(telefono);
+cout<<endl;
+cout<<"Ingrese el mail del cliente: ";
+cin>>mail;
+SetMail(mail);
+cout<<endl;
+cout<<"Ingrese la direccion del cliente: ";
+cin>>direccion;
+SetDireccion(direccion);
+cout<<endl;
+cout<<"ingrese el tipo de cliente 1-particular o 2-empresa: ";
+cin>>tc;
+SetTipoCliente(tc);
+cout<<endl;
+}
+
+//void cli
+
+
+
+

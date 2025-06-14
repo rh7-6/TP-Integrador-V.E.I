@@ -89,6 +89,46 @@ void Producto::SetStock(int num)
     }
 }
 
+///--------------------------------------------------------------------------------------------------
+
+int Producto::GetIdProducto(){
+
+    return _IdProducto;
+
+}
+
+float Producto::GetPrecio(){
+
+    return _Precio;
+
+}
+
+const char *Producto::GetDescripcion(){
+
+    return _Descripcion.getTexto();
+
+}
+
+const char *Producto::GetMarca(){
+
+    return _Marca.getTexto();
+
+}
+
+int Producto::GetTipoEquipo(){
+
+    return _TipoEquipo;
+
+}
+
+int Producto::GetStock(){
+
+    return _Stock;
+
+}
+
+///--------------------------------------------------------------------------------------------------
+
 void Producto::CargarProducto()
 {
 int id,tipo,stock;
@@ -138,41 +178,4 @@ else
  cout<<"La cantidad de stock del equipo o producto: "<<GetStock()<<endl;
 }
 
-///--------------------------------------------------------------------------------------------------
-
-int Producto::GetIdProducto(){
-
-    return _IdProducto;
-
-}
-
-float Producto::GetPrecio(){
-
-    return _Precio;
-
-}
-
-const char *Producto::GetDescripcion(){
-
-    return _Descripcion.getTexto();
-
-}
-
-const char *Producto::GetMarca(){
-
-    return _Marca.getTexto();
-
-}
-
-int Producto::GetTipoEquipo(){
-
-    return _TipoEquipo;
-
-}
-
-int Producto::GetStock(){
-
-    return _Stock;
-
-}
 

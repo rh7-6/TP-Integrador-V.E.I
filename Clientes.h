@@ -11,7 +11,7 @@ public:
     void SetTelefono(const char *t);
     void SetMail(const char *t);
     void SetDireccion(const char *t);
-    bool SetTipoCliente(int tc);
+    void SetTipoCliente(int tc);
 
     const char *GetCuit();
     const char *GetNombre();
@@ -21,6 +21,8 @@ public:
     const char *GetDireccion();
     int GetTipoCliente();
 
+    void CargarCliente();
+    void MostrarCliente();
 
 private:
 

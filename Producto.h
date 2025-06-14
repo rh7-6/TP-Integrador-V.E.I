@@ -6,14 +6,10 @@ class Producto {
 public:
 void SetIdProducto(int num);
 void SetPrecio(float num);
-///arreglar problema con espacio en los char///////
-void SetDescripcion(char *palabra);             ///
-void SetMarca(char *palabra);                   ///
-///////////////////////////////////////////////////
+void SetDescripcion(char *palabra);
+void SetMarca(char *palabra);
 void SetTipoEquipo(int num);
 void SetStock(int num);
-void CargarProducto();
-void MostrarProducto();
 
 int GetIdProducto();
 float GetPrecio();
@@ -21,6 +17,9 @@ const char *GetDescripcion();
 const char *GetMarca();
 int GetTipoEquipo();
 int GetStock();
+
+void CargarProducto();
+void MostrarProducto();
 
 private:
 
