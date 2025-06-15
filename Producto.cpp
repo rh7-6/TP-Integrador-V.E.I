@@ -1,5 +1,6 @@
 #include <iostream>
 #include "cstring"
+#include <limits>///libreria que utiliza el limpiador de buffer///
 using namespace std;
 #include "Producto.h"
 
@@ -143,12 +144,13 @@ char descripcion[80], marca[20];
  cin>>precio;
  SetPrecio(precio);
  cout<<endl;
+ std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');///limpiador del buffer///
  cout<<"coloque la descripcion del producto o equipo: ";
- cin>>descripcion;
+ cin.getline(descripcion,80);
  SetDescripcion(descripcion);
  cout<<endl;
  cout<<"coloque la marca a la que pertenece el producto o equipo: ";
- cin>>marca;
+ cin.getline(marca,20);
  SetMarca(marca);
  cout<<endl;
  cout<<"coloque el tipo de 1-productos o 2-equipos: ";

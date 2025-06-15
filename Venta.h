@@ -10,7 +10,7 @@ public:
     void SetNumeroVenta(int id);
     void SetCuit(const char *t);
     void SetFechaVenta(Fecha f);
-    bool SetImporteVenta(float v);
+    void SetImporteVenta(float v);
 
     int GetNumeroVenta();
     const char *GetCuit();
@@ -18,6 +18,7 @@ public:
     float GetImporteVenta();
 
     void CargarVenta();
+    void MostrarVenta();
 
 
 private:
