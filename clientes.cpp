@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "cadena.h"
 #include "Clientes.h"
 using namespace std;
@@ -108,35 +109,37 @@ using namespace std;
 
 void Cliente::CargarCliente(){
 int tc;
-char cuil[20],nombre[10],apellido[15],telefono[20],mail[30],direccion[30];
+char *cuil= new char[31], *nombre= new char[31], *apellido= new char[31], *telefono= new char[31], *mail=new char[31], *direccion=new char[31];
+
 cout<<"Ingrese el cuil del cliente: ";
-cin>>cuil;
+cin.getline(cuil, 31);
 SetCuil(cuil);
 cout<<endl;
 cout<<"Ingrese el nombre del cliente: ";
-cin>>nombre;
+cin.getline(nombre, 31);
 SetNombre(nombre);
 cout<<endl;
 cout<<"Ingrese el apellido del cliente: ";
-cin>>apellido;
+cin.getline(apellido, 31);
 SetApellido(apellido);
 cout<<endl;
 cout<<"Ingrese el telefono del cliente: ";
-cin>>telefono;
+cin.getline(telefono, 31);
 SetTelefono(telefono);
 cout<<endl;
 cout<<"Ingrese el mail del cliente: ";
-cin>>mail;
+cin.getline(mail, 31);
 SetMail(mail);
 cout<<endl;
 cout<<"Ingrese la direccion del cliente: ";
-cin>>direccion;
+cin.getline(direccion, 31);
 SetDireccion(direccion);
 cout<<endl;
 cout<<"ingrese el tipo de cliente 1-particular o 2-empresa: ";
 cin>>tc;
 SetTipoCliente(tc);
 cout<<endl;
+delete[] cuil; delete[] nombre; delete[] apellido; delete[] telefono; delete[] mail; delete[] direccion;
 }
 
 void Cliente::MostrarCliente(){
