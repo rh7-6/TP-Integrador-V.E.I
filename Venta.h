@@ -2,19 +2,18 @@
 #define VENTA_H_INCLUDED
 #include "cadena.h"
 #include "Fecha.h"
-
+#include "cstring"
 
 class Venta {
 public:
 
     void SetNumeroVenta(int id);
     void SetCuit(const char *t);
-    void SetFechaVenta(Fecha f);
+    Fecha SetFechaVenta(int dia,int mes,int siglo);
     void SetImporteVenta(float v);
 
     int GetNumeroVenta();
     const char *GetCuit();
-    Fecha GetFechaVenta();
     float GetImporteVenta();
 
     void CargarVenta();

@@ -3,17 +3,18 @@
 #include "Producto.h"
 #include "Clientes.h"
 #include "Venta.h"
+#include "Detalle_Venta.h"
+///libreria grafica///
+#include "rlutil.h"
 
 using namespace std;
-/// arreglar el problema con los espacios de la cadena de texto///
+
 int main()
 {
-Producto prod;
-Cliente cli;
-Venta vent;
+rlutil::locate(51,10);///cordenadas///
+///continuar con menu///
 
-vent.CargarVenta();
-vent.MostrarVenta();
+
 
 
 

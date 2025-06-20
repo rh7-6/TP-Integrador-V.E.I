@@ -32,9 +32,11 @@ using namespace std;
 
     }
 
-    void Venta::SetFechaVenta(Fecha f){
+    Fecha Venta::SetFechaVenta(int dia,int mes,int siglo){
 
-        _FechaVenta=f;
+    _FechaVenta.setDia(dia);
+    _FechaVenta.setMes(mes);
+    _FechaVenta.setAnio(siglo);
 
     }
 
@@ -71,12 +73,6 @@ using namespace std;
 
     }
 
-    Fecha Venta::GetFechaVenta(){
-
-        return _FechaVenta;
-
-    }
-
     float Venta::GetImporteVenta(){
 
         return _ImporteVenta;
@@ -105,15 +101,12 @@ using namespace std;
         cin>>dia;
         cout<<endl;
         cout<<"ingrese mes de la venta:  ";
-        cout<<endl;
         cin>>mes;
+        cout<<endl;
         cout<<"ingrese anio de la venta: ";
         cin>>siglo;
         cout<<endl;
-        fech.setDia(dia);
-        fech.setMes(mes);
-        fech.setAnio(siglo);
-        SetFechaVenta(fech);
+        SetFechaVenta(dia,mes,siglo);
         cout<<"ingrese import de venta: ";
         cin>>importe;
         SetImporteVenta(importe);
@@ -123,8 +116,6 @@ using namespace std;
     void Venta::MostrarVenta(){
     cout<<"El numero de venta es: "<<GetNumeroVenta()<<endl;
     cout<<"El cuil de la venta es: "<<GetCuit()<<endl;
-    cout<<"La fecha de venta es: ";
-    GetFechaVenta();
-    cout<<endl;
+    cout<<"La fecha de venta es: "<<_FechaVenta.getDia()<<" / "<<_FechaVenta.getMes()<<" / "<<_FechaVenta.getAnio()<<endl;
     cout<<"El importe de la venta es: "<<GetImporteVenta()<<endl;
     }

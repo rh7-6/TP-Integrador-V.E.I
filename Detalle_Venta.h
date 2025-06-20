@@ -8,12 +8,15 @@ public:
     void SetNumeroVentaDT(int n);
     void SetPrecioProductoDT(float p);
     void SetIdProductoDT(int n);
-    bool SetCantidad(int n);
+    void SetCantidad(int n);
 
     int GetNumeroVentaDT();
     float GetPrecioProducto();
     int GetIdProductoDT();
     int GetCantidad();
+
+    void CargarDetalleVenta();
+    void MotrarDetalleVenta();
 
 private:
 

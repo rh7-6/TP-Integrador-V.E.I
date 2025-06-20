@@ -9,8 +9,23 @@ using namespace std;
     }
 
     void DetalleVenta::SetPrecioProductoDT(float p){
+       bool a=false;
+        while(a==false)
+        {
+            if(p>=1)
+            {
+                _PrecioProducto=p;
+                a=true;
+            }
+            else
+            {
+                cout<<"ingerese un prcio mayo a o igual a $1: $";
+                cin>>p;
+                cout<<endl;
+                a=false;
+            }
+        }
 
-        _PrecioProducto=p;
 
     }
 
@@ -20,15 +35,23 @@ using namespace std;
 
     }
 
-    bool DetalleVenta::SetCantidad(int n){
-
-        if(n>0){
-            _Cantidad=n;
-            return true;
-        }else{
-            return false;
+    void DetalleVenta::SetCantidad(int n){
+    bool a=false;
+        while(a==false)
+        {
+            if(n>=0)
+            {
+                _Cantidad=n;
+                a=true;
+            }
+            else
+            {
+                cout<<"ingerese una cantidad mayo a o igual a 0: ";
+                cin>>n;
+                cout<<endl;
+                a=false;
+            }
         }
-
     }
 
 ///--------------------------------------------------------------------------------------------------
@@ -57,3 +80,36 @@ using namespace std;
 
     }
 
+///--------------------------------------------------------------------------------------------------
+
+void DetalleVenta::CargarDetalleVenta(){
+
+int numeroventa, idproducto, cantidad;
+float precio;
+
+cout<<"ingrese un numero de venta: ";
+cin>>numeroventa;
+cout<<endl;
+SetNumeroVentaDT(numeroventa);
+cout<<"ingrese un precio mayor o igual a 1 : $";
+cin>>precio;
+cout<<endl;
+SetPrecioProductoDT(precio);
+cout<<"ingrese el nuemro de id del producto: ";
+cin>>idproducto;
+cout<<endl;
+SetIdProductoDT(idproducto);
+cout<<"ingrese la cantidad de productos vendidos: ";
+cin>>cantidad;
+cout<<endl;
+SetCantidad(cantidad);
+}
+
+
+void DetalleVenta::MotrarDetalleVenta(){
+cout<<"El numero de venta es: "<<GetNumeroVentaDT()<<endl;
+cout<<"El precio de la venta fue de: $"<<GetPrecioProducto()<<endl;
+cout<<"El numero de id del producto es: "<<GetIdProductoDT()<<endl;
+cout<<"La cantidad de productos comprados: "<<GetCantidad()<<endl;
+
+}
