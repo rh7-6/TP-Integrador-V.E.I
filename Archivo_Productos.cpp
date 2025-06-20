@@ -91,9 +91,17 @@ using namespace std;
         _NombreArchivo.setTexto(nombre);
     }
 
-    const char *ArchivoProductos::GetNombreArchivoProductos(){
+    const char *ArchivoProductos::GetNombreArchivoProductos (){
 
         return _NombreArchivo.getTexto();
     }
 
-    /// pendiente desarrollar el constructor para crear el archivo .dat
+    ArchivoProductos::ArchivoProductos(const char *nombre){
+
+        _NombreArchivo.setTexto(nombre);
+    }
+
+    ArchivoProductos::ArchivoProductos(){
+
+        _NombreArchivo.setTexto("");
+    }

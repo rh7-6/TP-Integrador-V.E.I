@@ -13,9 +13,11 @@ public:
     void SetNombreArchivoClientes(const char *nombre);
     const char *GetNombreArchivoClientes();
 
-    /// pendiente declarar constructor para crear el archivo .dat
+    ArchivoClientes(const char *t);
+    ArchivoClientes();
+
 private:
-    ///objeto cadena///
+
     Cadena _NombreArchivo;
 
 };

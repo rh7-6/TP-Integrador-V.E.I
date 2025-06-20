@@ -97,5 +97,12 @@ using namespace std;
     }
 
 
-    /// pendiente desarrollar el constructor para crear el archivo .dat
+    ArchivoClientes::ArchivoClientes(const char *nombre){
 
+        _NombreArchivo.setTexto(nombre);
+    }
+
+    ArchivoClientes::ArchivoClientes(){
+
+        _NombreArchivo.setTexto("");
+    }

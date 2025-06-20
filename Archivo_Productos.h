@@ -12,7 +12,8 @@ public:
     void SetNombreArchivoProductos(const char *nombre);
     const char *GetNombreArchivoProductos();
 
-    /// pendiente declarar constructor para crear el archivo .dat
+    ArchivoProductos(const char *t);
+    ArchivoProductos();
 private:
 
     Cadena _NombreArchivo;

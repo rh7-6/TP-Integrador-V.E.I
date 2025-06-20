@@ -189,3 +189,15 @@ using namespace std;
 
         return _NombreArchivoDetalleVentas.getTexto();
     }
+    /// Constructores ///
+
+    ArchivoVentas::ArchivoVentas(const char *nombre, int ventaOdetalle){
+
+        if(ventaOdetalle==1){
+            _NombreArchivoVentas.setTexto(nombre);
+        }else if(ventaOdetalle==2){
+            _NombreArchivoDetalleVentas.setTexto(nombre);
+        }
+    }
+
+    ArchivoVentas::ArchivoVentas(){}

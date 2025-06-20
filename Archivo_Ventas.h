@@ -19,8 +19,9 @@ public:
     DetalleVenta LeerDetalleDeVenta(int pos);
     void SetNombreAchDetalleVentas(const char *nombre);
     const char *GetNombreArchDetalleVentas();
-    /// pendiente declarar constructor para crear el archivo .dat
 
+    ArchivoVentas(const char *nombre, int ventaOdetalle); // venta=1 detalle=2
+    ArchivoVentas();
 
 private:
     Cadena _NombreArchivoVentas;
