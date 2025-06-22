@@ -9,6 +9,7 @@
 #include "Archivo_Clientes.h"
 #include "Archivo_Productos.h"
 #include "Archivo_Ventas.h"
+#include "Archivo_Detalle_Ventas.h"
 #include "rlutil.h"
 
 using namespace std;

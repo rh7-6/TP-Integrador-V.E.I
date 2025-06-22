@@ -1,22 +1,18 @@
 #ifndef ARCHIVO_PRODUCTOS_H_INCLUDED
 #define ARCHIVO_PRODUCTOS_H_INCLUDED
+#include "Archivo_Template.h"
 #include "Producto.h"
 
-class ArchivoProductos {
+class ArchivoProductos: public ArchivoTemplate{
+
 public:
 
     bool GuardarProducto(Producto pr);
-    int CantidadRegistros();
     int BuscarProducto(int IdProducto);
     Producto LeerProducto(int pos);
-    void SetNombreArchivoProductos(const char *nombre);
-    const char *GetNombreArchivoProductos();
 
     ArchivoProductos(const char *t);
     ArchivoProductos();
-private:
-
-    Cadena _NombreArchivo;
 
 };
 

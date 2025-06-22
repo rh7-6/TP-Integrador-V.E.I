@@ -1,24 +1,17 @@
 #ifndef ARCHIVO_CLIENTES_H_INCLUDED
 #define ARCHIVO_CLIENTES_H_INCLUDED
-#include "cadena.h"
+#include "Archivo_Template.h"
 #include "Clientes.h"
 
-class ArchivoClientes {
+class ArchivoClientes: public ArchivoTemplate{
 public:
 
-    bool GuardarCliente(Cliente &cl);
-    int CantidadRegistros();
+    bool GuardarCliente(Cliente cl);
     int BuscarCliente(const char *CUIT);
     Cliente LeerCliente(int pos);
-    void SetNombreArchivoClientes(const char *nombre);
-    const char *GetNombreArchivoClientes();
 
     ArchivoClientes(const char *t);
     ArchivoClientes();
-
-private:
-
-    Cadena _NombreArchivo;
 
 };
 #endif // ARCHIVO_CLIENTES_H_INCLUDED

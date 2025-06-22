@@ -11,8 +11,8 @@ bool ArchivoDetalleVentas::GuardarDetalleVenta(DetalleVenta dv){
          return false;
         }
 
-        ArchivoDetalleVentas av;
-        if(int pos=av.BuscarDetalleDeVenta(dv.GetNumeroVentaDT())>=0){
+
+        if(int pos=BuscarDetalleDeVenta(dv.GetNumeroVentaDT())>=0){
 
             fseek(pfile, sizeof(DetalleVenta) *pos, SEEK_SET);
             fwrite(&dv, sizeof(DetalleVenta), 1, pfile);

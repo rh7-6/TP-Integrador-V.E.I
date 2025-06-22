@@ -5,14 +5,13 @@ using namespace std;
 
     bool ArchivoProductos::GuardarProducto(Producto pr){
         FILE *pfile;
-        pfile = fopen(_NombreArchivo.getTexto(),"ab");
+        pfile = fopen(GetNombreArchivo(),"ab");
         if(pfile == NULL)
         {
          return false;
         }
 
-        ArchivoProductos ap;
-        if(int pos=ap.BuscarProducto(pr.GetIdProducto())>=0){
+        if(int pos=BuscarProducto(pr.GetIdProducto())>=0){
 
             fseek(pfile, sizeof(Producto) *pos, SEEK_SET);
             fwrite(&pr, sizeof(Producto), 1, pfile);
@@ -25,36 +24,18 @@ using namespace std;
         return true;
     }
 
-    int ArchivoProductos::CantidadRegistros(){
-
-        FILE *pfile;
-        pfile = fopen(_NombreArchivo.getTexto(),"rb");
-
-        if(pfile==NULL){
-            return -1;
-        }
-
-        int contReg=0;
-        Producto p;
-        while(fread(&p, sizeof(Producto), 1, pfile)==1){
-            contReg++;
-        }
-        fclose(pfile);
-        return contReg;
-    }
 
     int ArchivoProductos::BuscarProducto(int IdProducto){
 
         FILE *pfile;
-        pfile = fopen(_NombreArchivo.getTexto(),"rb");
+        pfile = fopen(GetNombreArchivo(),"rb");
 
         if(pfile==NULL){
             return -1;
         }
 
         Producto p;
-        ArchivoProductos ap;
-        int posProducto=0, cantReg=ap.CantidadRegistros();
+        int posProducto=0, cantReg=CantidadRegistros(sizeof(p));
 
         for(int i=0; i<cantReg; i++){
             fread(&p, sizeof(Producto), 1, pfile);
@@ -72,7 +53,7 @@ using namespace std;
     Producto ArchivoProductos::LeerProducto(int pos){
 
         FILE *pfile;
-        pfile = fopen(_NombreArchivo.getTexto(),"rb");
+        pfile = fopen(GetNombreArchivo(),"rb");
 
         if(pfile==NULL){
             return Producto();
@@ -86,22 +67,11 @@ using namespace std;
         return p;
     }
 
-    void ArchivoProductos::SetNombreArchivoProductos(const char *nombre){
-
-        _NombreArchivo.setTexto(nombre);
-    }
-
-    const char *ArchivoProductos::GetNombreArchivoProductos (){
-
-        return _NombreArchivo.getTexto();
-    }
 
     ArchivoProductos::ArchivoProductos(const char *nombre){
 
-        _NombreArchivo.setTexto(nombre);
+        SetNombreArchivo(nombre);
     }
 
     ArchivoProductos::ArchivoProductos(){
-
-        _NombreArchivo.setTexto("");
     }
