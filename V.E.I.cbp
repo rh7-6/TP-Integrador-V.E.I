@@ -34,10 +34,14 @@
 		</Compiler>
 		<Unit filename="Archivo_Clientes.cpp" />
 		<Unit filename="Archivo_Clientes.h" />
+		<Unit filename="Archivo_Detalle_Ventas.cpp" />
+		<Unit filename="Archivo_Detalle_Ventas.h" />
 		<Unit filename="Archivo_Productos.cpp" />
 		<Unit filename="Archivo_Productos.h" />
+		<Unit filename="Archivo_Template.h" />
 		<Unit filename="Archivo_Ventas.cpp" />
 		<Unit filename="Archivo_Ventas.h" />
+		<Unit filename="Archvio_Template.cpp" />
 		<Unit filename="Clientes.h" />
 		<Unit filename="Detalle_Venta.h" />
 		<Unit filename="Detalle_Ventas.cpp" />
