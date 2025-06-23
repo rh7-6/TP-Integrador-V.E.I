@@ -29,6 +29,7 @@ private:
     Cadena _Marca;
     int _TipoEquipo;
     int _Stock;
+    bool _Estado;
 
 };
 #endif // PRODUCTO_H_INCLUDED

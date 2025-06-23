@@ -1,15 +1,5 @@
 #include <iostream>
 #include "menu.h"
-#include "Fecha.h"
-#include "cadena.h"
-#include "Producto.h"
-#include "Clientes.h"
-#include "Venta.h"
-#include "Detalle_Venta.h"
-#include "Archivo_Clientes.h"
-#include "Archivo_Productos.h"
-#include "Archivo_Ventas.h"
-#include "Archivo_Detalle_Ventas.h"
 
 using namespace std;
 
@@ -188,38 +178,37 @@ switch (icono){
                 if(a>4){a=0;}
                 break;
                 case(1):///enter///
-                    Cliente cl;
-                    Venta ven;
-                    Producto prod;
-                    DetalleVenta vendet;
+//                    Cliente cl;
+//                    Venta ven;
+//                    Producto prod;
+//                    DetalleVenta vendet;
                     switch(a)
                     {
                         case(0):
                             system("cls");
                             rlutil::showcursor();
-                            cl.CargarCliente();
+//                            cl.CargarCliente();
                             system("cls");
 ////////////////////////////////////////////guarda registro de cliente/////////////////////////////////////////////////////////
                         break;
                         case(1):
                             system("cls");
                             rlutil::showcursor();
-                            ven.CargarVenta();
+//                            ven.CargarVenta();
                             system("cls");
 ////////////////////////////////////////////guarda registro de venta/////////////////////////////////////////////////////////
                         break;
                         case(2):
                             system("cls");
                             rlutil::showcursor();
-                            prod.CargarProducto();
+//                            prod.CargarProducto();
                             system("cls");
 ////////////////////////////////////////////guarda registro de producto/////////////////////////////////////////////////////////
                         break;
                         case(3):
-
                             system("cls");
                             rlutil::showcursor();
-                            vendet.CargarDetalleVenta();
+//                            vendet.CargarDetalleVenta();
                             system("cls");
 ////////////////////////////////////////////guarda registro detalle de venta/////////////////////////////////////////////////////////
                         break;

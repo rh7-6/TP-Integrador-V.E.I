@@ -4,6 +4,7 @@
 #include "rlutil.h"
 using namespace std;
 
+/// selección y graficos ///
 void Menu();
 
 void menuPrincipal();
@@ -17,6 +18,9 @@ void MenuInformes();
 void MenuRegistro();
 
 void MenuRegistroMostrar();
+
+/// funcionalidad ///
+
 
 
 #endif // MENU_H_INCLUDED

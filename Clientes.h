@@ -33,6 +33,7 @@ private:
     Cadena _Mail;
     Cadena _Direccion;
     int _TipoCliente;
+    bool _Estado;
 
 
 };

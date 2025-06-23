@@ -32,7 +32,7 @@ using namespace std;
 
     }
 
-    Fecha Venta::SetFechaVenta(int dia,int mes,int siglo){
+    void Venta::SetFechaVenta(int dia,int mes,int siglo){
 
     _FechaVenta.setDia(dia);
     _FechaVenta.setMes(mes);
@@ -57,7 +57,7 @@ using namespace std;
                 cout<<endl;
             }
         }
-}
+    }
 
 ///--------------------------------------------------------------------------------------------------
 
@@ -93,7 +93,7 @@ using namespace std;
         SetNumeroVenta(venta);
         cout<<endl;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        cout<<"ingrese el cuil de venta: ";
+        cout<<"ingrese el cuit del comprador: ";
         cin.getline(cuit,20);
         SetCuit(cuit);
         cout<<endl;

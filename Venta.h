@@ -9,7 +9,7 @@ public:
 
     void SetNumeroVenta(int id);
     void SetCuit(const char *t);
-    Fecha SetFechaVenta(int dia,int mes,int siglo);
+    void SetFechaVenta(int dia,int mes,int siglo);
     void SetImporteVenta(float v);
 
     int GetNumeroVenta();
