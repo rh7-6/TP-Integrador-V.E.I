@@ -6,7 +6,7 @@
 class ArchivoClientes: public ArchivoTemplate{
 public:
 
-    bool GuardarCliente(Cliente cl);
+    bool GuardarCliente(Cliente &cl);
     int BuscarCliente(const char *CUIT);
     Cliente LeerCliente(int pos);
 

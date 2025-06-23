@@ -21,6 +21,9 @@ public:
     const char *GetDireccion();
     int GetTipoCliente();
 
+    Cliente();
+    Cliente(const char *CUIT, const char *nombre, const char *apellido, const char *telefono, const char *mail, const char *direccion, int tipoCliente, bool estado);
+
     void CargarCliente();
     void MostrarCliente();
 

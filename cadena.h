@@ -1,5 +1,6 @@
 #ifndef CADENA_H_INCLUDED
 #define CADENA_H_INCLUDED
+#include <string>
 using namespace std;
 
 class Cadena{
@@ -13,8 +14,7 @@ public:
     void Concatenar(const char *t);
 
 private:
-    int tam;
-    char *texto;
+    string _Texto;
 };
 
 

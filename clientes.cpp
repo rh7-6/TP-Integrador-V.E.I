@@ -105,6 +105,27 @@ using namespace std;
 
     }
 
+    Cliente::Cliente(){
+        _Cuit.setTexto("");
+        _Nombre.setTexto("");
+        _Apellido.setTexto("");
+        _Telefono.setTexto("");
+        _Mail.setTexto("");
+        _Direccion.setTexto("");
+        _TipoCliente=1;
+        _Estado=true;
+    }
+    Cliente::Cliente(const char *CUIT, const char *nombre, const char *apellido, const char *telefono, const char *mail, const char *direccion, int tipoCliente, bool estado){
+        _Cuit.setTexto(CUIT);
+        _Nombre.setTexto(nombre);
+        _Apellido.setTexto(apellido);
+        _Telefono.setTexto(telefono);
+        _Mail.setTexto(mail);
+        _Direccion.setTexto(direccion);
+        _TipoCliente=tipoCliente;
+        _Estado=estado;
+    }
+
 ///--------------------------------------------------------------------------------------------------
 
 void Cliente::CargarCliente(){

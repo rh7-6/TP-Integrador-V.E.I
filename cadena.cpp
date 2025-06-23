@@ -4,13 +4,10 @@
 using namespace std;
 
 Cadena::Cadena(){
-texto= {};
 }
+
 Cadena::Cadena(const char *t){
-    tam = strlen(t);
-    texto = new char[tam+1];
-    if(texto == nullptr) exit(-1);
-    strcpy(texto, t);
+    _Texto= t;
 }
 
 Cadena::~Cadena(){
