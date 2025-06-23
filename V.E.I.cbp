@@ -47,6 +47,7 @@
 		<Unit filename="Detalle_Ventas.cpp" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
+		<Unit filename="Funcionalidad_menu.cpp" />
 		<Unit filename="Producto.cpp" />
 		<Unit filename="Producto.h" />
 		<Unit filename="Venta.cpp" />
