@@ -14,6 +14,7 @@ public:
 
     int GetNumeroVenta();
     const char *GetCuit();
+    Fecha GetFecha();
     float GetImporteVenta();
 
     void CargarVenta();

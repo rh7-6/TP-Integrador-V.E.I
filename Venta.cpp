@@ -2,8 +2,6 @@
 #include <limits>
 #include "cstring"
 #include "Venta.h"
-#include "cadena.h"
-#include "Fecha.h"
 
 using namespace std;
 
@@ -71,6 +69,11 @@ using namespace std;
 
         return _Cuit.getTexto();
 
+    }
+
+    Fecha Venta::GetFecha(){
+
+        return _FechaVenta;
     }
 
     float Venta::GetImporteVenta(){
