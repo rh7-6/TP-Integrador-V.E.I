@@ -10,26 +10,13 @@ Cadena::Cadena(const char *t){
     _Texto= t;
 }
 
-Cadena::~Cadena(){
-    delete[] texto;
-}
-
 const char *Cadena::getTexto(){
-    return texto;
+    return _Texto.c_str();
 }
 
 void Cadena::setTexto(const char *t){
-    delete[] texto;
-    tam = strlen(t);
-    texto = new char[tam + 1];
-    if(texto == nullptr) exit(-1);
-    strcpy(texto, t);
+    _Texto= t;
 }
 void Cadena::Concatenar(const char *t){
-    tam += strlen(t);
-    char *tex= new char[tam+1];
-    strcpy(tex, texto);
-    delete[] texto;
-    strcat(tex,t);
-    texto = tex;
+    _Texto += t;
 }

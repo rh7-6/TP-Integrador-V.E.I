@@ -9,24 +9,23 @@ using namespace std;
 int main(){
 
     //Menu();
-    //Cliente jose;
-//
-//    jose.CargarCliente();
-//
-//    FILE *pfile;
-//    pfile=fopen("test.dat","wb");
-//
-//    fwrite(&jose,sizeof(Cliente),1,pfile);
-//
-//    fclose(pfile);
-//
-    Cliente jose1;
+    Cliente jose;
+    jose.CargarCliente();
 
-    ArchivoClientes archc("test.dat");
+    FILE *pfile;
+    pfile=fopen("test.dat","wb");
 
-    jose1= archc.LeerCliente(0);
+    fwrite(&jose,sizeof(Cliente),1,pfile);
 
-    cout<< jose1.GetTipoCliente();
+    fclose(pfile);
+
+//    Cliente jose1;
+//
+//    ArchivoClientes archc("test.dat");
+//
+//    jose1= archc.LeerCliente(0);
+//
+//    jose1.MostrarCliente();
 
 
 return 0;

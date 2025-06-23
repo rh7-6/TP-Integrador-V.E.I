@@ -64,9 +64,7 @@ using namespace std;
 ///--------------------------------------------------------------------------------------------------
 
     const char *Cliente::GetCuil(){
-
         return _Cuit.getTexto();
-
     }
 
     const char *Cliente::GetNombre(){
