@@ -1,12 +1,30 @@
 #include <iostream>
 #include "menu.h"
-
+#include "Clientes.h"
+#include "Producto.h"
+#include "Venta.h"
+#include "Detalle_Venta.h"
+///////////Archivos////////////////
+#include "Archivo_Template.h"
+#include "Archivo_Clientes.h"
+#include "Archivo_Detalle_Ventas.h"
+#include "Archivo_Productos.h"
+#include "Archivo_Ventas.h"
 using namespace std;
 
     void Menu(){
 
 int y=0, icono;
 bool bandera=true;
+
+
+Cliente cl;
+Venta ven;
+Producto prod;
+DetalleVenta vendet;
+ArchivoClientes arch_cl;
+
+
 ///movimiento///
 do{
 menuPrincipal();
@@ -178,38 +196,44 @@ switch (icono){
                 if(a>4){a=0;}
                 break;
                 case(1):///enter///
-//                    Cliente cl;
-//                    Venta ven;
-//                    Producto prod;
-//                    DetalleVenta vendet;
+
                     switch(a)
                     {
                         case(0):
                             system("cls");
                             rlutil::showcursor();
-//                            cl.CargarCliente();
+                            cl.CargarCliente();
                             system("cls");
+                            rlutil::hidecursor();
+                            arch_cl.GuardarCliente(cl);
+
 ////////////////////////////////////////////guarda registro de cliente/////////////////////////////////////////////////////////
                         break;
                         case(1):
                             system("cls");
                             rlutil::showcursor();
-//                            ven.CargarVenta();
+                            ven.CargarVenta();
                             system("cls");
+                            rlutil::hidecursor();
+
 ////////////////////////////////////////////guarda registro de venta/////////////////////////////////////////////////////////
                         break;
                         case(2):
                             system("cls");
                             rlutil::showcursor();
-//                            prod.CargarProducto();
+                            prod.CargarProducto();
                             system("cls");
+                            rlutil::hidecursor();
+
 ////////////////////////////////////////////guarda registro de producto/////////////////////////////////////////////////////////
                         break;
                         case(3):
                             system("cls");
                             rlutil::showcursor();
-//                            vendet.CargarDetalleVenta();
+                            vendet.CargarDetalleVenta();
                             system("cls");
+                            rlutil::hidecursor();
+
 ////////////////////////////////////////////guarda registro detalle de venta/////////////////////////////////////////////////////////
                         break;
                         case(4):
@@ -248,8 +272,12 @@ switch (icono){
                     switch(a)
                     {
                         case(0):
+
+
                         break;
                         case(1):
+
+
                         break;
                         case(2):
                         break;

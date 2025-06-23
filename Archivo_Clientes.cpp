@@ -66,7 +66,6 @@ using namespace std;
         return cl;
     }
 
-
     ArchivoClientes::ArchivoClientes(const char *nombre){
 
         SetNombreArchivo(nombre);
