@@ -3,23 +3,28 @@
 using namespace std;
 
     ///ventas///
-    bool ArchivoVentas::GuardarVenta(Venta v){
+    bool ArchivoVentas::GuardarVenta(Venta &v){
 
-        FILE *pfile;
-        pfile = fopen(GetNombreArchivo(),"ab");
-        if(pfile == NULL)
-        {
-         return false;
-        }
+        if(int pos=BuscarVenta(v.GetNumeroVenta())>=0){
 
-        ArchivoVentas av;
-        if(int pos=av.BuscarVenta(v.GetNumeroVenta())>=0){
+            FILE *pfile;
+            pfile = fopen(GetNombreArchivo(),"ab");
+            if(pfile == NULL){
+                return false;
+            }
 
             fseek(pfile, sizeof(Venta) *pos, SEEK_SET);
             fwrite(&v, sizeof(Venta), 1, pfile);
             fclose(pfile);
             return true;
         }
+
+        FILE *pfile;
+        pfile = fopen(GetNombreArchivo(),"ab");
+        if(pfile == NULL){
+         return false;
+        }
+
 
         fwrite(&v, sizeof(Venta), 1, pfile);
         fclose(pfile);

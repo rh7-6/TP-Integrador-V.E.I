@@ -6,11 +6,13 @@ using namespace std;
     bool ArchivoProductos::GuardarProducto(Producto &pr){
 
         if(int pos=BuscarProducto(pr.GetIdProducto())>=0){
+
             FILE *pfile;
             pfile = fopen(GetNombreArchivo(),"ab");
             if(pfile == NULL){
             return false;
             }
+
             fseek(pfile, sizeof(Producto) *pos, SEEK_SET);
             fwrite(&pr, sizeof(Producto), 1, pfile);
             fclose(pfile);
@@ -19,10 +21,10 @@ using namespace std;
 
         FILE *pfile;
         pfile = fopen(GetNombreArchivo(),"ab");
-        if(pfile == NULL)
-        {
+        if(pfile == NULL){
          return false;
         }
+
         fwrite(&pr, sizeof(Producto), 1, pfile);
         fclose(pfile);
         return true;

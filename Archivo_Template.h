@@ -6,7 +6,7 @@ class ArchivoTemplate{
 
 public:
 
-    int CantidadRegistros(int tam);
+    int CantidadRegistros(int tamObj);
     void SetNombreArchivo(const char *nombre);
     const char *GetNombreArchivo();
 

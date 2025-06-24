@@ -7,7 +7,7 @@ class ArchivoVentas: public ArchivoTemplate{
 
 public:
 
-    bool GuardarVenta(Venta v);
+    bool GuardarVenta(Venta &v);
     int BuscarVenta(int NumeroDeVenta);
     Venta LeerVenta(int pos);
 

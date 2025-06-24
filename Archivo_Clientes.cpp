@@ -5,24 +5,26 @@ using namespace std;
 
     bool ArchivoClientes::GuardarCliente(Cliente &cl){
 
-        //if(int pos=BuscarCliente(cl.GetCuil())>=0){
-//            FILE *pfile;
-//            pfile = fopen(GetNombreArchivo(),"ab");
-//            if(pfile==NULL){
-//                return false;
-//            }
-//            fseek(pfile, sizeof(Cliente) *pos, SEEK_SET);
-//            fwrite(&cl, sizeof(Cliente), 1, pfile);
-//            fclose(pfile);
-//            return true;
-//        }
+        if(int pos=BuscarCliente(cl.GetCuil())>=0){
+
+            FILE *pfile;
+            pfile = fopen(GetNombreArchivo(),"ab");
+            if(pfile==NULL){
+                return false;
+            }
+
+            fseek(pfile, sizeof(Cliente) *pos, SEEK_SET);
+            fwrite(&cl, sizeof(Cliente), 1, pfile);
+            fclose(pfile);
+            return true;
+        }
 
         FILE *pfile;
         pfile = fopen(GetNombreArchivo(),"ab");
-
         if(pfile==NULL){
             return false;
         }
+
         fwrite(&cl, sizeof(Cliente), 1, pfile);
         fclose(pfile);
         return true;
@@ -40,7 +42,7 @@ using namespace std;
         Cliente cl;
         int posCliente=0, cantReg=CantidadRegistros(sizeof(cl));
 
-        for(int i=0; i<cantReg; i++){
+        for(int i=0; i<=cantReg; i++){
             fread(&cl, sizeof(Cliente), 1, pfile);
             if(cl.GetCuil()==CUIT){
                 fclose(pfile);

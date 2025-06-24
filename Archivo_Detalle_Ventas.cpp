@@ -2,7 +2,20 @@
 #include "Archivo_Detalle_Ventas.h"
 using namespace std;
 
-bool ArchivoDetalleVentas::GuardarDetalleVenta(DetalleVenta dv){
+bool ArchivoDetalleVentas::GuardarDetalleVenta(DetalleVenta &dv){
+
+        if(int pos=BuscarDetalleDeVenta(dv.GetNumeroVentaDT())>=0){
+            FILE *pfile;
+            pfile = fopen(GetNombreArchivo(),"ab");
+            if(pfile == NULL){
+                return false;
+            }
+
+            fseek(pfile, sizeof(DetalleVenta) *pos, SEEK_SET);
+            fwrite(&dv, sizeof(DetalleVenta), 1, pfile);
+            fclose(pfile);
+            return true;
+        }
 
         FILE *pfile;
         pfile = fopen(GetNombreArchivo(),"ab");
@@ -12,13 +25,6 @@ bool ArchivoDetalleVentas::GuardarDetalleVenta(DetalleVenta dv){
         }
 
 
-        if(int pos=BuscarDetalleDeVenta(dv.GetNumeroVentaDT())>=0){
-
-            fseek(pfile, sizeof(DetalleVenta) *pos, SEEK_SET);
-            fwrite(&dv, sizeof(DetalleVenta), 1, pfile);
-            fclose(pfile);
-            return true;
-        }
 
         fwrite(&dv, sizeof(DetalleVenta), 1, pfile);
         fclose(pfile);

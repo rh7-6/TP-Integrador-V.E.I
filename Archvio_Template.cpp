@@ -2,7 +2,7 @@
 #include "Archivo_Template.h"
 using namespace std;
 
-    int ArchivoTemplate::CantidadRegistros(int tam){
+    int ArchivoTemplate::CantidadRegistros(int tamObj){
 
         FILE *pfile;
         pfile = fopen(_NombreArchivo.getTexto(),"rb");
@@ -12,7 +12,7 @@ using namespace std;
         }
 
         fseek(pfile, 0, SEEK_END);
-        int cantReg = ftell(pfile)/tam;
+        int cantReg = ftell(pfile)/tamObj;
         fclose(pfile);
         return cantReg;
     }
