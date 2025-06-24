@@ -22,7 +22,8 @@ Cliente cl;
 Venta ven;
 Producto prod;
 DetalleVenta vendet;
-ArchivoClientes arch_cl;
+ArchivoClientes arch_cl("cliente.dat");
+
 
 
 ///movimiento///
@@ -271,10 +272,17 @@ switch (icono){
                 if(a>4){a=0;}
                 break;
                 case(1):///enter///
+                    int contador=2;
                     switch(a)
                     {
                         case(0):
-
+                         system("cls");
+                         //do{
+                         cl=arch_cl.LeerCliente(contador);
+                         cl.MostrarCliente();
+                         //while();
+                         system("pause");
+                         system("cls");
 
                         break;
                         case(1):

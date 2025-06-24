@@ -5,17 +5,17 @@ using namespace std;
 
     bool ArchivoClientes::GuardarCliente(Cliente &cl){
 
-        if(int pos=BuscarCliente(cl.GetCuil())>=0){
-            FILE *pfile;
-            pfile = fopen(GetNombreArchivo(),"ab");
-            if(pfile==NULL){
-                return false;
-            }
-            fseek(pfile, sizeof(Cliente) *pos, SEEK_SET);
-            fwrite(&cl, sizeof(Cliente), 1, pfile);
-            fclose(pfile);
-            return true;
-        }
+        //if(int pos=BuscarCliente(cl.GetCuil())>=0){
+//            FILE *pfile;
+//            pfile = fopen(GetNombreArchivo(),"ab");
+//            if(pfile==NULL){
+//                return false;
+//            }
+//            fseek(pfile, sizeof(Cliente) *pos, SEEK_SET);
+//            fwrite(&cl, sizeof(Cliente), 1, pfile);
+//            fclose(pfile);
+//            return true;
+//        }
 
         FILE *pfile;
         pfile = fopen(GetNombreArchivo(),"ab");
@@ -53,7 +53,6 @@ using namespace std;
     }
 
     Cliente ArchivoClientes::LeerCliente(int pos){
-
         FILE *pfile;
         pfile = fopen(GetNombreArchivo(),"rb");
 

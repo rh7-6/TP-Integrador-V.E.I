@@ -8,7 +8,14 @@ using namespace std;
 
 int main(){
 
+//ArchivoClientes arch("test.dat");
+//Cliente cl;
+
     Menu();
+    //cl.CargarCliente();
+    //arch.GuardarCliente(cl);
+    //cl=arch.LeerCliente(3);
+    //cl.MostrarCliente();
 
 return 0;
 }
