@@ -17,6 +17,7 @@ const char *GetDescripcion();
 const char *GetMarca();
 int GetTipoEquipo();
 int GetStock();
+bool GetEstado();
 
 void CargarProducto();
 void MostrarProducto();

@@ -74,7 +74,9 @@ switch (icono){
                 case(1):///enter///
                     switch(a)
                     {
-                        case(0):
+                        case(0):{
+                            ListadoDeProductosPorTipo();
+                        }
                         break;
                         case(1):
                         break;
@@ -652,4 +654,18 @@ rlutil::locate(46,13);
 cout<<"Mostrar registros detalle de venta";
 rlutil::locate(46,14);
 cout<<"Volver";
+}
+
+void MuestraTextoTiposDeProducto(){
+
+    cout << "Equipos=1" << endl;
+    cout << "Notebooks=2" << endl;
+    cout << "Procesadores=3" << endl;
+    cout << "Mothers=4" << endl;
+    cout << "Placas de video=5" << endl;
+    cout << "Memorias RAM=6" << endl;
+    cout << "Gabinetes=7" << endl;
+    cout << "Fuentes=8" << endl;
+    cout << "Monitores=9" << endl;
+    cout << "Perifericos=10" << endl;
 }

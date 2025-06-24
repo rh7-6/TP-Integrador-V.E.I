@@ -128,6 +128,10 @@ int Producto::GetStock(){
 
 }
 
+bool Producto::GetEstado(){
+    return _Estado;
+}
+
 ///--------------------------------------------------------------------------------------------------
 
 void Producto::CargarProducto()
@@ -149,15 +153,15 @@ char descripcion[80], marca[20];
  cin.getline(descripcion,80);
  SetDescripcion(descripcion);
  cout<<endl;
- cout<<"coloque la marca a la que pertenece el producto o equipo: ";
+ cout<<"coloque la marca a la que pertenece el producto: ";
  cin.getline(marca,20);
  SetMarca(marca);
  cout<<endl;
- cout<<"coloque el tipo de 1-productos o 2-equipos: ";
+ cout<<"coloque el tipo de producto: ";
  cin>>tipo;
  SetTipoEquipo(tipo);
  cout<<endl;
- cout<<"coloque la cantidad de stock del equipo o producto: ";
+ cout<<"coloque la cantidad de stock del producto: ";
  cin>>stock;
  SetStock(stock);
  cout<<endl;

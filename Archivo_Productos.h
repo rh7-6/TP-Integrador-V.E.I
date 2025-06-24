@@ -7,7 +7,7 @@ class ArchivoProductos: public ArchivoTemplate{
 
 public:
 
-    bool GuardarProducto(Producto pr);
+    bool GuardarProducto(Producto &pr);
     int BuscarProducto(int IdProducto);
     Producto LeerProducto(int pos);
 

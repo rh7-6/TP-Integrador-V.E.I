@@ -19,8 +19,10 @@ void MenuRegistro();
 
 void MenuRegistroMostrar();
 
+void MuestraTextoTiposDeProducto();
+
 /// funcionalidad ///
 
-
+void ListadoDeProductosPorTipo();
 
 #endif // MENU_H_INCLUDED

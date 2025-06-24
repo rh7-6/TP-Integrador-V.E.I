@@ -3,22 +3,26 @@
 using namespace std;
 
 
-    bool ArchivoProductos::GuardarProducto(Producto pr){
-        FILE *pfile;
-        pfile = fopen(GetNombreArchivo(),"ab");
-        if(pfile == NULL)
-        {
-         return false;
-        }
+    bool ArchivoProductos::GuardarProducto(Producto &pr){
 
         if(int pos=BuscarProducto(pr.GetIdProducto())>=0){
-
+            FILE *pfile;
+            pfile = fopen(GetNombreArchivo(),"ab");
+            if(pfile == NULL){
+            return false;
+            }
             fseek(pfile, sizeof(Producto) *pos, SEEK_SET);
             fwrite(&pr, sizeof(Producto), 1, pfile);
             fclose(pfile);
             return true;
         }
 
+        FILE *pfile;
+        pfile = fopen(GetNombreArchivo(),"ab");
+        if(pfile == NULL)
+        {
+         return false;
+        }
         fwrite(&pr, sizeof(Producto), 1, pfile);
         fclose(pfile);
         return true;
@@ -35,7 +39,7 @@ using namespace std;
         }
 
         Producto p;
-        int posProducto=0, cantReg=CantidadRegistros(sizeof(p));
+        int posProducto=0, cantReg=CantidadRegistros(sizeof(Producto));
 
         for(int i=0; i<cantReg; i++){
             fread(&p, sizeof(Producto), 1, pfile);
