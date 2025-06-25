@@ -10,7 +10,7 @@ using namespace std;
         if(pos>=0){
 
             FILE *pfile;
-            pfile = fopen(GetNombreArchivo(),"ab");
+            pfile = fopen(GetNombreArchivo(),"rb+");
             if(pfile==NULL){
                 return false;
             }
@@ -30,6 +30,7 @@ using namespace std;
         fwrite(&cl, sizeof(Cliente), 1, pfile);
         fclose(pfile);
         return true;
+
     }
 
     int ArchivoClientes::BuscarCliente(const char *CUIT){
@@ -43,6 +44,8 @@ using namespace std;
 
         Cliente cl;
         int posCliente=0, cantReg=CantidadRegistros(sizeof(cl));
+
+        cout << "------------------------------------cuit lectura en funcion: " << CUIT << endl;
 
         for(int i=0; i<=cantReg; i++){
             fread(&cl, sizeof(Cliente), 1, pfile);
@@ -75,6 +78,9 @@ using namespace std;
     ArchivoClientes::ArchivoClientes(const char *nombre){
 
         SetNombreArchivo(nombre);
+//        FILE *pfile;
+//        pfile = fopen(GetNombreArchivo(),"ab");
+//        fclose(pfile);
     }
 
     ArchivoClientes::ArchivoClientes(){
