@@ -13,7 +13,7 @@ public:
     void SetDireccion(const char *t);
     void SetTipoCliente(int tc);
 
-    const char *GetCuil();
+    const char *GetCuit();
     const char *GetNombre();
     const char *GetApellido();
     const char *GetTelefono();

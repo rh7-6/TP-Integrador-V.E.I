@@ -65,7 +65,7 @@ using namespace std;
 
 ///--------------------------------------------------------------------------------------------------
 
-    const char *Cliente::GetCuil(){
+    const char *Cliente::GetCuit(){
         return _Cuit.getTexto();
     }
 
@@ -132,7 +132,7 @@ void Cliente::CargarCliente(){
 int tc;
 char *cuil= new char[31], *nombre= new char[31], *apellido= new char[31], *telefono= new char[31], *mail=new char[31], *direccion=new char[31];
 
-cout<<"Ingrese el cuil del cliente: ";
+cout<<"Ingrese el cuit del cliente: ";
 cin.getline(cuil, 31);
 SetCuil(cuil);
 cout<<endl;
@@ -165,7 +165,7 @@ delete[] cuil; delete[] nombre; delete[] apellido; delete[] telefono; delete[] m
 }
 
 void Cliente::MostrarCliente(){
-cout<<"Cuil del cliente: "<<GetCuil()<<endl;
+cout<<"Cuil del cliente: "<<GetCuit()<<endl;
 cout<<"Nombre del cliente: "<<GetNombre()<<endl;
 cout<<"Apellido del cliente: "<<GetApellido()<<endl;
 cout<<"Telefono del cliente: "<<GetTelefono()<<endl;

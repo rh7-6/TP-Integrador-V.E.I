@@ -42,9 +42,9 @@ void Producto::SetPrecio(float num)
     }
 }
 
-void Producto::SetDescripcion(char *palabra)
-{
-    _Descripcion.setTexto(palabra);
+void Producto::SetDescripcion(char *descripcion){
+    strncpy(_Descripcion,descripcion, 499);
+    _Descripcion[499]= '\0';
 }
 
 void Producto::SetMarca(char *palabra)
@@ -57,9 +57,9 @@ void Producto::SetTipoEquipo(int num)
   bool a=true;
     while(a==true)
     {
-        if(num<1||num>2)
+        if(num<0||num>10)
         {
-            cout<<"el tipo de equipo tiene que ser de 1-productos o 2-equipos"<<endl;
+            cout<<"el tipo de equipo tiene que ser entre 1 y 10"<<endl;
             cin>>num;
             a=true;
         }
@@ -106,7 +106,7 @@ float Producto::GetPrecio(){
 
 const char *Producto::GetDescripcion(){
 
-    return _Descripcion.getTexto();
+    return _Descripcion;
 
 }
 
@@ -138,7 +138,7 @@ void Producto::CargarProducto()
 {
 int id,tipo,stock;
 float precio;
-char descripcion[80], marca[20];
+char descripcion[500]{}, marca[20]{};
 
  cout<<"coloque el id del producto o equipo igual o mayor a 0: ";
  cin>>id;
@@ -150,7 +150,7 @@ char descripcion[80], marca[20];
  cout<<endl;
  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');///limpiador del buffer///
  cout<<"coloque la descripcion del producto o equipo: ";
- cin.getline(descripcion,80);
+ cin.getline(descripcion,500);
  SetDescripcion(descripcion);
  cout<<endl;
  cout<<"coloque la marca a la que pertenece el producto: ";

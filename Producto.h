@@ -26,7 +26,7 @@ private:
 
     int _IdProducto;
     float _Precio;
-    Cadena _Descripcion;
+    char _Descripcion[500];
     Cadena _Marca;
     int _TipoEquipo;
     int _Stock;

@@ -1,11 +1,13 @@
 #include <iostream>
+#include <cstring>
 #include "Archivo_Clientes.h"
 using namespace std;
 
 
     bool ArchivoClientes::GuardarCliente(Cliente &cl){
 
-        if(int pos=BuscarCliente(cl.GetCuil())>=0){
+        int pos=BuscarCliente(cl.GetCuit());
+        if(pos>=0){
 
             FILE *pfile;
             pfile = fopen(GetNombreArchivo(),"ab");
@@ -44,7 +46,7 @@ using namespace std;
 
         for(int i=0; i<=cantReg; i++){
             fread(&cl, sizeof(Cliente), 1, pfile);
-            if(cl.GetCuil()==CUIT){
+            if(strcmp(cl.GetCuit(),CUIT)==0){
                 fclose(pfile);
                 return posCliente;
             }
