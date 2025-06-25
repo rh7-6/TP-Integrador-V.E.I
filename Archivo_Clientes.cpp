@@ -45,8 +45,6 @@ using namespace std;
         Cliente cl;
         int posCliente=0, cantReg=CantidadRegistros(sizeof(cl));
 
-        cout << "------------------------------------cuit lectura en funcion: " << CUIT << endl;
-
         for(int i=0; i<=cantReg; i++){
             fread(&cl, sizeof(Cliente), 1, pfile);
             if(strcmp(cl.GetCuit(),CUIT)==0){
