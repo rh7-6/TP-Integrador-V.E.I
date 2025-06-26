@@ -8,7 +8,7 @@ using namespace std;
         if(int pos=BuscarVenta(v.GetNumeroVenta())>=0){
 
             FILE *pfile;
-            pfile = fopen(GetNombreArchivo(),"ab");
+            pfile = fopen(GetNombreArchivo(),"rb+");
             if(pfile == NULL){
                 return false;
             }
