@@ -11,18 +11,18 @@ int main(){
 
     //Menu();
 
-    ArchivoProductos archp("testp.dat");
-    Producto p;
-
-    p.CargarProducto();
-    archp.GuardarProducto(p);
-
-    system("pause");
-
-    Producto p1;
-    archp.LeerProducto(0);
-
-    p.MostrarProducto();
+//    ArchivoProductos archp("testp.dat");
+//    Producto p;
+//
+//    p.CargarProducto();
+//    archp.GuardarProducto(p);
+//
+//    system("pause");
+//
+//    Producto p1;
+//    archp.LeerProducto(0);
+//
+//    p.MostrarProducto();
 
 
 return 0;

@@ -19,8 +19,7 @@ bool ArchivoDetalleVentas::GuardarDetalleVenta(DetalleVenta &dv){
 
         FILE *pfile;
         pfile = fopen(GetNombreArchivo(),"ab");
-        if(pfile == NULL)
-        {
+        if(pfile == NULL){
          return false;
         }
 

@@ -160,7 +160,7 @@ cout<<"ingrese el tipo de cliente 1-particular o 2-empresa: ";
 cin>>tc;
 SetTipoCliente(tc);
 cout<<endl;
-cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
 delete[] cuil; delete[] nombre; delete[] apellido; delete[] telefono; delete[] mail; delete[] direccion;
 }
 

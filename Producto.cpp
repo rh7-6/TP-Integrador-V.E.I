@@ -23,6 +23,11 @@ void Producto::SetIdProducto(int num)
     }
 }
 
+    void Producto::SetNombreProducto(char *nombre){
+
+        _NombreProducto.setTexto(nombre);
+    }
+
 void Producto::SetPrecio(float num)
 {
     bool a=true;
@@ -42,10 +47,11 @@ void Producto::SetPrecio(float num)
     }
 }
 
-void Producto::SetDescripcion(char *descripcion){
-    strncpy(_Descripcion,descripcion, 499);
-    _Descripcion[499]= '\0';
-}
+    void Producto::SetDescripcion(char *descripcion){
+
+        strncpy(_Descripcion,descripcion, 499);
+        _Descripcion[499]= '\0';
+    }
 
 void Producto::SetMarca(char *palabra)
 {
@@ -92,45 +98,45 @@ void Producto::SetStock(int num)
 
 ///--------------------------------------------------------------------------------------------------
 
-int Producto::GetIdProducto(){
+    int Producto::GetIdProducto(){
 
-    return _IdProducto;
+        return _IdProducto;
+    }
 
-}
+    const char *Producto::GetNombreProducto(){
 
-float Producto::GetPrecio(){
+        return _NombreProducto.getTexto();
+    }
 
-    return _Precio;
+    float Producto::GetPrecio(){
 
-}
+        return _Precio;
+    }
 
-const char *Producto::GetDescripcion(){
+    const char *Producto::GetDescripcion(){
 
-    return _Descripcion;
+        return _Descripcion;
+    }
 
-}
+    const char *Producto::GetMarca(){
 
-const char *Producto::GetMarca(){
+        return _Marca.getTexto();
+    }
 
-    return _Marca.getTexto();
+    int Producto::GetTipoEquipo(){
 
-}
+        return _TipoEquipo;
+    }
 
-int Producto::GetTipoEquipo(){
-
-    return _TipoEquipo;
-
-}
-
-int Producto::GetStock(){
+    int Producto::GetStock(){
 
     return _Stock;
+    }
 
-}
+    bool Producto::GetEstado(){
 
-bool Producto::GetEstado(){
-    return _Estado;
-}
+        return _Estado;
+    }
 
 ///--------------------------------------------------------------------------------------------------
 
@@ -138,30 +144,34 @@ void Producto::CargarProducto()
 {
 int id,tipo,stock;
 float precio;
-char descripcion[500]{}, marca[20]{};
+char nombre[50]{},descripcion[500]{}, marca[20]{};
 
- cout<<"coloque el id del producto o equipo igual o mayor a 0: ";
+ cout<<"Ingrese el id del producto o equipo igual o mayor a 0: ";
  cin>>id;
  SetIdProducto(id);
  cout<<endl;
- cout<<"coloque el precio del producto o equipo tienen que ser igual o mayor a 100: ";
+ cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
+ cout << "Ingrese nombre del producto: " << endl;
+ cin.getline(nombre, 50);
+ SetNombreProducto(nombre);
+ cout<<"Ingrese el precio del producto tienen que ser igual o mayor a 100: ";
  cin>>precio;
  SetPrecio(precio);
  cout<<endl;
- std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');///limpiador del buffer///
- cout<<"coloque la descripcion del producto o equipo: ";
+ cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
+ cout<<"Ingrese la descripcion del producto o equipo: ";
  cin.getline(descripcion,500);
  SetDescripcion(descripcion);
  cout<<endl;
- cout<<"coloque la marca a la que pertenece el producto: ";
+ cout<<"Ingrese la marca a la que pertenece el producto: ";
  cin.getline(marca,20);
  SetMarca(marca);
  cout<<endl;
- cout<<"coloque el tipo de producto: ";
+ cout<<"Ingrese el tipo de producto: ";
  cin>>tipo;
  SetTipoEquipo(tipo);
  cout<<endl;
- cout<<"coloque la cantidad de stock del producto: ";
+ cout<<"Ingrese el stock del producto: ";
  cin>>stock;
  SetStock(stock);
  cout<<endl;
