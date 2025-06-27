@@ -15,6 +15,9 @@ public:
     int GetIdProductoDT();
     int GetCantidad();
 
+    DetalleVenta();
+    DetalleVenta(int numeroVenta, float precioProducto, int idProducto, int cantidad);
+
     void CargarDetalleVenta();
     void MotrarDetalleVenta();
 

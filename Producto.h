@@ -21,6 +21,9 @@ int GetTipoEquipo();
 int GetStock();
 bool GetEstado();
 
+Producto();
+Producto(int Id, char *nombre, float precio, char *descripcion, char *marca, int tipo, int stock, bool estado);
+
 void CargarProducto();
 void MostrarProducto();
 

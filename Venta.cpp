@@ -82,6 +82,18 @@ using namespace std;
 
     }
 
+    Venta::Venta(){}
+
+    Venta::Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, float importeTotal){
+
+        _NumeroVenta=numeroVenta;
+        _Cuit.setTexto(cuit);
+        _FechaVenta.setDia(dia);
+        _FechaVenta.setMes(mes);
+        _FechaVenta.setAnio(anio);
+        _ImporteVenta=importeTotal;
+    }
+
 ///--------------------------------------------------------------------------------------------------
 
     void Venta::CargarVenta(){

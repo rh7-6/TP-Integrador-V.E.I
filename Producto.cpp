@@ -138,6 +138,20 @@ void Producto::SetStock(int num)
         return _Estado;
     }
 
+    Producto::Producto(){}
+
+    Producto::Producto(int id, char *nombre, float precio, char *descripcion, char *marca, int tipo, int stock, bool estado){
+
+        _IdProducto=id;
+        _NombreProducto.setTexto(nombre);
+        _Precio=precio;
+        SetDescripcion(descripcion);
+        _Marca.setTexto(marca);
+        _TipoEquipo=tipo;
+        _Stock=stock;
+        _Estado=estado;
+    }
+
 ///--------------------------------------------------------------------------------------------------
 
 void Producto::CargarProducto()
