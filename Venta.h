@@ -18,7 +18,7 @@ public:
     float GetImporteVenta();
 
     Venta();
-    Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, float importeTotal);
+    Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, double importeTotal);
 
     void CargarVenta();
     void MostrarVenta();
@@ -29,6 +29,6 @@ private:
     int _NumeroVenta;
     Cadena _Cuit;
     Fecha _FechaVenta;
-    float _ImporteVenta;
+    double _ImporteVenta;
 };
 #endif // VENTA_H_INCLUDED

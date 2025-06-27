@@ -84,7 +84,7 @@ using namespace std;
 
     Venta::Venta(){}
 
-    Venta::Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, float importeTotal){
+    Venta::Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, double importeTotal){
 
         _NumeroVenta=numeroVenta;
         _Cuit.setTexto(cuit);
@@ -99,7 +99,7 @@ using namespace std;
     void Venta::CargarVenta(){
 
         int venta,dia,mes,siglo;
-        float importe;
+        double importe;
         Fecha fech;
         char cuit[20];
 

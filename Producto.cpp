@@ -1,5 +1,6 @@
 #include <iostream>
 #include "cstring"
+#include <iomanip>
 #include <limits>///libreria que utiliza el limpiador de buffer///
 using namespace std;
 #include "Producto.h"
@@ -165,18 +166,20 @@ char nombre[50]{},descripcion[500]{}, marca[20]{};
  SetIdProducto(id);
  cout<<endl;
  cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
- cout << "Ingrese nombre del producto: " << endl;
+ cout << "Ingrese nombre del producto: ";
  cin.getline(nombre, 50);
  SetNombreProducto(nombre);
+ cout << endl;
  cout<<"Ingrese el precio del producto tienen que ser igual o mayor a 100: ";
  cin>>precio;
  SetPrecio(precio);
  cout<<endl;
  cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
- cout<<"Ingrese la descripcion del producto o equipo: ";
- cin.getline(descripcion,500);
+ cout<<"Ingrese la descripcion del producto(terminada en el caracter #): ";
+ cin.getline(descripcion,500, '#');
  SetDescripcion(descripcion);
  cout<<endl;
+ cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
  cout<<"Ingrese la marca a la que pertenece el producto: ";
  cin.getline(marca,20);
  SetMarca(marca);
@@ -193,19 +196,58 @@ char nombre[50]{},descripcion[500]{}, marca[20]{};
 
 void Producto::MostrarProducto()
 {
- cout<<"El id del producto o equipo es: "<<GetIdProducto()<<endl;
- cout<<"El precio del producto o equipo es: $"<<GetPrecio()<<endl;
- cout<<"La descripcion del producto o equipo: "<<GetDescripcion()<<endl;
- cout<<"La marca a la que pertenece el producto o equipo: "<<GetMarca()<<endl;
- if(GetTipoEquipo()==1)
-{
- cout<<"El tipo es un Producto"<<endl;
-}
-else
-{
- cout<<"El tipo es un Equipo"<<endl;
-}
- cout<<"La cantidad de stock del equipo o producto: "<<GetStock()<<endl;
-}
+ cout<<"Id del producto: "<<GetIdProducto()<<endl<< endl;
+ cout<<"Precio del producto: $"<<fixed << setprecision(0)<<GetPrecio()<<endl<< endl;
+ cout<<"Descripcion del producto: "<< endl << GetDescripcion();
+ cout<< endl << endl;
+ cout<<"Marca del producto: "<<GetMarca()<<endl<< endl;
+
+ switch(_TipoEquipo){
+case 1:
+    cout << "Tipo de producto: Equipo" << endl;
+    break;
+case 2:
+    cout << "Tipo de producto: Notebook" << endl;
+    break;
+case 3:
+    cout << "Tipo de producto: Procesador" << endl;
+    break;
+case 4:
+    cout << "Tipo de producto: Mother" << endl;
+    break;
+case 5:
+    cout << "Tipo de producto: Placa de video" << endl;
+    break;
+case 6:
+    cout << "Tipo de producto: Memoria Ram" << endl;
+    break;
+case 7:
+    cout << "Tipo de producto: Gabinete" << endl;
+    break;
+case 8:
+    cout << "Tipo de producto: Fuente" << endl;
+    break;
+case 9:
+    cout << "Tipo de producto: Monitor" << endl;
+    break;
+case 10:
+    cout << "Tipo de producto: Periferico" << endl;
+    break;
+default:{}
+    }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -11,18 +11,30 @@ int main(){
 
     //Menu();
 
-//    ArchivoProductos archp("testp.dat");
-//    Producto p;
-//
-//    p.CargarProducto();
-//    archp.GuardarProducto(p);
-//
-//    system("pause");
-//
-//    Producto p1;
-//    archp.LeerProducto(0);
-//
-//    p.MostrarProducto();
+    ArchivoProductos archp("Productos.dat");
+    Producto p;
+//    bool seguir=true;
+
+//    while(seguir){
+
+    p.CargarProducto();
+    archp.GuardarProducto(p);
+//    cout << "continuar?(1=si,0=no): ";
+//    cin >> seguir;
+//    }
+
+    system("pause");
+    cout << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << endl;
+
+//    for(int i=0; i<=archp.CantidadRegistros(sizeof(Producto)); i++){
+
+    Producto p1;
+    p1=archp.LeerProducto(0);
+
+    p1.MostrarProducto();
+//    }
 
 
 return 0;
