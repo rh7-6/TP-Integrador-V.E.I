@@ -235,6 +235,7 @@ case 10:
     break;
 default:{}
     }
+    cout << endl;
  }
 
 

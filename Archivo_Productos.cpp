@@ -73,6 +73,22 @@ using namespace std;
         return p;
     }
 
+    int ArchivoProductos::LeerProducto(int pos, Producto &p){
+
+        FILE *pfile;
+        pfile = fopen(GetNombreArchivo(),"rb");
+
+        if(pfile==NULL){
+            return -1;
+        }
+
+
+        fseek(pfile, sizeof(Producto) * pos, SEEK_SET);
+        int lectura= fread(&p, sizeof(Producto), 1, pfile);
+        fclose(pfile);
+        return lectura;
+    }
+
 
     ArchivoProductos::ArchivoProductos(const char *nombre){
 

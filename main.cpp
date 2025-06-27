@@ -13,28 +13,30 @@ int main(){
 
     ArchivoProductos archp("Productos.dat");
     Producto p;
-//    bool seguir=true;
+    bool seguir=true;
 
-//    while(seguir){
+    while(seguir){
 
-    p.CargarProducto();
-    archp.GuardarProducto(p);
-//    cout << "continuar?(1=si,0=no): ";
-//    cin >> seguir;
-//    }
+        p.CargarProducto();
+        archp.GuardarProducto(p);
+        cout << "continuar?(1=si,0=no): ";
+        cin >> seguir;
+    }
 
+    cout << "cantidad de registros: " << archp.CantidadRegistros(sizeof(Producto));
     system("pause");
     cout << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
     cout << endl;
 
-//    for(int i=0; i<=archp.CantidadRegistros(sizeof(Producto)); i++){
 
-    Producto p1;
-    p1=archp.LeerProducto(0);
+        Producto p1;
+        int pos=0;
+    while(archp.LeerProducto(pos,p1)){
 
-    p1.MostrarProducto();
-//    }
+        p1.MostrarProducto();
+        pos++;
+    }
 
 
 return 0;

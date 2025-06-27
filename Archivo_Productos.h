@@ -10,6 +10,7 @@ public:
     bool GuardarProducto(Producto &pr);
     int BuscarProducto(int IdProducto);
     Producto LeerProducto(int pos);
+    int LeerProducto(int pos, Producto &p);
 
     ArchivoProductos(const char *t);
     ArchivoProductos();
