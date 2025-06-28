@@ -23,7 +23,7 @@ int main(){
         cin >> seguir;
     }
 
-    cout << "cantidad de registros: " << archp.CantidadRegistros(sizeof(Producto));
+    cout << "cantidad de registros: " << archp.CantidadRegistros(sizeof(Producto))<< endl;
     system("pause");
     cout << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
