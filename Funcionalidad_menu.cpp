@@ -12,7 +12,7 @@ using namespace std;
 
         CargarProducto(p, archp);
         archp.GuardarProducto(p);
-        cout << "continuar?(1=si,0=no): ";
+        cout << "Para ingresar otro producto(1=si,0=no): ";
         cin >> seguir;
         }
     }
