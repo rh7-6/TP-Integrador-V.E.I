@@ -11,8 +11,9 @@ bool bandera=true;
 Cliente cl;
 Venta ven;
 Producto prod;
-DetalleVenta vendet;
-ArchivoClientes arch_cl("cliente.dat");
+DetalleVenta venDT;
+ArchivoClientes arch_cl("clientes.dat");
+ArchivoProductos arch_p("Productos.dat");
 
 
 
@@ -193,41 +194,42 @@ switch (icono){
                     switch(a)
                     {
                         case(0):
+
+////////////////////////////////////////////guarda registro de cliente/////////////////////////////////////////////////////////
                             system("cls");
                             rlutil::showcursor();
                             cl.CargarCliente();
                             system("cls");
                             rlutil::hidecursor();
                             arch_cl.GuardarCliente(cl);
-
-////////////////////////////////////////////guarda registro de cliente/////////////////////////////////////////////////////////
                         break;
                         case(1):
+
+////////////////////////////////////////////guarda registro de venta/////////////////////////////////////////////////////////
                             system("cls");
                             rlutil::showcursor();
                             ven.CargarVenta();
                             system("cls");
                             rlutil::hidecursor();
-
-////////////////////////////////////////////guarda registro de venta/////////////////////////////////////////////////////////
                         break;
                         case(2):
-                            system("cls");
-                            rlutil::showcursor();
-                            prod.CargarProducto();
-                            system("cls");
-                            rlutil::hidecursor();
 
 ////////////////////////////////////////////guarda registro de producto/////////////////////////////////////////////////////////
-                        break;
-                        case(3):
                             system("cls");
                             rlutil::showcursor();
-                            vendet.CargarDetalleVenta();
+                            CargarProducto(prod,arch_p);
                             system("cls");
                             rlutil::hidecursor();
+                            GuardarRegistroProducto(prod);
+                        break;
+                        case(3):
 
 ////////////////////////////////////////////guarda registro detalle de venta/////////////////////////////////////////////////////////
+                            system("cls");
+                            rlutil::showcursor();
+                            venDT.CargarDetalleVenta();
+                            system("cls");
+                            rlutil::hidecursor();
                         break;
                         case(4):
                         bandera1=true;
