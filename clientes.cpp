@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "cstring"
 #include "cadena.h"
 #include "Clientes.h"

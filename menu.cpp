@@ -1,15 +1,5 @@
 #include <iostream>
 #include "menu.h"
-#include "Clientes.h"
-#include "Producto.h"
-#include "Venta.h"
-#include "Detalle_Venta.h"
-///////////Archivos////////////////
-#include "Archivo_Template.h"
-#include "Archivo_Clientes.h"
-#include "Archivo_Detalle_Ventas.h"
-#include "Archivo_Productos.h"
-#include "Archivo_Ventas.h"
 using namespace std;
 
     void Menu(){

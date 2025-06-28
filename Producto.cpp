@@ -1,7 +1,4 @@
 #include <iostream>
-#include "cstring"
-#include <iomanip>
-#include <limits>///libreria que utiliza el limpiador de buffer///
 using namespace std;
 #include "Producto.h"
 

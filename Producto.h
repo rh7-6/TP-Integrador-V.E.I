@@ -1,5 +1,8 @@
 #ifndef PRODUCTO_H_INCLUDED
 #define PRODUCTO_H_INCLUDED
+#include "cstring"
+#include <iomanip>
+#include <limits>///libreria que utiliza el limpiador de buffer///
 #include "cadena.h"
 
 class Producto {
