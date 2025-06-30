@@ -5,20 +5,21 @@ using namespace std;
 
     void GuardarRegistroProducto(Producto &p){
 
-        ArchivoProductos archp("Productos.dat");
+        ArchivoProductos archP("Productos.dat");
         bool seguir=true;
 
         while(seguir){
 
-        CargarProducto(p, archp);
-        archp.GuardarProducto(p);
+        CargarProducto(p);
+        archP.GuardarProducto(p);
         cout << "Para ingresar otro producto(1=si,0=no): ";
         cin >> seguir;
         }
     }
 
-    int CargarProducto(Producto &p, ArchivoProductos &archP){
+    int CargarProducto(Producto &p){
 
+        ArchivoProductos archP("Productos.dat");
         int id,tipo,stock;
         float precio;
         char nombre[50]{},descripcion[500]{}, marca[20]{};

@@ -217,7 +217,7 @@ switch (icono){
 ////////////////////////////////////////////guarda registro de producto/////////////////////////////////////////////////////////
                             system("cls");
                             rlutil::showcursor();
-                            CargarProducto(prod,arch_p);
+                            CargarProducto(prod);
                             system("cls");
                             rlutil::hidecursor();
                             GuardarRegistroProducto(prod);

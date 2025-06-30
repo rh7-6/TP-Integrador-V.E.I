@@ -35,7 +35,7 @@ void MuestraTextoTiposDeProducto();
 
 void GuardarRegistroProducto(Producto &p);
 
-int CargarProducto(Producto &p, ArchivoProductos &archP);
+int CargarProducto(Producto &p); // necesita el archivo producto para verificar si ya existe el producto
 
 void ListadoDeProductosPorTipo();
 
