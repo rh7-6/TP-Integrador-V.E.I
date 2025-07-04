@@ -14,6 +14,7 @@ void SetDescripcion(char *palabra);
 void SetMarca(char *palabra);
 void SetTipoEquipo(int num);
 void SetStock(int num);
+void SetEstado(bool estado);
 
 int GetIdProducto();
 const char *GetNombreProducto();

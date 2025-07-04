@@ -94,6 +94,10 @@ void Producto::SetStock(int num)
     }
 }
 
+    void Producto::SetEstado(bool estado){
+        _Estado=estado;
+    }
+
 ///--------------------------------------------------------------------------------------------------
 
     int Producto::GetIdProducto(){
@@ -157,6 +161,7 @@ void Producto::CargarProducto()
 int id,tipo,stock;
 float precio;
 char nombre[50]{},descripcion[500]{}, marca[20]{};
+bool estado;
 
  cout<<"Ingrese el id del producto o equipo igual o mayor a 0: ";
  cin>>id;
@@ -188,6 +193,10 @@ char nombre[50]{},descripcion[500]{}, marca[20]{};
  cout<<"Ingrese el stock del producto: ";
  cin>>stock;
  SetStock(stock);
+ cout<<endl;
+ cout<<"Ingrese el estado del producto: ";
+ cin>>estado;
+ SetEstado(estado);
  cout<<endl;
 }
 

@@ -33,10 +33,17 @@ void MuestraTextoTiposDeProducto();
 
 /// funcionalidad ///
 
+/*---------
+  Productos
+  ---------*/
+
 void GuardarRegistroProducto(Producto &p);
 
 int CargarProducto(Producto &p); // verifica si ya existe el producto y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
 
 void ListadoDeProductosPorTipo();
+
+
+
 
 #endif // MENU_H_INCLUDED

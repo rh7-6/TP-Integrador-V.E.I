@@ -23,6 +23,7 @@ using namespace std;
         int id,tipo,stock;
         float precio;
         char nombre[50]{},descripcion[500]{}, marca[20]{};
+        bool estado;
 
         cout<<"Ingrese el id del producto o equipo igual o mayor a 0: ";
         cin>>id;
@@ -70,6 +71,11 @@ using namespace std;
         cout<<"Ingrese el stock del producto: ";
         cin>>stock;
         p.SetStock(stock);
+        cout<<endl;
+
+        cout<<"Ingrese el estado del producto(1=listado, 0=no listado): ";
+        cin>>estado;
+        p.SetEstado(estado);
         cout<<endl;
         return 1;
     }
