@@ -45,7 +45,14 @@ int CargarProducto(Producto &p); // verifica si ya existe el producto y pregunta
 
 void ListadoDeProductosPorTipo();
 
+/*---------
+  Clientes
+  ---------*/
 
+void GuardarRegistroCliente(Cliente &cl);
 
+int CargarClientes(Cliente &cl);
+
+void ListadoDeClientesPorEstado();
 
 #endif // MENU_H_INCLUDED
