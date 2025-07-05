@@ -67,6 +67,7 @@ switch (icono){
                     switch(a)
                     {
                         case(0):{
+                            ListadoDeProductosPorTipo();
                         }
                         break;
                         case(1):
