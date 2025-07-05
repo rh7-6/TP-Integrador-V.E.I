@@ -67,7 +67,6 @@ switch (icono){
                     switch(a)
                     {
                         case(0):{
-                            ListadoDeProductosPorTipo();
                         }
                         break;
                         case(1):
@@ -212,15 +211,16 @@ switch (icono){
                             system("cls");
                             rlutil::hidecursor();
                         break;
-                        case(2):
-
+                        case(2):{
 ////////////////////////////////////////////guarda registro de producto/////////////////////////////////////////////////////////
                             system("cls");
                             rlutil::showcursor();
-                            CargarProducto(prod);
+                            Producto p;
+                            CargarProducto(p);
                             system("cls");
                             rlutil::hidecursor();
-                            GuardarRegistroProducto(prod);
+                            GuardarRegistroProducto(p);
+                        }
                         break;
                         case(3):
 

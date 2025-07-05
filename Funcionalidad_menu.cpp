@@ -9,11 +9,12 @@ using namespace std;
         bool seguir=true;
 
         while(seguir){
-
-        CargarProducto(p);
-        archP.GuardarProducto(p);
-        cout << "Para ingresar otro producto(1=si,0=no): ";
-        cin >> seguir;
+            archP.GuardarProducto(p);
+            cout << "Para ingresar otro producto(1=si,0=no): ";
+            cin >> seguir;
+            if(seguir){
+            CargarProducto(p);
+            }
         }
     }
 
