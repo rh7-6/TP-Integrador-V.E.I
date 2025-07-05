@@ -82,9 +82,9 @@ using namespace std;
     }
 
     void ListadoDeProductosPorTipo(){
-
+        system("cls");
         int TipoDeProducto;
-        bool estado, ban=false;
+        bool estado;
         cout << "Ingrese un tipo de producto(1 a 10)" << endl;
         MuestraTextoTiposDeProducto();
         cout << "==> :";
@@ -94,7 +94,7 @@ using namespace std;
 
         ArchivoProductos archPr("Productos.dat");
         int cantReg=archPr.CantidadRegistros(sizeof(Producto));
-
+        do{
         switch(TipoDeProducto){
         case 1:{
             Producto pr;
@@ -102,6 +102,7 @@ using namespace std;
                 if(archPr.LeerProducto(i, pr)){
                     if(pr.GetTipoEquipo()==1&& pr.GetEstado()==estado){
                         pr.MostrarProducto();
+
                     }
                 }
             }
@@ -213,7 +214,14 @@ using namespace std;
         }
             break;
         default:{
+                 cout<<"ingrese porfavor un numero mayor que 0 y menor que 10: ";
+                 cin>>TipoDeProducto;
             break;
             }
         }
+        TipoDeProducto=0;
+                        system("pause");
+                        system("cls");
+        }while(TipoDeProducto<=10&&TipoDeProducto>0);
+
     }

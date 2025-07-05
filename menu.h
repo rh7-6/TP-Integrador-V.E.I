@@ -25,11 +25,13 @@ void MenuBusqueda();
 
 void MenuInformes();
 
-void MenuRegistro();
+void MenuCargarRegistro();
 
-void MenuRegistroMostrar();
+void MenulistadosMostrar();
 
 void MuestraTextoTiposDeProducto();
+
+void MostrarListado();
 
 /// funcionalidad ///
 
