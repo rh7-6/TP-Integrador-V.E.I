@@ -2,7 +2,7 @@
 #include "menu.h"
 using namespace std;
 
-    void Menu(){
+void Menu(){
 
 int y=0, icono;
 bool bandera=true;
@@ -45,6 +45,7 @@ switch (icono){
         {
             case(0):{//////////////////////LISTADOS////////////////////////////
             MostrarListado();
+            system("cls");
             }
             break;
 

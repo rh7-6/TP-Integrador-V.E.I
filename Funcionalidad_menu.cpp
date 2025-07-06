@@ -74,7 +74,7 @@ using namespace std;
         p.SetStock(stock);
         cout<<endl;
 
-        cout<<"Ingrese el estado del producto(1=activo, 0=inactivo): ";
+        cout<<"Ingrese el estado del producto(1-activo, 0-inactivo): ";
         cin>>estado;
         p.SetEstado(estado);
         cout<<endl;
@@ -134,13 +134,70 @@ using namespace std;
 
     int CargarClientes(Cliente &cl){
 
+        ArchivoClientes archCl("clientes.dat");
 
+        int tc;
+        char *cuil= new char[31], *nombre= new char[31], *apellido= new char[31], *telefono= new char[31], *mail=new char[31], *direccion=new char[31];
+        bool estado;
+
+        cout<<"Ingrese el cuit del cliente: ";
+        cin.getline(cuil, 31);
+        if(archCl.BuscarCliente(cuil)>=0){
+
+            int opcion;
+            cout << "Ya existe un cliente con el cuit:" << cuil << " Desea reingresarlo?" << endl;
+            cout << "1=si 0=no: " << endl;
+            cin >> opcion;
+            if(opcion==0){
+                return opcion;
+            }
+        }
+        cl.SetCuil(cuil);
+        cout<<endl;
+
+        cout<<"Ingrese el nombre del cliente: ";
+        cin.getline(nombre, 31);
+        cl.SetNombre(nombre);
+        cout<<endl;
+
+        cout<<"Ingrese el apellido del cliente: ";
+        cin.getline(apellido, 31);
+        cl.SetApellido(apellido);
+        cout<<endl;
+
+        cout<<"Ingrese el telefono del cliente: ";
+        cin.getline(telefono, 31);
+        cl.SetTelefono(telefono);
+        cout<<endl;
+
+        cout<<"Ingrese el mail del cliente: ";
+        cin.getline(mail, 31);
+        cl.SetMail(mail);
+        cout<<endl;
+
+        cout<<"Ingrese la direccion del cliente: ";
+        cin.getline(direccion, 31);
+        cl.SetDireccion(direccion);
+        cout<<endl;
+
+        cout<<"Ingrese el tipo de cliente(1-particular o 2-empresa): ";
+        cin>>tc;
+        cl.SetTipoCliente(tc);
+        cout<<endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        cout <<"Ingrese estado del cliente(1-activo, 0-inactivo): ";
+        cin>>estado;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        delete[] cuil; delete[] nombre; delete[] apellido; delete[] telefono; delete[] mail; delete[] direccion;
+
+        return 1;
     }
 
     void ListadoDeClientesPorEstado(){
 
         system("cls");
-        bool estado, ban=true;
+        bool estado;
         cout << "Ingrese estado del cliente (1: activo, 0: inactivo): " << endl;
         cin >> estado;
 
