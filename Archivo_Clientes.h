@@ -9,6 +9,7 @@ public:
     bool GuardarCliente(Cliente &cl);
     int BuscarCliente(const char *CUIT);
     Cliente LeerCliente(int pos);
+    LeerCliente(int pos, Cliente &cl);
 
     ArchivoClientes(const char *t);
     ArchivoClientes();

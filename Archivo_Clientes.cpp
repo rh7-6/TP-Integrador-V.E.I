@@ -73,6 +73,22 @@ using namespace std;
         return cl;
     }
 
+    int ArchivoClientes::LeerCliente(int pos, Cliente &cl){
+
+        FILE *pfile;
+        pfile = fopen(GetNombreArchivo(),"rb");
+
+        if(pfile==NULL){
+            return -1;
+        }
+
+
+        fseek(pfile, sizeof(Cliente) * pos, SEEK_SET);
+        int lectura= fread(&cl, sizeof(Cliente), 1, pfile);
+        fclose(pfile);
+        return lectura;
+    }
+
     ArchivoClientes::ArchivoClientes(const char *nombre){
 
         SetNombreArchivo(nombre);

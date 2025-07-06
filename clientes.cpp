@@ -62,6 +62,10 @@ using namespace std;
         }
     }
 
+    void Cliente::SetEstado(bool estado){
+        _Estado=estado;
+    }
+
 ///--------------------------------------------------------------------------------------------------
 
     const char *Cliente::GetCuit(){
@@ -102,6 +106,11 @@ using namespace std;
 
         return _TipoCliente;
 
+    }
+
+    bool Cliente::GetEstado(){
+
+        return _Estado;
     }
 
     Cliente::Cliente(){

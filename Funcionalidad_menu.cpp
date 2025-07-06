@@ -74,7 +74,7 @@ using namespace std;
         p.SetStock(stock);
         cout<<endl;
 
-        cout<<"Ingrese el estado del producto(1=listado, 0=no listado): ";
+        cout<<"Ingrese el estado del producto(1=activo, 0=inactivo): ";
         cin>>estado;
         p.SetEstado(estado);
         cout<<endl;
@@ -84,144 +84,76 @@ using namespace std;
     void ListadoDeProductosPorTipo(){
         system("cls");
         int TipoDeProducto;
+        bool ban=true;
         bool estado;
         cout << "Ingrese un tipo de producto(1 a 10)" << endl;
         MuestraTextoTiposDeProducto();
         cout << "==> :";
         cin >> TipoDeProducto;
-        cout << "Ingrese estado en inventario(1: listado, 0: no listado)" << endl;
+        cout << "Ingrese estado en inventario(1: Activo, 0: inactivo)" << endl;
         cin >> estado;
 
         ArchivoProductos archPr("Productos.dat");
         int cantReg=archPr.CantidadRegistros(sizeof(Producto));
-        do{
-        switch(TipoDeProducto){
-        case 1:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==1&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
 
-                    }
-                }
-            }
-        }
-            break;
-        case 2:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
+        system("cls");
+        while(ban==true){
+            if(TipoDeProducto<=10&&TipoDeProducto>0){
+                Producto pr;
+                for(int i=0; i<=cantReg; i++){
                 if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==2&& pr.GetEstado()==estado){
+                    if(pr.GetTipoEquipo()==TipoDeProducto&& pr.GetEstado()==estado){
                         pr.MostrarProducto();
+                        }
                     }
+                }
+                system("pause");
+                system("cls");
+                ban=false;
+            } else{
+                cout<<"Ingrese porfavor un tipo valido(1 a 10): ";
+                cin>>TipoDeProducto;
+            }
+        }
+    }
+
+    void GuardarRegistroCliente(Cliente &cl){
+
+        ArchivoClientes archCl("Productos.dat");
+        bool seguir=true;
+
+        while(seguir){
+            archCl.GuardarCliente(cl);
+            cout << "Para ingresar otro cliente(1=si,0=no): ";
+            cin >> seguir;
+            if(seguir){
+            CargarClientes(cl);
+            }
+        }
+    }
+
+    int CargarClientes(Cliente &cl){
+
+
+    }
+
+    void ListadoDeClientesPorEstado(){
+
+        system("cls");
+        bool estado, ban=true;
+        cout << "Ingrese estado del cliente (1: activo, 0: inactivo): " << endl;
+        cin >> estado;
+
+        ArchivoClientes archCl("clientes.dat");
+        int cantReg=archCl.CantidadRegistros(sizeof(Producto));
+
+        Cliente cl;
+        for(int i; i<=cantReg; i++){
+        if(archCl.LeerCliente(i, cl)){
+            if(cl.GetEstado()==estado){
+                cl.MostrarCliente();
                 }
             }
         }
-            break;
-        case 3:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==3&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
-                    }
-                }
-            }
-        }
-            break;
-        case 4:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==4&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
-                    }
-                }
-            }
-        }
-            break;
-        case 5:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
-                pr= archPr.LeerProducto(i);
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==5&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
-                    }
-                }
-            }
-        }
-            break;
-        case 6:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
-                pr= archPr.LeerProducto(i);
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==6&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
-                    }
-                }
-            }
-        }
-            break;
-        case 7:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
-                pr= archPr.LeerProducto(i);
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==7&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
-                    }
-                }
-            }
-        }
-            break;
-        case 8:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
-                pr= archPr.LeerProducto(i);
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==8&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
-                    }
-                }
-            }
-        }
-            break;
-        case 9:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
-                pr= archPr.LeerProducto(i);
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==9&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
-                    }
-                }
-            }
-        }
-            break;
-        case 10:{
-            Producto pr;
-            for(int i; i<=cantReg; i++){
-                pr= archPr.LeerProducto(i);
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==10&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
-                    }
-                }
-            }
-        }
-            break;
-        default:{
-                 cout<<"ingrese porfavor un numero mayor que 0 y menor que 10: ";
-                 cin>>TipoDeProducto;
-            break;
-            }
-        }
-        TipoDeProducto=0;
-                        system("pause");
-                        system("cls");
-        }while(TipoDeProducto<=10&&TipoDeProducto>0);
 
     }

@@ -12,6 +12,7 @@ public:
     void SetMail(const char *t);
     void SetDireccion(const char *t);
     void SetTipoCliente(int tc);
+    void SetEstado(bool estado);
 
     const char *GetCuit();
     const char *GetNombre();
@@ -20,6 +21,7 @@ public:
     const char *GetMail();
     const char *GetDireccion();
     int GetTipoCliente();
+    bool GetEstado();
 
     Cliente();
     Cliente(const char *CUIT, const char *nombre, const char *apellido, const char *telefono, const char *mail, const char *direccion, int tipoCliente, bool estado);
