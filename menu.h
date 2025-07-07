@@ -31,7 +31,13 @@ void MenulistadosMostrar();
 
 void MuestraTextoTiposDeProducto();
 
-void MostrarListado();
+void Listado();
+
+void Busquedad();
+
+void Informes();
+
+void CargarRegistros();
 
 /// funcionalidad ///
 
