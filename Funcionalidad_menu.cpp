@@ -119,7 +119,7 @@ using namespace std;
 
     int CargarClientes(Cliente &cl){
 
-        ArchivoClientes archCl("clientes.dat");
+        ArchivoClientes archCl("Clientes.dat");
 
         int tc;
         char *cuil= new char[31], *nombre= new char[31], *apellido= new char[31], *telefono= new char[31], *mail=new char[31], *direccion=new char[31];
@@ -181,7 +181,7 @@ using namespace std;
 
     void GuardarRegistroCliente(Cliente &cl){
 
-        ArchivoClientes archCl("Productos.dat");
+        ArchivoClientes archCl("Clientes.dat");
         bool seguir=true;
 
         while(seguir){
@@ -198,11 +198,11 @@ using namespace std;
 
         system("cls");
         bool estado;
-        cout << "Ingrese estado del cliente (1: activo, 0: inactivo): " << endl;
+        cout << "Ingrese estado de clientes (1: activos, 0: inactivos): " << endl;
         cin >> estado;
 
-        ArchivoClientes archCl("clientes.dat");
-        int cantReg=archCl.CantidadRegistros(sizeof(Producto));
+        ArchivoClientes archCl("Clientes.dat");
+        int cantReg=archCl.CantidadRegistros(sizeof(Cliente));
 
         Cliente cl;
         for(int i; i<=cantReg; i++){
@@ -212,7 +212,8 @@ using namespace std;
                 }
             }
         }
-
+        system("pause");
+        system("cls");
     }
 
     int CargarVenta(Venta &v){
@@ -286,4 +287,26 @@ using namespace std;
             CargarVenta(v);
             }
         }
+    }
+
+    void ListadoDeVentasPorEstado(){
+
+        system("cls");
+        bool estado;
+        cout << "Ingrese estado de ventas (1: activas, 0: inactivas): " << endl;
+        cin >> estado;
+
+        ArchivoVentas archV("Ventas.dat");
+        int cantReg=archV.CantidadRegistros(sizeof(Venta));
+
+        Venta v;
+        for(int i; i<=cantReg; i++){
+        if(archV.LeerVenta(i, v)){
+            if(v.GetEstado()==estado){
+                v.MostrarVenta();
+                }
+            }
+        }
+        system("pause");
+        system("cls");
     }

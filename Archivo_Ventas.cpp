@@ -72,6 +72,22 @@ using namespace std;
         return v;
     }
 
+    int ArchivoVentas::LeerVenta(int pos, Venta &v){
+
+        FILE *pfile;
+        pfile = fopen(GetNombreArchivo(),"rb");
+
+        if(pfile==NULL){
+            return -1;
+        }
+
+
+        fseek(pfile, sizeof(Venta) * pos, SEEK_SET);
+        int lectura= fread(&v, sizeof(Venta), 1, pfile);
+        fclose(pfile);
+        return lectura;
+    }
+
     /// Constructores ///
 
     ArchivoVentas::ArchivoVentas(const char *nombre){

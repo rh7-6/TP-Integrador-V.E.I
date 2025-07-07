@@ -10,6 +10,7 @@ public:
     bool GuardarVenta(Venta &v);
     int BuscarVenta(int NumeroDeVenta);
     Venta LeerVenta(int pos);
+    int LeerVenta(int pos, Venta &v);
 
     ArchivoVentas(const char *nombre);
     ArchivoVentas();

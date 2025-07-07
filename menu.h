@@ -15,29 +15,29 @@
 using namespace std;
 
 /// selección y graficos ///
-void Menu();
+    void Menu();
 
-void menuPrincipal();
+    void menuPrincipal();
 
-void MenuListado();
+    void MenuListado();
 
-void MenuBusqueda();
+    void MenuBusqueda();
 
-void MenuInformes();
+    void MenuInformes();
 
-void MenuCargarRegistro();
+    void MenuCargarRegistro();
 
-void MenulistadosMostrar();
+    void MenulistadosMostrar();
 
-void MuestraTextoTiposDeProducto();
+    void MuestraTextoTiposDeProducto();
 
-void Listado();
+    void Listado();
 
-void Busqueda();
+    void Busqueda();
 
-void Informes();
+    void Informes();
 
-void CargarRegistros();
+    void CargarRegistros();
 
 /// funcionalidad ///
 
@@ -45,20 +45,30 @@ void CargarRegistros();
   Productos
   ---------*/
 
-void GuardarRegistroProducto(Producto &p); // guarda y pregunta si se quiere continuar guardando productos
+    int CargarProducto(Producto &p); // verifica si ya existe el producto y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
 
-int CargarProducto(Producto &p); // verifica si ya existe el producto y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
+    void GuardarRegistroProducto(Producto &p); // guarda y pregunta si se quiere continuar guardando productos
 
-void ListadoDeProductosPorTipo();
+    void ListadoDeProductosPorTipo();
 
 /*---------
   Clientes
   ---------*/
 
-void GuardarRegistroCliente(Cliente &cl);
+    int CargarClientes(Cliente &cl);//              ||
 
-int CargarClientes(Cliente &cl);
+    void GuardarRegistroCliente(Cliente &cl);//     ||
 
-void ListadoDeClientesPorEstado();
+    void ListadoDeClientesPorEstado();
+
+/*---------
+  Ventas
+  ---------*/
+
+    int CargarVenta(Venta &v);//                    ||
+
+    void GuardarRegistroVenta(Venta &v);//          ||
+
+    void ListadoDeVentasPorEstado();
 
 #endif // MENU_H_INCLUDED
