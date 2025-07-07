@@ -82,6 +82,7 @@ using namespace std;
     }
 
     void ListadoDeProductosPorTipo(){
+
         system("cls");
         int TipoDeProducto;
         bool ban=true;
@@ -189,7 +190,7 @@ using namespace std;
             cout << "Para ingresar otro cliente(1=si,0=no): ";
             cin >> seguir;
             if(seguir){
-            CargarClientes(cl);
+            seguir=CargarClientes(cl);
             }
         }
     }
@@ -216,7 +217,7 @@ using namespace std;
         system("cls");
     }
 
-    int CargarVenta(Venta &v){
+    int CargarVenta(Venta &v, bool opcion){
 
         ArchivoVentas archV("Ventas.dat");
 
@@ -226,7 +227,8 @@ using namespace std;
         char cuit[20];
         bool estado;
 
-        cout<<"Ingrese numero de venta tiene que ser igual a 0 o mayor: ";
+
+        cout<<"Ingrese numero de venta igual a 1 o mayor: ";
         cin>>numeroV;
         if(archV.BuscarVenta(numeroV)>=0){
 
@@ -284,7 +286,7 @@ using namespace std;
             cout << "Para ingresar otra venta(1=si,0=no): ";
             cin >> seguir;
             if(seguir){
-            CargarVenta(v);
+            seguir=CargarVenta(v, 0);
             }
         }
     }
@@ -310,3 +312,4 @@ using namespace std;
         system("pause");
         system("cls");
     }
+

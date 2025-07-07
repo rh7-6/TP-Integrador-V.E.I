@@ -99,18 +99,16 @@ system("cls");
                     {
 ////////////////////////////////////////////Productos/////////////////////////////////////////////////////////
                         case(0):{
-                            system("cls");
                             ListadoDeProductosPorTipo();
                          }
                         break;
 ////////////////////////////////////////////Ventas/////////////////////////////////////////////////////////
                         case(1):{
-
+                            ListadoDeVentasPorEstado();
                         }
                         break;
 ////////////////////////////////////////////Clientes/////////////////////////////////////////////////////////
                         case(2):{
-                            system("cls");
                             ListadoDeClientesPorEstado();
                         }
                         break;
@@ -126,7 +124,7 @@ system("cls");
                     break;
         }
         }
-        }while(bandera1==false);
+    }while(bandera1==false);
 }
 
 void Busqueda(){
