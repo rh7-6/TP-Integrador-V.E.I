@@ -65,9 +65,9 @@ using namespace std;
   Ventas
   ---------*/
 
-    int CargarVenta(Venta &v, bool opcion);//                  ||               (carrito=1 , carga simple o editar= 0)
+    int CargarVenta(Venta &v, bool opcionFuncion);//(carrito=1 , carga simple o editar= 0)          ||
 
-    void GuardarRegistroVenta(Venta &v);//                     ||
+    void GuardarRegistroVenta(Venta &v);//                                                          ||
 
     void ListadoDeVentasPorEstado();
 
@@ -77,7 +77,7 @@ using namespace std;
 
     int CargarDetalleVenta(int numVenta, DetalleVenta &dv);//             ||
 
-    void GuardarRegistroDetalleVenta(Venta &v);//                         ||
+    void GuardarRegistroDetalleVenta(DetalleVenta &dv);//                 ||
 
     void ListadoDetalleVentasPorNumeroDeVenta();
 #endif // MENU_H_INCLUDED

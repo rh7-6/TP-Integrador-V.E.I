@@ -118,6 +118,7 @@ using namespace std;
         }
     }
 
+//------------------------------------------------------------------------//
     int CargarClientes(Cliente &cl){
 
         ArchivoClientes archCl("Clientes.dat");
@@ -217,7 +218,8 @@ using namespace std;
         system("cls");
     }
 
-    int CargarVenta(Venta &v, bool opcion){
+//------------------------------------------------------------------------//
+    int CargarVenta(Venta &v, bool opcionFuncion){
 
         ArchivoVentas archV("Ventas.dat");
 
@@ -227,17 +229,32 @@ using namespace std;
         char cuit[20];
         bool estado;
 
+        int cantReg= archV.CantidadRegistros(sizeof(Venta));
 
-        cout<<"Ingrese numero de venta igual a 1 o mayor: ";
-        cin>>numeroV;
-        if(archV.BuscarVenta(numeroV)>=0){
+        if(opcionFuncion){                                  //
+                                                            // Carrito
+            numeroV=cantReg+1;                              //
+        }else{
 
-            int opcion;
-            cout << "Ya existe una venta con el numero:" << numeroV << " Desea reingresarla?" << endl;
-            cout << "1=si 0=no: " << endl;
-            cin >> opcion;
-            if(opcion==0){
-                return opcion;
+            bool opcion;                                                                       //
+            cout << "Desea igresar una venta nueva o editar una existente?" << endl;           //
+            cout << "(1=nueva, 0=existente): ";                                                //
+            cin >> opcion;                                                                     //
+                                                                                               //
+            if(opcion){                                                                        //
+                                                                                               //
+                numeroV=cantReg+1;                                                             //
+            }else{                                                                             // Carga simple o edicion de una venta
+                                                                                               //
+                cout << "Ingrese numero de venta a editar: ";                                  //
+                cin >> numeroV;                                                                //
+                                                                                               //
+                while(archV.BuscarVenta(numeroV-1)<0){                                         //
+                                                                                               //
+                    cout << "Numero de venta inexistente" << endl;                             //
+                    cout << "Reingrese numero de venta: " << endl;                             //
+                    cin >> numeroV;                                                            //
+                }
             }
         }
         v.SetNumeroVenta(numeroV);
@@ -271,7 +288,6 @@ using namespace std;
         cin >> estado;
         v.SetEstado(estado);
         cout << endl;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         return 1;
     }
@@ -313,3 +329,64 @@ using namespace std;
         system("cls");
     }
 
+//------------------------------------------------------------------------//
+    int CargarDetalleVenta(int numVenta, DetalleVenta &dv){
+
+        ArchivoDetalleVentas archDV("DetalleVentas.dat");
+
+        ArchivoVentas archV("Ventas.dat");
+        int cantRegV= archV.CantidadRegistros(sizeof(Venta));
+
+        int numeroventa, idproducto, cantidad;
+        float precio;
+
+        if(numVenta==0){                                                                        //
+                                                                                                //
+            do{                                                                                 //
+            cout << "Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";    //  Carga simple o edicion de un detalle de venta
+            cin >> numeroventa;                                                                 //
+            cout << endl;                                                                       //
+            }while(numeroventa<0||numeroventa>cantRegV);                                        //
+            dv.SetNumeroVentaDT(numeroventa);                                                   //
+        }else{
+                                                                         //
+            dv.SetNumeroVentaDT(numVenta);                               //  Carrito
+        }                                                                //
+
+        cout << "ingrese un precio mayor o igual a 1000 : $";
+        cin >> precio;
+        dv.SetPrecioProductoDT(precio);
+        cout << endl;
+
+        cout << "ingrese el nuemro de id del producto: ";
+        cin >> idproducto;
+        dv.SetIdProductoDT(idproducto);
+        cout << endl;
+
+        cout << "ingrese la cantidad de productos vendidos: ";
+        cin >> cantidad;
+        dv.SetCantidad(cantidad);
+        cout << endl;
+
+        return 1;
+    }
+
+    void GuardarRegistroDetalleVenta(DetalleVenta &dv){
+
+        ArchivoDetalleVentas archDV("DetalleVentas.dat");
+        bool seguir=true;
+
+        while(seguir){
+            archDV.GuardarDetalleVenta(dv);
+            cout << "Para ingresar otro detalle de venta(1=si,0=no): ";
+            cin >> seguir;
+            if(seguir){
+            seguir=CargarDetalleVenta(0, dv);
+            }
+        }
+    }
+
+    void ListadoDetalleVentasPorNumeroDeVenta(int numVenta){
+
+
+    }
