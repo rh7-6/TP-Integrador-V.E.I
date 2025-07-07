@@ -33,7 +33,7 @@ void MuestraTextoTiposDeProducto();
 
 void Listado();
 
-void Busquedad();
+void Busqueda();
 
 void Informes();
 

@@ -39,7 +39,7 @@ switch (icono){
             break;
 
             case(1):{//////////////////////BUSQUEDA////////////////////////////
-            Busquedad();
+            Busqueda();
             system("cls");
             }
             break;
@@ -478,7 +478,7 @@ system("cls");
         }while(bandera1==false);
 }
 
-void Busquedad(){
+void Busqueda(){
 system("cls");
 int a=0, icono;
 bool bandera1=false;
