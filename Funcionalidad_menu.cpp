@@ -2,22 +2,6 @@
 #include "menu.h"
 using namespace std;
 
-
-    void GuardarRegistroProducto(Producto &p){
-
-        ArchivoProductos archP("Productos.dat");
-        bool seguir=true;
-
-        while(seguir){
-            archP.GuardarProducto(p);
-            cout << "Para ingresar otro producto(1=si,0=no): ";
-            cin >> seguir;
-            if(seguir){
-            CargarProducto(p);
-            }
-        }
-    }
-
     int CargarProducto(Producto &p){
 
         ArchivoProductos archP("Productos.dat");
@@ -78,7 +62,23 @@ using namespace std;
         cin>>estado;
         p.SetEstado(estado);
         cout<<endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         return 1;
+    }
+
+    void GuardarRegistroProducto(Producto &p){
+
+        ArchivoProductos archP("Productos.dat");
+        bool seguir=true;
+
+        while(seguir){
+            archP.GuardarProducto(p);
+            cout << "Para ingresar otro producto(1=si,0=no): ";
+            cin >> seguir;
+            if(seguir){
+            CargarProducto(p);
+            }
+        }
     }
 
     void ListadoDeProductosPorTipo(){
@@ -113,21 +113,6 @@ using namespace std;
             } else{
                 cout<<"Ingrese porfavor un tipo valido(1 a 10): ";
                 cin>>TipoDeProducto;
-            }
-        }
-    }
-
-    void GuardarRegistroCliente(Cliente &cl){
-
-        ArchivoClientes archCl("Productos.dat");
-        bool seguir=true;
-
-        while(seguir){
-            archCl.GuardarCliente(cl);
-            cout << "Para ingresar otro cliente(1=si,0=no): ";
-            cin >> seguir;
-            if(seguir){
-            CargarClientes(cl);
             }
         }
     }
@@ -194,6 +179,21 @@ using namespace std;
         return 1;
     }
 
+    void GuardarRegistroCliente(Cliente &cl){
+
+        ArchivoClientes archCl("Productos.dat");
+        bool seguir=true;
+
+        while(seguir){
+            archCl.GuardarCliente(cl);
+            cout << "Para ingresar otro cliente(1=si,0=no): ";
+            cin >> seguir;
+            if(seguir){
+            CargarClientes(cl);
+            }
+        }
+    }
+
     void ListadoDeClientesPorEstado(){
 
         system("cls");
@@ -213,4 +213,77 @@ using namespace std;
             }
         }
 
+    }
+
+    int CargarVenta(Venta &v){
+
+        ArchivoVentas archV("Ventas.dat");
+
+        int numeroV,dia,mes,siglo;
+        double importe;
+        Fecha fech;
+        char cuit[20];
+        bool estado;
+
+        cout<<"Ingrese numero de venta tiene que ser igual a 0 o mayor: ";
+        cin>>numeroV;
+        if(archV.BuscarVenta(numeroV)>=0){
+
+            int opcion;
+            cout << "Ya existe una venta con el numero:" << numeroV << " Desea reingresarla?" << endl;
+            cout << "1=si 0=no: " << endl;
+            cin >> opcion;
+            if(opcion==0){
+                return opcion;
+            }
+        }
+        v.SetNumeroVenta(numeroV);
+        cout<<endl;
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Ingrese el cuit del comprador: ";
+        cin.getline(cuit,20);
+        v.SetCuit(cuit);
+        cout << endl;
+
+        cout << "Ingrese dia de la venta: ";
+        cin >> dia;
+        cout << endl;
+
+        cout << "Ingrese mes de la venta:  ";
+        cin >> mes;
+        cout << endl;
+
+        cout << "Ingrese anio de la venta: ";
+        cin >> siglo;
+        v.SetFechaVenta(dia,mes,siglo);
+        cout << endl;
+
+        cout << "Ingrese importe de la venta: ";
+        cin >> importe;
+        v.SetImporteVenta(importe);
+        cout << endl;
+
+        cout << "Ingrese estado de la venta(1-activo, 0-inactivo): ";
+        cin >> estado;
+        v.SetEstado(estado);
+        cout << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        return 1;
+    }
+
+    void GuardarRegistroVenta(Venta &v){
+
+        ArchivoVentas archV("Ventas.dat");
+        bool seguir=true;
+
+        while(seguir){
+            archV.GuardarVenta(v);
+            cout << "Para ingresar otra venta(1=si,0=no): ";
+            cin >> seguir;
+            if(seguir){
+            CargarVenta(v);
+            }
+        }
     }

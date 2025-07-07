@@ -50,11 +50,16 @@ using namespace std;
             }
             else
             {
-                cout<<"ingrtese un importe de venta mayor a 0: ";
+                cout<<"ingrese un importe de venta mayor a 0: ";
                 cin>>v;
                 cout<<endl;
             }
         }
+    }
+
+    void Venta::SetEstado(bool estado){
+
+        _Estado=estado;
     }
 
 ///--------------------------------------------------------------------------------------------------
@@ -82,9 +87,14 @@ using namespace std;
 
     }
 
+    bool Venta::GetEstado(){
+
+        return _Estado;
+    }
+
     Venta::Venta(){}
 
-    Venta::Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, double importeTotal){
+    Venta::Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, double importeTotal, bool estado){
 
         _NumeroVenta=numeroVenta;
         _Cuit.setTexto(cuit);
@@ -92,6 +102,7 @@ using namespace std;
         _FechaVenta.setMes(mes);
         _FechaVenta.setAnio(anio);
         _ImporteVenta=importeTotal;
+        _Estado=estado;
     }
 
 ///--------------------------------------------------------------------------------------------------
@@ -107,7 +118,7 @@ using namespace std;
         cin>>venta;
         SetNumeroVenta(venta);
         cout<<endl;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout<<"ingrese el cuit del comprador: ";
         cin.getline(cuit,20);
         SetCuit(cuit);

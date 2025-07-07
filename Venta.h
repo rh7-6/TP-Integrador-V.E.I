@@ -11,14 +11,16 @@ public:
     void SetCuit(const char *t);
     void SetFechaVenta(int dia,int mes,int siglo);
     void SetImporteVenta(float v);
+    void SetEstado(bool estado);
 
     int GetNumeroVenta();
     const char *GetCuit();
     Fecha GetFecha();
     float GetImporteVenta();
+    bool GetEstado();
 
     Venta();
-    Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, double importeTotal);
+    Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, double importeTotal, bool estado);
 
     void CargarVenta();
     void MostrarVenta();
@@ -30,5 +32,6 @@ private:
     Cadena _Cuit;
     Fecha _FechaVenta;
     double _ImporteVenta;
+    bool _Estado;
 };
 #endif // VENTA_H_INCLUDED

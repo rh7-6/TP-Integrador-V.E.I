@@ -70,6 +70,245 @@ switch (icono){
 
     }
 
+void Listado(){
+Cliente cl;
+ArchivoClientes arch_cl("clientes.dat");
+int a=0, icono;
+bool bandera1=false;
+system("cls");
+            do{
+            MenulistadosMostrar();
+            rlutil::locate(43,10+a);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(43,10+a);
+                cout<<" "<<endl;
+                a--;
+                if(a<0){a=4;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(43,10+a);
+                cout<<" "<<endl;
+                a++;
+                if(a>4){a=0;}
+                break;
+                case(1):///enter///
+                    switch(a)
+                    {
+////////////////////////////////////////////Productos/////////////////////////////////////////////////////////
+                        case(0):{
+                            system("cls");
+                            ListadoDeProductosPorTipo();
+                         }
+                        break;
+////////////////////////////////////////////Ventas/////////////////////////////////////////////////////////
+                        case(1):{
+
+                        }
+                        break;
+////////////////////////////////////////////Clientes/////////////////////////////////////////////////////////
+                        case(2):{
+                            system("cls");
+                            ListadoDeClientesPorEstado();
+                        }
+                        break;
+////////////////////////////////////////////Detalle de ventas/////////////////////////////////////////////////////////
+                        case(3):{
+
+                        }
+                        break;
+                        case(4):{
+                        bandera1=true;
+                        }
+                        break;
+                    break;
+        }
+        }
+        }while(bandera1==false);
+}
+
+void Busqueda(){
+system("cls");
+int a=0, icono;
+bool bandera1=false;
+            do{
+            MenuBusqueda();
+            rlutil::locate(49,10+a);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(49,10+a);
+                cout<<" "<<endl;
+                a--;
+                if(a<0){a=3;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(49,10+a);
+                cout<<" "<<endl;
+                a++;
+                if(a>3){a=0;}
+                break;
+                case(1):///enter///
+                    switch(a)
+                    {
+                        case(0):
+                        break;
+                        case(1):
+                        break;
+                        case(2):
+                        break;
+                        case(3):
+                        bandera1=true;
+                        break;
+        break;
+
+        }
+        }
+        }while(bandera1==false);
+}
+
+void Informes(){
+system("cls");
+int a=0, icono;
+bool bandera1=false;
+            do{
+            MenuInformes();
+            rlutil::locate(43,10+a);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(43,10+a);
+                cout<<" "<<endl;
+                a--;
+                if(a<0){a=4;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(43,10+a);
+                cout<<" "<<endl;
+                a++;
+                if(a>4){a=0;}
+                break;
+                case(1):///enter///
+                    switch(a)
+                    {
+                        case(0):
+                        break;
+                        case(1):
+                        break;
+                        case(2):
+                        break;
+                        case(3):
+                        break;
+                        case(4):
+                        bandera1=true;
+                        break;
+        break;
+
+        }
+        }
+        }while(bandera1==false);
+}
+
+void CargarRegistros(){
+system("cls");
+int a=0, icono;
+bool bandera1=false;
+system("cls");
+            do{
+            MenuCargarRegistro();
+            rlutil::locate(43,10+a);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(43,10+a);
+                cout<<" "<<endl;
+                a--;
+                if(a<0){a=4;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(43,10+a);
+                cout<<" "<<endl;
+                a++;
+                if(a>4){a=0;}
+                break;
+                case(1):///enter///
+
+                    switch(a)
+                    {
+
+////////////////////////////////////////////guarda registro de cliente/////////////////////////////////////////////////////////
+
+                        case(0):{
+
+                            Cliente cl;
+                            ArchivoClientes arch_cl("clientes.dat");
+                            system("cls");
+                            rlutil::showcursor();
+                            cl.CargarCliente();
+                            system("cls");
+                            rlutil::hidecursor();
+                            arch_cl.GuardarCliente(cl);
+                        }
+                        break;
+
+////////////////////////////////////////////guarda registro de venta/////////////////////////////////////////////////////////
+
+                        case(1):{
+                            Venta ven;
+                            ArchivoVentas arch_ven("ventas.dat");
+                            system("cls");
+                            rlutil::showcursor();
+                            ven.CargarVenta();
+                            system("cls");
+                            rlutil::hidecursor();
+                            arch_ven.GuardarVenta(ven);
+                        }
+                        break;
+
+////////////////////////////////////////////guarda registro de producto/////////////////////////////////////////////////////////
+
+                        case(2):{
+                            Producto p;
+                            system("cls");
+                            rlutil::showcursor();
+                            CargarProducto(p);
+                            system("cls");
+                            rlutil::hidecursor();
+                            GuardarRegistroProducto(p);
+                        }
+                        break;
+
+////////////////////////////////////////////guarda registro detalle de venta/////////////////////////////////////////////////////////
+
+                        case(3):{
+                            DetalleVenta venDT;
+                            ArchivoDetalleVentas arch_detalle("detalle_ventas.dat");
+                            system("cls");
+                            rlutil::showcursor();
+                            venDT.CargarDetalleVenta();
+                            system("cls");
+                            rlutil::hidecursor();
+                            arch_detalle.GuardarDetalleVenta(venDT);
+                        }
+                        break;
+
+/////////////////////////////////////////////////Salida//////////////////////////////////////////////////////////////////////
+
+                        case(4):
+                        bandera1=true;
+                        break;
+
+        break;
+        }
+        }
+        }while(bandera1==false);
+}
+
 void menuPrincipal(){
 ///columna superior///
 rlutil::locate(40,8);
@@ -430,232 +669,6 @@ void MuestraTextoTiposDeProducto(){
     cout << "Perifericos=10" << endl;
 }
 
-void Listado(){
-Cliente cl;
-ArchivoClientes arch_cl("clientes.dat");
-int a=0, icono;
-bool bandera1=false;
-system("cls");
-            do{
-            MenulistadosMostrar();
-            rlutil::locate(43,10+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=4;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>4){a=0;}
-                break;
-                case(1):///enter///
-                    switch(a)
-                    {
-                        case(0):{
-                         system("cls");
-                         ListadoDeProductosPorTipo();
-                         }
-                        break;
-                        case(1):
-                        break;
-                        case(2):
-                        break;
-                        case(3):
-                        break;
-                        case(4):{
-                        bandera1=true;
-                        }
-                        break;
-                    break;
-        }
-        }
-        }while(bandera1==false);
-}
 
-void Busqueda(){
-system("cls");
-int a=0, icono;
-bool bandera1=false;
-            do{
-            MenuBusqueda();
-            rlutil::locate(49,10+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(49,10+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=3;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(49,10+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>3){a=0;}
-                break;
-                case(1):///enter///
-                    switch(a)
-                    {
-                        case(0):
-                        break;
-                        case(1):
-                        break;
-                        case(2):
-                        break;
-                        case(3):
-                        bandera1=true;
-                        break;
-        break;
-
-        }
-        }
-        }while(bandera1==false);
-}
-
-void Informes(){
-system("cls");
-int a=0, icono;
-bool bandera1=false;
-            do{
-            MenuInformes();
-            rlutil::locate(43,10+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=4;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>4){a=0;}
-                break;
-                case(1):///enter///
-                    switch(a)
-                    {
-                        case(0):
-                        break;
-                        case(1):
-                        break;
-                        case(2):
-                        break;
-                        case(3):
-                        break;
-                        case(4):
-                        bandera1=true;
-                        break;
-        break;
-
-        }
-        }
-        }while(bandera1==false);
-}
-
-void CargarRegistros(){
-system("cls");
-int a=0, icono;
-bool bandera1=false;
-system("cls");
-            do{
-            MenuCargarRegistro();
-            rlutil::locate(43,10+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=4;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>4){a=0;}
-                break;
-                case(1):///enter///
-
-                    switch(a)
-                    {
-
-////////////////////////////////////////////guarda registro de cliente/////////////////////////////////////////////////////////
-
-                        case(0):{
-
-                            Cliente cl;
-                            ArchivoClientes arch_cl("clientes.dat");
-                            system("cls");
-                            rlutil::showcursor();
-                            cl.CargarCliente();
-                            system("cls");
-                            rlutil::hidecursor();
-                            arch_cl.GuardarCliente(cl);
-                        }
-                        break;
-
-////////////////////////////////////////////guarda registro de venta/////////////////////////////////////////////////////////
-
-                        case(1):{
-                            Venta ven;
-                            ArchivoVentas arch_ven("ventas.dat");
-                            system("cls");
-                            rlutil::showcursor();
-                            ven.CargarVenta();
-                            system("cls");
-                            rlutil::hidecursor();
-                            arch_ven.GuardarVenta(ven);
-                        }
-                        break;
-
-////////////////////////////////////////////guarda registro de producto/////////////////////////////////////////////////////////
-
-                        case(2):{
-                            Producto p;
-                            system("cls");
-                            rlutil::showcursor();
-                            CargarProducto(p);
-                            system("cls");
-                            rlutil::hidecursor();
-                            GuardarRegistroProducto(p);
-                        }
-                        break;
-
-////////////////////////////////////////////guarda registro detalle de venta/////////////////////////////////////////////////////////
-
-                        case(3):{
-                            DetalleVenta venDT;
-                            ArchivoDetalleVentas arch_detalle("detalle_ventas.dat");
-                            system("cls");
-                            rlutil::showcursor();
-                            venDT.CargarDetalleVenta();
-                            system("cls");
-                            rlutil::hidecursor();
-                            arch_detalle.GuardarDetalleVenta(venDT);
-                        }
-                        break;
-
-/////////////////////////////////////////////////Salida//////////////////////////////////////////////////////////////////////
-
-                        case(4):
-                        bandera1=true;
-                        break;
-
-        break;
-        }
-        }
-        }while(bandera1==false);
-}
 
 
