@@ -72,6 +72,22 @@ bool ArchivoDetalleVentas::GuardarDetalleVenta(DetalleVenta &dv){
         return dv;
     }
 
+    int ArchivoDetalleVentas::LeerDetalleDeVenta(int pos, DetalleVenta &dv){
+
+        FILE *pfile;
+        pfile = fopen(GetNombreArchivo(),"rb");
+
+        if(pfile==NULL){
+            return -1;
+        }
+
+
+        fseek(pfile, sizeof(DetalleVenta) * pos, SEEK_SET);
+        int lectura= fread(&dv, sizeof(DetalleVenta), 1, pfile);
+        fclose(pfile);
+        return lectura;
+    }
+
 /// constructores///
 
     ArchivoDetalleVentas::ArchivoDetalleVentas(const char *nombre){

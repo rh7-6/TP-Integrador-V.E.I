@@ -11,6 +11,7 @@ public:
     bool GuardarDetalleVenta(DetalleVenta &dv);
     int BuscarDetalleDeVenta(int NumeroDeVenta);
     DetalleVenta LeerDetalleDeVenta(int pos);
+    int LeerDetalleDeVenta(int pos, DetalleVenta &dv);
 
     ArchivoDetalleVentas(const char *nombre);
     ArchivoDetalleVentas();

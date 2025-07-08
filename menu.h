@@ -55,9 +55,9 @@ using namespace std;
   Clientes
   ---------*/
 
-    int CargarClientes(Cliente &cl);//              ||
+    int CargarClientes(Cliente &cl);//  verifica si ya existe el cliente y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
 
-    void GuardarRegistroCliente(Cliente &cl);//     ||
+    void GuardarRegistroCliente(Cliente &cl, bool opcionSeg);//Guarda y pregunta si quiere continuar guardando ||opcionSeg 1: para tener la opcion de ingresar mas clientes, opcionSeg: 0 para no tener la opcion
 
     void ListadoDeClientesPorEstado();
 
@@ -65,9 +65,10 @@ using namespace std;
   Ventas
   ---------*/
 
-    int CargarVenta(Venta &v, bool opcionFuncion);//(carrito=1 , carga simple o editar= 0)          ||
+    int CargarVenta(Venta &v, bool opcionFuncion);//(carrito=1 , carga simple o editar= 0) en caso de ingresar 0 podes ingresar una venta de forma manual o reingresar una existente.
+                                                  // En caso de ingresar 1 se establece automaticamente el numero de venta y podes ingresar los datos restantes de la nueva venta
 
-    void GuardarRegistroVenta(Venta &v);//                                                          ||
+    void GuardarRegistroVenta(Venta &v);//   guarda y pregunta si se quiere continuar guardando productos
 
     void ListadoDeVentasPorEstado();
 
@@ -75,7 +76,7 @@ using namespace std;
   Detalle Ventas
   ---------*/
 
-    int CargarDetalleVenta(int numVenta, DetalleVenta &dv);//             ||
+    int CargarDetalleVenta(int numVenta, DetalleVenta &dv);//
 
     void GuardarRegistroDetalleVenta(DetalleVenta &dv);//                 ||
 

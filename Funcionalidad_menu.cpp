@@ -181,20 +181,22 @@ using namespace std;
         return 1;
     }
 
-    void GuardarRegistroCliente(Cliente &cl){
+    void GuardarRegistroCliente(Cliente &cl, bool opcionSeg){
 
         ArchivoClientes archCl("Clientes.dat");
-        bool seguir=true;
+        bool seguir=false;
 
-        while(seguir){
+        do{
             archCl.GuardarCliente(cl);
+            if(opcionSeg){
             cout << "Para ingresar otro cliente(1=si,0=no): ";
             cin >> seguir;
             if(seguir){
             seguir=CargarClientes(cl);
+                }
             }
+            }while(seguir);
         }
-    }
 
     void ListadoDeClientesPorEstado(){
 
@@ -386,7 +388,24 @@ using namespace std;
         }
     }
 
-    void ListadoDetalleVentasPorNumeroDeVenta(int numVenta){
+    void ListadoDetalleVentasPorNumeroDeVenta(){
 
+        system("cls");
+        int numeroventa;
+        cout << "Ingrese un numero de venta existente: " << endl;
+        cin >> numeroventa;
 
+        ArchivoDetalleVentas archDV("DetalleVentas.dat");
+        int cantReg=archDV.CantidadRegistros(sizeof(DetalleVenta));            ///  SIN TERMINAR | FALTA FUNCION MOSTRAR DETALLE VENTA
+
+        DetalleVenta dv;
+        for(int i; i<=cantReg; i++){
+        if(archDV.LeerDetalleDeVenta(i, dv)){
+            if(dv.GetNumeroVentaDT()==numeroventa){
+                //dv.MostrarDetalleVenta();
+                }
+            }
+        }
+        system("pause");
+        system("cls");
     }
