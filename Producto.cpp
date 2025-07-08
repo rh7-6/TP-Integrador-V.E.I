@@ -21,10 +21,11 @@ void Producto::SetIdProducto(int num)
     }
 }
 
-    void Producto::SetNombreProducto(char *nombre){
+void Producto::SetNombreProducto(char *nombre){
 
         _NombreProducto.setTexto(nombre);
     }
+
 
 void Producto::SetPrecio(float num)
 {
@@ -45,11 +46,13 @@ void Producto::SetPrecio(float num)
     }
 }
 
-    void Producto::SetDescripcion(char *descripcion){
+
+void Producto::SetDescripcion(char *descripcion){
 
         strncpy(_Descripcion,descripcion, 499);
         _Descripcion[499]= '\0';
     }
+
 
 void Producto::SetMarca(char *palabra)
 {

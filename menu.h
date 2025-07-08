@@ -19,6 +19,8 @@ using namespace std;
 
     void menuPrincipal();
 
+    void MenuCompra();
+
     void MenuListado();
 
     void MenuBusqueda();
@@ -31,6 +33,8 @@ using namespace std;
 
     void MuestraTextoTiposDeProducto();
 
+    void comprar();
+
     void Listado();
 
     void Busqueda();
@@ -38,6 +42,7 @@ using namespace std;
     void Informes();
 
     void CargarRegistros();
+
 
 /// funcionalidad ///
 

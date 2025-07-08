@@ -20,43 +20,48 @@ switch (icono){
     rlutil::locate(54,10+y);
     cout<<" "<<endl;
     y--;
-    if(y<0){y=4;}
+    if(y<0){y=5;}
     break;
     case(15):///abajo///
     rlutil::locate(54,10+y);
     cout<<" "<<endl;
     y++;
-    if(y>4){y=0;}
+    if(y>5){y=0;}
     break;
     ///rlutil::showcursor(); hace aparecer el cursor///
     case(1):///enter///
        switch(y)
         {
-            case(0):{//////////////////////LISTADOS////////////////////////////
+            case(0):{///////////////////////COMPRAR/////////////////////////////
+              comprar();
+            }
+            break;
+
+            case(1):{//////////////////////LISTADOS////////////////////////////
             Listado();
             system("cls");
             }
             break;
 
-            case(1):{//////////////////////BUSQUEDA////////////////////////////
+            case(2):{//////////////////////BUSQUEDA////////////////////////////
             Busqueda();
             system("cls");
             }
             break;
 
-            case(2):{//////////////////////INFORMES////////////////////////////
+            case(3):{//////////////////////INFORMES////////////////////////////
             Informes();
             system("cls");
             }
             break;
 
-            case(3):{//////////////////////////CARGA UN REGISTO////////////////////
+            case(4):{//////////////////////////CARGA UN REGISTO////////////////////
             CargarRegistros();
             system("cls");
             }
             break;
 
-            case(4)://////////////////////////SALIDA//////////////////////////////
+            case(5)://////////////////////////SALIDA//////////////////////////////
             bandera=false;
             break;
 
@@ -354,14 +359,16 @@ rlutil::locate(40,18);
 cout<<"///////////////////////////////////////////";
 ///opciones///
 rlutil::locate(55,10);
-cout<<"LISTADOS";
+cout<<"COMPRAR";
 rlutil::locate(55,11);
-cout<<"BUSQUEDAS";
+cout<<"LISTADOS";
 rlutil::locate(55,12);
-cout<<"INFORMES";
+cout<<"BUSQUEDAS";
 rlutil::locate(55,13);
-cout<<"CARGAR UN REGISTO";
+cout<<"INFORMES";
 rlutil::locate(55,14);
+cout<<"CARGAR UN REGISTO";
+rlutil::locate(55,15);
 cout<<"SALIR";
 }
 
@@ -653,6 +660,60 @@ rlutil::locate(46,14);
 cout<<"Volver";
 }
 
+void MenuCompra(){
+    ///columna superior///
+rlutil::locate(40,8);
+cout<<"///////////////////////////////////////////";
+///pilar izquierdo///
+rlutil::locate(40,9);
+cout<<"//";
+rlutil::locate(40,10);
+cout<<"//";
+rlutil::locate(40,11);
+cout<<"//";
+rlutil::locate(40,12);
+cout<<"//";
+rlutil::locate(40,13);
+cout<<"//";
+rlutil::locate(40,14);
+cout<<"//";
+rlutil::locate(40,15);
+cout<<"//";
+rlutil::locate(40,16);
+cout<<"//";
+rlutil::locate(40,17);
+cout<<"//";
+///pilar derecho///
+rlutil::locate(81,9);
+cout<<"//";
+rlutil::locate(81,10);
+cout<<"//";
+rlutil::locate(81,11);
+cout<<"//";
+rlutil::locate(81,12);
+cout<<"//";
+rlutil::locate(81,13);
+cout<<"//";
+rlutil::locate(81,14);
+cout<<"//";
+rlutil::locate(81,15);
+cout<<"//";
+rlutil::locate(81,16);
+cout<<"//";
+rlutil::locate(81,17);
+cout<<"//";
+///columna inferior///
+rlutil::locate(40,18);
+cout<<"///////////////////////////////////////////";
+///opciones de Compra///
+rlutil::locate(58,11);
+cout<<"Productos";
+rlutil::locate(58,12);
+cout<<"Carrito";
+rlutil::locate(58,13);
+cout<<"Volver";
+}
+
 void MuestraTextoTiposDeProducto(){
 
     cout << "Equipos=1" << endl;
@@ -667,6 +728,54 @@ void MuestraTextoTiposDeProducto(){
     cout << "Perifericos=10" << endl;
 }
 
+void comprar(){
+int a=0, icono;
+bool bandera1=false;
+system("cls");
+            do{
+            MenuCompra();
+            rlutil::locate(56,11+a);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(56,11+a);
+                cout<<" "<<endl;
+                a--;
+                if(a<0){a=2;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(56,11+a);
+                cout<<" "<<endl;
+                a++;
+                if(a>2){a=0;}
+                break;
+                case(1):///enter///
+                    switch(a)
+                    {
+                        case(0):{
+                             cout<<"PRODUCTOS";
+                             system("pause");
+                             system("cls");
+                         }
+                        break;
 
+                        case(1):{
+                            cout<<"carrito";
+                            system("pause");
+                            system("cls");
+                        }
+                        break;
+
+                        case(2):{
+                        bandera1=true;
+                        }
+                        break;
+                    break;
+        }
+        }
+    }while(bandera1==false);
+    system("cls");
+}
 
 
