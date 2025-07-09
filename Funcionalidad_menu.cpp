@@ -116,8 +116,6 @@ using namespace std;
                         }
                     }
                 }
-                system("pause");
-                system("cls");
                 ban=false;
             } else{
                 cout<<"Ingrese porfavor un tipo valido(1 a 10): ";
@@ -168,6 +166,8 @@ using namespace std;
             for(int i=0; i<tamVecProd; i++){
                 MostrarProducto(PrOrdenados[i]);
             }
+            system("pause");
+            system("cls");
     }
 
 //------------------------------------------------------------------------//
@@ -255,7 +255,7 @@ using namespace std;
             }while(seguir);
         }
 
-    void ListadoDeClientesPorEstado(){
+    void ListadoDeClientes(){
 
         system("cls");
         bool estado;
@@ -265,14 +265,32 @@ using namespace std;
         ArchivoClientes archCl("Clientes.dat");
         int cantReg=archCl.CantidadRegistros(sizeof(Cliente));
 
+        vector<Cliente> ClOrdenados;
+
         Cliente cl;
         for(int i; i<=cantReg; i++){
         if(archCl.LeerCliente(i, cl)){
             if(cl.GetEstado()==estado){
-                cl.MostrarCliente();
+                //MostrarCliente(cl);
+                ClOrdenados.push_back(cl);
                 }
             }
         }
+
+        char abc[54]{'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'Ñ', 'ñ', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z'};
+
+        int tamVecCl= ClOrdenados.size();
+
+            for(int i=0; i<54; i++){
+                for(int a=0; a<tamVecCl; a++){
+
+                    string Apellido= ClOrdenados[a].GetApellido();
+                    if(Apellido[0]==abc[i]){
+                            MostrarCliente(ClOrdenados[a]);
+                    }
+                }
+            }
+
         system("pause");
         system("cls");
     }
@@ -371,7 +389,7 @@ using namespace std;
         }
     }
 
-    void ListadoDeVentasPorEstado(){
+    void ListadoDeVentas(){
 
         system("cls");
         bool estado;
@@ -381,11 +399,14 @@ using namespace std;
         ArchivoVentas archV("Ventas.dat");
         int cantReg=archV.CantidadRegistros(sizeof(Venta));
 
+        vector<Venta> VtOrdenados;
+
         Venta v;
         for(int i; i<=cantReg; i++){
         if(archV.LeerVenta(i, v)){
             if(v.GetEstado()==estado){
-                MostrarVenta(v);
+                //MostrarVenta(v);
+                VtOrdenados.push_back(v);
                 }
             }
         }

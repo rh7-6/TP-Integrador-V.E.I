@@ -69,7 +69,7 @@ using namespace std;
 
     void GuardarRegistroCliente(Cliente &cl, bool opcionSeg);//Guarda y pregunta si quiere continuar guardando ||opcionSeg 1: para tener la opcion de ingresar mas clientes, opcionSeg: 0 para no tener la opcion
 
-    void ListadoDeClientesPorEstado();
+    void ListadoDeClientes();
 
 /*---------
   Ventas
@@ -81,7 +81,7 @@ using namespace std;
 
     void GuardarRegistroVenta(Venta &v);//   guarda y pregunta si se quiere continuar guardando productos
 
-    void ListadoDeVentasPorEstado();
+    void ListadoDeVentas();
 
 /*---------
   Detalle Ventas
