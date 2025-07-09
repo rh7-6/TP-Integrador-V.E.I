@@ -129,16 +129,44 @@ using namespace std;
         if(opcion){
 
                 bool ban=true;
+                int tamVecProd=PrOrdenados.size();
                 while(ban){
-                    for(int i=0; i<PrOrdenados.size(); i++){
+                    for(int i=0; i<tamVecProd; i++){
+                            int contPrOrdenados=0;
                         if(PrOrdenados[i].GetPrecio()<PrOrdenados[i+1].GetPrecio()){
                             Producto p;
                             p= PrOrdenados[i+1];
                             PrOrdenados[i+1]=PrOrdenados[i];
                             PrOrdenados[i]=p;
+                            contPrOrdenados++;
+                        }
+                        if(contPrOrdenados==0){
+                            ban=false;
                         }
                     }
                 }
+            }else{
+                bool ban=true;
+                int tamVecProd=PrOrdenados.size();
+                while(ban){
+                    for(int i=0; i<tamVecProd; i++){
+                            int contPrOrdenados=0;
+                        if(PrOrdenados[i].GetStock()<PrOrdenados[i+1].GetStock()){
+                            Producto p;
+                            p= PrOrdenados[i+1];
+                            PrOrdenados[i+1]=PrOrdenados[i];
+                            PrOrdenados[i]=p;
+                            contPrOrdenados++;
+                        }
+                        if(contPrOrdenados==0){
+                            ban=false;
+                        }
+                    }
+                }
+            }
+            int tamVecProd=PrOrdenados.size();
+            for(int i=0; i<tamVecProd; i++){
+                MostrarProducto(PrOrdenados[i]);
             }
     }
 
