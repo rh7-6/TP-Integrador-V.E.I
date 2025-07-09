@@ -75,6 +75,56 @@ switch (icono){
 
     }
 
+    void comprar(){
+int a=0, icono;
+bool bandera1=false;
+system("cls");
+            do{
+            MenuCompra();
+            rlutil::locate(56,11+a);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(56,11+a);
+                cout<<" "<<endl;
+                a--;
+                if(a<0){a=2;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(56,11+a);
+                cout<<" "<<endl;
+                a++;
+                if(a>2){a=0;}
+                break;
+                case(1):///enter///
+                    switch(a)
+                    {
+                        case(0):{
+                             cout<<"PRODUCTOS";
+                             system("pause");
+                             system("cls");
+                         }
+                        break;
+
+                        case(1):{
+                            cout<<"Carrito";
+                            system("pause");
+                            system("cls");
+                        }
+                        break;
+
+                        case(2):{
+                        bandera1=true;
+                        }
+                        break;
+                    break;
+        }
+        }
+    }while(bandera1==false);
+    system("cls");
+}
+
 void Listado(){
 Cliente cl;
 ArchivoClientes arch_cl("clientes.dat");
@@ -359,7 +409,7 @@ rlutil::locate(40,18);
 cout<<"///////////////////////////////////////////";
 ///opciones///
 rlutil::locate(55,10);
-cout<<"COMPRAR";
+cout<<"COMPRA";
 rlutil::locate(55,11);
 cout<<"LISTADOS";
 rlutil::locate(55,12);
@@ -728,54 +778,6 @@ void MuestraTextoTiposDeProducto(){
     cout << "Perifericos=10" << endl;
 }
 
-void comprar(){
-int a=0, icono;
-bool bandera1=false;
-system("cls");
-            do{
-            MenuCompra();
-            rlutil::locate(56,11+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(56,11+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=2;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(56,11+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>2){a=0;}
-                break;
-                case(1):///enter///
-                    switch(a)
-                    {
-                        case(0):{
-                             cout<<"PRODUCTOS";
-                             system("pause");
-                             system("cls");
-                         }
-                        break;
 
-                        case(1):{
-                            cout<<"carrito";
-                            system("pause");
-                            system("cls");
-                        }
-                        break;
-
-                        case(2):{
-                        bandera1=true;
-                        }
-                        break;
-                    break;
-        }
-        }
-    }while(bandera1==false);
-    system("cls");
-}
 
 

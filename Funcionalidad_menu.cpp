@@ -66,6 +66,11 @@ using namespace std;
         return 1;
     }
 
+    void MostrarProducto(Producto &p){
+
+
+    }
+
     void GuardarRegistroProducto(Producto &p){
 
         ArchivoProductos archP("Productos.dat");
@@ -104,7 +109,7 @@ using namespace std;
                 for(int i=0; i<=cantReg; i++){
                 if(archPr.LeerProducto(i, pr)){
                     if(pr.GetTipoEquipo()==TipoDeProducto&& pr.GetEstado()==estado){
-                        pr.MostrarProducto();
+                        MostrarProducto(pr);
                         }
                     }
                 }
@@ -179,6 +184,11 @@ using namespace std;
         delete[] cuil; delete[] nombre; delete[] apellido; delete[] telefono; delete[] mail; delete[] direccion;
 
         return 1;
+    }
+
+    void MostrarCliente(Cliente &cl){
+
+
     }
 
     void GuardarRegistroCliente(Cliente &cl, bool opcionSeg){
@@ -294,6 +304,11 @@ using namespace std;
         return 1;
     }
 
+    void MostrarVenta(Venta &Venta){
+
+
+    }
+
     void GuardarRegistroVenta(Venta &v){
 
         ArchivoVentas archV("Ventas.dat");
@@ -323,7 +338,7 @@ using namespace std;
         for(int i; i<=cantReg; i++){
         if(archV.LeerVenta(i, v)){
             if(v.GetEstado()==estado){
-                v.MostrarVenta();
+                MostrarVenta(v);
                 }
             }
         }
@@ -373,6 +388,11 @@ using namespace std;
         return 1;
     }
 
+    void MostrarDetalleVenta(DetalleVenta &dv){
+
+
+    }
+
     void GuardarRegistroDetalleVenta(DetalleVenta &dv){
 
         ArchivoDetalleVentas archDV("DetalleVentas.dat");
@@ -402,7 +422,7 @@ using namespace std;
         for(int i; i<=cantReg; i++){
         if(archDV.LeerDetalleDeVenta(i, dv)){
             if(dv.GetNumeroVentaDT()==numeroventa){
-                //dv.MostrarDetalleVenta();
+                MostrarDetalleVenta(dv);
                 }
             }
         }
