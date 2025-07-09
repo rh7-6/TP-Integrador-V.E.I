@@ -152,24 +152,24 @@ system("cls");
                 case(1):///enter///
                     switch(a)
                     {
-////////////////////////////////////////////Productos/////////////////////////////////////////////////////////
+////////////////////////////////////////////PRODUCTOS/////////////////////////////////////////////////////////
                         case(0):{
                             ListadoDeProductosPorTipo();
                          }
                         break;
-////////////////////////////////////////////Ventas/////////////////////////////////////////////////////////
+////////////////////////////////////////////VENTAS/////////////////////////////////////////////////////////
                         case(1):{
                             ListadoDeVentasPorEstado();
                         }
                         break;
-////////////////////////////////////////////Clientes/////////////////////////////////////////////////////////
+////////////////////////////////////////////CLIENTES/////////////////////////////////////////////////////////
                         case(2):{
                             ListadoDeClientesPorEstado();
                         }
                         break;
-////////////////////////////////////////////Detalle de ventas/////////////////////////////////////////////////////////
+////////////////////////////////////////////DETALLE DE VENTAS/////////////////////////////////////////////////////////
                         case(3):{
-
+                            ListadoDetalleVentasPorNumeroDeVenta();
                         }
                         break;
                         case(4):{
@@ -299,27 +299,25 @@ system("cls");
                         case(0):{
 
                             Cliente cl;
-                            ArchivoClientes arch_cl("clientes.dat");
                             system("cls");
                             rlutil::showcursor();
-                            cl.CargarCliente();
+                            CargarCliente(cl);
                             system("cls");
                             rlutil::hidecursor();
-                            arch_cl.GuardarCliente(cl);
+                            GuardarRegistroCliente(cl, 1);
                         }
                         break;
 
 ////////////////////////////////////////////guarda registro de venta/////////////////////////////////////////////////////////
 
                         case(1):{
-                            Venta ven;
-                            ArchivoVentas arch_ven("ventas.dat");
+                            Venta v;
                             system("cls");
                             rlutil::showcursor();
-                            ven.CargarVenta();
+                            CargarVenta(v, 0);
                             system("cls");
                             rlutil::hidecursor();
-                            arch_ven.GuardarVenta(ven);
+                            GuardarRegistroVenta(v);
                         }
                         break;
 
@@ -340,13 +338,12 @@ system("cls");
 
                         case(3):{
                             DetalleVenta venDT;
-                            ArchivoDetalleVentas arch_detalle("detalle_ventas.dat");
                             system("cls");
                             rlutil::showcursor();
-                            venDT.CargarDetalleVenta();
+                            CargarDetalleVenta(0, venDT);
                             system("cls");
                             rlutil::hidecursor();
-                            arch_detalle.GuardarDetalleVenta(venDT);
+                            GuardarRegistroDetalleVenta(venDT);
                         }
                         break;
 
@@ -527,11 +524,11 @@ rlutil::locate(40,18);
 cout<<"///////////////////////////////////////////";
 ///opciones de listado///
 rlutil::locate(50,10);
-cout<<"Busqueda de equipos";
+cout<<"Busqueda de producto";
 rlutil::locate(50,11);
-cout<<"Busqueda de clientes";
+cout<<"Busqueda de cliente";
 rlutil::locate(50,12);
-cout<<"Busqueda de ventas";
+cout<<"Busqueda de venta";
 rlutil::locate(50,13);
 cout<<"Volver";
 }

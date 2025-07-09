@@ -62,7 +62,7 @@ using namespace std;
   Clientes
   ---------*/
 
-    int CargarClientes(Cliente &cl);//  verifica si ya existe el cliente y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
+    int CargarCliente(Cliente &cl);//  verifica si ya existe el cliente y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
 
     void MostrarCliente(Cliente &cl);
 
@@ -86,7 +86,7 @@ using namespace std;
   Detalle Ventas
   ---------*/
 
-    int CargarDetalleVenta(int numVenta, DetalleVenta &dv);//
+    int CargarDetalleVenta(int numVenta, DetalleVenta &dv);// si el numero de venta que se de como parametro es igual a 0 se ingresa luego de forma manual dentro de la funcion
 
     void MostrarDetalleVenta(DetalleVenta &dv);
 

@@ -124,7 +124,7 @@ using namespace std;
     }
 
 //------------------------------------------------------------------------//
-    int CargarClientes(Cliente &cl){
+    int CargarCliente(Cliente &cl){
 
         ArchivoClientes archCl("Clientes.dat");
 
@@ -202,7 +202,7 @@ using namespace std;
             cout << "Para ingresar otro cliente(1=si,0=no): ";
             cin >> seguir;
             if(seguir){
-            seguir=CargarClientes(cl);
+            seguir=CargarCliente(cl);
                 }
             }
             }while(seguir);
@@ -412,11 +412,18 @@ using namespace std;
 
         system("cls");
         int numeroventa;
-        cout << "Ingrese un numero de venta existente: " << endl;
-        cin >> numeroventa;
+
+        ArchivoVentas archV("Ventas.dat");
+        int cantRegV= archV.CantidadRegistros(sizeof(Venta));
 
         ArchivoDetalleVentas archDV("DetalleVentas.dat");
-        int cantReg=archDV.CantidadRegistros(sizeof(DetalleVenta));            ///  SIN TERMINAR | FALTA FUNCION MOSTRAR DETALLE VENTA
+        int cantReg=archDV.CantidadRegistros(sizeof(DetalleVenta));
+
+        do{
+
+        cout << "Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";
+        cin >> numeroventa;
+        }while(numeroventa>0&&numeroventa<=cantRegV);
 
         DetalleVenta dv;
         for(int i; i<=cantReg; i++){
