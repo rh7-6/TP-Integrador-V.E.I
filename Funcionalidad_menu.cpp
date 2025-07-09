@@ -129,37 +129,45 @@ using namespace std;
                 bool ban=true;
                 int tamVecProd=PrOrdenados.size();
                 while(ban){
+
+                        int contPrOrdenados=0;
                     for(int i=0; i<tamVecProd; i++){
-                            int contPrOrdenados=0;
-                        if(PrOrdenados[i].GetPrecio()<PrOrdenados[i+1].GetPrecio()){
-                            Producto p;
-                            p= PrOrdenados[i+1];
-                            PrOrdenados[i+1]=PrOrdenados[i];
-                            PrOrdenados[i]=p;
-                            contPrOrdenados++;
+
+                        if(i!=tamVecProd-1){
+                            if(PrOrdenados[i].GetPrecio()<PrOrdenados[i+1].GetPrecio()){
+                                Producto p;
+                                p= PrOrdenados[i+1];
+                                PrOrdenados[i+1]=PrOrdenados[i];
+                                PrOrdenados[i]=p;
+                                contPrOrdenados++;
+                            }
                         }
+                    }
                         if(contPrOrdenados==0){
                             ban=false;
                         }
-                    }
                 }
             }else{
                 bool ban=true;
                 int tamVecProd=PrOrdenados.size();
                 while(ban){
+
+                        int contPrOrdenados=0;
                     for(int i=0; i<tamVecProd; i++){
-                            int contPrOrdenados=0;
-                        if(PrOrdenados[i].GetStock()<PrOrdenados[i+1].GetStock()){
-                            Producto p;
-                            p= PrOrdenados[i+1];
-                            PrOrdenados[i+1]=PrOrdenados[i];
-                            PrOrdenados[i]=p;
-                            contPrOrdenados++;
+
+                        if(i!=tamVecProd-1){
+                            if(PrOrdenados[i].GetStock()<PrOrdenados[i+1].GetStock()){
+                                Producto p;
+                                p= PrOrdenados[i+1];
+                                PrOrdenados[i+1]=PrOrdenados[i];
+                                PrOrdenados[i]=p;
+                                contPrOrdenados++;
+                            }
                         }
+                    }
                         if(contPrOrdenados==0){
                             ban=false;
                         }
-                    }
                 }
             }
             int tamVecProd=PrOrdenados.size();
@@ -399,17 +407,46 @@ using namespace std;
         ArchivoVentas archV("Ventas.dat");
         int cantReg=archV.CantidadRegistros(sizeof(Venta));
 
-        vector<Venta> VtOrdenados;
+        vector<Venta> VtOrdenadas;
 
         Venta v;
         for(int i; i<=cantReg; i++){
         if(archV.LeerVenta(i, v)){
             if(v.GetEstado()==estado){
                 //MostrarVenta(v);
-                VtOrdenados.push_back(v);
+                VtOrdenadas.push_back(v);
                 }
             }
         }
+
+        bool ban=true;
+        int tamVecV=VtOrdenadas.size();
+        while(ban){
+
+            int contVtOrdenadas=0;
+            for(int i=0; i<tamVecV; i++){
+
+                if(i!=tamVecV-1){
+
+                    if(VtOrdenadas[i].GetImporteVenta()<VtOrdenadas[i+1].GetImporteVenta()){
+
+                        Venta v;
+                        v= VtOrdenadas[i+1];
+                        VtOrdenadas[i+1]=VtOrdenadas[i];
+                        VtOrdenadas[i]=v;
+                        contVtOrdenadas++;
+                    }
+                }
+            }
+                if(contVtOrdenadas==0){
+                    ban=false;
+                }
+        }
+
+            for(int i=0; i<tamVecV; i++){
+                MostrarVenta(VtOrdenadas[i]);
+            }
+
         system("pause");
         system("cls");
     }
