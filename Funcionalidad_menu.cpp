@@ -86,7 +86,7 @@ using namespace std;
         }
     }
 
-    void ListadoDeProductosPorTipo(){
+    void ListadoDeProductos(bool opcion){
 
         system("cls");
         int TipoDeProducto;
@@ -102,6 +102,8 @@ using namespace std;
         ArchivoProductos archPr("Productos.dat");
         int cantReg=archPr.CantidadRegistros(sizeof(Producto));
 
+        vector<Producto> PrOrdenados;
+
         system("cls");
         while(ban==true){
             if(TipoDeProducto<=10&&TipoDeProducto>0){
@@ -109,7 +111,8 @@ using namespace std;
                 for(int i=0; i<=cantReg; i++){
                 if(archPr.LeerProducto(i, pr)){
                     if(pr.GetTipoEquipo()==TipoDeProducto&& pr.GetEstado()==estado){
-                        MostrarProducto(pr);
+                        //MostrarProducto(pr);
+                        PrOrdenados.push_back(pr);
                         }
                     }
                 }
@@ -119,8 +122,24 @@ using namespace std;
             } else{
                 cout<<"Ingrese porfavor un tipo valido(1 a 10): ";
                 cin>>TipoDeProducto;
+                system("cls");
             }
         }
+
+        if(opcion){
+
+                bool ban=true;
+                while(ban){
+                    for(int i=0; i<PrOrdenados.size(); i++){
+                        if(PrOrdenados[i].GetPrecio()<PrOrdenados[i+1].GetPrecio()){
+                            Producto p;
+                            p= PrOrdenados[i+1];
+                            PrOrdenados[i+1]=PrOrdenados[i];
+                            PrOrdenados[i]=p;
+                        }
+                    }
+                }
+            }
     }
 
 //------------------------------------------------------------------------//

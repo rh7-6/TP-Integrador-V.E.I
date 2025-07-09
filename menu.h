@@ -1,7 +1,6 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
-///libreria grafica///
-#include "rlutil.h"
+#include "vector"
 #include "Fecha.h"
 #include "cadena.h"
 #include "Producto.h"
@@ -12,6 +11,8 @@
 #include "Archivo_Productos.h"
 #include "Archivo_Ventas.h"
 #include "Archivo_Detalle_Ventas.h"
+///libreria grafica///
+#include "rlutil.h"
 using namespace std;
 
 /// selección y graficos ///
@@ -56,7 +57,7 @@ using namespace std;
 
     void GuardarRegistroProducto(Producto &p); // guarda y pregunta si se quiere continuar guardando productos
 
-    void ListadoDeProductosPorTipo();
+    void ListadoDeProductos(bool opcion); // opcion1= ordenados por precio, opcion0= ordenados por stock
 
 /*---------
   Clientes
