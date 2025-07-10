@@ -8,7 +8,6 @@ using namespace std;
         int id,tipo,stock;
         float precio;
         char nombre[50]{},descripcion[500]{}, marca[20]{};
-        bool estado;
 
         cout<<"Ingrese el id del producto o equipo igual o mayor a 0: ";
         cin>>id;
@@ -23,9 +22,10 @@ using namespace std;
             }
         }
 
-        while(p.SetIdProducto(id)==0){
-            cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;
-            cin>>id;
+
+        while(p.SetIdProducto(id)==0){                                                                      //
+            cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;    // ejemplo validacion dentro del onjeto texto en el menu
+            cin>>id;                                                                                        //
         }
 
         bool a=true;
