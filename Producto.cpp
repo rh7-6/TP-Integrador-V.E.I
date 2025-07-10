@@ -4,21 +4,7 @@ using namespace std;
 
 void Producto::SetIdProducto(int num)
 {
-    bool a=true;
-    while(a==true)
-    {
-        if(num<=0)
-        {
-            cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;
-            cin>>num;
-            a=true;
-        }
-        else
-        {
-            a=false;
             _IdProducto=num;
-        }
-    }
 }
 
 void Producto::SetNombreProducto(char *nombre){
@@ -26,24 +12,9 @@ void Producto::SetNombreProducto(char *nombre){
         _NombreProducto.setTexto(nombre);
     }
 
-
 void Producto::SetPrecio(float num)
 {
-    bool a=true;
-    while(a==true)
-    {
-        if(num<100)
-        {
-            cout<<"el precio tiene que ser minimo 100 por favor vuelva a cargar el precio"<<endl;
-            cin>>num;
-            a=true;
-        }
-        else
-        {
-            a=false;
             _Precio=num;
-        }
-    }
 }
 
 
@@ -61,40 +32,12 @@ void Producto::SetMarca(char *palabra)
 
 void Producto::SetTipoEquipo(int num)
 {
-  bool a=true;
-    while(a==true)
-    {
-        if(num<0||num>10)
-        {
-            cout<<"el tipo de equipo tiene que ser entre 1 y 10"<<endl;
-            cin>>num;
-            a=true;
-        }
-        else
-        {
-            a=false;
             _TipoEquipo=num;
-        }
-    }
 }
 
 void Producto::SetStock(int num)
 {
-    bool a=true;
-    while(a==true)
-    {
-        if(num<0)
-        {
-            cout<<"el stock no puede ser menor a 0"<<endl;
-            cin>>num;
-            a=true;
-        }
-        else
-        {
-            a=false;
-            _Stock=num;
-        }
-    }
+    _Stock=num;
 }
 
     void Producto::SetEstado(bool estado){

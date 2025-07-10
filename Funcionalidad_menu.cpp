@@ -22,7 +22,24 @@ using namespace std;
                 return opcion;
             }
         }
+
+        bool a=true;
+    while(a==true)
+    {
+        if(id<=0)
+        {
+            cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;
+            cin>>id;
+            a=true;
+        }
+        else
+        {
+            a=false;
         p.SetIdProducto(id);
+        }
+    }
+
+
         cout<<endl;
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
@@ -33,7 +50,22 @@ using namespace std;
 
         cout<<"Ingrese el precio del producto tienen que ser igual o mayor a 100: ";
         cin>>precio;
+        a=true;
+    while(a==true)
+    {
+        if(precio<100)
+        {
+            cout<<"el precio tiene que ser minimo 100 por favor vuelva a cargar el precio"<<endl;
+            cin>>precio;
+            a=true;
+        }
+        else
+        {
+            a=false;
         p.SetPrecio(precio);
+        }
+    }
+
         cout<<endl;
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
@@ -50,21 +82,90 @@ using namespace std;
 
         cout<<"Ingrese el tipo de producto: ";
         cin>>tipo;
+
+        a=true;
+    while(a==true)
+    {
+        if(tipo<0||tipo>10)
+        {
+            cout<<"el tipo de equipo tiene que ser entre 1 y 10"<<endl;
+            cin>>tipo;
+            a=true;
+        }
+        else
+        {
+            a=false;
         p.SetTipoEquipo(tipo);
+        }
+    }
+
         cout<<endl;
 
         cout<<"Ingrese el stock del producto: ";
         cin>>stock;
+    a=true;
+    while(a==true)
+    {
+        if(stock<0)
+        {
+            cout<<"el stock no puede ser menor a 0"<<endl;
+            cin>>stock;
+            a=true;
+        }
+        else
+        {
+            a=false;
         p.SetStock(stock);
+        }
+    }
         cout<<endl;
 
-        cout<<"Ingrese el estado del producto(1-activo, 0-inactivo): ";
-        cin>>estado;
-        p.SetEstado(estado);
+        cout<<"Selecione el estado del producto: ";
+        int k=0, icono;
+bool bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(10,19);
+            cout<<"inactivo";
+            rlutil::locate(10,20);
+            cout<<"activo";
+            rlutil::locate(9,19+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(9,19+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(9,19+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    p.SetEstado(0);
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    p.SetEstado(1);
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
+
         cout<<endl;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         return 1;
-    }
+            }
 
     void MostrarProducto(Producto &p){
 
@@ -179,7 +280,7 @@ using namespace std;
     }
 
 //------------------------------------------------------------------------//
-    int CargarCliente(Cliente &cl){
+    int CargarCliente(Cliente &cl){ ///mejorar diseño pendiente///
 
         ArchivoClientes archCl("Clientes.dat");
 
@@ -191,16 +292,54 @@ using namespace std;
         cin.getline(cuil, 31);
         if(archCl.BuscarCliente(cuil)>=0){
 
-            int opcion;
+
             cout << "Ya existe un cliente con el cuit:" << cuil << " Desea reingresarlo?" << endl;
-            cout << "1=si 0=no: " << endl;
-            cin >> opcion;
-            if(opcion==0){
-                return opcion;
+
+            int k=0, icono;
+            bool bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(10,4);
+            cout<<"NO";
+            rlutil::locate(10,5);
+            cout<<"SI";
+            rlutil::locate(9,4+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(9,4+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(9,4+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    return k;
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    cl.SetCuil(cuil);
+                    bandera1=true;
+                    }
+                    break;
+                    }
             }
+                }while(bandera1==false);
         }
         cl.SetCuil(cuil);
-        cout<<endl;
+        rlutil::showcursor();
+
+
 
         cout<<"Ingrese el nombre del cliente: ";
         cin.getline(nombre, 31);

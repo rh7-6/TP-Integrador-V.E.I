@@ -320,6 +320,8 @@ system("cls");
                             system("cls");
                             rlutil::hidecursor();
                             GuardarRegistroCliente(cl, 1);
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
                         }
                         break;
 
