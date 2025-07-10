@@ -23,21 +23,26 @@ using namespace std;
             }
         }
 
-        bool a=true;
-    while(a==true)
-    {
-        if(id<=0)
-        {
+        while(p.SetIdProducto(id)==0){
             cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;
             cin>>id;
-            a=true;
         }
-        else
-        {
-            a=false;
-        p.SetIdProducto(id);
-        }
-    }
+
+        bool a=true;
+//    while(a==true)
+//    {
+//        if(id<=0)
+//        {
+//            cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;
+//            cin>>id;
+//            a=true;
+//        }
+//        else
+//        {
+//            a=false;
+//        p.SetIdProducto(id);
+//        }
+//    }
 
 
         cout<<endl;

@@ -2,9 +2,14 @@
 using namespace std;
 #include "Producto.h"
 
-void Producto::SetIdProducto(int num)
+int Producto::SetIdProducto(int num)
 {
-            _IdProducto=num;
+    if(num<0){
+        return 0;
+    }else{
+        _IdProducto=num;
+        return 1;
+    }
 }
 
 void Producto::SetNombreProducto(char *nombre){

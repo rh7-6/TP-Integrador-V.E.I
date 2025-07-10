@@ -7,7 +7,7 @@
 
 class Producto {
 public:
-void SetIdProducto(int num);
+int SetIdProducto(int num);
 void SetNombreProducto(char *palabra);
 void SetPrecio(float num);
 void SetDescripcion(char *palabra);
