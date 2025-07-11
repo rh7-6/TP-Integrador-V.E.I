@@ -177,26 +177,57 @@ bool bandera1=false;
 
     }
 
-    void BuscarProducto(){
+    void BuscarProducto(bool opcion){
 
         ArchivoProductos archP("Productos.dat");
         Producto p;
-        int pos, id;
 
-        cout << "Ingrese el Id del producto a buscar: ";
-        cin >> id;
-        cout << endl;
+        if(opcion){
 
-        if((pos=archP.BuscarProducto(id))<0){
+            int pos, id;
 
-            cout << "Producto inexistente reingrese id: ";
+            cout << "Ingrese el Id del producto a buscar: ";
             cin >> id;
-            system("cls");
+            cout << endl;
+
+            if((pos=archP.BuscarProducto(id))<0){
+
+                cout << "Producto inexistente reingrese id: ";
+                cin >> id;
+                system("cls");
+            }else{
+
+                p=archP.LeerProducto(pos);
+                MostrarProducto(p);
+                system("pause");
+            }
         }else{
 
-            p=archP.LeerProducto(pos);
-            MostrarProducto(p);
+            float precioMax, precioMin;
+
+            cout << "Ingrese valor maximo en rango de precio a buscar: ";
+            cin >> precioMax;
+            cout << endl;
+
+            cout << "Ingrese valor minimo en rango de precio a buscar: ";
+            cin >> precioMin;
+            cout << endl;
+
+            vector<Producto> PrEnRango;
+            for(int i=0; i<archP.CantidadRegistros(sizeof(Producto)); i++){
+
+                p= archP.LeerProducto(i);
+                if(p.GetPrecio()<=precioMax&&p.GetPrecio()>=precioMin){
+
+                    PrEnRango.push_back(p);
+                }
+            }
+            int tamVecProd=PrEnRango.size();
+            for(int i=0; i<tamVecProd; i++){
+                MostrarProducto(PrEnRango[i]);
+            }
             system("pause");
+            system("cls");
         }
     }
 

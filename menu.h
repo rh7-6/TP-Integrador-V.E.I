@@ -55,7 +55,7 @@ using namespace std;
 
     void MostrarProducto(Producto &p);
 
-    void BuscarProducto();
+    void BuscarProducto(bool opcion); // opcion1= buscar por numero de equipo, opcion0=buscar por rango de precio
 
     void GuardarRegistroProducto(Producto &p); // guarda y pregunta si se quiere continuar guardando productos
 
