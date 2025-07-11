@@ -604,6 +604,11 @@ bool bandera1=false;
 
     }
 
+    void BuscarVenta(int opcion){
+
+
+    }
+
     void GuardarRegistroVenta(Venta &v){
 
         ArchivoVentas archV("Ventas.dat");

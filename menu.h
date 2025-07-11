@@ -55,7 +55,7 @@ using namespace std;
 
     void MostrarProducto(Producto &p);
 
-    void BuscarProducto(bool opcion); // opcion1= buscar por numero de equipo, opcion0=buscar por rango de precio
+    void BuscarProducto(bool opcion); // opcion1= buscar por numero de equipo| opcion0=buscar por rango de precio
 
     void GuardarRegistroProducto(Producto &p); // guarda y pregunta si se quiere continuar guardando productos
 
@@ -79,7 +79,7 @@ using namespace std;
   Ventas
   ---------*/
 
-    int CargarVenta(Venta &v, bool opcionFuncion);//(carrito=1 , carga simple o editar= 0) en caso de ingresar 0 podes ingresar una venta de forma manual o reingresar una existente.
+    int CargarVenta(Venta &v, bool opcionFuncion);//(carrito=1 | carga simple o editar= 0) en caso de ingresar 0 podes ingresar una venta de forma manual o reingresar una existente.
                                                   // En caso de ingresar 1 se establece automaticamente el numero de venta y podes ingresar los datos restantes de la nueva venta
     void MostrarVenta(Venta &v);
 
