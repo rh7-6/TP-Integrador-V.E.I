@@ -55,6 +55,8 @@ using namespace std;
 
     void MostrarProducto(Producto &p);
 
+    void BuscarProducto();
+
     void GuardarRegistroProducto(Producto &p); // guarda y pregunta si se quiere continuar guardando productos
 
     void ListadoDeProductos(bool opcion); // opcion1= ordenados por precio, opcion0= ordenados por stock
@@ -66,6 +68,8 @@ using namespace std;
     int CargarCliente(Cliente &cl);//  verifica si ya existe el cliente y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
 
     void MostrarCliente(Cliente &cl);
+
+    void BuscarCliente();
 
     void GuardarRegistroCliente(Cliente &cl, bool opcionSeg);//Guarda y pregunta si quiere continuar guardando ||opcionSeg 1: para tener la opcion de ingresar mas clientes, opcionSeg: 0 para no tener la opcion
 
@@ -79,6 +83,8 @@ using namespace std;
                                                   // En caso de ingresar 1 se establece automaticamente el numero de venta y podes ingresar los datos restantes de la nueva venta
     void MostrarVenta(Venta &v);
 
+    void BuscarVenta();
+
     void GuardarRegistroVenta(Venta &v);//   guarda y pregunta si se quiere continuar guardando productos
 
     void ListadoDeVentas();
@@ -90,6 +96,8 @@ using namespace std;
     int CargarDetalleVenta(int numVenta, DetalleVenta &dv);// si el numero de venta que se de como parametro es igual a 0 se ingresa luego de forma manual dentro de la funcion
 
     void MostrarDetalleVenta(DetalleVenta &dv);
+
+    void BuscarDetalleVenta();
 
     void GuardarRegistroDetalleVenta(DetalleVenta &dv);//                 ||
 

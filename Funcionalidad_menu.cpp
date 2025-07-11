@@ -177,6 +177,29 @@ bool bandera1=false;
 
     }
 
+    void BuscarProducto(){
+
+        ArchivoProductos archP("Productos.dat");
+        Producto p;
+        int pos, id;
+
+        cout << "Ingrese el Id del producto a buscar: ";
+        cin >> id;
+        cout << endl;
+
+        if((pos=archP.BuscarProducto(id))<0){
+
+            cout << "Producto inexistente reingrese id: ";
+            cin >> id;
+            system("cls");
+        }else{
+
+            p=archP.LeerProducto(pos);
+            MostrarProducto(p);
+            system("pause");
+        }
+    }
+
     void GuardarRegistroProducto(Producto &p){
 
         ArchivoProductos archP("Productos.dat");
@@ -390,6 +413,30 @@ bool bandera1=false;
 
     }
 
+    void BuscarCliente(){
+
+        ArchivoClientes archCl("Clientes.dat");
+        Cliente cl;
+        string Cuit;
+        int pos;
+
+        cout << "Ingrese el CUIT del cliente a buscar: ";
+        cin >> Cuit;
+        cout << endl;
+
+        if((pos=archCl.BuscarCliente(Cuit.c_str()))<0){
+
+            cout << "Cliente inexistente reingrese Cuit: ";
+            cin >> Cuit;
+            system("cls");
+        }else{
+
+            cl=archCl.LeerCliente(pos);
+            MostrarCliente(cl);
+            system("pause");
+        }
+    }
+
     void GuardarRegistroCliente(Cliente &cl, bool opcionSeg){
 
         ArchivoClientes archCl("Clientes.dat");
@@ -545,7 +592,7 @@ bool bandera1=false;
 
         system("cls");
         bool estado;
-        cout << "Ingrese estado de ventas (1: activas, 0: inactivas): " << endl;
+        cout << "Ingrese estado de ventas (1: Listadas, 0: Borradas): " << endl;
         cin >> estado;
 
         ArchivoVentas archV("Ventas.dat");
