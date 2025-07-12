@@ -904,7 +904,6 @@ cout<<"tipo de cliente Empresa"<<endl;
         int cantRegV= archV.CantidadRegistros(sizeof(Venta));
 
         int numeroventa, idproducto, cantidad;
-        float precio;
 
         if(numVenta==0){                                                                        //
                                                                                                 //
@@ -919,20 +918,35 @@ cout<<"tipo de cliente Empresa"<<endl;
             dv.SetNumeroVentaDT(numVenta);                               //  Carrito
         }                                                                //
 
-        cout << "Ingrese un precio mayor o igual a 100 : $";
-        cin >> precio;
 
-        while(dv.SetPrecioProductoDT(precio)==0)
-            {
-            cout << "Ingrese un precio mayor o igual a 100 : $";
-            cin >> precio;
-            }
-        cout << endl;
+        ArchivoProductos archP("Productos.dat");
+        Producto p;
 
+            int pos;
         cout << "Ingrese el numero de id del producto: ";
         cin >> idproducto;
+            if((pos=archP.BuscarProducto(idproducto))<0){
+
+                cout << "Producto inexistente reingrese id: ";
+                cin >> idproducto;
+                system("cls");
+            }
         dv.SetIdProductoDT(idproducto);
         cout << endl;
+
+        p=archP.LeerProducto(pos);
+        dv.SetPrecioProductoDT(p.GetPrecio());
+
+//        cout << "Ingrese un precio mayor o igual a 100 : $";
+//        cin >> precio;
+//
+//        while(dv.SetPrecioProductoDT(precio)==0)
+//            {
+//            cout << "Ingrese un precio mayor o igual a 100 : $";
+//            cin >> precio;
+//            }
+//        cout << endl;
+
 
         cout << "Ingrese la cantidad de productos vendidos: ";
         cin >> cantidad;
