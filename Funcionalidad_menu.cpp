@@ -2,109 +2,210 @@
 #include "menu.h"
 using namespace std;
 
-    int CargarProducto(Producto &p){ ///mejorar diseño pendiente///
+    int CargarProducto(Producto &p){ ///DISEÑO MEJORADO///
 
         ArchivoProductos archP("Productos.dat");
-        int id,tipo,stock;
+        int id,tipo=0,stock;
         float precio;
         char nombre[50]{},descripcion[500]{}, marca[20]{};
 
+        int k=0, icono=0;
+        bool bandera1=false;
+        rlutil::locate(30,5);
         cout<<"Ingrese el id del producto o equipo igual o mayor a 0: ";
         cin>>id;
-        if(archP.BuscarProducto(id)>=0){
 
-            int opcion;
-            cout << "Ya existe un producto con el Id:" << id << " Desea reingresarlo?" << endl;
-            cout << "1=si 0=no: " << endl;
-            cin >> opcion;
-            if(opcion==0)
-            {
-                return opcion;
-            }
-        }
-        system("cls");
-
-
-        while(p.SetIdProducto(id)==0){                                                                      //
-            cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;    // ejemplo validacion dentro del onjeto texto en el menu
-            cin>>id;                                                                                        //
+        while(p.SetIdProducto(id)==0){
+            rlutil::locate(20,5);
+            cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero: ";
+            cin>>id;
         }
         cout<<endl;
         system("cls");
 
+        if(archP.BuscarProducto(id)>=0){
+
+            system("cls");
+            int opcion;
+            rlutil::locate(30,5);
+            cout << "Ya existe un producto con el Id: " << id << " Desea reingresarlo?" << endl;
+            ///
+            k=0, icono=0;
+            bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(57,8);
+            cout<<"NO";
+            rlutil::locate(57,9);
+            cout<<"SI";
+            rlutil::locate(56,8+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    return opcion;///por que o para que?///
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
+        }
+        rlutil::showcursor();
+        system("cls");
+
+
         cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
+        rlutil::locate(35,5);
         cout << "Ingrese nombre del producto: ";
         cin.getline(nombre, 50);
         p.SetNombreProducto(nombre);
         cout<<endl;
         system("cls");
 
-        cout<<"Ingrese el precio del producto tienen que ser igual o mayor a 100: ";
+        rlutil::locate(20,5);
+        cout<<"Ingrese el precio del producto tienen que ser igual o mayor a 100: $";
         cin>>precio;
         while(p.SetPrecio(precio)==0)
         {
-            cout<<"el precio tiene que ser minimo 100 por favor vuelva a cargar el precio"<<endl;
+            system("cls");
+            rlutil::locate(20,5);
+            cout<<"el precio tiene que ser minimo 100 por favor vuelva a cargar el precio: $";
             cin>>precio;
         }
         cout<<endl;
         system("cls");
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
-        cout<<"Ingrese la descripcion del producto(terminada en el caracter #): ";
+        rlutil::locate(20,5);
+        cout<<"Ingrese la descripcion del producto(terminada en el caracter #): "<<endl;
         cin.getline(descripcion,500, '#');
         p.SetDescripcion(descripcion);
         cout<<endl;
         system("cls");
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
+        rlutil::locate(20,5);
         cout<<"Ingrese la marca a la que pertenece el producto: ";
         cin.getline(marca,20);
         p.SetMarca(marca);
         cout<<endl;
         system("cls");
 
-        cout<<"Ingrese el tipo de producto: ";
-        cin>>tipo;
-        while(p.SetTipoEquipo(tipo)==0)
-            {
-            cout<<"el tipo de equipo tiene que ser entre 1 y 10"<<endl;
-            cin>>tipo;
-            }
-        cout<<endl;
-
-
-        system("cls");
-        cout<<"Ingrese el stock del producto: ";
-        cin>>stock;
-        while(p.SetStock(stock)==0)
-        {
-            cout<<"el stock no puede ser menor a 0"<<endl;
-            cin>>stock;
-        }
-        cout<<endl;
-
-        system("cls");
-        cout<<"Selecione el estado del producto: ";
-        int k=0, icono=0;
-        bool bandera1=false;
+    rlutil::locate(50,7);
+    cout<<"Selecione el tipo de producto";
+    rlutil::locate(57,8);
+    cout << "Equipos" << endl;
+    rlutil::locate(57,9);
+    cout << "Notebooks" << endl;
+    rlutil::locate(57,10);
+    cout << "Procesadores" << endl;
+    rlutil::locate(57,11);
+    cout << "Mothers" << endl;
+    rlutil::locate(57,12);
+    cout << "Placas de video" << endl;
+    rlutil::locate(57,13);
+    cout << "Memorias RAM" << endl;
+    rlutil::locate(57,14);
+    cout << "Gabinetes" << endl;
+    rlutil::locate(57,15);
+    cout << "Fuentes" << endl;
+    rlutil::locate(57,16);
+    cout << "Monitores" << endl;
+    rlutil::locate(57,17);
+    cout << "Perifericos" << endl;
+            icono=0;
+            bandera1=false;
             do{
             rlutil::hidecursor();
-            rlutil::locate(10,19);
-            cout<<"inactivo";
-            rlutil::locate(10,20);
-            cout<<"activo";
-            rlutil::locate(9,19+k);
+            rlutil::locate(56,8+tipo);
             cout<<(char)175<<endl;
             icono = rlutil::getkey();
             switch (icono){
                 case(14):///arriba///
-                rlutil::locate(9,19+k);
+                rlutil::locate(56,8+tipo);
+                cout<<" "<<endl;
+                tipo--;
+                if(tipo<0){tipo=9;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(56,8+tipo);
+                cout<<" "<<endl;
+                tipo++;
+                if(tipo>9){tipo=0;}
+                break;
+                case(1):///enter///
+                    switch(tipo)
+                    {
+                default:
+                    {tipo++;
+        while(p.SetTipoEquipo(tipo)==0)
+            {
+            cout<<"ERRORel tipo de equipo tiene que ser entre 1 y 10 porfavor seleccione: ";
+            cin>>tipo;
+            }
+                    bandera1=true;
+                    }
+                    }
+            }
+                }while(bandera1==false);
+                tipo=0;
+                rlutil::showcursor();
+                system("cls");
+
+        rlutil::locate(35,5);
+        cout<<"Ingrese el stock del producto: ";
+        cin>>stock;
+        while(p.SetStock(stock)==0)
+        {
+            rlutil::locate(20,5);
+            cout<<"el stock no puede ser menor a 0 por favor vuelva a ingresar el stock: ";
+            cin>>stock;
+        }
+        cout<<endl;
+        system("cls");
+
+        rlutil::locate(45,5);
+        cout<<"Selecione el estado del producto";
+        k=0, icono=0;
+        bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(56,7);
+            cout<<"inactivo";
+            rlutil::locate(56,8);
+            cout<<"activo";
+            rlutil::locate(53,7+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(53,7+k);
                 cout<<" "<<endl;
                 k--;
                 if(k<0){k=1;}
                 break;
                 case(15):///abajo///
-                rlutil::locate(9,19+k);
+                rlutil::locate(53,7+k);
                 cout<<" "<<endl;
                 k++;
                 if(k>1){k=0;}
