@@ -79,8 +79,8 @@ using namespace std;
   Ventas
   ---------*/
 
-    int CargarVenta(Venta &v, bool opcionFuncion);//(carrito=1 | carga simple o editar= 0) en caso de ingresar 0 podes ingresar una venta de forma manual o reingresar una existente.
-                                                  // En caso de ingresar 1 se establece automaticamente el numero de venta y podes ingresar los datos restantes de la nueva venta
+    void CargarVenta(Venta &v, const char *cuit, bool opcionFuncion);//(carrito=1 | carga simple o editar= 0) en caso de ingresar 0 podes ingresar una venta de forma manual o reingresar una existente.
+                                                                     // En caso de ingresar 1 se establece automaticamente el numero de venta y podes ingresar los datos restantes de la nueva venta
     void MostrarVenta(Venta &v);
 
     void BuscarVenta();

@@ -329,12 +329,19 @@ system("cls");
 
                         case(1):{
                             Venta v;
+                            Cliente cl;
                             system("cls");
                             rlutil::showcursor();
-                            CargarVenta(v, 0);
+
+                            if(CargarCliente(cl)==1){
+                            GuardarRegistroCliente(cl, 0);
+                            }
+
+                            CargarVenta(v, cl.GetCuit(), 0);
+                            GuardarRegistroVenta(v);
+
                             system("cls");
                             rlutil::hidecursor();
-                            GuardarRegistroVenta(v);
                         }
                         break;
 
@@ -343,11 +350,14 @@ system("cls");
                         case(2):{
                             Producto p;
                             system("cls");
+
                             rlutil::showcursor();
-                            CargarProducto(p);
+                            if(CargarProducto(p)==1){
+                            GuardarRegistroProducto(p);
+                            }
+
                             system("cls");
                             rlutil::hidecursor();
-                            GuardarRegistroProducto(p);
                         }
                         break;
 

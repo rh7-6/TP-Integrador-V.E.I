@@ -2,7 +2,9 @@
 #include "menu.h"
 using namespace std;
 
-    int CargarProducto(Producto &p){ ///DISEÑO MEJORADO///
+                                ///PRODUCTO///
+//------------------------------------------------------------------------//
+    int CargarProducto(Producto &p){                              ///DISEÑO MEJORADO///
 
         ArchivoProductos archP("Productos.dat");
         int id,tipo=0,stock;
@@ -26,7 +28,7 @@ using namespace std;
         if(archP.BuscarProducto(id)>=0){
 
             system("cls");
-            int opcion;
+            //int opcion;
             rlutil::locate(30,5);
             cout << "Ya existe un producto con el Id: " << id << " Desea reingresarlo?" << endl;
             ///
@@ -58,7 +60,7 @@ using namespace std;
                     switch(k)
                     {
                     case(0):{
-                    return opcion;///por que o para que?///
+                    return 0;///por que o para que?/// que suerte que me hiciste acordar. era para saber si tengo que guardar o no el registro despues
                     bandera1=true;
                     }
                     break;
@@ -233,11 +235,11 @@ using namespace std;
             }
 
     void MostrarProducto(Producto &p){
-      cout<<"Id del producto: "<<p.GetIdProducto()<<endl<< endl;
- cout<<"Precio del producto: $"<<fixed << setprecision(0)<<p.GetPrecio()<<endl<< endl;
- cout<<"Descripcion del producto: "<< endl << p.GetDescripcion();
- cout<< endl << endl;
- cout<<"Marca del producto: "<<p.GetMarca()<<endl<< endl;
+    cout<<"Id del producto: "<<p.GetIdProducto()<<endl<< endl;
+    cout<<"Precio del producto: $"<<fixed << setprecision(0)<<p.GetPrecio()<<endl<< endl;
+    cout<<"Descripcion del producto: "<< endl << p.GetDescripcion();
+    cout<< endl << endl;
+    cout<<"Marca del producto: "<<p.GetMarca()<<endl<< endl;
 
  switch(p.GetTipoEquipo()){
 case 1:
@@ -437,8 +439,9 @@ default:{}
             system("cls");
     }
 
+                                ///CLIENTE///
 //------------------------------------------------------------------------//
-    int CargarCliente(Cliente &cl){ ///mejorar diseño pendiente///
+    int CargarCliente(Cliente &cl){                               ///mejorar diseño pendiente///
 
         ArchivoClientes archCl("Clientes.dat");
 
@@ -448,10 +451,10 @@ default:{}
 
         cout<<"Ingrese el cuit del cliente: ";
         cin.getline(cuil, 31);
-        if(archCl.BuscarCliente(cuil)>=0){
+        if(int posCl =archCl.BuscarCliente(cuil)>=0){
 
 
-            cout << "Ya existe un cliente con el cuit:" << cuil << " Desea reingresarlo?" << endl;
+            cout << "Ya existe un cliente con el cuit:" << cuil << " Desea editarlo?" << endl;
 
             int k=0, icono;
             bool bandera1=false;
@@ -481,7 +484,8 @@ default:{}
                     switch(k)
                     {
                     case(0):{
-                    return k;
+                    return 0;
+                    archCl.LeerCliente(posCl, cl);
                     bandera1=true;
                     }
                     break;
@@ -638,20 +642,20 @@ cout<<"tipo de cliente Empresa"<<endl;
         system("cls");
     }
 
+                                ///VENTA///
 //------------------------------------------------------------------------//
-    int CargarVenta(Venta &v, bool opcionFuncion){///mejorar diseño pendiente///
+    void CargarVenta(Venta &v, const char *cuit, bool opcionCarga){///mejorar diseño pendiente///
 
         ArchivoVentas archV("Ventas.dat");
 
         int numeroV,dia,mes,siglo;
         double importe;
         Fecha fech;
-        char cuit[20];
         bool estado;
 
         int cantReg= archV.CantidadRegistros(sizeof(Venta));
 
-        if(opcionFuncion){                                  //
+        if(opcionCarga){                                    //
                                                             // Carrito
             numeroV=cantReg+1;                              //
         }else{
@@ -680,9 +684,9 @@ cout<<"tipo de cliente Empresa"<<endl;
         v.SetNumeroVenta(numeroV);
         cout<<endl;
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Ingrese el cuit del comprador: ";
-        cin.getline(cuit,20);
+//        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//        cout << "Ingrese el cuit del comprador: ";
+//        cin.getline(cuit,20);
         v.SetCuit(cuit);
         cout << endl;
 
@@ -713,8 +717,6 @@ cout<<"tipo de cliente Empresa"<<endl;
         cin >> estado;
         v.SetEstado(estado);
         cout << endl;
-
-        return 1;
     }
 
     void MostrarVenta(Venta &Venta){
@@ -732,16 +734,7 @@ cout<<"tipo de cliente Empresa"<<endl;
     void GuardarRegistroVenta(Venta &v){
 
         ArchivoVentas archV("Ventas.dat");
-        bool seguir=true;
-
-        while(seguir){
-            archV.GuardarVenta(v);
-            cout << "Para ingresar otra venta(1=si,0=no): ";
-            cin >> seguir;
-            if(seguir){
-            seguir=CargarVenta(v, 0);
-            }
-        }
+        archV.GuardarVenta(v);
     }
 
     void ListadoDeVentas(){
@@ -798,8 +791,9 @@ cout<<"tipo de cliente Empresa"<<endl;
         system("cls");
     }
 
+                                ///DETALLE VENTA///
 //------------------------------------------------------------------------//
-    int CargarDetalleVenta(int numVenta, DetalleVenta &dv){///mejorar diseño pendiente///
+    int CargarDetalleVenta(int numVenta, DetalleVenta &dv){        ///mejorar diseño pendiente///
 
         ArchivoDetalleVentas archDV("DetalleVentas.dat");
 
@@ -899,3 +893,7 @@ cout<<"tipo de cliente Empresa"<<endl;
         system("pause");
         system("cls");
     }
+
+                                ///CARRITO///
+//------------------------------------------------------------------------//
+    void CargarVentaCarrito(){}
