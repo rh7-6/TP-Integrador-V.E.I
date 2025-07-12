@@ -446,36 +446,43 @@ default:{}
         ArchivoClientes archCl("Clientes.dat");
 
         int tc;
-        char *cuil= new char[31], *nombre= new char[31], *apellido= new char[31], *telefono= new char[31], *mail=new char[31], *direccion=new char[31];
+        char cuil[31]{}, nombre[31]{}, apellido[31]{}, telefono[31]{}, mail[31]{}, direccion[31]{};
         bool estado;
 
+        int k=0, icono=0;
+        bool bandera1=false;
+
+
+        rlutil::locate(40, 5);
         cout<<"Ingrese el cuit del cliente: ";
-        cin.getline(cuil, 31);
+        cin>>cuil;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if(int posCl =archCl.BuscarCliente(cuil)>=0){
-
-
+            system("cls");
+            rlutil::locate(34,5);
             cout << "Ya existe un cliente con el cuit:" << cuil << " Desea editarlo?" << endl;
 
-            int k=0, icono;
-            bool bandera1=false;
+
+            k=0, icono=0;
+            bandera1=false;
             do{
             rlutil::hidecursor();
-            rlutil::locate(10,4);
+            rlutil::locate(57,8);
             cout<<"NO";
-            rlutil::locate(10,5);
+            rlutil::locate(57,9);
             cout<<"SI";
-            rlutil::locate(9,4+k);
+            rlutil::locate(56,8+k);
             cout<<(char)175<<endl;
             icono = rlutil::getkey();
             switch (icono){
                 case(14):///arriba///
-                rlutil::locate(9,4+k);
+                rlutil::locate(56,8+k);
                 cout<<" "<<endl;
                 k--;
                 if(k<0){k=1;}
                 break;
                 case(15):///abajo///
-                rlutil::locate(9,4+k);
+                rlutil::locate(56,8+k);
                 cout<<" "<<endl;
                 k++;
                 if(k>1){k=0;}
@@ -484,9 +491,9 @@ default:{}
                     switch(k)
                     {
                     case(0):{
-                    return 0;
                     archCl.LeerCliente(posCl, cl);
                     bandera1=true;
+                    return 0;
                     }
                     break;
                     case(1):{
@@ -503,42 +510,138 @@ default:{}
         rlutil::showcursor();
 
 
-
+        system("cls");
+        rlutil::locate(40, 5);
         cout<<"Ingrese el nombre del cliente: ";
         cin.getline(nombre, 31);
         cl.SetNombre(nombre);
         cout<<endl;
 
+        system("cls");
+        rlutil::locate(40, 5);
         cout<<"Ingrese el apellido del cliente: ";
         cin.getline(apellido, 31);
         cl.SetApellido(apellido);
         cout<<endl;
 
+        system("cls");
+        rlutil::locate(40, 5);
         cout<<"Ingrese el telefono del cliente: ";
         cin.getline(telefono, 31);
         cl.SetTelefono(telefono);
         cout<<endl;
 
+        system("cls");
+        rlutil::locate(40, 5);
         cout<<"Ingrese el mail del cliente: ";
         cin.getline(mail, 31);
         cl.SetMail(mail);
         cout<<endl;
 
+        system("cls");
+        rlutil::locate(40, 5);
         cout<<"Ingrese la direccion del cliente: ";
         cin.getline(direccion, 31);
         cl.SetDireccion(direccion);
         cout<<endl;
 
-        cout<<"Ingrese el tipo de cliente(1-particular o 2-empresa): ";
-        cin>>tc;
-        cl.SetTipoCliente(tc);
-        cout<<endl;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        cout <<"Ingrese estado del cliente(1-activo, 0-inactivo): ";
-        cin>>estado;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        delete[] cuil; delete[] nombre; delete[] apellido; delete[] telefono; delete[] mail; delete[] direccion;
+        system("cls");
+        rlutil::locate(45, 5);
+        cout<<"Selecione el tipo de cliente";
+            k=0;
+            icono=0;
+            bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(57,8);
+            cout<<"particular";
+            rlutil::locate(57,9);
+            cout<<"empresa";
+            rlutil::locate(56,8+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    tc=1;
+                    cl.SetTipoCliente(tc);
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    tc=2;
+                    cl.SetTipoCliente(tc);
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
+
+
+        cout<<endl;
+
+        system("cls");
+        rlutil::locate(40, 5);
+        cout <<"Ingrese estado del cliente ";
+            k=0;
+            icono=0;
+            bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(57,8);
+            cout<<"inactivo";
+            rlutil::locate(57,9);
+            cout<<"activo";
+            rlutil::locate(56,8+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    estado=0;
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    estado=1;
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
+
+
 
         return 1;
     }

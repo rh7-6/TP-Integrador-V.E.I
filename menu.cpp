@@ -320,10 +320,9 @@ system("cls");
                             if(CargarCliente(cl)==1){
                             GuardarRegistroCliente(cl, 1);
                             }
-
                             system("cls");
                             rlutil::hidecursor();
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            //cin.ignore(numeric_limits<streamsize>::max(), '\n');//por que?
 
                         }
                         break;
