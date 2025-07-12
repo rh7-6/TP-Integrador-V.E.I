@@ -12,40 +12,65 @@ int Producto::SetIdProducto(int num)
     }
 }
 
-void Producto::SetNombreProducto(char *nombre){
+void Producto::SetNombreProducto(char *nombre)
+{
 
         _NombreProducto.setTexto(nombre);
     }
 
-void Producto::SetPrecio(float num)
+int Producto::SetPrecio(float num)
 {
-            _Precio=num;
+    if(num<100)
+    {
+     return 0;
+    }
+    else
+    {
+    _Precio=num;
+    return 1;
+    }
 }
 
-
-void Producto::SetDescripcion(char *descripcion){
+void Producto::SetDescripcion(char *descripcion)
+{
 
         strncpy(_Descripcion,descripcion, 499);
         _Descripcion[499]= '\0';
     }
-
 
 void Producto::SetMarca(char *palabra)
 {
     _Marca.setTexto(palabra);
 }
 
-void Producto::SetTipoEquipo(int num)
+int Producto::SetTipoEquipo(int num)
 {
+            if(num>0&&num<11)
+            {
             _TipoEquipo=num;
+            return 1;
+            }
+            else
+            {
+            return 0;
+            }
 }
 
-void Producto::SetStock(int num)
+int Producto::SetStock(int num)
 {
-    _Stock=num;
+    if(num<0)
+    {
+        return 0;
+    }
+    else
+    {
+        _Stock=num;
+        return 1;
+    }
 }
 
-    void Producto::SetEstado(bool estado){
+void Producto::SetEstado(bool estado)
+{
         _Estado=estado;
     }
 
@@ -150,10 +175,10 @@ bool estado;
  SetEstado(estado);
  cout<<endl;
 }
-
+///borrar si no es nesesario///
 void Producto::MostrarProducto()
 {
- cout<<"Id del producto: "<<GetIdProducto()<<endl<< endl;
+  cout<<"Id del producto: "<<GetIdProducto()<<endl<< endl;
  cout<<"Precio del producto: $"<<fixed << setprecision(0)<<GetPrecio()<<endl<< endl;
  cout<<"Descripcion del producto: "<< endl << GetDescripcion();
  cout<< endl << endl;

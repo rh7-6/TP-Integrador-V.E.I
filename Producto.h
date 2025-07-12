@@ -9,11 +9,11 @@ class Producto {
 public:
 int SetIdProducto(int num);
 void SetNombreProducto(char *palabra);
-void SetPrecio(float num);
+int SetPrecio(float num);
 void SetDescripcion(char *palabra);
 void SetMarca(char *palabra);
-void SetTipoEquipo(int num);
-void SetStock(int num);
+int SetTipoEquipo(int num);
+int SetStock(int num);
 void SetEstado(bool estado);
 
 int GetIdProducto();

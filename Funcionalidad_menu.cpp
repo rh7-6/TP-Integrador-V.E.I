@@ -2,7 +2,7 @@
 #include "menu.h"
 using namespace std;
 
-    int CargarProducto(Producto &p){
+    int CargarProducto(Producto &p){ ///mejorar diseño pendiente///
 
         ArchivoProductos archP("Productos.dat");
         int id,tipo,stock;
@@ -17,117 +17,76 @@ using namespace std;
             cout << "Ya existe un producto con el Id:" << id << " Desea reingresarlo?" << endl;
             cout << "1=si 0=no: " << endl;
             cin >> opcion;
-            if(opcion==0){
+            if(opcion==0)
+            {
                 return opcion;
             }
         }
+        system("cls");
 
 
         while(p.SetIdProducto(id)==0){                                                                      //
             cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;    // ejemplo validacion dentro del onjeto texto en el menu
             cin>>id;                                                                                        //
         }
-
-        bool a=true;
-//    while(a==true)
-//    {
-//        if(id<=0)
-//        {
-//            cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero"<<endl;
-//            cin>>id;
-//            a=true;
-//        }
-//        else
-//        {
-//            a=false;
-//        p.SetIdProducto(id);
-//        }
-//    }
-
-
         cout<<endl;
+        system("cls");
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
         cout << "Ingrese nombre del producto: ";
         cin.getline(nombre, 50);
         p.SetNombreProducto(nombre);
-        cout << endl;
+        cout<<endl;
+        system("cls");
 
         cout<<"Ingrese el precio del producto tienen que ser igual o mayor a 100: ";
         cin>>precio;
-        a=true;
-    while(a==true)
-    {
-        if(precio<100)
+        while(p.SetPrecio(precio)==0)
         {
             cout<<"el precio tiene que ser minimo 100 por favor vuelva a cargar el precio"<<endl;
             cin>>precio;
-            a=true;
         }
-        else
-        {
-            a=false;
-        p.SetPrecio(precio);
-        }
-    }
-
         cout<<endl;
+        system("cls");
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
         cout<<"Ingrese la descripcion del producto(terminada en el caracter #): ";
         cin.getline(descripcion,500, '#');
         p.SetDescripcion(descripcion);
         cout<<endl;
+        system("cls");
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
         cout<<"Ingrese la marca a la que pertenece el producto: ";
         cin.getline(marca,20);
         p.SetMarca(marca);
         cout<<endl;
+        system("cls");
 
         cout<<"Ingrese el tipo de producto: ";
         cin>>tipo;
-
-        a=true;
-    while(a==true)
-    {
-        if(tipo<0||tipo>10)
-        {
+        while(p.SetTipoEquipo(tipo)==0)
+            {
             cout<<"el tipo de equipo tiene que ser entre 1 y 10"<<endl;
             cin>>tipo;
-            a=true;
-        }
-        else
-        {
-            a=false;
-        p.SetTipoEquipo(tipo);
-        }
-    }
-
+            }
         cout<<endl;
 
+
+        system("cls");
         cout<<"Ingrese el stock del producto: ";
         cin>>stock;
-    a=true;
-    while(a==true)
-    {
-        if(stock<0)
+        while(p.SetStock(stock)==0)
         {
             cout<<"el stock no puede ser menor a 0"<<endl;
             cin>>stock;
-            a=true;
         }
-        else
-        {
-            a=false;
-        p.SetStock(stock);
-        }
-    }
         cout<<endl;
 
+        system("cls");
         cout<<"Selecione el estado del producto: ";
-        int k=0, icono;
-bool bandera1=false;
+        int k=0, icono=0;
+        bool bandera1=false;
             do{
             rlutil::hidecursor();
             rlutil::locate(10,19);
@@ -173,7 +132,46 @@ bool bandera1=false;
             }
 
     void MostrarProducto(Producto &p){
+      cout<<"Id del producto: "<<p.GetIdProducto()<<endl<< endl;
+ cout<<"Precio del producto: $"<<fixed << setprecision(0)<<p.GetPrecio()<<endl<< endl;
+ cout<<"Descripcion del producto: "<< endl << p.GetDescripcion();
+ cout<< endl << endl;
+ cout<<"Marca del producto: "<<p.GetMarca()<<endl<< endl;
 
+ switch(p.GetTipoEquipo()){
+case 1:
+    cout << "Tipo de producto: Equipo" << endl;
+    break;
+case 2:
+    cout << "Tipo de producto: Notebook" << endl;
+    break;
+case 3:
+    cout << "Tipo de producto: Procesador" << endl;
+    break;
+case 4:
+    cout << "Tipo de producto: Mother" << endl;
+    break;
+case 5:
+    cout << "Tipo de producto: Placa de video" << endl;
+    break;
+case 6:
+    cout << "Tipo de producto: Memoria Ram" << endl;
+    break;
+case 7:
+    cout << "Tipo de producto: Gabinete" << endl;
+    break;
+case 8:
+    cout << "Tipo de producto: Fuente" << endl;
+    break;
+case 9:
+    cout << "Tipo de producto: Monitor" << endl;
+    break;
+case 10:
+    cout << "Tipo de producto: Periferico" << endl;
+    break;
+default:{}
+    }
+    cout << endl;
 
     }
 
@@ -396,6 +394,7 @@ bool bandera1=false;
                 }while(bandera1==false);
         }
         cl.SetCuil(cuil);
+        system("cls");
         rlutil::showcursor();
 
 
@@ -440,7 +439,20 @@ bool bandera1=false;
     }
 
     void MostrarCliente(Cliente &cl){
-
+       cout<<"Cuil del cliente: "<<cl.GetCuit()<<endl;
+cout<<"Nombre del cliente: "<<cl.GetNombre()<<endl;
+cout<<"Apellido del cliente: "<<cl.GetApellido()<<endl;
+cout<<"Telefono del cliente: "<<cl.GetTelefono()<<endl;
+cout<<"Mail del cliente: "<<cl.GetMail()<<endl;
+cout<<"Direccion del cliente: "<<cl.GetDireccion()<<endl;
+if(cl.GetTipoCliente()==1)
+{
+cout<<"tipo de cliente Particular"<<endl;
+}
+else
+{
+cout<<"tipo de cliente Empresa"<<endl;
+}
 
     }
 
@@ -526,7 +538,7 @@ bool bandera1=false;
     }
 
 //------------------------------------------------------------------------//
-    int CargarVenta(Venta &v, bool opcionFuncion){
+    int CargarVenta(Venta &v, bool opcionFuncion){///mejorar diseño pendiente///
 
         ArchivoVentas archV("Ventas.dat");
 
@@ -585,10 +597,15 @@ bool bandera1=false;
         cin >> siglo;
         v.SetFechaVenta(dia,mes,siglo);
         cout << endl;
+        system("cls");
 
         cout << "Ingrese importe de la venta: ";
         cin >> importe;
-        v.SetImporteVenta(importe);
+        while(v.SetImporteVenta(importe)==0)
+            {
+                cout<<"el inporte de venta no puede ser 0 o menor a 0: ";
+                cin>>importe;
+            }
         cout << endl;
 
         cout << "Ingrese estado de la venta(1-activo, 0-inactivo): ";
@@ -600,8 +617,10 @@ bool bandera1=false;
     }
 
     void MostrarVenta(Venta &Venta){
-
-
+    cout<<"El numero de venta es: "<<Venta.GetNumeroVenta()<<endl;
+    cout<<"El cuil de la venta es: "<<Venta.GetCuit()<<endl;
+    Venta.MostrarVentafecha();
+    cout<<"El importe de la venta es: "<<Venta.GetImporteVenta()<<endl;
     }
 
     void BuscarVenta(int opcion){
@@ -679,7 +698,7 @@ bool bandera1=false;
     }
 
 //------------------------------------------------------------------------//
-    int CargarDetalleVenta(int numVenta, DetalleVenta &dv){
+    int CargarDetalleVenta(int numVenta, DetalleVenta &dv){///mejorar diseño pendiente///
 
         ArchivoDetalleVentas archDV("DetalleVentas.dat");
 
@@ -702,9 +721,14 @@ bool bandera1=false;
             dv.SetNumeroVentaDT(numVenta);                               //  Carrito
         }                                                                //
 
-        cout << "ingrese un precio mayor o igual a 1000 : $";
+        cout << "ingrese un precio mayor o igual a 100 : $";
         cin >> precio;
-        dv.SetPrecioProductoDT(precio);
+
+        while(dv.SetPrecioProductoDT(precio)==0)
+            {
+            cout << "ingrese un precio mayor o igual a 100 : $";
+            cin >> precio;
+            }
         cout << endl;
 
         cout << "ingrese el nuemro de id del producto: ";
@@ -714,16 +738,22 @@ bool bandera1=false;
 
         cout << "ingrese la cantidad de productos vendidos: ";
         cin >> cantidad;
-        dv.SetCantidad(cantidad);
+        while(dv.SetCantidad(cantidad)==0)
+            {
+            cout << "ingrese una cantidad mayor a 0 : ";
+            cin >> cantidad;
+            }
         cout << endl;
 
         return 1;
     }
 
     void MostrarDetalleVenta(DetalleVenta &dv){
-
-
-    }
+       cout<<"El numero de venta es: "<<dv.GetNumeroVentaDT()<<endl;
+       cout<<"El precio de la venta fue de: $"<<dv.GetPrecioProducto()<<endl;
+       cout<<"El numero de id del producto es: "<<dv.GetIdProductoDT()<<endl;
+       cout<<"La cantidad de productos comprados: "<<dv.GetCantidad()<<endl;
+       }
 
     void GuardarRegistroDetalleVenta(DetalleVenta &dv){
 

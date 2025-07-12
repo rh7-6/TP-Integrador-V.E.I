@@ -10,7 +10,7 @@ public:
     void SetNumeroVenta(int id);
     void SetCuit(const char *t);
     void SetFechaVenta(int dia,int mes,int siglo);
-    void SetImporteVenta(float v);
+    int SetImporteVenta(float v);
     void SetEstado(bool estado);
 
     int GetNumeroVenta();
@@ -23,7 +23,7 @@ public:
     Venta(int numeroVenta, char *cuit, int dia, int mes, int anio, double importeTotal, bool estado);
 
     void CargarVenta();
-    void MostrarVenta();
+    void MostrarVentafecha();
 
 
 private:

@@ -38,24 +38,17 @@ using namespace std;
 
     }
 
-    void Venta::SetImporteVenta(float v){
-
-    bool a=false;
-    while(a==false)
-        {
+    int Venta::SetImporteVenta(float v){
             if(v>0)
             {
                 _ImporteVenta=v;
-                a=true;
+                return 1;
             }
             else
             {
-                cout<<"ingrese un importe de venta mayor a 0: ";
-                cin>>v;
-                cout<<endl;
+                return 0;
             }
-        }
-    }
+}
 
     void Venta::SetEstado(bool estado){
 
@@ -139,9 +132,6 @@ using namespace std;
         cout<<endl;
 }
 
-    void Venta::MostrarVenta(){
-    cout<<"El numero de venta es: "<<GetNumeroVenta()<<endl;
-    cout<<"El cuil de la venta es: "<<GetCuit()<<endl;
+    void Venta::MostrarVentafecha(){
     cout<<"La fecha de venta es: "<<_FechaVenta.getDia()<<" / "<<_FechaVenta.getMes()<<" / "<<_FechaVenta.getAnio()<<endl;
-    cout<<"El importe de la venta es: "<<GetImporteVenta()<<endl;
     }

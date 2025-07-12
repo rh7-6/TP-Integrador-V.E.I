@@ -8,10 +8,18 @@ using namespace std;
 
     }
 
-    void DetalleVenta::SetPrecioProductoDT(float p){
+    int DetalleVenta::SetPrecioProductoDT(float p){
 
+                if(p>99)
+                {
                 _PrecioProducto=p;
-    }
+                return 1;
+                }
+                else
+                {
+                return 0;
+                }
+                }
 
     void DetalleVenta::SetIdProductoDT(int n){
 
@@ -19,23 +27,16 @@ using namespace std;
 
     }
 
-    void DetalleVenta::SetCantidad(int n){
-    bool a=false;
-        while(a==false)
-        {
-            if(n>=0)
-            {
+    int DetalleVenta::SetCantidad(int n){
+   if(n>0)
+                {
                 _Cantidad=n;
-                a=true;
-            }
-            else
-            {
-                cout<<"ingerese una cantidad mayo a o igual a 0: ";
-                cin>>n;
-                cout<<endl;
-                a=false;
-            }
-        }
+                return 1;
+                }
+                else
+                {
+                return 0;
+                }
     }
 
 ///--------------------------------------------------------------------------------------------------
