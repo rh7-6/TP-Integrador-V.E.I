@@ -85,7 +85,7 @@ using namespace std;
 
     void BuscarVenta();
 
-    void GuardarRegistroVenta(Venta &v);//   guarda y pregunta si se quiere continuar guardando productos
+    void GuardarRegistroVenta(Venta &v, const char *nombreArchivo);//   guarda y pregunta si se quiere continuar guardando productos
 
     void ListadoDeVentas();
 
@@ -93,13 +93,13 @@ using namespace std;
   Detalle Ventas
   ---------*/
 
-    int CargarDetalleVenta(int numVenta, DetalleVenta &dv);// si el numero de venta que se de como parametro es igual a 0 se ingresa luego de forma manual dentro de la funcion
+    void CargarDetalleVenta(int numVenta, DetalleVenta &dv);// si el numero de venta que se de como parametro es igual a 0 se ingresa luego de forma manual dentro de la funcion
 
     void MostrarDetalleVenta(DetalleVenta &dv);
 
     void BuscarDetalleVenta();
 
-    void GuardarRegistroDetalleVenta(DetalleVenta &dv);//                 ||
+    void GuardarRegistroDetalleVenta(DetalleVenta &dv, const char *nombreArchivo);//                 ||
 
     void ListadoDetalleVentasPorNumeroDeVenta();
 

@@ -315,11 +315,14 @@ system("cls");
 
                             Cliente cl;
                             system("cls");
+
                             rlutil::showcursor();
-                            CargarCliente(cl);
+                            if(CargarCliente(cl)==1){
+                            GuardarRegistroCliente(cl, 1);
+                            }
+
                             system("cls");
                             rlutil::hidecursor();
-                            GuardarRegistroCliente(cl, 1);
                             cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
                         }
@@ -338,7 +341,7 @@ system("cls");
                             }
 
                             CargarVenta(v, cl.GetCuit(), 0);
-                            GuardarRegistroVenta(v);
+                            GuardarRegistroVenta(v, "Ventas.dat");
 
                             system("cls");
                             rlutil::hidecursor();
@@ -370,7 +373,7 @@ system("cls");
                             CargarDetalleVenta(0, venDT);
                             system("cls");
                             rlutil::hidecursor();
-                            GuardarRegistroDetalleVenta(venDT);
+                            GuardarRegistroDetalleVenta(venDT, "DetalleVentas.dat");
                         }
                         break;
 

@@ -4,7 +4,7 @@ using namespace std;
 
                                 ///PRODUCTO///
 //------------------------------------------------------------------------//
-    int CargarProducto(Producto &p){                              ///DISEÑO MEJORADO///
+    int CargarProducto(Producto &p){                                                          ///DISEÑO MEJORADO///
 
         ArchivoProductos archP("Productos.dat");
         int id,tipo=0,stock;
@@ -441,7 +441,7 @@ default:{}
 
                                 ///CLIENTE///
 //------------------------------------------------------------------------//
-    int CargarCliente(Cliente &cl){                               ///mejorar diseño pendiente///
+    int CargarCliente(Cliente &cl){                                                           ///mejorar diseño pendiente///
 
         ArchivoClientes archCl("Clientes.dat");
 
@@ -731,9 +731,9 @@ cout<<"tipo de cliente Empresa"<<endl;
 
     }
 
-    void GuardarRegistroVenta(Venta &v){
+    void GuardarRegistroVenta(Venta &v, const char *nombreArchivo){
 
-        ArchivoVentas archV("Ventas.dat");
+        ArchivoVentas archV(nombreArchivo);
         archV.GuardarVenta(v);
     }
 
@@ -793,7 +793,7 @@ cout<<"tipo de cliente Empresa"<<endl;
 
                                 ///DETALLE VENTA///
 //------------------------------------------------------------------------//
-    int CargarDetalleVenta(int numVenta, DetalleVenta &dv){        ///mejorar diseño pendiente///
+    void CargarDetalleVenta(int numVenta, DetalleVenta &dv){                                    ///mejorar diseño pendiente///
 
         ArchivoDetalleVentas archDV("DetalleVentas.dat");
 
@@ -816,31 +816,29 @@ cout<<"tipo de cliente Empresa"<<endl;
             dv.SetNumeroVentaDT(numVenta);                               //  Carrito
         }                                                                //
 
-        cout << "ingrese un precio mayor o igual a 100 : $";
+        cout << "Ingrese un precio mayor o igual a 100 : $";
         cin >> precio;
 
         while(dv.SetPrecioProductoDT(precio)==0)
             {
-            cout << "ingrese un precio mayor o igual a 100 : $";
+            cout << "Ingrese un precio mayor o igual a 100 : $";
             cin >> precio;
             }
         cout << endl;
 
-        cout << "ingrese el nuemro de id del producto: ";
+        cout << "Ingrese el numero de id del producto: ";
         cin >> idproducto;
         dv.SetIdProductoDT(idproducto);
         cout << endl;
 
-        cout << "ingrese la cantidad de productos vendidos: ";
+        cout << "Ingrese la cantidad de productos vendidos: ";
         cin >> cantidad;
         while(dv.SetCantidad(cantidad)==0)
             {
-            cout << "ingrese una cantidad mayor a 0 : ";
+            cout << "Ingrese una cantidad mayor a 0 : ";
             cin >> cantidad;
             }
         cout << endl;
-
-        return 1;
     }
 
     void MostrarDetalleVenta(DetalleVenta &dv){
@@ -850,9 +848,9 @@ cout<<"tipo de cliente Empresa"<<endl;
        cout<<"La cantidad de productos comprados: "<<dv.GetCantidad()<<endl;
        }
 
-    void GuardarRegistroDetalleVenta(DetalleVenta &dv){
+    void GuardarRegistroDetalleVenta(DetalleVenta &dv, const char *nombreArchivo){
 
-        ArchivoDetalleVentas archDV("DetalleVentas.dat");
+        ArchivoDetalleVentas archDV(nombreArchivo);
         bool seguir=true;
 
         while(seguir){
@@ -860,7 +858,7 @@ cout<<"tipo de cliente Empresa"<<endl;
             cout << "Para ingresar otro detalle de venta(1=si,0=no): ";
             cin >> seguir;
             if(seguir){
-            seguir=CargarDetalleVenta(0, dv);
+            CargarDetalleVenta(0, dv);
             }
         }
     }
@@ -896,4 +894,4 @@ cout<<"tipo de cliente Empresa"<<endl;
 
                                 ///CARRITO///
 //------------------------------------------------------------------------//
-    void CargarVentaCarrito(){}
+
