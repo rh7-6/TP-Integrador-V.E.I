@@ -7,7 +7,7 @@
 class Venta {
 public:
 
-    void SetNumeroVenta(int id);
+    int SetNumeroVenta(int id);
     void SetCuit(const char *t);
     void SetFechaVenta(int dia,int mes,int siglo);
     int SetImporteVenta(float v);

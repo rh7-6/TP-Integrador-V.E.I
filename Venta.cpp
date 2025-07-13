@@ -6,22 +6,17 @@
 using namespace std;
 
 
-    void Venta::SetNumeroVenta(int id){
-    bool a=false;
-        while(a==false)
-        {
-            if(id>0)
+    int Venta::SetNumeroVenta(int id){
+    if(id>0)
             {
                 _NumeroVenta=id;
-                a=true;
+                return 1;
             }
             else
             {
-            cout<<"el numero de venta tiene que ser igual a 0 o mayor: ";
-            cin>>id;
-            cout<<endl;
+            return 0;
             }
-        }
+
     }
 
     void Venta::SetCuit(const char *t){
