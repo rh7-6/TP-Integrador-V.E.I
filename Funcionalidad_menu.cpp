@@ -755,6 +755,8 @@ default:{}
         double importe;
         Fecha fech;
         bool estado;
+        int k=0, icono=0;
+        bool bandera1=false;
 
         int cantReg= archV.CantidadRegistros(sizeof(Venta));
 
@@ -763,28 +765,83 @@ default:{}
             numeroV=cantReg+1;                              //
         }else{
 
-            bool opcion;                                                                       //
+            bool opcion;
+            system("cls");
+            rlutil::locate(35,5);                                                                       //
             cout << "Desea igresar una venta nueva o editar una existente?" << endl;           //
-            cout << "(1=nueva, 0=existente): ";                                                //
-            cin >> opcion;                                                                     //
+            k=0, icono=0;
+            bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(57,8);
+            cout<<"Crear Nueva";
+            rlutil::locate(57,9);
+            cout<<"Editar Existente";
+            rlutil::locate(56,8+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    opcion=1;
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    opcion=0;
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
                                                                                                //
             if(opcion){                                                                        //
                                                                                                //
                 numeroV=cantReg+1;                                                             //
-            }else{                                                                             // Carga simple o edicion de una venta
-                                                                                               //
+            }else{
+                system("cls");                                                                             // Carga simple o edicion de una venta
+                rlutil::locate(35,5);                                                                               //
                 cout << "Ingrese numero de venta a editar: ";                                  //
                 cin >> numeroV;                                                                //
                                                                                                //
                 while(archV.BuscarVenta(numeroV-1)<0){                                         //
-                                                                                               //
+
+                    system("cls");                                                                             // Carga simple o edicion de una venta
+                    rlutil::locate(43,5);                                                                      //
                     cout << "Numero de venta inexistente" << endl;                             //
-                    cout << "Reingrese numero de venta: " << endl;                             //
+                    rlutil::locate(43,6);
+                    cout << "Reingrese numero de venta: ";                             //
                     cin >> numeroV;                                                            //
                 }
             }
         }
-        v.SetNumeroVenta(numeroV);
+            system("cls");                                                                             // Carga simple o edicion de una venta
+            rlutil::locate(35,5);                                                                               //
+            cout << "Ingrese numero de venta mayor a 0: ";                                  //
+            cin >> numeroV;
+        while(v.SetNumeroVenta(numeroV)==0)
+            {
+            system("cls");
+            rlutil::locate(35,5);
+            cout<<"el numero de venta tiene que ser igual a 0 o mayor: ";
+            cin>>numeroV;
+            cout<<endl;
+            }
         cout<<endl;
 
 //        cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -793,32 +850,83 @@ default:{}
         v.SetCuit(cuit);
         cout << endl;
 
+        system("cls");
+        rlutil::locate(40,5);
         cout << "Ingrese dia de la venta: ";
         cin >> dia;
         cout << endl;
 
+        system("cls");
+        rlutil::locate(40,5);
         cout << "Ingrese mes de la venta:  ";
         cin >> mes;
         cout << endl;
 
+        system("cls");
+        rlutil::locate(40,5);
         cout << "Ingrese anio de la venta: ";
         cin >> siglo;
         v.SetFechaVenta(dia,mes,siglo);
         cout << endl;
-        system("cls");
 
-        cout << "Ingrese importe de la venta: ";
+        system("cls");
+        rlutil::locate(40,5);
+        cout << "Ingrese importe de la venta: $";
         cin >> importe;
         while(v.SetImporteVenta(importe)==0)
             {
+                system("cls");
+                rlutil::locate(40,5);
                 cout<<"el inporte de venta no puede ser 0 o menor a 0: ";
                 cin>>importe;
             }
         cout << endl;
 
-        cout << "Ingrese estado de la venta(1-activo, 0-inactivo): ";
-        cin >> estado;
-        v.SetEstado(estado);
+        system("cls");
+        rlutil::locate(47,5);
+        cout << "Seleccione el estado de venta";
+        k=0, icono=0;
+            bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(57,8);
+            cout<<"Activo";
+            rlutil::locate(57,9);
+            cout<<"Inactivo";
+            rlutil::locate(56,8+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(56,8+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    estado=1;
+                    v.SetEstado(estado);
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    estado=0;
+                    v.SetEstado(estado);
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
         cout << endl;
     }
 
