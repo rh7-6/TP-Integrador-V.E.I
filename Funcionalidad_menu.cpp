@@ -447,7 +447,6 @@ default:{}
 
         int tc;
         char cuil[31]{}, nombre[31]{}, apellido[31]{}, telefono[31]{}, mail[31]{}, direccion[31]{};
-        bool estado;
 
         int k=0, icono=0;
         bool bandera1=false;
@@ -605,9 +604,9 @@ default:{}
             do{
             rlutil::hidecursor();
             rlutil::locate(57,8);
-            cout<<"inactivo";
-            rlutil::locate(57,9);
             cout<<"activo";
+            rlutil::locate(57,9);
+            cout<<"inactivo";
             rlutil::locate(56,8+k);
             cout<<(char)175<<endl;
             icono = rlutil::getkey();
@@ -628,12 +627,12 @@ default:{}
                     switch(k)
                     {
                     case(0):{
-                    estado=0;
+                    cl.SetEstado(1);
                     bandera1=true;
                     }
                     break;
                     case(1):{
-                    estado=1;
+                    cl.SetEstado(0);
                     bandera1=true;
                     }
                     break;
@@ -647,21 +646,22 @@ default:{}
     }
 
     void MostrarCliente(Cliente &cl){
-       cout<<"Cuil del cliente: "<<cl.GetCuit()<<endl;
-cout<<"Nombre del cliente: "<<cl.GetNombre()<<endl;
-cout<<"Apellido del cliente: "<<cl.GetApellido()<<endl;
-cout<<"Telefono del cliente: "<<cl.GetTelefono()<<endl;
-cout<<"Mail del cliente: "<<cl.GetMail()<<endl;
-cout<<"Direccion del cliente: "<<cl.GetDireccion()<<endl;
-if(cl.GetTipoCliente()==1)
-{
-cout<<"tipo de cliente Particular"<<endl;
-}
-else
-{
-cout<<"tipo de cliente Empresa"<<endl;
-}
 
+       cout<<"Cuil del cliente: "<<cl.GetCuit()<<endl;
+       cout<<"Nombre del cliente: "<<cl.GetNombre()<<endl;
+       cout<<"Apellido del cliente: "<<cl.GetApellido()<<endl;
+       cout<<"Telefono del cliente: "<<cl.GetTelefono()<<endl;
+       cout<<"Mail del cliente: "<<cl.GetMail()<<endl;
+       cout<<"Direccion del cliente: "<<cl.GetDireccion()<<endl;
+
+       if(cl.GetTipoCliente()==1)
+       {
+       cout<<"tipo de cliente Particular"<<endl;
+       }
+       else
+       {
+       cout<<"tipo de cliente Empresa"<<endl;
+       }
     }
 
     void BuscarCliente(){
@@ -747,7 +747,7 @@ cout<<"tipo de cliente Empresa"<<endl;
 
                                 ///VENTA///
 //------------------------------------------------------------------------//
-    void CargarVenta(Venta &v, const char *cuit, bool opcionCarga){///mejorar diseño pendiente///
+    void CargarVenta(Venta &v, const char *cuit, bool opcionCarga){                          ///mejorar diseño pendiente///
 
         ArchivoVentas archV("Ventas.dat");
 
@@ -830,6 +830,61 @@ cout<<"tipo de cliente Empresa"<<endl;
     }
 
     void BuscarVenta(int opcion){
+
+        ArchivoVentas archV("Ventas.dat");
+        int cantReg= archV.CantidadRegistros(sizeof(Venta));
+        Venta v;
+
+        switch(opcion){
+    case 0:{
+
+        int numVenta;
+        cout << "Ingrese numero de venta(entre 1 y " << cantReg << ") :";
+        cin >> numVenta;
+        cout << endl;
+        while(numVenta<1||numVenta>cantReg){
+            cout << "Ingrese un numero de venta valido(entre 1 y " << cantReg << ") :";
+            cin >> numVenta;
+        }
+        for(int i=0; i<cantReg; i++){
+            v= archV.LeerVenta(i);
+            if(v.GetNumeroVenta()==numVenta){
+                MostrarVenta(v);
+            }
+        }
+    }
+    system("pause");
+    system("cls");
+    break;
+    case 1:{
+
+        ArchivoClientes archCl("Clientes.dat");
+        Cliente cl;
+        char CUIT[30]{};
+
+        cout << "Ingrese CUIT: ";
+        cin >> CUIT;
+        cout << endl;
+
+        int pos;
+        while((pos=archCl.BuscarCliente(CUIT))<0){
+
+            cout << "Cliente inexistente reingrese CUIT: ";
+            cin >> CUIT;
+        }
+
+        cl=archCl.LeerCliente(pos);
+        MostrarCliente(cl);
+        system("pause");
+        system("cls");
+    }
+    break;
+    case 2:{
+
+
+    }
+        }
+
 
 
     }

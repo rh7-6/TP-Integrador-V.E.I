@@ -83,7 +83,7 @@ using namespace std;
                                                                      // En caso de ingresar 1 se establece automaticamente el numero de venta y podes ingresar los datos restantes de la nueva venta
     void MostrarVenta(Venta &v);
 
-    void BuscarVenta();
+    void BuscarVenta(int opcion);//
 
     void GuardarRegistroVenta(Venta &v, const char *nombreArchivo);//   guarda y pregunta si se quiere continuar guardando productos
 
