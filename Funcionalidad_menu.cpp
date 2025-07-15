@@ -1,5 +1,9 @@
 #include <iostream>
 #include "menu.h"
+#include "Archivo_Clientes.h"
+#include "Archivo_Productos.h"
+#include "Archivo_Ventas.h"
+#include "Archivo_Detalle_Ventas.h"
 using namespace std;
 
                                 ///PRODUCTO///
@@ -989,7 +993,76 @@ default:{}
     break;
     case 2:{
 
+        vector<Venta> vecVtOrdenadas;
+        int Dia1, Mes1, Anio1, Dia2, Mes2, Anio2;
 
+        cout << "Ingrese la fecha inicial del rango: " << endl;
+        cout << "Dia: ";
+        cin >> Dia1;
+        while(Dia1<1||Dia1>31){
+            cout << "Ingrese un dia valido(1 a 31): ";
+            cin >> Dia1;
+            system("cls");
+        }
+        cout << endl;
+        cout << "Mes: ";
+        cin >> Mes1;
+        while(Mes1<1||Mes1>12){
+            cout << "Ingrese un mes valido(1 a 12): ";
+            cin >> Mes1;
+            system("cls");
+        }
+        cout << endl;
+        cout << "Anio: ";
+        cin >> Anio1;
+        while(Anio1<2020||Anio1>2028){
+            cout << "Ingrese anio valido(2020 a 2028): ";
+            cin >> Anio1;
+            system("cls");
+        }
+        cout << endl;
+        Fecha fMin(Dia1,Mes1,Anio1);
+        //----------------------------------------------------//
+        cout << "Ingrese la fecha final del rango: " << endl;
+        cout << "Dia: ";
+        cin >> Dia2;
+        while(Dia2<1||Dia2>31){
+            cout << "Ingrese un dia valido(1 a 31): ";
+            cin >> Dia2;
+            system("cls");
+        }
+        cout << endl;
+        cout << "Mes: ";
+        cin >> Mes2;
+        while(Mes2<1||Mes2>12){
+            cout << "Ingrese un mes valido(1 a 12): ";
+            cin >> Mes2;
+            system("cls");
+        }
+        cout << endl;
+        cout << "Anio: ";
+        cin >> Anio2;
+        while(Anio2<2020||Anio2>2028){
+            cout << "Ingrese anio valido(2020 a 2028): ";
+            cin >> Anio2;
+            system("cls");
+        }
+        cout << endl;
+        Fecha fMax(Dia2,Mes2,Anio2);
+
+        Fecha fAct;
+        int dia, mes, anio;
+        for(int i=0; i<cantReg; i++){
+
+            v= archV.LeerVenta(i);
+            fAct= v.GetFecha();
+            dia=fAct.getDia(); mes=fAct.getMes(); anio=fAct.getAnio();
+            if((dia>=fMin.getDia()&&mes>=fMin.getMes()&&anio>=fMin.getAnio())&&(dia<=fMax.getDia()&&mes<=fMax.getMes()&&anio<=fMax.getAnio())){
+
+                MostrarVenta(v);
+            }
+        }
+        system("pause");
     }
         }
 
@@ -1099,17 +1172,6 @@ default:{}
 
         p=archP.LeerProducto(pos);
         dv.SetPrecioProductoDT(p.GetPrecio());
-
-//        cout << "Ingrese un precio mayor o igual a 100 : $";
-//        cin >> precio;
-//
-//        while(dv.SetPrecioProductoDT(precio)==0)
-//            {
-//            cout << "Ingrese un precio mayor o igual a 100 : $";
-//            cin >> precio;
-//            }
-//        cout << endl;
-
 
         cout << "Ingrese la cantidad de productos vendidos: ";
         cin >> cantidad;

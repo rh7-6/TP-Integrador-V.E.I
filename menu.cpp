@@ -126,8 +126,6 @@ system("cls");
 }
 
 void Listado(){
-Cliente cl;
-ArchivoClientes arch_cl("clientes.dat");
 int a=0, icono;
 bool bandera1=false;
 system("cls");
@@ -212,20 +210,28 @@ bool bandera1=false;
                     {
 ////////////////////////////////////////////PRODUCTO/////////////////////////////////////////////////////////
                         case(0):{
-
-
+                            bool opcion;
+                            cout << "Para buscar por Id de producto ingrese 1" << endl;
+                            cout << "Para buscar rango de precio ingrese 0" << endl;
+                            cout << "-->: ";
+                            cin >> opcion;
+                            BuscarProducto(opcion);
                         }
                         break;
 ////////////////////////////////////////////CLIENTE/////////////////////////////////////////////////////////
                         case(1):{
-
-
+                            BuscarCliente();
                         }
                         break;
 ////////////////////////////////////////////VENTA////////////////////////////////////////////////////////
                         case(2):{
-
-
+                            int opcion;
+                            cout << "Para buscar por numero de venta ingrese 0" << endl;
+                            cout << "Para buscar por rango CUIT ingrese 1" << endl;
+                            cout << "Para buscar por rango de fechas ingrese 2" << endl;
+                            cout << "-->: ";
+                            cin >> opcion;
+                            BuscarVenta(opcion);
                         }
                         break;
                         case(3):
