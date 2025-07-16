@@ -355,13 +355,19 @@ default:{}
 
         system("cls");
         int TipoDeProducto;
-        bool ban=true;
         bool estado;
+
         cout << "Ingrese un tipo de producto(1 a 10)" << endl;
         MuestraTextoTiposDeProducto();
         cout << "==> :";
         cin >> TipoDeProducto;
-        cout << "Ingrese estado en inventario(1: Activo, 0: inactivo)" << endl;
+        while(TipoDeProducto>10||TipoDeProducto<0){
+            cout<<"Ingrese porfavor un tipo valido(1 a 10): ";
+            cin>>TipoDeProducto;
+            system("cls");
+        }
+
+        cout << "Ingrese estado en inventario(1: Activo, 0: inactivo): " << endl;
         cin >> estado;
 
         ArchivoProductos archPr("Productos.dat");
@@ -370,24 +376,15 @@ default:{}
         vector<Producto> PrOrdenados;
 
         system("cls");
-        while(ban==true){
-            if(TipoDeProducto<=10&&TipoDeProducto>0){
-                Producto pr;
-                for(int i=0; i<=cantReg; i++){
-                if(archPr.LeerProducto(i, pr)){
-                    if(pr.GetTipoEquipo()==TipoDeProducto&& pr.GetEstado()==estado){
-                        //MostrarProducto(pr);
-                        PrOrdenados.push_back(pr);
-                        }
-                    }
+
+        Producto pr;
+        for(int i=0; i<cantReg; i++){
+            archPr.LeerProducto(i, pr);
+            if(pr.GetTipoEquipo()==TipoDeProducto&& pr.GetEstado()==estado){
+                //MostrarProducto(pr);
+                PrOrdenados.push_back(pr);
                 }
-                ban=false;
-            } else{
-                cout<<"Ingrese porfavor un tipo valido(1 a 10): ";
-                cin>>TipoDeProducto;
-                system("cls");
             }
-        }
 
         if(opcion){
 
@@ -723,13 +720,12 @@ default:{}
 
         Cliente cl;
         for(int i; i<=cantReg; i++){
-        if(archCl.LeerCliente(i, cl)){
+        archCl.LeerCliente(i, cl);
             if(cl.GetEstado()==estado){
                 //MostrarCliente(cl);
                 ClOrdenados.push_back(cl);
                 }
             }
-        }
 
         char abc[54]{'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'Ñ', 'ñ', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z'};
 
@@ -778,7 +774,7 @@ default:{}
             do{
             rlutil::hidecursor();
             rlutil::locate(57,8);
-            cout<<"Crear Nueva";
+            cout<<"Nueva Venta";
             rlutil::locate(57,9);
             cout<<"Editar Existente";
             rlutil::locate(56,8+k);
@@ -834,23 +830,20 @@ default:{}
                 }
             }
         }
-            system("cls");                                                                             // Carga simple o edicion de una venta
-            rlutil::locate(35,5);                                                                               //
-            cout << "Ingrese numero de venta mayor a 0: ";                                  //
-            cin >> numeroV;
-        while(v.SetNumeroVenta(numeroV)==0)
-            {
             system("cls");
-            rlutil::locate(35,5);
-            cout<<"el numero de venta tiene que ser igual a 0 o mayor: ";
-            cin>>numeroV;
-            cout<<endl;
-            }
-        cout<<endl;
+//            rlutil::locate(35,5);
+//            cout << "Ingrese numero de venta mayor a 0: ";
+//            cin >> numeroV;
+//        while(v.SetNumeroVenta(numeroV)==0)
+//            {
+//            system("cls");
+//            rlutil::locate(35,5);
+//            cout<<"el numero de venta tiene que ser igual a 0 o mayor: ";
+//            cin>>numeroV;
+//            cout<<endl;
+//            }
+//        cout<<endl;
 
-//        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//        cout << "Ingrese el cuit del comprador: ";
-//        cin.getline(cuit,20);
         v.SetCuit(cuit);
         cout << endl;
 
@@ -1089,14 +1082,13 @@ default:{}
         vector<Venta> VtOrdenadas;
 
         Venta v;
-        for(int i; i<=cantReg; i++){
-        if(archV.LeerVenta(i, v)){
+        for(int i; i<cantReg; i++){
+            archV.LeerVenta(i, v);
             if(v.GetEstado()==estado){
                 //MostrarVenta(v);
                 VtOrdenadas.push_back(v);
                 }
             }
-        }
 
         bool ban=true;
         int tamVecV=VtOrdenadas.size();
@@ -1150,7 +1142,7 @@ default:{}
             }while(numeroventa<0||numeroventa>cantRegV);                                        //
             dv.SetNumeroVentaDT(numeroventa);                                                   //
         }else{
-                                                                         //
+                                                                          //
             dv.SetNumeroVentaDT(numVenta);                               //  Carrito
         }                                                                //
 
@@ -1173,11 +1165,13 @@ default:{}
         p=archP.LeerProducto(pos);
         dv.SetPrecioProductoDT(p.GetPrecio());
 
-        cout << "Ingrese la cantidad de productos vendidos: ";
+
+        int stock= p.GetStock();
+        cout << "Ingrese la cantidad requerida(minimo 1, maximo " << stock << "): ";
         cin >> cantidad;
-        while(dv.SetCantidad(cantidad)==0)
+        while(dv.SetCantidad(cantidad)==0||cantidad>stock)
             {
-            cout << "Ingrese una cantidad mayor a 0 : ";
+            cout << "Reingrese la cantidad (minimo 1, maximo " << stock << "): ";
             cin >> cantidad;
             }
         cout << endl;
@@ -1201,6 +1195,11 @@ default:{}
             cin >> seguir;
             if(seguir){
             CargarDetalleVenta(0, dv);
+            cout << "Para guardar ingrese 1, para descartar ingrese 0: ";
+            cin >> seguir;
+                if(!seguir){
+                    return;
+                }
             }
         }
     }
@@ -1234,6 +1233,46 @@ default:{}
         system("cls");
     }
 
-                                ///CARRITO///
+                                ///COMPRA///
 //------------------------------------------------------------------------//
+    void ListadoDeProductosCompra(int TipoProducto){
+
+        ArchivoProductos archPr("Productos.dat");
+        int cantReg=archPr.CantidadRegistros(sizeof(Producto));
+
+        vector<Producto> PrOrdenados;
+
+        system("cls");
+
+        Producto pr;
+        for(int i=0; i<cantReg; i++){
+            archPr.LeerProducto(i, pr);
+            if(pr.GetTipoEquipo()==TipoProducto&&pr.GetEstado()==1){
+                //MostrarProducto(pr);
+                PrOrdenados.push_back(pr);
+                }
+            }
+
+            bool ban=true;
+                int tamVecProd=PrOrdenados.size();
+                while(ban){
+
+                        int contPrOrdenados=0;
+                    for(int i=0; i<tamVecProd; i++){
+
+                        if(i!=tamVecProd-1){
+                            if(PrOrdenados[i].GetStock()<PrOrdenados[i+1].GetStock()){
+                                Producto p;
+                                p= PrOrdenados[i+1];
+                                PrOrdenados[i+1]=PrOrdenados[i];
+                                PrOrdenados[i]=p;
+                                contPrOrdenados++;
+                            }
+                        }
+                    }
+                        if(contPrOrdenados==0){
+                            ban=false;
+                        }
+                }
+    }
 
