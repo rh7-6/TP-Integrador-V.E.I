@@ -44,7 +44,7 @@ using namespace std;
 /// funcionalidad ///
 
 /*---------
-  Productos
+  PRODUCTOS
   ---------*/
 
     int CargarProducto(Producto &p); // verifica si ya existe el producto y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
@@ -58,7 +58,7 @@ using namespace std;
     void ListadoDeProductos(bool opcion); // opcion1= ordenados por precio, opcion0= ordenados por stock
 
 /*---------
-  Clientes
+  CLIENTES
   ---------*/
 
     int CargarCliente(Cliente &cl);//  verifica si ya existe el cliente y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
@@ -72,7 +72,7 @@ using namespace std;
     void ListadoDeClientes();
 
 /*---------
-  Ventas
+  VENTAS
   ---------*/
 
     void CargarVenta(Venta &v, const char *cuit, bool opcionFuncion);//(carrito=1 | carga simple o editar= 0) en caso de ingresar 0 podes ingresar una venta de forma manual o reingresar una existente.
@@ -86,7 +86,7 @@ using namespace std;
     void ListadoDeVentas();
 
 /*---------
-  Detalle Ventas
+  DETALLE VENTAS
   ---------*/
 
     void CargarDetalleVenta(int numVenta, DetalleVenta &dv);// si el numero de venta que se de como parametro es igual a 0 se ingresa luego de forma manual dentro de la funcion
@@ -98,5 +98,9 @@ using namespace std;
     void GuardarRegistroDetalleVenta(DetalleVenta &dv, const char *nombreArchivo);//                 ||
 
     void ListadoDetalleVentasPorNumeroDeVenta();
+
+/*---------
+    COMPRA
+  ---------*/
 
 #endif // MENU_H_INCLUDED
