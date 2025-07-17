@@ -10,7 +10,7 @@ bool bandera=true;
 
 ///movimiento///
 do{
-menuPrincipal();
+TextoMenuPrincipal();
 rlutil::hidecursor();
 rlutil::locate(54,10+y);
 cout<<(char)175<<endl;
@@ -80,7 +80,7 @@ int a=0, icono;
 bool bandera1=false;
 system("cls");
             do{
-            MenuCompra();
+            TextoMenuCompra();
             rlutil::locate(56,11+a);
             cout<<(char)175<<endl;
             icono = rlutil::getkey();
@@ -130,7 +130,7 @@ int a=0, icono;
 bool bandera1=false;
 system("cls");
             do{
-            MenulistadosMostrar();
+            TextoMenuListado();
             rlutil::locate(43,10+a);
             cout<<(char)175<<endl;
             icono = rlutil::getkey();
@@ -188,7 +188,7 @@ system("cls");
 int a=0, icono;
 bool bandera1=false;
             do{
-            MenuBusqueda();
+            TextoMenuBusqueda();
             rlutil::locate(49,10+a);
             cout<<(char)175<<endl;
             icono = rlutil::getkey();
@@ -249,7 +249,7 @@ system("cls");
 int a=0, icono;
 bool bandera1=false;
             do{
-            MenuInformes();
+            TextoMenuInformes();
             rlutil::locate(43,10+a);
             cout<<(char)175<<endl;
             icono = rlutil::getkey();
@@ -293,7 +293,7 @@ int a=0, icono;
 bool bandera1=false;
 system("cls");
             do{
-            MenuCargarRegistro();
+            TextoMenuCargarRegistro();
             rlutil::locate(43,10+a);
             cout<<(char)175<<endl;
             icono = rlutil::getkey();
@@ -394,51 +394,8 @@ system("cls");
         }while(bandera1==false);
 }
 
-void menuPrincipal(){
-///columna superior///
-rlutil::locate(40,8);
-cout<<"///////////////////////////////////////////";
-///pilar izquierdo///
-rlutil::locate(40,9);
-cout<<"//";
-rlutil::locate(40,10);
-cout<<"//";
-rlutil::locate(40,11);
-cout<<"//";
-rlutil::locate(40,12);
-cout<<"//";
-rlutil::locate(40,13);
-cout<<"//";
-rlutil::locate(40,14);
-cout<<"//";
-rlutil::locate(40,15);
-cout<<"//";
-rlutil::locate(40,16);
-cout<<"//";
-rlutil::locate(40,17);
-cout<<"//";
-///pilar derecho///
-rlutil::locate(81,9);
-cout<<"//";
-rlutil::locate(81,10);
-cout<<"//";
-rlutil::locate(81,11);
-cout<<"//";
-rlutil::locate(81,12);
-cout<<"//";
-rlutil::locate(81,13);
-cout<<"//";
-rlutil::locate(81,14);
-cout<<"//";
-rlutil::locate(81,15);
-cout<<"//";
-rlutil::locate(81,16);
-cout<<"//";
-rlutil::locate(81,17);
-cout<<"//";
-///columna inferior///
-rlutil::locate(40,18);
-cout<<"///////////////////////////////////////////";
+void TextoMenuPrincipal(){
+    Pilares();
 ///opciones///
 rlutil::locate(55,10);
 cout<<"COMPRA";
@@ -454,54 +411,11 @@ rlutil::locate(55,15);
 cout<<"SALIR";
 }
 
-void MenuListado(){
-///columna superior///
-rlutil::locate(40,8);
-cout<<"///////////////////////////////////////////";
-///pilar izquierdo///
-rlutil::locate(40,9);
-cout<<"//";
-rlutil::locate(40,10);
-cout<<"//";
-rlutil::locate(40,11);
-cout<<"//";
-rlutil::locate(40,12);
-cout<<"//";
-rlutil::locate(40,13);
-cout<<"//";
-rlutil::locate(40,14);
-cout<<"//";
-rlutil::locate(40,15);
-cout<<"//";
-rlutil::locate(40,16);
-cout<<"//";
-rlutil::locate(40,17);
-cout<<"//";
-///pilar derecho///
-rlutil::locate(81,9);
-cout<<"//";
-rlutil::locate(81,10);
-cout<<"//";
-rlutil::locate(81,11);
-cout<<"//";
-rlutil::locate(81,12);
-cout<<"//";
-rlutil::locate(81,13);
-cout<<"//";
-rlutil::locate(81,14);
-cout<<"//";
-rlutil::locate(81,15);
-cout<<"//";
-rlutil::locate(81,16);
-cout<<"//";
-rlutil::locate(81,17);
-cout<<"//";
-///columna inferior///
-rlutil::locate(40,18);
-cout<<"///////////////////////////////////////////";
+void TextoMenuListado(){
+    Pilares();
 ///opciones de listado///
 rlutil::locate(50,10);
-cout<<"Listado de equipos";
+cout<<"Listado de Productos";
 rlutil::locate(50,11);
 cout<<"Mostrar listados";
 rlutil::locate(50,12);
@@ -512,51 +426,8 @@ rlutil::locate(50,14);
 cout<<"Volver";
 }
 
-void MenuBusqueda(){
-///columna superior///
-rlutil::locate(40,8);
-cout<<"///////////////////////////////////////////";
-///pilar izquierdo///
-rlutil::locate(40,9);
-cout<<"//";
-rlutil::locate(40,10);
-cout<<"//";
-rlutil::locate(40,11);
-cout<<"//";
-rlutil::locate(40,12);
-cout<<"//";
-rlutil::locate(40,13);
-cout<<"//";
-rlutil::locate(40,14);
-cout<<"//";
-rlutil::locate(40,15);
-cout<<"//";
-rlutil::locate(40,16);
-cout<<"//";
-rlutil::locate(40,17);
-cout<<"//";
-///pilar derecho///
-rlutil::locate(81,9);
-cout<<"//";
-rlutil::locate(81,10);
-cout<<"//";
-rlutil::locate(81,11);
-cout<<"//";
-rlutil::locate(81,12);
-cout<<"//";
-rlutil::locate(81,13);
-cout<<"//";
-rlutil::locate(81,14);
-cout<<"//";
-rlutil::locate(81,15);
-cout<<"//";
-rlutil::locate(81,16);
-cout<<"//";
-rlutil::locate(81,17);
-cout<<"//";
-///columna inferior///
-rlutil::locate(40,18);
-cout<<"///////////////////////////////////////////";
+void TextoMenuBusqueda(){
+    Pilares();
 ///opciones de listado///
 rlutil::locate(50,10);
 cout<<"Busqueda de producto";
@@ -568,51 +439,8 @@ rlutil::locate(50,13);
 cout<<"Volver";
 }
 
-void MenuInformes(){
-///columna superior///
-rlutil::locate(40,8);
-cout<<"///////////////////////////////////////////";
-///pilar izquierdo///
-rlutil::locate(40,9);
-cout<<"//";
-rlutil::locate(40,10);
-cout<<"//";
-rlutil::locate(40,11);
-cout<<"//";
-rlutil::locate(40,12);
-cout<<"//";
-rlutil::locate(40,13);
-cout<<"//";
-rlutil::locate(40,14);
-cout<<"//";
-rlutil::locate(40,15);
-cout<<"//";
-rlutil::locate(40,16);
-cout<<"//";
-rlutil::locate(40,17);
-cout<<"//";
-///pilar derecho///
-rlutil::locate(81,9);
-cout<<"//";
-rlutil::locate(81,10);
-cout<<"//";
-rlutil::locate(81,11);
-cout<<"//";
-rlutil::locate(81,12);
-cout<<"//";
-rlutil::locate(81,13);
-cout<<"//";
-rlutil::locate(81,14);
-cout<<"//";
-rlutil::locate(81,15);
-cout<<"//";
-rlutil::locate(81,16);
-cout<<"//";
-rlutil::locate(81,17);
-cout<<"//";
-///columna inferior///
-rlutil::locate(40,18);
-cout<<"///////////////////////////////////////////";
+void TextoMenuInformes(){
+    Pilares();
 ///opciones de listado///
 rlutil::locate(44,10);
 cout<<"Recaudacion anual";
@@ -626,51 +454,8 @@ rlutil::locate(44,14);
 cout<<"Volver";
 }
 
-void MenuCargarRegistro(){
-///columna superior///
-rlutil::locate(40,8);
-cout<<"///////////////////////////////////////////";
-///pilar izquierdo///
-rlutil::locate(40,9);
-cout<<"//";
-rlutil::locate(40,10);
-cout<<"//";
-rlutil::locate(40,11);
-cout<<"//";
-rlutil::locate(40,12);
-cout<<"//";
-rlutil::locate(40,13);
-cout<<"//";
-rlutil::locate(40,14);
-cout<<"//";
-rlutil::locate(40,15);
-cout<<"//";
-rlutil::locate(40,16);
-cout<<"//";
-rlutil::locate(40,17);
-cout<<"//";
-///pilar derecho///
-rlutil::locate(81,9);
-cout<<"//";
-rlutil::locate(81,10);
-cout<<"//";
-rlutil::locate(81,11);
-cout<<"//";
-rlutil::locate(81,12);
-cout<<"//";
-rlutil::locate(81,13);
-cout<<"//";
-rlutil::locate(81,14);
-cout<<"//";
-rlutil::locate(81,15);
-cout<<"//";
-rlutil::locate(81,16);
-cout<<"//";
-rlutil::locate(81,17);
-cout<<"//";
-///columna inferior///
-rlutil::locate(40,18);
-cout<<"///////////////////////////////////////////";
+void TextoMenuCargarRegistro(){
+    Pilares();
 ///opciones de listado///
 rlutil::locate(46,10);
 cout<<"Cargar registro de cliente";
@@ -684,109 +469,23 @@ rlutil::locate(46,14);
 cout<<"Volver";
 }
 
-void MenulistadosMostrar(){
-///columna superior///
-rlutil::locate(40,8);
-cout<<"///////////////////////////////////////////";
-///pilar izquierdo///
-rlutil::locate(40,9);
-cout<<"//";
-rlutil::locate(40,10);
-cout<<"//";
-rlutil::locate(40,11);
-cout<<"//";
-rlutil::locate(40,12);
-cout<<"//";
-rlutil::locate(40,13);
-cout<<"//";
-rlutil::locate(40,14);
-cout<<"//";
-rlutil::locate(40,15);
-cout<<"//";
-rlutil::locate(40,16);
-cout<<"//";
-rlutil::locate(40,17);
-cout<<"//";
-///pilar derecho///
-rlutil::locate(81,9);
-cout<<"//";
-rlutil::locate(81,10);
-cout<<"//";
-rlutil::locate(81,11);
-cout<<"//";
-rlutil::locate(81,12);
-cout<<"//";
-rlutil::locate(81,13);
-cout<<"//";
-rlutil::locate(81,14);
-cout<<"//";
-rlutil::locate(81,15);
-cout<<"//";
-rlutil::locate(81,16);
-cout<<"//";
-rlutil::locate(81,17);
-cout<<"//";
-///columna inferior///
-rlutil::locate(40,18);
-cout<<"///////////////////////////////////////////";
-///opciones de listado///
-rlutil::locate(46,10);
-cout<<"Mostrar Listado de producto";
-rlutil::locate(46,11);
-cout<<"Mostrar Listado de venta";
-rlutil::locate(46,12);
-cout<<"Mostrar Listado de cliente";
-rlutil::locate(46,13);
-cout<<"Mostrar Listado detalle de venta";
-rlutil::locate(46,14);
-cout<<"Volver";
-}
+//void TextoMenulistadosMostrar(){
+//    Pilares();
+/////opciones de listado///
+//rlutil::locate(46,10);
+//cout<<"Mostrar Listado de producto";
+//rlutil::locate(46,11);
+//cout<<"Mostrar Listado de venta";
+//rlutil::locate(46,12);
+//cout<<"Mostrar Listado de cliente";
+//rlutil::locate(46,13);
+//cout<<"Mostrar Listado detalle de venta";
+//rlutil::locate(46,14);
+//cout<<"Volver";
+//}
 
-void MenuCompra(){
-    ///columna superior///
-rlutil::locate(40,8);
-cout<<"///////////////////////////////////////////";
-///pilar izquierdo///
-rlutil::locate(40,9);
-cout<<"//";
-rlutil::locate(40,10);
-cout<<"//";
-rlutil::locate(40,11);
-cout<<"//";
-rlutil::locate(40,12);
-cout<<"//";
-rlutil::locate(40,13);
-cout<<"//";
-rlutil::locate(40,14);
-cout<<"//";
-rlutil::locate(40,15);
-cout<<"//";
-rlutil::locate(40,16);
-cout<<"//";
-rlutil::locate(40,17);
-cout<<"//";
-///pilar derecho///
-rlutil::locate(81,9);
-cout<<"//";
-rlutil::locate(81,10);
-cout<<"//";
-rlutil::locate(81,11);
-cout<<"//";
-rlutil::locate(81,12);
-cout<<"//";
-rlutil::locate(81,13);
-cout<<"//";
-rlutil::locate(81,14);
-cout<<"//";
-rlutil::locate(81,15);
-cout<<"//";
-rlutil::locate(81,16);
-cout<<"//";
-rlutil::locate(81,17);
-cout<<"//";
-///columna inferior///
-rlutil::locate(40,18);
-cout<<"///////////////////////////////////////////";
+void TextoMenuCompra(){
+    Pilares();
 ///opciones de Compra///
 rlutil::locate(58,11);
 cout<<"Productos";
@@ -796,7 +495,7 @@ rlutil::locate(58,13);
 cout<<"Volver";
 }
 
-void MuestraTextoTiposDeProducto(){
+    void TextoTiposDeProducto(){
 
     cout << "Equipos=1" << endl;
     cout << "Notebooks=2" << endl;
@@ -808,8 +507,54 @@ void MuestraTextoTiposDeProducto(){
     cout << "Fuentes=8" << endl;
     cout << "Monitores=9" << endl;
     cout << "Perifericos=10" << endl;
-}
+    }
 
+    void Pilares(){
 
+    ///columna superior///
+    rlutil::locate(40,8);
+    cout<<"///////////////////////////////////////////";
+    ///pilar izquierdo///
+    rlutil::locate(40,9);
+    cout<<"//";
+    rlutil::locate(40,10);
+    cout<<"//";
+    rlutil::locate(40,11);
+    cout<<"//";
+    rlutil::locate(40,12);
+    cout<<"//";
+    rlutil::locate(40,13);
+    cout<<"//";
+    rlutil::locate(40,14);
+    cout<<"//";
+    rlutil::locate(40,15);
+    cout<<"//";
+    rlutil::locate(40,16);
+    cout<<"//";
+    rlutil::locate(40,17);
+    cout<<"//";
+    ///pilar derecho///
+    rlutil::locate(81,9);
+    cout<<"//";
+    rlutil::locate(81,10);
+    cout<<"//";
+    rlutil::locate(81,11);
+    cout<<"//";
+    rlutil::locate(81,12);
+    cout<<"//";
+    rlutil::locate(81,13);
+    cout<<"//";
+    rlutil::locate(81,14);
+    cout<<"//";
+    rlutil::locate(81,15);
+    cout<<"//";
+    rlutil::locate(81,16);
+    cout<<"//";
+    rlutil::locate(81,17);
+    cout<<"//";
+    ///columna inferior///
+    rlutil::locate(40,18);
+    cout<<"///////////////////////////////////////////";
+    }
 
 

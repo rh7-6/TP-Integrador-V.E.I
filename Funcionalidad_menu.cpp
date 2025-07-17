@@ -358,7 +358,7 @@ default:{}
         bool estado;
 
         cout << "Ingrese un tipo de producto(1 a 10)" << endl;
-        MuestraTextoTiposDeProducto();
+        TextoTiposDeProducto();
         cout << "==> :";
         cin >> TipoDeProducto;
         while(TipoDeProducto>10||TipoDeProducto<0){

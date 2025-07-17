@@ -14,21 +14,7 @@ using namespace std;
 /// selección y graficos ///
     void Menu();
 
-    void menuPrincipal();
-
-    void MenuCompra();
-
-    void MenuListado();
-
-    void MenuBusqueda();
-
-    void MenuInformes();
-
-    void MenuCargarRegistro();
-
-    void MenulistadosMostrar();
-
-    void MuestraTextoTiposDeProducto();
+    void Pilares();
 
     void comprar();
 
@@ -39,6 +25,21 @@ using namespace std;
     void Informes();
 
     void CargarRegistros();
+
+    void TextoMenuPrincipal();
+
+    void TextoMenuCompra();
+
+    void TextoMenuListado();
+
+    void TextoMenuBusqueda();
+
+    void TextoMenuInformes();
+
+    void TextoMenuCargarRegistro();
+
+    void TextoTiposDeProducto();
+
 
 
 /// funcionalidad ///
