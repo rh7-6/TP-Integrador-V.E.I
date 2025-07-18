@@ -26,7 +26,7 @@ using namespace std;
 
     void CargarRegistros();
 
-    int SeleccionMenus(int EjeX, int EjeY, int CntOpc);
+    int SeleccionMenus(int EjeX, int EjeY, int CntOpc, int SaltosDeLinea);
 
     void TextoMenuPrincipal();
 

@@ -8,8 +8,7 @@ using namespace std;
         do{
         system("cls");
         TextoMenuPrincipal();
-        rlutil::hidecursor();
-            switch(SeleccionMenus(54,10,5)){
+            switch(SeleccionMenus(54,10,5,1)){
             case(0):{//////////////////////COMPRAR/////////////////////////////
               comprar();
             }
@@ -54,7 +53,7 @@ using namespace std;
         do{
         system("cls");
         TextoMenuCompra();
-        switch(SeleccionMenus(57,11,2)){
+        switch(SeleccionMenus(57,11,2,1)){
 
             case(0):{
             cout<<"PRODUCTOS";
@@ -86,7 +85,7 @@ using namespace std;
             do{
             system("cls");
             TextoMenuListado();
-                switch(SeleccionMenus(49,10,4)){
+                switch(SeleccionMenus(49,10,4,1)){
 
                 case(0):{///////////PRODUCTOS///////////
                     bool opcion;
@@ -125,7 +124,7 @@ using namespace std;
             do{
             system("cls");
             TextoMenuBusqueda();
-                    switch(SeleccionMenus(49,10,3)){
+                    switch(SeleccionMenus(49,10,3,1)){
                         case(0):{////////////////////////////PRODUCTO///////////////////////////
                             bool opcion;
                             cout << "Para buscar por Id de producto ingrese 1" << endl;
@@ -165,7 +164,7 @@ using namespace std;
             do{
             system("cls");
             TextoMenuInformes();
-                switch(SeleccionMenus(43,10, 4)){
+                switch(SeleccionMenus(43,10,4,1)){
                     case(0):
                     break;
                     case(1):
@@ -188,7 +187,7 @@ using namespace std;
         do{
             system("cls");
             TextoMenuCargarRegistro();
-            switch(SeleccionMenus(45,10,4)){
+            switch(SeleccionMenus(45,10,4,1)){
                 case(0):{/////////////guarda registro de cliente/////////////
                 Cliente cl;
                 system("cls");
@@ -342,85 +341,81 @@ rlutil::locate(46,14);
 cout<<"Volver";
 }
 
-//void TextoMenulistadosMostrar(){
-//    Pilares();
-/////opciones de listado///
-//rlutil::locate(46,10);
-//cout<<"Mostrar Listado de producto";
-//rlutil::locate(46,11);
-//cout<<"Mostrar Listado de venta";
-//rlutil::locate(46,12);
-//cout<<"Mostrar Listado de cliente";
-//rlutil::locate(46,13);
-//cout<<"Mostrar Listado detalle de venta";
-//rlutil::locate(46,14);
-//cout<<"Volver";
-//}
-
     void TextoTiposDeProducto(){
 
-    cout << "Equipos=1" << endl;
-    cout << "Notebooks=2" << endl;
-    cout << "Procesadores=3" << endl;
-    cout << "Mothers=4" << endl;
-    cout << "Placas de video=5" << endl;
-    cout << "Memorias RAM=6" << endl;
-    cout << "Gabinetes=7" << endl;
-    cout << "Fuentes=8" << endl;
-    cout << "Monitores=9" << endl;
-    cout << "Perifericos=10" << endl;
+        rlutil::locate(57,8);
+        cout << "Equipos" << endl;
+        rlutil::locate(57,9);
+        cout << "Notebooks" << endl;
+        rlutil::locate(57,10);
+        cout << "Procesadores" << endl;
+        rlutil::locate(57,11);
+        cout << "Mothers" << endl;
+        rlutil::locate(57,12);
+        cout << "Placas de video" << endl;
+        rlutil::locate(57,13);
+        cout << "Memorias RAM" << endl;
+        rlutil::locate(57,14);
+        cout << "Gabinetes" << endl;
+        rlutil::locate(57,15);
+        cout << "Fuentes" << endl;
+        rlutil::locate(57,16);
+        cout << "Monitores" << endl;
+        rlutil::locate(57,17);
+        cout << "Perifericos" << endl;
     }
 
     void Pilares(){
 
-    ///columna superior///
-    rlutil::locate(40,8);
-    cout<<"///////////////////////////////////////////";
-    ///pilar izquierdo///
-    rlutil::locate(40,9);
-    cout<<"//";
-    rlutil::locate(40,10);
-    cout<<"//";
-    rlutil::locate(40,11);
-    cout<<"//";
-    rlutil::locate(40,12);
-    cout<<"//";
-    rlutil::locate(40,13);
-    cout<<"//";
-    rlutil::locate(40,14);
-    cout<<"//";
-    rlutil::locate(40,15);
-    cout<<"//";
-    rlutil::locate(40,16);
-    cout<<"//";
-    rlutil::locate(40,17);
-    cout<<"//";
-    ///pilar derecho///
-    rlutil::locate(81,9);
-    cout<<"//";
-    rlutil::locate(81,10);
-    cout<<"//";
-    rlutil::locate(81,11);
-    cout<<"//";
-    rlutil::locate(81,12);
-    cout<<"//";
-    rlutil::locate(81,13);
-    cout<<"//";
-    rlutil::locate(81,14);
-    cout<<"//";
-    rlutil::locate(81,15);
-    cout<<"//";
-    rlutil::locate(81,16);
-    cout<<"//";
-    rlutil::locate(81,17);
-    cout<<"//";
-    ///columna inferior///
-    rlutil::locate(40,18);
-    cout<<"///////////////////////////////////////////";
+        ///columna superior///
+        rlutil::locate(40,8);
+        cout<<"///////////////////////////////////////////";
+        ///pilar izquierdo///
+        rlutil::locate(40,9);
+        cout<<"//";
+        rlutil::locate(40,10);
+        cout<<"//";
+        rlutil::locate(40,11);
+        cout<<"//";
+        rlutil::locate(40,12);
+        cout<<"//";
+        rlutil::locate(40,13);
+        cout<<"//";
+        rlutil::locate(40,14);
+        cout<<"//";
+        rlutil::locate(40,15);
+        cout<<"//";
+        rlutil::locate(40,16);
+        cout<<"//";
+        rlutil::locate(40,17);
+        cout<<"//";
+        ///pilar derecho///
+        rlutil::locate(81,9);
+        cout<<"//";
+        rlutil::locate(81,10);
+        cout<<"//";
+        rlutil::locate(81,11);
+        cout<<"//";
+        rlutil::locate(81,12);
+        cout<<"//";
+        rlutil::locate(81,13);
+        cout<<"//";
+        rlutil::locate(81,14);
+        cout<<"//";
+        rlutil::locate(81,15);
+        cout<<"//";
+        rlutil::locate(81,16);
+        cout<<"//";
+        rlutil::locate(81,17);
+        cout<<"//";
+        ///columna inferior///
+        rlutil::locate(40,18);
+        cout<<"///////////////////////////////////////////";
     }
 
-    int SeleccionMenus(int EjeX, int EjeY, int CantOpc){
+    int SeleccionMenus(int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
 
+        rlutil::hidecursor();
         int y=0, tecla;
         bool ban=false;
         do{
@@ -431,28 +426,28 @@ cout<<"Volver";
             switch(tecla){
 
                 case(14):///arriba///
-                rlutil::locate(EjeX,EjeY+y);
-                cout<<" "<<endl;
-                y--;
-                if(y<0){y=CantOpc;}
+                    rlutil::locate(EjeX,EjeY+y);
+                    cout<<" "<<endl;
+                    y=y-SaltosDeLinea;
+                    if(y<0){y=CantOpc*SaltosDeLinea;}
                 break;
 
                 case(15):///abajo///
-                rlutil::locate(EjeX,EjeY+y);
-                cout<<" "<<endl;
-                y++;
-                if(y>CantOpc){y=0;}
+                    rlutil::locate(EjeX,EjeY+y);
+                    cout<<" "<<endl;
+                    y=y+SaltosDeLinea;
+                    if(y>CantOpc*SaltosDeLinea){y=0;}
                 break;
 
                 case(1):///enter///
                     system("cls");
-                    if(y==CantOpc){return CantOpc;}
-                    return y;
+                    if(y==CantOpc*SaltosDeLinea){return CantOpc;}
+                    return y/SaltosDeLinea;
                 break;
 
-                case(0):
+                case(0):///caracter nulo///(deberia ser 27 para el escape pero me lo toma como 0)
                     system("cls");
-                return CantOpc;
+                    return CantOpc;
                 break;
             }
         }while(!ban);
