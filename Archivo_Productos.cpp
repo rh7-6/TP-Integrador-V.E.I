@@ -5,7 +5,8 @@ using namespace std;
 
     bool ArchivoProductos::GuardarProducto(Producto &pr){
 
-        if(int pos=BuscarProducto(pr.GetIdProducto())>=0){
+        int pos=BuscarProducto(pr.GetIdProducto());
+        if(pos>=0){
 
             FILE *pfile;
             pfile = fopen(GetNombreArchivo(),"rb+");

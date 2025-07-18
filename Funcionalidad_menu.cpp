@@ -640,7 +640,7 @@ default:{}
         vector<Cliente> ClOrdenados;
 
         Cliente cl;
-        for(int i; i<=cantReg; i++){
+        for(int i; i<cantReg; i++){
         archCl.LeerCliente(i, cl);
             if(cl.GetEstado()==estado){
                 //MostrarCliente(cl);

@@ -95,13 +95,13 @@ using namespace std;
                     }
                     break;
 
-                case(1):{///////////VENTAS//////////////
-                    ListadoDeVentas();
+                case(1):{///////////CLIENTES////////////
+                    ListadoDeClientes();
                     }
                     break;
 
-                case(2):{///////////CLIENTES////////////
-                    ListadoDeClientes();
+                case(2):{///////////VENTAS//////////////
+                    ListadoDeVentas();
                     }
                     break;
 

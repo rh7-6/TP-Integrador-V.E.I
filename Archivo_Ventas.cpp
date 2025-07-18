@@ -5,7 +5,8 @@ using namespace std;
     ///ventas///
     bool ArchivoVentas::GuardarVenta(Venta &v){
 
-        if(int pos=BuscarVenta(v.GetNumeroVenta())>=0){
+        int pos=BuscarVenta(v.GetNumeroVenta());
+        if(pos>=0){
 
             FILE *pfile;
             pfile = fopen(GetNombreArchivo(),"rb+");
