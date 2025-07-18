@@ -26,6 +26,8 @@ using namespace std;
 
     void CargarRegistros();
 
+    int SeleccionMenus(int EjeX, int EjeY, int CntOpc);
+
     void TextoMenuPrincipal();
 
     void TextoMenuCompra();

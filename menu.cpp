@@ -2,37 +2,15 @@
 #include "menu.h"
 using namespace std;
 
-void Menu(){
+    void Menu(){
 
-int y=0, icono;
-bool bandera=true;
-
-
-///movimiento///
-do{
-TextoMenuPrincipal();
-rlutil::hidecursor();
-rlutil::locate(54,10+y);
-cout<<(char)175<<endl;
-icono = rlutil::getkey();
-switch (icono){
-    case(14):///arriba///
-    rlutil::locate(54,10+y);
-    cout<<" "<<endl;
-    y--;
-    if(y<0){y=5;}
-    break;
-    case(15):///abajo///
-    rlutil::locate(54,10+y);
-    cout<<" "<<endl;
-    y++;
-    if(y>5){y=0;}
-    break;
-    ///rlutil::showcursor(); hace aparecer el cursor///
-    case(1):///enter///
-       switch(y)
-        {
-            case(0):{///////////////////////COMPRAR/////////////////////////////
+        bool bandera=true;
+        do{
+        system("cls");
+        TextoMenuPrincipal();
+        rlutil::hidecursor();
+            switch(SeleccionMenus(54,10,5)){
+            case(0):{//////////////////////COMPRAR/////////////////////////////
               comprar();
             }
             break;
@@ -55,161 +33,100 @@ switch (icono){
             }
             break;
 
-            case(4):{//////////////////////////CARGA UN REGISTO////////////////////
+            case(4):{//////////////////////CARGA UN REGISTO////////////////////
             CargarRegistros();
             system("cls");
             }
             break;
 
-            case(5)://////////////////////////SALIDA//////////////////////////////
+            case(5):///////////////////////SALIDA//////////////////////////////
             bandera=false;
             break;
-
-        }
-        break;
-
+            }
+        }while(bandera==true);
     }
 
-
-}while(bandera==true);
-
-    }
+///----------------------------------------------------------------------------------------///
 
     void comprar(){
-int a=0, icono;
-bool bandera1=false;
-system("cls");
+
+        bool ban=true;
+        do{
+        system("cls");
+        TextoMenuCompra();
+        switch(SeleccionMenus(57,11,2)){
+
+            case(0):{
+            cout<<"PRODUCTOS";
+            system("pause");
+            system("cls");
+            }
+            break;
+
+            case(1):{
+            cout<<"Carrito";
+            system("pause");
+            system("cls");
+            }
+            break;
+
+            case(2):{
+            ban=false;
+            }
+            break;
+            }
+        }while(ban);
+    }
+
+///----------------------------------------------------------------------------------------///
+
+    void Listado(){
+
+        bool ban=true;
             do{
-            TextoMenuCompra();
-            rlutil::locate(56,11+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(56,11+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=2;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(56,11+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>2){a=0;}
-                break;
-                case(1):///enter///
-                    switch(a)
-                    {
-                        case(0):{
-                             cout<<"PRODUCTOS";
-                             system("pause");
-                             system("cls");
-                         }
-                        break;
-
-                        case(1):{
-                            cout<<"Carrito";
-                            system("pause");
-                            system("cls");
-                        }
-                        break;
-
-                        case(2):{
-                        bandera1=true;
-                        }
-                        break;
-                    break;
-        }
-        }
-    }while(bandera1==false);
-    system("cls");
-}
-
-void Listado(){
-int a=0, icono;
-bool bandera1=false;
-system("cls");
-            do{
+            system("cls");
             TextoMenuListado();
-            rlutil::locate(43,10+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=4;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>4){a=0;}
-                break;
-                case(1):///enter///
-                    switch(a)
-                    {
-////////////////////////////////////////////PRODUCTOS/////////////////////////////////////////////////////////
-                        case(0):{
-                            bool opcion;
-                            cout << "Para listar por precio ingrese 1, para listar por stock ingrese 0: " << endl;
-                            cin >>opcion;
-                            ListadoDeProductos(opcion);
-                         }
-                        break;
-////////////////////////////////////////////VENTAS/////////////////////////////////////////////////////////
-                        case(1):{
-                            ListadoDeVentas();
-                        }
-                        break;
-////////////////////////////////////////////CLIENTES/////////////////////////////////////////////////////////
-                        case(2):{
-                            ListadoDeClientes();
-                        }
-                        break;
-////////////////////////////////////////////DETALLE DE VENTAS/////////////////////////////////////////////////////////
-                        case(3):{
-                            ListadoDetalleVentasPorNumeroDeVenta();
-                        }
-                        break;
-                        case(4):{
-                        bandera1=true;
-                        }
-                        break;
-                    break;
-        }
-        }
-    }while(bandera1==false);
-}
+                switch(SeleccionMenus(49,10,4)){
 
-void Busqueda(){
-system("cls");
-int a=0, icono;
-bool bandera1=false;
+                case(0):{///////////PRODUCTOS///////////
+                    bool opcion;
+                    cout << "Para listar por precio ingrese 1, para listar por stock ingrese 0: " << endl;
+                    cin >>opcion;
+                    ListadoDeProductos(opcion);
+                    }
+                    break;
+
+                case(1):{///////////VENTAS//////////////
+                    ListadoDeVentas();
+                    }
+                    break;
+
+                case(2):{///////////CLIENTES////////////
+                    ListadoDeClientes();
+                    }
+                    break;
+
+                case(3):{///////////DETALLE DE VENTAS///
+                    ListadoDetalleVentasPorNumeroDeVenta();
+                        }
+                    break;
+                case(4):{
+                    ban=false;
+                        }
+                    break;
+                }
+            }while(ban);
+    }
+
+///----------------------------------------------------------------------------------------///
+
+    void Busqueda(){
+        bool bandera1=true;
             do{
+            system("cls");
             TextoMenuBusqueda();
-            rlutil::locate(49,10+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(49,10+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=3;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(49,10+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>3){a=0;}
-                break;
-                case(1):///enter///
-                    switch(a)
-                    {
-////////////////////////////////////////////PRODUCTO/////////////////////////////////////////////////////////
-                        case(0):{
+                    switch(SeleccionMenus(49,10,3)){
+                        case(0):{////////////////////////////PRODUCTO///////////////////////////
                             bool opcion;
                             cout << "Para buscar por Id de producto ingrese 1" << endl;
                             cout << "Para buscar rango de precio ingrese 0" << endl;
@@ -218,13 +135,13 @@ bool bandera1=false;
                             BuscarProducto(opcion);
                         }
                         break;
-////////////////////////////////////////////CLIENTE/////////////////////////////////////////////////////////
-                        case(1):{
+
+                        case(1):{////////////////////////////CLIENTE////////////////////////////
                             BuscarCliente();
                         }
                         break;
-////////////////////////////////////////////VENTA////////////////////////////////////////////////////////
-                        case(2):{
+
+                        case(2):{////////////////////////////VENTA//////////////////////////////
                             int opcion;
                             cout << "Para buscar por numero de venta ingrese 0" << endl;
                             cout << "Para buscar por rango CUIT ingrese 1" << endl;
@@ -235,164 +152,109 @@ bool bandera1=false;
                         }
                         break;
                         case(3):
-                        bandera1=true;
+                        bandera1=false;
                         break;
-        break;
+                    }
+            }while(bandera1);
+    }
 
-        }
-        }
-        }while(bandera1==false);
-}
+///----------------------------------------------------------------------------------------///
 
-void Informes(){
-system("cls");
-int a=0, icono;
-bool bandera1=false;
+    void Informes(){
+        bool bandera1=true;
             do{
+            system("cls");
             TextoMenuInformes();
-            rlutil::locate(43,10+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=4;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>4){a=0;}
-                break;
-                case(1):///enter///
-                    switch(a)
-                    {
-                        case(0):
-                        break;
-                        case(1):
-                        break;
-                        case(2):
-                        break;
-                        case(3):
-                        break;
-                        case(4):
-                        bandera1=true;
-                        break;
-        break;
+                switch(SeleccionMenus(43,10, 4)){
+                    case(0):
+                    break;
+                    case(1):
+                    break;
+                    case(2):
+                    break;
+                    case(3):
+                    break;
+                    case(4):
+                    bandera1=false;
+                    break;
+                }
+        }while(bandera1);
+    }
 
-        }
-        }
-        }while(bandera1==false);
-}
+///----------------------------------------------------------------------------------------///
 
-void CargarRegistros(){
-system("cls");
-int a=0, icono;
-bool bandera1=false;
-system("cls");
-            do{
+    void CargarRegistros(){
+        bool bandera1=false;
+        do{
+            system("cls");
             TextoMenuCargarRegistro();
-            rlutil::locate(43,10+a);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a--;
-                if(a<0){a=4;}
+            switch(SeleccionMenus(45,10,4)){
+                case(0):{/////////////guarda registro de cliente/////////////
+                Cliente cl;
+                system("cls");
+
+                rlutil::showcursor();
+                if(CargarCliente(cl)==1){
+                GuardarRegistroCliente(cl, 1);
+                }
+                system("cls");
+                rlutil::hidecursor();
+                //cin.ignore(numeric_limits<streamsize>::max(), '\n');//por que?
+                }
                 break;
-                case(15):///abajo///
-                rlutil::locate(43,10+a);
-                cout<<" "<<endl;
-                a++;
-                if(a>4){a=0;}
+
+                case(1):{/////////////guarda registro de venta///////////////
+                Venta v;
+                Cliente cl;
+                system("cls");
+                rlutil::showcursor();
+
+                if(CargarCliente(cl)==1){
+                GuardarRegistroCliente(cl, 0);
+                }
+
+                CargarVenta(v, cl.GetCuit(), 0);
+                GuardarRegistroVenta(v, "Ventas.dat");
+
+                system("cls");
+                rlutil::hidecursor();
+                }
                 break;
-                case(1):///enter///
 
-                    switch(a)
-                    {
+                case(2):{/////////////guarda registro de producto////////////
+                Producto p;
+                system("cls");
 
-////////////////////////////////////////////guarda registro de cliente/////////////////////////////////////////////////////////
+                rlutil::showcursor();
+                if(CargarProducto(p)==1){
+                GuardarRegistroProducto(p);
+                }
 
-                        case(0):{
+                system("cls");
+                rlutil::hidecursor();
+                }
+                break;
 
-                            Cliente cl;
-                            system("cls");
+                case(3):{/////////////guarda registro detalle de venta///////
+                DetalleVenta venDT;
+                system("cls");
+                rlutil::showcursor();
+                CargarDetalleVenta(0, venDT);
+                system("cls");
+                rlutil::hidecursor();
+                GuardarRegistroDetalleVenta(venDT, "DetalleVentas.dat");
+                }
+                break;
 
-                            rlutil::showcursor();
-                            if(CargarCliente(cl)==1){
-                            GuardarRegistroCliente(cl, 1);
-                            }
-                            system("cls");
-                            rlutil::hidecursor();
-                            //cin.ignore(numeric_limits<streamsize>::max(), '\n');//por que?
-
-                        }
-                        break;
-
-////////////////////////////////////////////guarda registro de venta/////////////////////////////////////////////////////////
-
-                        case(1):{
-                            Venta v;
-                            Cliente cl;
-                            system("cls");
-                            rlutil::showcursor();
-
-                            if(CargarCliente(cl)==1){
-                            GuardarRegistroCliente(cl, 0);
-                            }
-
-                            CargarVenta(v, cl.GetCuit(), 0);
-                            GuardarRegistroVenta(v, "Ventas.dat");
-
-                            system("cls");
-                            rlutil::hidecursor();
-                        }
-                        break;
-
-////////////////////////////////////////////guarda registro de producto/////////////////////////////////////////////////////////
-
-                        case(2):{
-                            Producto p;
-                            system("cls");
-
-                            rlutil::showcursor();
-                            if(CargarProducto(p)==1){
-                            GuardarRegistroProducto(p);
-                            }
-
-                            system("cls");
-                            rlutil::hidecursor();
-                        }
-                        break;
-
-////////////////////////////////////////////guarda registro detalle de venta/////////////////////////////////////////////////////////
-
-                        case(3):{
-                            DetalleVenta venDT;
-                            system("cls");
-                            rlutil::showcursor();
-                            CargarDetalleVenta(0, venDT);
-                            system("cls");
-                            rlutil::hidecursor();
-                            GuardarRegistroDetalleVenta(venDT, "DetalleVentas.dat");
-                        }
-                        break;
-
-/////////////////////////////////////////////////Salida//////////////////////////////////////////////////////////////////////
-
-                        case(4):
-                        bandera1=true;
-                        break;
-
-        break;
-        }
-        }
+                case(4):///////////////Salida/////////////
+                bandera1=true;
+                break;
+            }
         }while(bandera1==false);
 }
+
+///----------------------------------------------------------------------------------------///
+
 
 void TextoMenuPrincipal(){
     Pilares();
@@ -411,17 +273,28 @@ rlutil::locate(55,15);
 cout<<"SALIR";
 }
 
+void TextoMenuCompra(){
+    Pilares();
+///opciones de Compra///
+rlutil::locate(58,11);
+cout<<"Productos";
+rlutil::locate(58,12);
+cout<<"Carrito";
+rlutil::locate(58,13);
+cout<<"Volver";
+}
+
 void TextoMenuListado(){
     Pilares();
 ///opciones de listado///
 rlutil::locate(50,10);
 cout<<"Listado de Productos";
 rlutil::locate(50,11);
-cout<<"Mostrar listados";
-rlutil::locate(50,12);
 cout<<"Listado de clientes";
-rlutil::locate(50,13);
+rlutil::locate(50,12);
 cout<<"Listado de ventas";
+rlutil::locate(50,13);
+cout<<"Listado detalle de venta";
 rlutil::locate(50,14);
 cout<<"Volver";
 }
@@ -484,17 +357,6 @@ cout<<"Volver";
 //cout<<"Volver";
 //}
 
-void TextoMenuCompra(){
-    Pilares();
-///opciones de Compra///
-rlutil::locate(58,11);
-cout<<"Productos";
-rlutil::locate(58,12);
-cout<<"Carrito";
-rlutil::locate(58,13);
-cout<<"Volver";
-}
-
     void TextoTiposDeProducto(){
 
     cout << "Equipos=1" << endl;
@@ -555,6 +417,47 @@ cout<<"Volver";
     ///columna inferior///
     rlutil::locate(40,18);
     cout<<"///////////////////////////////////////////";
+    }
+
+    int SeleccionMenus(int EjeX, int EjeY, int CantOpc){
+
+        int y=0, tecla;
+        bool ban=false;
+        do{
+            rlutil::locate(EjeX,EjeY+y);
+            cout<<(char)175<<endl;
+            tecla = rlutil::getkey();
+
+            switch(tecla){
+
+                case(14):///arriba///
+                rlutil::locate(EjeX,EjeY+y);
+                cout<<" "<<endl;
+                y--;
+                if(y<0){y=CantOpc;}
+                break;
+
+                case(15):///abajo///
+                rlutil::locate(EjeX,EjeY+y);
+                cout<<" "<<endl;
+                y++;
+                if(y>CantOpc){y=0;}
+                break;
+
+                case(1):///enter///
+                    system("cls");
+                    if(y==CantOpc){return CantOpc;}
+                    return y;
+                break;
+
+                case(0):
+                    system("cls");
+                return CantOpc;
+                break;
+            }
+        }while(!ban);
+        system("cls");
+        return 12;
     }
 
 
