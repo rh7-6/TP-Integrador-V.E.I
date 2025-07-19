@@ -106,4 +106,15 @@ using namespace std;
     COMPRA
   ---------*/
 
+
+
+
+
+
+
+
+
+
+  void LimpiarBuffer();
+
 #endif // MENU_H_INCLUDED

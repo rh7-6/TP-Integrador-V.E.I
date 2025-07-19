@@ -16,12 +16,12 @@ using namespace std;
         char nombre[50]{},descripcion[500]{}, marca[20]{};
         rlutil::locate(30,5);
         cout<<"Ingrese el id del producto o equipo igual o mayor a 0: ";
-        cin>>id;
+        cin>>id; LimpiarBuffer();
 
         while(p.SetIdProducto(id)==0){
             rlutil::locate(20,5);
             cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero: ";
-            cin>>id;
+            cin>>id; LimpiarBuffer();
         }
         cout<<endl;
         system("cls");
@@ -53,7 +53,6 @@ using namespace std;
         system("cls");
 
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
         rlutil::locate(35,5);
         cout << "Ingrese nombre del producto: ";
         cin.getline(nombre, 50);
@@ -68,20 +67,18 @@ using namespace std;
             system("cls");
             rlutil::locate(20,5);
             cout<<"el precio tiene que ser minimo 100 por favor vuelva a cargar el precio: $";
-            cin>>precio;
+            cin>>precio; LimpiarBuffer();
         }
         cout<<endl;
         system("cls");
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
         rlutil::locate(20,5);
         cout<<"Ingrese la descripcion del producto(terminada en el caracter #): "<<endl;
-        cin.getline(descripcion,500, '#');
+        cin.getline(descripcion,500, '#'); LimpiarBuffer();
         p.SetDescripcion(descripcion);
         cout<<endl;
         system("cls");
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');///limpiador del buffer///
         rlutil::locate(20,5);
         cout<<"Ingrese la marca a la que pertenece el producto: ";
         cin.getline(marca,20);
@@ -99,11 +96,11 @@ using namespace std;
 
         rlutil::locate(35,5);
         cout<<"Ingrese el stock del producto: ";
-        cin>>stock;
+        cin>>stock; LimpiarBuffer();
         while(p.SetStock(stock)==0){
             rlutil::locate(20,5);
             cout<<"el stock no puede ser menor a 0 por favor vuelva a ingresar el stock: ";
-            cin>>stock;
+            cin>>stock; LimpiarBuffer();
         }
         cout<<endl;
         system("cls");
@@ -126,7 +123,6 @@ using namespace std;
                     break;
                     }
         cout<<endl;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         return 1;
             }
 
@@ -184,7 +180,7 @@ default:{}
             int pos, id;
 
             cout << "Ingrese el Id del producto a buscar: ";
-            cin >> id;
+            cin >> id; LimpiarBuffer();
             cout << endl;
 
             if((pos=archP.BuscarProducto(id))<0){
@@ -203,11 +199,11 @@ default:{}
             float precioMax, precioMin;
 
             cout << "Ingrese valor maximo en rango de precio a buscar: ";
-            cin >> precioMax;
+            cin >> precioMax; LimpiarBuffer();
             cout << endl;
 
             cout << "Ingrese valor minimo en rango de precio a buscar: ";
-            cin >> precioMin;
+            cin >> precioMin; LimpiarBuffer();
             cout << endl;
 
             vector<Producto> PrEnRango;
@@ -269,15 +265,15 @@ default:{}
         cout << "Ingrese un tipo de producto(1 a 10)" << endl;
         TextoTiposDeProducto();
         cout << "==> :";
-        cin >> TipoDeProducto;
+        cin >> TipoDeProducto; LimpiarBuffer();
         while(TipoDeProducto>10||TipoDeProducto<0){
             cout<<"Ingrese porfavor un tipo valido(1 a 10): ";
-            cin>>TipoDeProducto;
+            cin>>TipoDeProducto; LimpiarBuffer();
             system("cls");
         }
 
         cout << "Ingrese estado en inventario(1: Activo, 0: inactivo): " << endl;
-        cin >> estado;
+        cin >> estado; LimpiarBuffer();
 
         ArchivoProductos archPr("Productos.dat");
         int cantReg=archPr.CantidadRegistros(sizeof(Producto));
@@ -361,8 +357,7 @@ default:{}
 
         rlutil::locate(40, 5);
         cout<<"Ingrese el cuit del cliente: ";
-        cin>>cuil;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin>>cuil; LimpiarBuffer();
         if(int posCl =archCl.BuscarCliente(cuil)>=0){
             system("cls");
             rlutil::locate(34,5);
@@ -497,13 +492,13 @@ default:{}
         int pos;
 
         cout << "Ingrese el CUIT del cliente a buscar: ";
-        cin >> Cuit;
+        cin >> Cuit; LimpiarBuffer();
         cout << endl;
 
         if((pos=archCl.BuscarCliente(Cuit.c_str()))<0){
 
             cout << "Cliente inexistente reingrese Cuit: ";
-            cin >> Cuit;
+            cin >> Cuit; LimpiarBuffer();
             system("cls");
         }else{
 
@@ -550,7 +545,7 @@ default:{}
         system("cls");
         bool estado;
         cout << "Ingrese estado de clientes (1: activos, 0: inactivos): " << endl;
-        cin >> estado;
+        cin >> estado; LimpiarBuffer();
 
         ArchivoClientes archCl("Clientes.dat");
         int cantReg=archCl.CantidadRegistros(sizeof(Cliente));
@@ -604,8 +599,8 @@ default:{}
 
             bool opcion;
             system("cls");
-            rlutil::locate(35,5);                                                                       //
-            cout << "Desea igresar una venta nueva o editar una existente?" << endl;           //
+            rlutil::locate(35,5);
+            cout << "Desea igresar una venta nueva o editar una existente?" << endl;
             rlutil::locate(57,8);
             cout<<"Nueva Venta";
             rlutil::locate(57,9);
@@ -621,24 +616,24 @@ default:{}
                     }
                     break;
                     }
-                                                                                               //
-            if(opcion){                                                                        //
-                                                                                               //
-                numeroV=cantReg+1;                                                             //
-            }else{
-                system("cls");                                                                             // Carga simple o edicion de una venta
-                rlutil::locate(35,5);                                                                               //
-                cout << "Ingrese numero de venta a editar: ";                                  //
-                cin >> numeroV;                                                                //
-                                                                                               //
-                while(archV.BuscarVenta(numeroV-1)<0){                                         //
 
-                    system("cls");                                                                             // Carga simple o edicion de una venta
-                    rlutil::locate(43,5);                                                                      //
-                    cout << "Numero de venta inexistente" << endl;                             //
+            if(opcion){
+
+                numeroV=cantReg+1;
+            }else{
+                system("cls");
+                rlutil::locate(35,5);
+                cout << "Ingrese numero de venta a editar: ";
+                cin >> numeroV; LimpiarBuffer();
+
+                while(archV.BuscarVenta(numeroV-1)<0){
+
+                    system("cls");
+                    rlutil::locate(43,5);
+                    cout << "Numero de venta inexistente" << endl;
                     rlutil::locate(43,6);
-                    cout << "Reingrese numero de venta: ";                             //
-                    cin >> numeroV;                                                            //
+                    cout << "Reingrese numero de venta: ";
+                    cin >> numeroV; LimpiarBuffer();
                 }
             }
         }
@@ -649,32 +644,32 @@ default:{}
         system("cls");
         rlutil::locate(40,5);
         cout << "Ingrese dia de la venta: ";
-        cin >> dia;
+        cin >> dia; LimpiarBuffer();
         cout << endl;
 
         system("cls");
         rlutil::locate(40,5);
         cout << "Ingrese mes de la venta:  ";
-        cin >> mes;
+        cin >> mes; LimpiarBuffer();
         cout << endl;
 
         system("cls");
         rlutil::locate(40,5);
         cout << "Ingrese anio de la venta: ";
-        cin >> siglo;
+        cin >> siglo; LimpiarBuffer();
         v.SetFechaVenta(dia,mes,siglo);
         cout << endl;
 
         system("cls");
         rlutil::locate(40,5);
         cout << "Ingrese importe de la venta: $";
-        cin >> importe;
+        cin >> importe; LimpiarBuffer();
         while(v.SetImporteVenta(importe)==0)
             {
                 system("cls");
                 rlutil::locate(40,5);
                 cout<<"el inporte de venta no puede ser 0 o menor a 0: ";
-                cin>>importe;
+                cin>>importe; LimpiarBuffer();
             }
         cout << endl;
 
@@ -719,11 +714,11 @@ default:{}
 
         int numVenta;
         cout << "Ingrese numero de venta(entre 1 y " << cantReg << ") :";
-        cin >> numVenta;
+        cin >> numVenta; LimpiarBuffer();
         cout << endl;
         while(numVenta<1||numVenta>cantReg){
             cout << "Ingrese un numero de venta valido(entre 1 y " << cantReg << ") :";
-            cin >> numVenta;
+            cin >> numVenta; LimpiarBuffer();
         }
         for(int i=0; i<cantReg; i++){
             v= archV.LeerVenta(i);
@@ -742,14 +737,14 @@ default:{}
         char CUIT[30]{};
 
         cout << "Ingrese CUIT: ";
-        cin >> CUIT;
+        cin >> CUIT; LimpiarBuffer();
         cout << endl;
 
         int pos;
         while((pos=archCl.BuscarCliente(CUIT))<0){
 
             cout << "Cliente inexistente reingrese CUIT: ";
-            cin >> CUIT;
+            cin >> CUIT; LimpiarBuffer();
         }
 
         cl=archCl.LeerCliente(pos);
@@ -765,26 +760,26 @@ default:{}
 
         cout << "Ingrese la fecha inicial del rango: " << endl;
         cout << "Dia: ";
-        cin >> Dia1;
+        cin >> Dia1; LimpiarBuffer();
         while(Dia1<1||Dia1>31){
             cout << "Ingrese un dia valido(1 a 31): ";
-            cin >> Dia1;
+            cin >> Dia1; LimpiarBuffer();
             system("cls");
         }
         cout << endl;
         cout << "Mes: ";
-        cin >> Mes1;
+        cin >> Mes1; LimpiarBuffer();
         while(Mes1<1||Mes1>12){
             cout << "Ingrese un mes valido(1 a 12): ";
-            cin >> Mes1;
+            cin >> Mes1; LimpiarBuffer();
             system("cls");
         }
         cout << endl;
         cout << "Anio: ";
-        cin >> Anio1;
+        cin >> Anio1; LimpiarBuffer();
         while(Anio1<2020||Anio1>2028){
             cout << "Ingrese anio valido(2020 a 2028): ";
-            cin >> Anio1;
+            cin >> Anio1; LimpiarBuffer();
             system("cls");
         }
         cout << endl;
@@ -792,26 +787,26 @@ default:{}
         //----------------------------------------------------//
         cout << "Ingrese la fecha final del rango: " << endl;
         cout << "Dia: ";
-        cin >> Dia2;
+        cin >> Dia2; LimpiarBuffer();
         while(Dia2<1||Dia2>31){
             cout << "Ingrese un dia valido(1 a 31): ";
-            cin >> Dia2;
+            cin >> Dia2; LimpiarBuffer();
             system("cls");
         }
         cout << endl;
         cout << "Mes: ";
-        cin >> Mes2;
+        cin >> Mes2; LimpiarBuffer();
         while(Mes2<1||Mes2>12){
             cout << "Ingrese un mes valido(1 a 12): ";
-            cin >> Mes2;
+            cin >> Mes2; LimpiarBuffer();
             system("cls");
         }
         cout << endl;
         cout << "Anio: ";
-        cin >> Anio2;
+        cin >> Anio2; LimpiarBuffer();
         while(Anio2<2020||Anio2>2028){
             cout << "Ingrese anio valido(2020 a 2028): ";
-            cin >> Anio2;
+            cin >> Anio2; LimpiarBuffer();
             system("cls");
         }
         cout << endl;
@@ -848,7 +843,7 @@ default:{}
         system("cls");
         bool estado;
         cout << "Ingrese estado de ventas (1: Listadas, 0: Borradas): " << endl;
-        cin >> estado;
+        cin >> estado; LimpiarBuffer();
 
         ArchivoVentas archV("Ventas.dat");
         int cantReg=archV.CantidadRegistros(sizeof(Venta));
@@ -910,11 +905,11 @@ default:{}
         if(numVenta==0){                                                                        //
                                                                                                 //
             do{
-            rlutil::locate(30, 5);                                                                                //
+            rlutil::locate(30, 5);                                                              //
             cout << "Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";    //  Carga simple o edicion de un detalle de venta
-            cin >> numeroventa;                                                                 //
+            cin >> numeroventa; LimpiarBuffer();                                                //
             cout << endl;
-            system("cls");                                                                       //
+            system("cls");                                                                      //
             }while(numeroventa<0||numeroventa>cantRegV);                                        //
             dv.SetNumeroVentaDT(numeroventa);                                                   //
         }else{
@@ -929,12 +924,12 @@ default:{}
             int pos;
         rlutil::locate(30,5);
         cout << "Ingrese el numero de id del producto: ";
-        cin >> idproducto;
+        cin >> idproducto; LimpiarBuffer();
             if((pos=archP.BuscarProducto(idproducto))<0){
                 system("cls");
                 rlutil::locate(35,5);
                 cout << "Producto inexistente reingrese id: ";
-                cin >> idproducto;
+                cin >> idproducto; LimpiarBuffer();
             }
         dv.SetIdProductoDT(idproducto);
         cout << endl;
@@ -947,13 +942,13 @@ default:{}
         system("cls");
         rlutil::locate(30,5);
         cout << "Ingrese la cantidad requerida(minimo 1, maximo " << stock << "): ";
-        cin >> cantidad;
+        cin >> cantidad; LimpiarBuffer();
         while(dv.SetCantidad(cantidad)==0||cantidad>stock)
             {
             system("cls");
             rlutil::locate(30,5);
             cout << "Reingrese la cantidad (minimo 1, maximo " << stock << "): ";
-            cin >> cantidad;
+            cin >> cantidad; LimpiarBuffer();
             }
         cout << endl;
     }
@@ -1033,7 +1028,7 @@ default:{}
         do{
 
         cout << "Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";
-        cin >> numeroventa;
+        cin >> numeroventa; LimpiarBuffer();
         }while(numeroventa>0&&numeroventa<=cantRegV);
 
         DetalleVenta dv;
@@ -1091,3 +1086,21 @@ default:{}
                 }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    void LimpiarBuffer(){
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }

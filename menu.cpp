@@ -129,8 +129,7 @@ using namespace std;
                             bool opcion;
                             cout << "Para buscar por Id de producto ingrese 1" << endl;
                             cout << "Para buscar rango de precio ingrese 0" << endl;
-                            cout << "-->: ";
-                            cin >> opcion;
+                            cout << "-->: "; cin >> opcion;
                             BuscarProducto(opcion);
                         }
                         break;
@@ -143,11 +142,10 @@ using namespace std;
                         case(2):{////////////////////////////VENTA//////////////////////////////
                             int opcion;
                             cout << "Para buscar por numero de venta ingrese 0" << endl;
-                            cout << "Para buscar por rango CUIT ingrese 1" << endl;
+                            cout << "Para buscar por CUIT ingrese 1" << endl;
                             cout << "Para buscar por rango de fechas ingrese 2" << endl;
-                            cout << "-->: ";
-                            cin >> opcion;
-                            BuscarVenta(opcion);
+                            cout << "-->: "; cin >> opcion;
+                            if(opcion<0||opcion>2){cout << "Opcion invalida";system("pause");}else{BuscarVenta(opcion);}
                         }
                         break;
                         case(3):
