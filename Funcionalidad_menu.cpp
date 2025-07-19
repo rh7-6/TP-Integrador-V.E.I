@@ -656,53 +656,27 @@ default:{}
 
         ArchivoClientes archCl("Clientes.dat");
         bool seguir=false;
-
         do{
             archCl.GuardarCliente(cl);
             if(opcionSeg){
             system("cls");
             rlutil::locate(45,5);
             cout << "Desea ingresar otro cliente?";
-            int k=0, icono=0;
-            bool bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(56,7);
             cout<<"si";
             rlutil::locate(56,8);
             cout<<"no";
-            rlutil::locate(53,7+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+                    switch(SeleccionMenus(54,7,1,1))
                     {
                     case(0):{
                     seguir=1;
-                    bandera1=true;
                     }
                     break;
                     case(1):{
                     seguir=0;
-                    bandera1=true;
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
             if(seguir){
             seguir=CargarCliente(cl);
                 }
@@ -759,8 +733,6 @@ default:{}
         double importe;
         Fecha fech;
         bool estado;
-        int k=0, icono=0;
-        bool bandera1=false;
 
         int cantReg= archV.CantidadRegistros(sizeof(Venta));
 
@@ -781,12 +753,10 @@ default:{}
                     {
                     case(0):{
                     opcion=1;
-                    bandera1=true;
                     }
                     break;
                     case(1):{
                     opcion=0;
-                    bandera1=true;
                     }
                     break;
                     }
@@ -812,19 +782,6 @@ default:{}
             }
         }
             system("cls");
-//            rlutil::locate(35,5);
-//            cout << "Ingrese numero de venta mayor a 0: ";
-//            cin >> numeroV;
-//        while(v.SetNumeroVenta(numeroV)==0)
-//            {
-//            system("cls");
-//            rlutil::locate(35,5);
-//            cout<<"el numero de venta tiene que ser igual a 0 o mayor: ";
-//            cin>>numeroV;
-//            cout<<endl;
-//            }
-//        cout<<endl;
-
         v.SetCuit(cuit);
         cout << endl;
 
@@ -863,48 +820,23 @@ default:{}
         system("cls");
         rlutil::locate(47,5);
         cout << "Seleccione el estado de venta";
-        k=0, icono=0;
-            bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(57,8);
             cout<<"Activo";
             rlutil::locate(57,9);
             cout<<"Inactivo";
-            rlutil::locate(56,8+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(56,8+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(56,8+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+                    switch(SeleccionMenus(55,8,1,1))
                     {
                     case(0):{
                     estado=1;
                     v.SetEstado(estado);
-                    bandera1=true;
                     }
                     break;
                     case(1):{
                     estado=0;
                     v.SetEstado(estado);
-                    bandera1=true;
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
         cout << endl;
     }
 
