@@ -14,9 +14,6 @@ using namespace std;
         int id,tipo=0,stock;
         float precio;
         char nombre[50]{},descripcion[500]{}, marca[20]{};
-
-        int k=0, icono=0;
-        bool bandera1=false;
         rlutil::locate(30,5);
         cout<<"Ingrese el id del producto o equipo igual o mayor a 0: ";
         cin>>id;
@@ -113,47 +110,21 @@ using namespace std;
 
         rlutil::locate(45,5);
         cout<<"Selecione el estado del producto";
-        k=0, icono=0;
-        bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(56,7);
             cout<<"inactivo";
             rlutil::locate(56,8);
             cout<<"activo";
-            rlutil::locate(53,7+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+            switch(SeleccionMenus(54,7,1,1))
                     {
                     case(0):{
                     p.SetEstado(0);
-                    bandera1=true;
                     }
                     break;
                     case(1):{
                     p.SetEstado(1);
-                    bandera1=true;
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
-
         cout<<endl;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         return 1;
@@ -267,46 +238,21 @@ default:{}
             archP.GuardarProducto(p);
             rlutil::locate(45,5);
             cout << "¿Desea ingresar otro producto?";
-            int k=0, icono=0;
-            bool bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(56,7);
             cout<<"si";
             rlutil::locate(56,8);
             cout<<"no";
-            rlutil::locate(53,7+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+                    switch(SeleccionMenus(55,7,1,1))
                     {
                     case(0):{
                     seguir=1;
-                    bandera1=true;
                     }
                     break;
                     case(1):{
                     seguir=0;
-                    bandera1=true;
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
 
             if(seguir){
             CargarProducto(p);
@@ -412,9 +358,6 @@ default:{}
         int tc;
         char cuil[31]{}, nombre[31]{}, apellido[31]{}, telefono[31]{}, mail[31]{}, direccion[31]{};
 
-        int k=0, icono=0;
-        bool bandera1=false;
-
 
         rlutil::locate(40, 5);
         cout<<"Ingrese el cuit del cliente: ";
@@ -424,49 +367,22 @@ default:{}
             system("cls");
             rlutil::locate(34,5);
             cout << "Ya existe un cliente con el cuit:" << cuil << " Desea editarlo?" << endl;
-
-
-            k=0, icono=0;
-            bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(57,8);
             cout<<"NO";
             rlutil::locate(57,9);
             cout<<"SI";
-            rlutil::locate(56,8+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(56,8+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(56,8+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+                switch(SeleccionMenus(55,8,1,1))
                     {
                     case(0):{
                     archCl.LeerCliente(posCl, cl);
-                    bandera1=true;
                     return 0;
                     }
                     break;
                     case(1):{
                     cl.SetCuil(cuil);
-                    bandera1=true;
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
         }
         cl.SetCuil(cuil);
         system("cls");
@@ -512,97 +428,42 @@ default:{}
         system("cls");
         rlutil::locate(45, 5);
         cout<<"Selecione el tipo de cliente";
-            k=0;
-            icono=0;
-            bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(57,8);
             cout<<"particular";
             rlutil::locate(57,9);
             cout<<"empresa";
-            rlutil::locate(56,8+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(56,8+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(56,8+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+            switch(SeleccionMenus(55,8,1,1))
                     {
                     case(0):{
                     tc=1;
                     cl.SetTipoCliente(tc);
-                    bandera1=true;
                     }
                     break;
                     case(1):{
                     tc=2;
                     cl.SetTipoCliente(tc);
-                    bandera1=true;
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
-
-
-        cout<<endl;
-
+                    cout<<endl;
         system("cls");
         rlutil::locate(43, 5);
         cout <<"Ingrese estado del cliente ";
-            k=0;
-            icono=0;
-            bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(54,8);
             cout<<"activo";
             rlutil::locate(54,9);
             cout<<"inactivo";
-            rlutil::locate(53,8+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(53,8+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(53,8+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+            switch(SeleccionMenus(53,8,1,1))
                     {
                     case(0):{
                     cl.SetEstado(1);
-                    bandera1=true;
                     }
                     break;
                     case(1):{
                     cl.SetEstado(0);
-                    bandera1=true;
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
 
 
 
