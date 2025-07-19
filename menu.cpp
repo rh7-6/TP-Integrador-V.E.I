@@ -89,8 +89,13 @@ using namespace std;
 
                 case(0):{///////////PRODUCTOS///////////
                     bool opcion;
-                    cout << "Para listar por precio ingrese 1, para listar por stock ingrese 0: " << endl;
-                    cin >>opcion;
+                    rlutil::locate(43,5);
+                    cout << "Selecione el tipo de listado" << endl;
+                    rlutil::locate(50,8);
+                    cout<<"Listar por stock";
+                    rlutil::locate(50,9);
+                    cout<<"Listar por rango de precio";
+                    opcion=SeleccionMenus(48,8,1,1);
                     ListadoDeProductos(opcion);
                     }
                     break;
@@ -127,9 +132,11 @@ using namespace std;
                     switch(SeleccionMenus(49,10,3,1)){
                         case(0):{////////////////////////////PRODUCTO///////////////////////////
                             bool opcion;
-                            cout << "Para buscar por Id de producto ingrese 1" << endl;
-                            cout << "Para buscar rango de precio ingrese 0" << endl;
-                            cout << "-->: "; cin >> opcion;
+                            rlutil::locate(43,5);
+                            cout<<"Para buscar rango de precio" << endl;
+                            rlutil::locate(43,6);
+                            cout<<"Para buscar por Id de producto" << endl;
+                            opcion=SeleccionMenus(41,5,1,1);
                             BuscarProducto(opcion);
                         }
                         break;
@@ -141,10 +148,13 @@ using namespace std;
 
                         case(2):{////////////////////////////VENTA//////////////////////////////
                             int opcion;
-                            cout << "Para buscar por numero de venta ingrese 0" << endl;
-                            cout << "Para buscar por CUIT ingrese 1" << endl;
-                            cout << "Para buscar por rango de fechas ingrese 2" << endl;
-                            cout << "-->: "; cin >> opcion;
+                            rlutil::locate(43,5);
+                            cout << "Para buscar por numero de venta" << endl;
+                            rlutil::locate(43,6);
+                            cout << "Para buscar por CUIT" << endl;
+                            rlutil::locate(43,7);
+                            cout << "Para buscar por rango de fechas" << endl;
+                            opcion=SeleccionMenus(41,5,2,1);
                             if(opcion<0||opcion>2){cout << "Opcion invalida";system("pause");}else{BuscarVenta(opcion);}
                         }
                         break;

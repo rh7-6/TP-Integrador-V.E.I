@@ -178,18 +178,18 @@ default:{}
         if(opcion){
 
             int pos, id;
-
+            rlutil::locate(40,5);
             cout << "Ingrese el Id del producto a buscar: ";
             cin >> id; LimpiarBuffer();
             cout << endl;
 
             if((pos=archP.BuscarProducto(id))<0){
 
+                system("cls");
+                rlutil::locate(40,5);
                 cout << "Producto inexistente reingrese id: ";
                 cin >> id;
-                system("cls");
             }else{
-
                 p=archP.LeerProducto(pos);
                 MostrarProducto(p);
                 system("pause");
@@ -198,13 +198,17 @@ default:{}
 
             float precioMax, precioMin;
 
+            system("cls");
+            rlutil::locate(35,5);
             cout << "Ingrese valor maximo en rango de precio a buscar: ";
             cin >> precioMax; LimpiarBuffer();
             cout << endl;
 
+            rlutil::locate(35,8);
             cout << "Ingrese valor minimo en rango de precio a buscar: ";
             cin >> precioMin; LimpiarBuffer();
             cout << endl;
+            system("cls");
 
             vector<Producto> PrEnRango;
             for(int i=0; i<archP.CantidadRegistros(sizeof(Producto)); i++){
@@ -218,6 +222,7 @@ default:{}
             int tamVecProd=PrEnRango.size();
             for(int i=0; i<tamVecProd; i++){
                 MostrarProducto(PrEnRango[i]);
+            cout<<"///////////////////////////////////////////////"<<endl;
             }
             system("pause");
             system("cls");
@@ -262,18 +267,26 @@ default:{}
         int TipoDeProducto;
         bool estado;
 
-        cout << "Ingrese un tipo de producto(1 a 10)" << endl;
+        rlutil::locate(50,7);
+        cout<<"Selecione el tipo de producto";
         TextoTiposDeProducto();
-        cout << "==> :";
-        cin >> TipoDeProducto; LimpiarBuffer();
-        while(TipoDeProducto>10||TipoDeProducto<0){
-            cout<<"Ingrese porfavor un tipo valido(1 a 10): ";
-            cin>>TipoDeProducto; LimpiarBuffer();
-            system("cls");
-        }
+        TipoDeProducto=SeleccionMenus(56,8,9,1);
+        TipoDeProducto++;
+        system("cls");
 
-        cout << "Ingrese estado en inventario(1: Activo, 0: inactivo): " << endl;
-        cin >> estado; LimpiarBuffer();
+        while(TipoDeProducto>10||TipoDeProducto<0){
+            system("cls");
+            cout<<"como saliste del menu? ingrese por favor un numero entre el 1 y 10 ";
+            cin>>TipoDeProducto; LimpiarBuffer();
+        }
+        system("cls");
+        rlutil::locate(45,5);
+        cout << "Ingrese estado en inventario" << endl;
+        rlutil::locate(55,8);
+        cout<<"Activo";
+        rlutil::locate(55,9);
+        cout<<"Inactivo";
+        estado=SeleccionMenus(53,8,1,1);
 
         ArchivoProductos archPr("Productos.dat");
         int cantReg=archPr.CantidadRegistros(sizeof(Producto));
@@ -491,15 +504,16 @@ default:{}
         string Cuit;
         int pos;
 
+        rlutil::locate(41,5);
         cout << "Ingrese el CUIT del cliente a buscar: ";
         cin >> Cuit; LimpiarBuffer();
         cout << endl;
 
         if((pos=archCl.BuscarCliente(Cuit.c_str()))<0){
-
+            system("cls");
+            rlutil::locate(41,5);
             cout << "Cliente inexistente reingrese Cuit: ";
             cin >> Cuit; LimpiarBuffer();
-            system("cls");
         }else{
 
             cl=archCl.LeerCliente(pos);
@@ -544,8 +558,13 @@ default:{}
 
         system("cls");
         bool estado;
-        cout << "Ingrese estado de clientes (1: activos, 0: inactivos): " << endl;
-        cin >> estado; LimpiarBuffer();
+        rlutil::locate(40,5);
+        cout << "Selecione el estado del cliente" << endl;
+        rlutil::locate(50,8);
+        cout<<"Inactivos";
+        rlutil::locate(50,9);
+        cout<<"Activos";
+        estado=SeleccionMenus(48,8,1,1);
 
         ArchivoClientes archCl("Clientes.dat");
         int cantReg=archCl.CantidadRegistros(sizeof(Cliente));
@@ -556,7 +575,8 @@ default:{}
         for(int i; i<cantReg; i++){
         archCl.LeerCliente(i, cl);
             if(cl.GetEstado()==estado){
-                //MostrarCliente(cl);
+                //MostrarCliente(cl);--------->inmprime una vez mas al final
+            cout<<"//////////////////////////////////////////////"<<endl;//no borrar
                 ClOrdenados.push_back(cl);
                 }
             }
@@ -713,10 +733,14 @@ default:{}
     case 0:{
 
         int numVenta;
+        system("cls");
+        rlutil::locate(35,5);
         cout << "Ingrese numero de venta(entre 1 y " << cantReg << ") :";
         cin >> numVenta; LimpiarBuffer();
         cout << endl;
         while(numVenta<1||numVenta>cantReg){
+            system("cls");
+            rlutil::locate(35,5);
             cout << "Ingrese un numero de venta valido(entre 1 y " << cantReg << ") :";
             cin >> numVenta; LimpiarBuffer();
         }
@@ -736,13 +760,16 @@ default:{}
         Cliente cl;
         char CUIT[30]{};
 
+        system("cls");
+        rlutil::locate(50,5);
         cout << "Ingrese CUIT: ";
         cin >> CUIT; LimpiarBuffer();
         cout << endl;
 
         int pos;
         while((pos=archCl.BuscarCliente(CUIT))<0){
-
+            system("cls");
+            rlutil::locate(40,5);
             cout << "Cliente inexistente reingrese CUIT: ";
             cin >> CUIT; LimpiarBuffer();
         }
@@ -754,60 +781,76 @@ default:{}
     }
     break;
     case 2:{
-
+        system("cls");
         vector<Venta> vecVtOrdenadas;
         int Dia1, Mes1, Anio1, Dia2, Mes2, Anio2;
 
+        rlutil::locate(40,5);
         cout << "Ingrese la fecha inicial del rango: " << endl;
+        rlutil::locate(50,6);
         cout << "Dia: ";
         cin >> Dia1; LimpiarBuffer();
         while(Dia1<1||Dia1>31){
-            cout << "Ingrese un dia valido(1 a 31): ";
+            rlutil::locate(70,6);
+            cout<<"        ";
+            rlutil::locate(40,6);
+            cout << "Ingrese un dia valido(1 a 31):";
             cin >> Dia1; LimpiarBuffer();
-            system("cls");
         }
-        cout << endl;
+        rlutil::locate(50,7);
         cout << "Mes: ";
         cin >> Mes1; LimpiarBuffer();
         while(Mes1<1||Mes1>12){
+            rlutil::locate(70,7);
+            cout<<"        ";
+            rlutil::locate(40,7);
             cout << "Ingrese un mes valido(1 a 12): ";
             cin >> Mes1; LimpiarBuffer();
-            system("cls");
         }
-        cout << endl;
+        rlutil::locate(50,8);
         cout << "Anio: ";
         cin >> Anio1; LimpiarBuffer();
         while(Anio1<2020||Anio1>2028){
+             rlutil::locate(70,8);
+            cout<<"           ";
+            rlutil::locate(40,8);
             cout << "Ingrese anio valido(2020 a 2028): ";
             cin >> Anio1; LimpiarBuffer();
-            system("cls");
         }
         cout << endl;
         Fecha fMin(Dia1,Mes1,Anio1);
         //----------------------------------------------------//
+        rlutil::locate(40,9);
         cout << "Ingrese la fecha final del rango: " << endl;
+        rlutil::locate(50,10);
         cout << "Dia: ";
         cin >> Dia2; LimpiarBuffer();
         while(Dia2<1||Dia2>31){
+            rlutil::locate(70,10);
+            cout<<"        ";
+            rlutil::locate(40,10);
             cout << "Ingrese un dia valido(1 a 31): ";
             cin >> Dia2; LimpiarBuffer();
-            system("cls");
         }
-        cout << endl;
+        rlutil::locate(50,11);
         cout << "Mes: ";
         cin >> Mes2; LimpiarBuffer();
         while(Mes2<1||Mes2>12){
+            rlutil::locate(70,11);
+            cout<<"        ";
+            rlutil::locate(40,11);
             cout << "Ingrese un mes valido(1 a 12): ";
             cin >> Mes2; LimpiarBuffer();
-            system("cls");
         }
-        cout << endl;
+        rlutil::locate(50,12);
         cout << "Anio: ";
         cin >> Anio2; LimpiarBuffer();
         while(Anio2<2020||Anio2>2028){
+            rlutil::locate(70,12);
+            cout<<"        ";
+            rlutil::locate(40,12);
             cout << "Ingrese anio valido(2020 a 2028): ";
             cin >> Anio2; LimpiarBuffer();
-            system("cls");
         }
         cout << endl;
         Fecha fMax(Dia2,Mes2,Anio2);
@@ -842,8 +885,15 @@ default:{}
 
         system("cls");
         bool estado;
-        cout << "Ingrese estado de ventas (1: Listadas, 0: Borradas): " << endl;
-        cin >> estado; LimpiarBuffer();
+        rlutil::locate(35,5);
+        cout << "Selecione el estado de ventas que desea listar" << endl;
+
+        rlutil::locate(50,8);
+        cout<<"Borradas";
+        rlutil::locate(50,9);
+        cout<<"Listadas";
+
+        estado=SeleccionMenus(48,8,1,1);
 
         ArchivoVentas archV("Ventas.dat");
         int cantReg=archV.CantidadRegistros(sizeof(Venta));
@@ -885,6 +935,7 @@ default:{}
 
             for(int i=0; i<tamVecV; i++){
                 MostrarVenta(VtOrdenadas[i]);
+                cout<<"///////////////////////////////////////////"<<endl;
             }
 
         system("pause");
@@ -1026,7 +1077,7 @@ default:{}
         int cantReg=archDV.CantidadRegistros(sizeof(DetalleVenta));
 
         do{
-
+        rlutil::locate(35,5);
         cout << "Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";
         cin >> numeroventa; LimpiarBuffer();
         }while(numeroventa>0&&numeroventa<=cantRegV);
