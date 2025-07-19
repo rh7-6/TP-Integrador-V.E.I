@@ -1096,7 +1096,7 @@ default:{}
 
                                 ///COMPRA///
 //------------------------------------------------------------------------//
-    void ListadoDeProductosCompra(int TipoProducto){
+    vector<Producto> ListadoDeProductosCompra(int TipoProducto){
 
         ArchivoProductos archPr("Productos.dat");
         int cantReg=archPr.CantidadRegistros(sizeof(Producto));
@@ -1114,31 +1114,45 @@ default:{}
                 }
             }
 
-            bool ban=true;
-                int tamVecProd=PrOrdenados.size();
-                while(ban){
+        bool ban=true;
+        int tamVecProd=PrOrdenados.size();
+        while(ban){
 
-                        int contPrOrdenados=0;
-                    for(int i=0; i<tamVecProd; i++){
+                int contPrOrdenados=0;
+            for(int i=0; i<tamVecProd; i++){
 
-                        if(i!=tamVecProd-1){
-                            if(PrOrdenados[i].GetStock()<PrOrdenados[i+1].GetStock()){
-                                Producto p;
-                                p= PrOrdenados[i+1];
-                                PrOrdenados[i+1]=PrOrdenados[i];
-                                PrOrdenados[i]=p;
-                                contPrOrdenados++;
-                            }
-                        }
+                if(i!=tamVecProd-1){
+                    if(PrOrdenados[i].GetStock()<PrOrdenados[i+1].GetStock()){
+                        Producto p;
+                        p= PrOrdenados[i+1];
+                        PrOrdenados[i+1]=PrOrdenados[i];
+                        PrOrdenados[i]=p;
+                        contPrOrdenados++;
                     }
-                        if(contPrOrdenados==0){
-                            ban=false;
-                        }
                 }
+            }
+            if(contPrOrdenados==0){
+                            ban=false;
+            }
+        }
+
+        for(int i=0; i<tamVecProd; i++){
+
+            rlutil::locate(48,10);
+            cout << PrOrdenados[i].GetMarca()<< " " <<PrOrdenados[i].GetNombreProducto() << endl;
+            rlutil::locate(48,11);
+            cout << "Precio: " << PrOrdenados[i].GetPrecio() << endl;
+            rlutil::locate(48,12);
+            cout << "Stock: " << PrOrdenados[i].GetStock() << endl;
+            rlutil::locate(48,13);
+            cout << "|------------------------------------------------|" << endl;
+        }
+        return PrOrdenados;
     }
 
 
-
+                                ///INFORMES///
+//------------------------------------------------------------------------//
 
 
 

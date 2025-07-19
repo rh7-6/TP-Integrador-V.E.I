@@ -106,7 +106,7 @@ using namespace std;
     COMPRA
   ---------*/
 
-
+    vector<Producto> ListadoDeProductosCompra(int TipoProducto);
 
 
 

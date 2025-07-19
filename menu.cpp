@@ -55,21 +55,26 @@ using namespace std;
         TextoMenuCompra();
         switch(SeleccionMenus(57,11,2,1)){
 
-            case(0):{
-            cout<<"PRODUCTOS";
+            case(0):{///////////PRODUCTOS/////////////
+            TextoTiposDeProducto();
+            int tipo=SeleccionMenus(56,8,9,1);
+            tipo++;
+
+            ListadoDeProductosCompra(tipo);
             system("pause");
             system("cls");
             }
             break;
 
-            case(1):{
-            cout<<"Carrito";
+            case(1):{///////////CARRITO//////////////
+
+
             system("pause");
             system("cls");
             }
             break;
 
-            case(2):{
+            case(2):{///////////SALIDA///////////////
             ban=false;
             }
             break;
@@ -155,7 +160,7 @@ using namespace std;
                             rlutil::locate(43,7);
                             cout << "Para buscar por rango de fechas" << endl;
                             opcion=SeleccionMenus(41,5,2,1);
-                            if(opcion<0||opcion>2){cout << "Opcion invalida";system("pause");}else{BuscarVenta(opcion);}
+                            BuscarVenta(opcion);
                         }
                         break;
                         case(3):
