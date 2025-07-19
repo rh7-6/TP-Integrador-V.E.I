@@ -773,32 +773,11 @@ default:{}
             system("cls");
             rlutil::locate(35,5);                                                                       //
             cout << "Desea igresar una venta nueva o editar una existente?" << endl;           //
-            k=0, icono=0;
-            bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(57,8);
             cout<<"Nueva Venta";
             rlutil::locate(57,9);
             cout<<"Editar Existente";
-            rlutil::locate(56,8+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(56,8+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(56,8+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+                    switch(SeleccionMenus(55, 8, 1, 1))
                     {
                     case(0):{
                     opcion=1;
@@ -811,8 +790,6 @@ default:{}
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
                                                                                                //
             if(opcion){                                                                        //
                                                                                                //
@@ -1204,92 +1181,43 @@ default:{}
             archDV.GuardarDetalleVenta(dv);
             rlutil::locate(40,5);
             cout << "Desea ingresar otro detalle de venta?";
-            int k=0, icono=0;
-            bool bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(56,7);
             cout<<"si";
             rlutil::locate(56,8);
             cout<<"no";
-            rlutil::locate(53,7+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+                    switch(SeleccionMenus(55, 7, 1, 1))
                     {
                     case(0):{
                     seguir=1;
-                    bandera1=true;
                     }
                     break;
                     case(1):{
                     seguir=0;
-                    bandera1=true;
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
             system("cls");
             if(seguir){
             CargarDetalleVenta(0, dv);
             system("cls");
             rlutil::locate(53,5);
             cout << "Que desea hacer";
-            int k=0, icono=0;
-            bool bandera1=false;
-            do{
-            rlutil::hidecursor();
             rlutil::locate(56,7);
             cout<<"Guardar";
             rlutil::locate(56,8);
             cout<<"Descartar";
-            rlutil::locate(53,7+k);
-            cout<<(char)175<<endl;
-            icono = rlutil::getkey();
-            switch (icono){
-                case(14):///arriba///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k--;
-                if(k<0){k=1;}
-                break;
-                case(15):///abajo///
-                rlutil::locate(53,7+k);
-                cout<<" "<<endl;
-                k++;
-                if(k>1){k=0;}
-                break;
-                case(1):///enter///
-                    switch(k)
+                    switch(SeleccionMenus(53, 7, 1, 1))
                     {
                     case(0):{
                     seguir=1;
-                    bandera1=true;
                     }
                     break;
                     case(1):{
                     seguir=0;
-                    bandera1=true;
                     }
                     break;
                     }
-            }
-                }while(bandera1==false);
+
                 system("cls");
                 if(!seguir){
                     return;

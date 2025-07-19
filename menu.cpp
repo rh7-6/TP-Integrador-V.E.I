@@ -452,6 +452,7 @@ cout<<"Volver";
             }
         }while(!ban);
         system("cls");
+        rlutil::showcursor();
         return 12;
     }
 
