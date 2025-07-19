@@ -27,7 +27,7 @@ int main(){
     break;
     case(1):
         rlutil::locate(49,10);
-        cout << "webos2";
+        cout << "webos2";//jaja
         system("pause");
         system("cls");
     break;

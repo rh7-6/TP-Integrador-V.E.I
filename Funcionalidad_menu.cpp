@@ -263,9 +263,51 @@ default:{}
         bool seguir=true;
 
         while(seguir){
+                system("cls");
             archP.GuardarProducto(p);
-            cout << "Para ingresar otro producto(1=si,0=no): ";
-            cin >> seguir;
+            rlutil::locate(45,5);
+            cout << "¿Desea ingresar otro producto?";
+            int k=0, icono=0;
+            bool bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(56,7);
+            cout<<"si";
+            rlutil::locate(56,8);
+            cout<<"no";
+            rlutil::locate(53,7+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(53,7+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(53,7+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    seguir=1;
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    seguir=0;
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
+
             if(seguir){
             CargarProducto(p);
             }
@@ -518,29 +560,29 @@ default:{}
         cout<<endl;
 
         system("cls");
-        rlutil::locate(40, 5);
+        rlutil::locate(43, 5);
         cout <<"Ingrese estado del cliente ";
             k=0;
             icono=0;
             bandera1=false;
             do{
             rlutil::hidecursor();
-            rlutil::locate(57,8);
+            rlutil::locate(54,8);
             cout<<"activo";
-            rlutil::locate(57,9);
+            rlutil::locate(54,9);
             cout<<"inactivo";
-            rlutil::locate(56,8+k);
+            rlutil::locate(53,8+k);
             cout<<(char)175<<endl;
             icono = rlutil::getkey();
             switch (icono){
                 case(14):///arriba///
-                rlutil::locate(56,8+k);
+                rlutil::locate(53,8+k);
                 cout<<" "<<endl;
                 k--;
                 if(k<0){k=1;}
                 break;
                 case(15):///abajo///
-                rlutil::locate(56,8+k);
+                rlutil::locate(53,8+k);
                 cout<<" "<<endl;
                 k++;
                 if(k>1){k=0;}
@@ -618,8 +660,49 @@ default:{}
         do{
             archCl.GuardarCliente(cl);
             if(opcionSeg){
-            cout << "Para ingresar otro cliente(1=si,0=no): ";
-            cin >> seguir;
+            system("cls");
+            rlutil::locate(45,5);
+            cout << "Desea ingresar otro cliente?";
+            int k=0, icono=0;
+            bool bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(56,7);
+            cout<<"si";
+            rlutil::locate(56,8);
+            cout<<"no";
+            rlutil::locate(53,7+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(53,7+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(53,7+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    seguir=1;
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    seguir=0;
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
             if(seguir){
             seguir=CargarCliente(cl);
                 }
@@ -1056,10 +1139,12 @@ default:{}
 
         if(numVenta==0){                                                                        //
                                                                                                 //
-            do{                                                                                 //
+            do{
+            rlutil::locate(30, 5);                                                                                //
             cout << "Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";    //  Carga simple o edicion de un detalle de venta
             cin >> numeroventa;                                                                 //
-            cout << endl;                                                                       //
+            cout << endl;
+            system("cls");                                                                       //
             }while(numeroventa<0||numeroventa>cantRegV);                                        //
             dv.SetNumeroVentaDT(numeroventa);                                                   //
         }else{
@@ -1072,13 +1157,14 @@ default:{}
         Producto p;
 
             int pos;
+        rlutil::locate(30,5);
         cout << "Ingrese el numero de id del producto: ";
         cin >> idproducto;
             if((pos=archP.BuscarProducto(idproducto))<0){
-
+                system("cls");
+                rlutil::locate(35,5);
                 cout << "Producto inexistente reingrese id: ";
                 cin >> idproducto;
-                system("cls");
             }
         dv.SetIdProductoDT(idproducto);
         cout << endl;
@@ -1088,10 +1174,14 @@ default:{}
 
 
         int stock= p.GetStock();
+        system("cls");
+        rlutil::locate(30,5);
         cout << "Ingrese la cantidad requerida(minimo 1, maximo " << stock << "): ";
         cin >> cantidad;
         while(dv.SetCantidad(cantidad)==0||cantidad>stock)
             {
+            system("cls");
+            rlutil::locate(30,5);
             cout << "Reingrese la cantidad (minimo 1, maximo " << stock << "): ";
             cin >> cantidad;
             }
@@ -1109,15 +1199,98 @@ default:{}
 
         ArchivoDetalleVentas archDV(nombreArchivo);
         bool seguir=true;
-
+        system("cls");
         while(seguir){
             archDV.GuardarDetalleVenta(dv);
-            cout << "Para ingresar otro detalle de venta(1=si,0=no): ";
-            cin >> seguir;
+            rlutil::locate(40,5);
+            cout << "Desea ingresar otro detalle de venta?";
+            int k=0, icono=0;
+            bool bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(56,7);
+            cout<<"si";
+            rlutil::locate(56,8);
+            cout<<"no";
+            rlutil::locate(53,7+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(53,7+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(53,7+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    seguir=1;
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    seguir=0;
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
+            system("cls");
             if(seguir){
             CargarDetalleVenta(0, dv);
-            cout << "Para guardar ingrese 1, para descartar ingrese 0: ";
-            cin >> seguir;
+            system("cls");
+            rlutil::locate(53,5);
+            cout << "Que desea hacer";
+            int k=0, icono=0;
+            bool bandera1=false;
+            do{
+            rlutil::hidecursor();
+            rlutil::locate(56,7);
+            cout<<"Guardar";
+            rlutil::locate(56,8);
+            cout<<"Descartar";
+            rlutil::locate(53,7+k);
+            cout<<(char)175<<endl;
+            icono = rlutil::getkey();
+            switch (icono){
+                case(14):///arriba///
+                rlutil::locate(53,7+k);
+                cout<<" "<<endl;
+                k--;
+                if(k<0){k=1;}
+                break;
+                case(15):///abajo///
+                rlutil::locate(53,7+k);
+                cout<<" "<<endl;
+                k++;
+                if(k>1){k=0;}
+                break;
+                case(1):///enter///
+                    switch(k)
+                    {
+                    case(0):{
+                    seguir=1;
+                    bandera1=true;
+                    }
+                    break;
+                    case(1):{
+                    seguir=0;
+                    bandera1=true;
+                    }
+                    break;
+                    }
+            }
+                }while(bandera1==false);
+                system("cls");
                 if(!seguir){
                     return;
                 }
