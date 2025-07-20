@@ -186,6 +186,7 @@ using namespace std;
             TextoMenuInformes();
                 switch(SeleccionMenus(43,10,4,1)){
                     case(0):
+                        RecaudacionAnual();
                     break;
                     case(1):
                     break;

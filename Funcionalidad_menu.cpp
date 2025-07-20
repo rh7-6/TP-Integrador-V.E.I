@@ -1156,7 +1156,23 @@ default:{}
                                 ///INFORMES///
 //------------------------------------------------------------------------//
 
+    void RecaudacionAnual(){
+     int anio=0,i=0;
+     Fecha fech;
+     Venta ven;
+     ArchivoVentas archV("Ventas.dat");
+    int cantReg= archV.CantidadRegistros(sizeof(Venta));
+        cout<<"Ingrese fecha de recaudacion anual que desea saber"<<endl;
+        cin>>anio;
+        for(i=0;i<cantReg;i++)
+        {
+        ven=archV.LeerVenta(i);
+        MostrarVenta(ven);
+        system("pause"); ///probando///no borrar
+        }
 
+
+    }
 
 
 
