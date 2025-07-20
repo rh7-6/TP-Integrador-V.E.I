@@ -1136,15 +1136,17 @@ default:{}
             }
         }
 
+        int SaltDeLin=0;
         for(int i=0; i<tamVecProd; i++){
 
-            rlutil::locate(48,10);
+            if(i!=0){SaltDeLin+=3;}
+            rlutil::locate(48,10+SaltDeLin);
             cout << PrOrdenados[i].GetMarca()<< " " <<PrOrdenados[i].GetNombreProducto() << endl;
-            rlutil::locate(48,11);
+            rlutil::locate(48,11+SaltDeLin);
             cout << "Precio: " << PrOrdenados[i].GetPrecio() << endl;
-            rlutil::locate(48,12);
+            rlutil::locate(48,12+SaltDeLin);
             cout << "Stock: " << PrOrdenados[i].GetStock() << endl;
-            rlutil::locate(48,13);
+            rlutil::locate(48,13+SaltDeLin);
             cout << "|------------------------------------------------|" << endl;
         }
         return PrOrdenados;

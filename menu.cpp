@@ -50,6 +50,8 @@ using namespace std;
     void comprar(){
 
         bool ban=true;
+        int IdYStock[25][2]{};
+        vector<Producto> vecPr;
         do{
         system("cls");
         TextoMenuCompra();
@@ -57,17 +59,22 @@ using namespace std;
 
             case(0):{///////////PRODUCTOS/////////////
             TextoTiposDeProducto();
-            int tipo=SeleccionMenus(56,8,9,1);
-            tipo++;
+            int tipo=SeleccionMenus(56,8,9,1);tipo++;
 
-            ListadoDeProductosCompra(tipo);
+            vecPr= ListadoDeProductosCompra(tipo);
+            int TotalPr=vecPr.size();
+            int IndicePrSelec= SeleccionMenus(47,10,TotalPr-1,3); IndicePrSelec++;
+            system("cls");
+
+            int CantPrSelec= SeleccionCantidad(vecPr[IndicePrSelec].GetStock(),1);
+            vecPr[IndicePrSelec].SetStock(vecPr[IndicePrSelec].GetStock()-CantPrSelec);
+
             system("pause");
             system("cls");
             }
             break;
 
             case(1):{///////////CARRITO//////////////
-
 
             system("pause");
             system("cls");
@@ -469,4 +476,34 @@ cout<<"Volver";
         return 12;
     }
 
+    int SeleccionCantidad(int Max, int Min){
+
+        rlutil::hidecursor();
+        int cant=1, tecla;
+        bool ban=true;
+        rlutil::locate(48,10);
+        cout << "^";
+        rlutil::locate(48,11);
+        cout << "v";
+        do{
+
+            rlutil::locate(49,10);
+            cout << cant;
+            tecla = rlutil::getkey();
+
+            switch(tecla){
+
+            case(14):///mas///
+               cant++;
+               if(cant>Max){cant=Max;}
+               break;
+            case(15):///menos///
+               cant--;
+               if(cant<Min){cant=Min;}
+               break;
+            case(1):///enter///
+                return cant;
+            }
+        }while(ban);
+    }
 

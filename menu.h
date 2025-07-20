@@ -28,6 +28,8 @@ using namespace std;
 
     int SeleccionMenus(int EjeX, int EjeY, int CntOpc, int SaltosDeLinea);
 
+    int SeleccionCantidad(int Max,int Min);
+
     void TextoMenuPrincipal();
 
     void TextoMenuCompra();
