@@ -1238,11 +1238,50 @@ default:{}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 ///INFORMES///
 //------------------------------------------------------------------------//
 
     void RecaudacionAnual(){
-     int anio=0,i=0;
+     int anio=0,i=0,totalanual=0;
      Fecha fech;
      Venta ven;
      ArchivoVentas archV("Ventas.dat");
@@ -1254,6 +1293,12 @@ default:{}
         ven=archV.LeerVenta(i);
         MostrarVenta(ven);
         system("pause"); ///probando///no borrar
+        fech=ven.GetFecha();
+        if(fech.getAnio()==anio)
+        {
+        MostrarVenta(ven);
+        system("pause");
+        }
         }
 
 
