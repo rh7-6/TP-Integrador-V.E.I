@@ -111,9 +111,10 @@ using namespace std;
     vector<Producto> ListadoDeProductosCompra(int TipoProducto);
 
 
-  /*---------
-    INFORMES
-  ---------*/
+
+
+
+
      
 
 
@@ -137,7 +138,9 @@ using namespace std;
 
 
 
-
+/*---------
+   INFORMES
+  ---------*/
 void RecaudacionAnual();
 
 
