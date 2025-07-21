@@ -11,7 +11,7 @@
 #include "rlutil.h"
 using namespace std;
 
-/// selección y graficos ///
+/// selecciÃ³n y graficos ///
     void Menu();
 
     void Pilares();
@@ -121,6 +121,33 @@ using namespace std;
 
 
 
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------
+   INFORMES
+  ---------*/
+void RecaudacionAnual();
 
 
   void LimpiarBuffer();
