@@ -8,7 +8,7 @@ using namespace std;
 
                                 ///PRODUCTO///
 //------------------------------------------------------------------------//
-    int CargarProducto(Producto &p){                                                          ///DISEÑO MEJORADO///
+    int CargarProducto(Producto &p){
 
         ArchivoProductos archP("Productos.dat");
         int id,tipo=0,stock;
@@ -360,7 +360,7 @@ default:{}
 
                                 ///CLIENTE///
 //------------------------------------------------------------------------//
-    int CargarCliente(Cliente &cl, bool opcionCarga){                                                           ///mejorar diseño pendiente///
+    int CargarCliente(Cliente &cl, bool opcionCarga){
 
         ArchivoClientes archCl("Clientes.dat");
 
@@ -587,7 +587,7 @@ default:{}
 
                                 ///VENTA///
 //------------------------------------------------------------------------//
-    void CargarVenta(Venta &v, const char *cuit, double IMPORTE, bool opcionCarga){                          ///mejorar diseño pendiente///
+    void CargarVenta(Venta &v, const char *cuit, double IMPORTE, bool opcionCarga){
 
         ArchivoVentas archV("Ventas.dat");
 
@@ -917,7 +917,7 @@ default:{}
 
                                 ///DETALLE VENTA///
 //------------------------------------------------------------------------//
-    void CargarDetalleVenta(int numVenta, DetalleVenta &dv){                                    ///mejorar diseño pendiente///
+    void CargarDetalleVenta(int numVenta, DetalleVenta &dv){
 
         ArchivoDetalleVentas archDV("DetalleVentas.dat");
 
@@ -1117,13 +1117,15 @@ default:{}
         int tamVecPr=vecPr.size();
         int SaltDeLin=0;
 
-        if(tamVecPr==0){
-            rlutil::locate(48,9);
-            cout << "Sin Productos que mostrar" << endl;
-        }
-
         rlutil::locate(42,9);
         cout << "|------------------------------------------------|" << endl;
+
+        if(tamVecPr==0){
+            rlutil::locate(48,10);
+            cout << "  Sin Productos que mostrar <SALIR>" << endl;
+            return;
+        }
+
         for(int i=0; i<tamVecPr; i++){
 
             if(i!=0){SaltDeLin+=4;}
@@ -1141,7 +1143,7 @@ default:{}
         cout << "<SALIR>" << endl;
     }
 
-    int SeleccionDeProductoYCantidad(vector<Producto> &vecPrMod, vector<Producto> &vecPrSelec){
+    int MenuProductosCompra(vector<Producto> &vecPrMod, vector<Producto> &vecPrSelec){
 
         ListadoDeProductosCompra(vecPrMod);
         int TotalPr=vecPrMod.size();
@@ -1152,6 +1154,7 @@ default:{}
         int maximo=vecPrMod[IndicePrSelec].GetStock();
         int CantPrSelec= SeleccionCantidad(maximo,1);
         if(CantPrSelec==0){return-1;};
+
         vecPrMod[IndicePrSelec].SetStock(vecPrMod[IndicePrSelec].GetStock()-CantPrSelec);
 
         bool ban=true;
@@ -1166,21 +1169,27 @@ default:{}
 
     void ListadoDeProductosCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){
 
-        int tamVecPr=vecPrSelec.size();
+        int tamVecPrSelec=vecPrSelec.size(), tamVecPrOrg=vecPrOrg.size();
         int SaltDeLin=0, cont=0;
         double ImporteTotal=0;
 
-        if(tamVecPr==0){
-            rlutil::locate(48,9);
-            cout << "Carrito Vacio" << endl;
+        rlutil::locate(42,9);
+        cout << "|------------------------------------------------|" << endl;
+        if(tamVecPrSelec==0){
+            rlutil::locate(48,10);
+            cout << "  |Carrito Vacio| <SALIR>" << endl;
             return;
         }
 
-        rlutil::locate(42,9);
-        cout << "|------------------------------------------------|" << endl;
-        for(int i=0; i<tamVecPr; i++){
+        for(int i=0; i<tamVecPrSelec; i++){
 
-            int cantPrSelec=vecPrOrg[i].GetStock()-vecPrSelec[i].GetStock();
+            int cantPrSelec;
+            for(int a=0; a<tamVecPrOrg; a++){
+                if(vecPrOrg[a].GetIdProducto()==vecPrSelec[i].GetIdProducto()){
+                    cantPrSelec=vecPrOrg[a].GetStock()-vecPrSelec[i].GetStock();
+                }
+            }
+
 
             if(vecPrSelec[i].GetEstado()==true){
 
@@ -1197,30 +1206,31 @@ default:{}
                 cout << "|------------------------------------------------|" << endl;
             }
         }
-
+        if(cont==0){
+            rlutil::locate(48,10);
+            cout << "|Carrito Vacio| " << "<SALIR>" << endl;
+            return;
+        }
         SaltDeLin+=1;
         rlutil::locate(48,13+SaltDeLin);
         cout << "<SALIR>          |IMPORTE TOTAL:" << ImporteTotal << "|" << endl;
     }
 
-    void SeleccionCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod){
+    void MenuCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod){
 
         bool ban=true;
 
-        int TotalPr=vecPrSelec.size();
         do{
+            int TamVectPr=vecPrSelec.size(), TotalPr=0;
+            for(int i=0; i<TamVectPr; i++){if(vecPrSelec[i].GetEstado()==true){TotalPr++;}}
             ListadoDeProductosCarrito(vecPrSelec,vecPrOrg);
             int IndicePrSelec= SeleccionMenus(47,10,TotalPr,4);
             if(IndicePrSelec==TotalPr){return;}
 
             system("cls");
-
-            rlutil::locate(48,10);
-            cout << "Eliminar producto?" << endl;
-            rlutil::locate(48,11);
-            cout << "No" << endl;
-            rlutil::locate(48,12);
-            cout << "Si" << endl;
+            rlutil::locate(48,10); cout << "Eliminar producto?" << endl;
+            rlutil::locate(48,11); cout << "No" << endl;
+            rlutil::locate(48,12); cout << "Si" << endl;
             int opcion=SeleccionMenus(47,11,1,1);
             switch(opcion){
             case(1):
@@ -1230,11 +1240,25 @@ default:{}
                         vecPrMod[i]=vecPrOrg[i];
                     }
                 }
-                TotalPr--;
             break;
             }
         }while(ban);
     }
+
+    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){
+
+        rlutil::locate(48,10); cout << "Guardar y finalizar compra? " << endl;
+        rlutil::locate(48,11); cout << "No" << endl;
+        rlutil::locate(48,10); cout << "Si" << endl;
+        int opcion=SeleccionMenus(47,11,1,1);
+
+
+    }
+
+
+
+
+
 
 
 
@@ -1286,8 +1310,8 @@ default:{}
      Venta ven;
      ArchivoVentas archV("Ventas.dat");
     int cantReg= archV.CantidadRegistros(sizeof(Venta));
-        cout<<"Ingrese fecha de recaudacion anual que desea saber"<<endl;
-        cin>>anio;
+        cout<<"Ingrese el anio que desea consultar: "<<endl;
+        cin>>anio; LimpiarBuffer();
         for(i=0;i<cantReg;i++)
         {
         ven=archV.LeerVenta(i);

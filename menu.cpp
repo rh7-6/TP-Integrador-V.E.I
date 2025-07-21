@@ -60,23 +60,18 @@ using namespace std;
 
             case(0):{///////////PRODUCTOS/////////////
                 bool ban=true;
-
                 do{
                 int tamVecPrMod=vecPrMod.size();
                 if(tamVecPrMod==0){CopiarYOrdenarProductos(vecPrMod); vecPrOrig=vecPrMod;}
 
-                if(SeleccionDeProductoYCantidad(vecPrMod,vecPrSelec)==-1){ban=false;}
-
-                system("pause");
+                if(MenuProductosCompra(vecPrMod,vecPrSelec)==-1){ban=false;}
                 system("cls");
                 }while(ban);
             }
             break;
 
             case(1):{///////////CARRITO//////////////
-
-                SeleccionCarrito(vecPrSelec,vecPrOrig,vecPrMod);
-                system("pause");
+                MenuCarrito(vecPrSelec,vecPrOrig,vecPrMod);
                 system("cls");
             }
             break;
@@ -508,7 +503,7 @@ cout<<"Volver";
                 return cant;
             case(0):
                 system("cls");
-                return -1;
+                return 0;
             }
         }while(ban);
         return -1;
