@@ -112,36 +112,13 @@ using namespace std;
 
     void ListadoDeProductosCompra(vector<Producto> &vecPr);
 
-    int SeleccionDeProductoYCantidad(vector<Producto> &vecPrMod, vector<Producto> &vecPrSelec);
+    int MenuProductosCompra(vector<Producto> &vecPrMod, vector<Producto> &vecPrSelec);
 
     void ListadoDeProductosCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
 
-    void SeleccionCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod);
+    void MenuCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod);
 
-
-
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
 
 
 /*---------
