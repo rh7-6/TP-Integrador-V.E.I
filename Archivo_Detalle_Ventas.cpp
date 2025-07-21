@@ -4,7 +4,7 @@ using namespace std;
 
     bool ArchivoDetalleVentas::GuardarDetalleVenta(DetalleVenta &dv){
 
-        int pos=BuscarDetalleDeVenta(dv.GetNumeroVentaDT());
+        int pos=BuscarDetalleDeVenta(dv.GetNumeroVentaDT(), dv.GetIdProductoDT());
         if(pos>=0){
             FILE *pfile;
             pfile = fopen(GetNombreArchivo(),"rb+");
@@ -32,7 +32,7 @@ using namespace std;
     }
 
 
-    int ArchivoDetalleVentas::BuscarDetalleDeVenta(int NumeroDTV){
+    int ArchivoDetalleVentas::BuscarDetalleDeVenta(int NumeroDTV, int idProd){
 
         FILE *pfile;
         pfile = fopen(GetNombreArchivo(),"rb");
@@ -46,7 +46,7 @@ using namespace std;
 
         for(int i=0; i<cantReg; i++){
             fread(&dv, sizeof(DetalleVenta), 1, pfile);
-            if(dv.GetNumeroVentaDT()==NumeroDTV){
+            if(dv.GetNumeroVentaDT()==NumeroDTV&&dv.GetIdProductoDT()==idProd){
                 fclose(pfile);
                 return posDTV;
             }

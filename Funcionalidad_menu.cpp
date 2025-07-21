@@ -848,9 +848,9 @@ default:{}
 
     }
 
-    void GuardarRegistroVenta(Venta &v, const char *nombreArchivo){
+    void GuardarRegistroVenta(Venta &v){
 
-        ArchivoVentas archV(nombreArchivo);
+        ArchivoVentas archV("Ventas.dat");
         archV.GuardarVenta(v);
     }
 
@@ -917,48 +917,45 @@ default:{}
 
                                 ///DETALLE VENTA///
 //------------------------------------------------------------------------//
-    void CargarDetalleVenta(int numVenta, DetalleVenta &dv){
+    void CargarDetalleVenta(DetalleVenta &dv, int NUMVENTA, int IDPRODUCTO, int CANTIDAD, bool opcionCarga){
 
         ArchivoDetalleVentas archDV("DetalleVentas.dat");
-
         ArchivoVentas archV("Ventas.dat");
+        ArchivoProductos archP("Productos.dat");
+
         int cantRegV= archV.CantidadRegistros(sizeof(Venta));
-
         int numeroventa, idproducto, cantidad;
+        Producto p;
+        int posP;
 
-        if(numVenta==0){                                                                        //
-                                                                                                //
+        if(opcionCarga){
+            posP=archP.BuscarProducto(IDPRODUCTO);
+            dv.SetNumeroVentaDT(NUMVENTA);  //  Carrito
+            dv.SetIdProductoDT(IDPRODUCTO); //
+        }else{
             do{
             rlutil::locate(30, 5);                                                              //
-            cout << "Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";    //  Carga simple o edicion de un detalle de venta
+            cout << "Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";    //
             cin >> numeroventa; LimpiarBuffer();                                                //
-            cout << endl;
+            cout << endl;                                                                       //
             system("cls");                                                                      //
             }while(numeroventa<0||numeroventa>cantRegV);                                        //
             dv.SetNumeroVentaDT(numeroventa);                                                   //
-        }else{
-                                                                          //
-            dv.SetNumeroVentaDT(numVenta);                               //  Carrito
-        }                                                                //
+                                                                                                //  Carga simple o edicion de un detalle venta
+            rlutil::locate(30,5);                                                               //
+            cout << "Ingrese el numero de id del producto: ";                                   //
+            cin >> idproducto; LimpiarBuffer();                                                 //
+                if((posP=archP.BuscarProducto(idproducto))<0){                                  //
+                    system("cls");                                                              //
+                    rlutil::locate(35,5);                                                       //
+                    cout << "Producto inexistente reingrese id: ";                              //
+                    cin >> idproducto; LimpiarBuffer();                                         //
+                }                                                                               //
+            dv.SetIdProductoDT(idproducto);                                                     //
+            cout << endl;                                                                       //
+        }
 
-
-        ArchivoProductos archP("Productos.dat");
-        Producto p;
-
-            int pos;
-        rlutil::locate(30,5);
-        cout << "Ingrese el numero de id del producto: ";
-        cin >> idproducto; LimpiarBuffer();
-            if((pos=archP.BuscarProducto(idproducto))<0){
-                system("cls");
-                rlutil::locate(35,5);
-                cout << "Producto inexistente reingrese id: ";
-                cin >> idproducto; LimpiarBuffer();
-            }
-        dv.SetIdProductoDT(idproducto);
-        cout << endl;
-
-        p=archP.LeerProducto(pos);
+        p=archP.LeerProducto(posP);
         dv.SetPrecioProductoDT(p.GetPrecio());
 
 
@@ -984,9 +981,9 @@ default:{}
        cout<<"La cantidad de productos comprados: "<<dv.GetCantidad()<<endl;
        }
 
-    void GuardarRegistroDetalleVenta(DetalleVenta &dv, const char *nombreArchivo){
+    void GuardarRegistroDetalleVenta(DetalleVenta &dv, bool opcionSeguir){
 
-        ArchivoDetalleVentas archDV(nombreArchivo);
+        ArchivoDetalleVentas archDV("DetalleVentas.dat");
         bool seguir=true;
         system("cls");
         while(seguir){
@@ -1010,7 +1007,7 @@ default:{}
                     }
             system("cls");
             if(seguir){
-            CargarDetalleVenta(0, dv);
+            CargarDetalleVenta(dv,0,0,0,false);
             system("cls");
             rlutil::locate(53,5);
             cout << "Que desea hacer";
@@ -1247,14 +1244,74 @@ default:{}
 
     void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){
 
+        int tamVecPrselec=vecPrSelec.size(), cantPrSelec;
         rlutil::locate(48,10); cout << "Guardar y finalizar compra? " << endl;
         rlutil::locate(48,11); cout << "No" << endl;
         rlutil::locate(48,10); cout << "Si" << endl;
         int opcion=SeleccionMenus(47,11,1,1);
 
+        Cliente cl;
+        Venta v;
+        vector<DetalleVenta> VecDv(tamVecPrselec);
 
+        if(opcion==0){return;}else{
+            double ImporteTotal= CalculoImporteTotal(vecPrSelec,vecPrOrg);
+            cout << "Importe total: " << ImporteTotal << endl;
+            system("pause");
+
+            CargarCliente(cl,1);
+
+            CargarVenta(v,cl.GetCuit(),ImporteTotal,1);
+
+            for(int i=0; i<tamVecPrselec; i++){
+                cantPrSelec= CalculoCantidadProductosSeleccionados(vecPrSelec,vecPrOrg);
+                CargarDetalleVenta(VecDv[i],v.GetNumeroVenta(),vecPrSelec[i].GetIdProducto(),cantPrSelec,true);
+            }
+        }
+
+        rlutil::locate(48,10); cout << "Guardar y finalizar compra? " << endl;
+        rlutil::locate(48,11); cout << "No" << endl;
+        rlutil::locate(48,10); cout << "Si" << endl;
+        int opcion1=SeleccionMenus(47,11,1,1);
+
+        if(opcion1==0){return;}else{
+            GuardarRegistroCliente(cl,false);
+            GuardarRegistroVenta(v);
+            for(int i=0;i<tamVecPrselec; i++){GuardarRegistroDetalleVenta(VecDv[i],false);}
+        }
     }
 
+    double CalculoImporteTotal(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){
+
+        int tamVecSelec=vecPrSelec.size(), tamVecPrOrg=vecPrOrg.size();
+        double ImporteTotal;
+
+        for(int i=0; i<tamVecSelec; i++){
+            int cantPrSelec;
+            for(int a=0; a<tamVecPrOrg; a++){
+                if(vecPrOrg[a].GetIdProducto()==vecPrSelec[i].GetIdProducto()){
+                    cantPrSelec=vecPrOrg[a].GetStock()-vecPrSelec[i].GetStock();
+                }
+            }
+            if(vecPrSelec[i].GetEstado()==true){ImporteTotal+=vecPrSelec[i].GetPrecio()*cantPrSelec;}
+        }
+        return ImporteTotal;
+    }
+
+    int CalculoCantidadProductosSeleccionados(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){
+
+        int tamVecPrSelec=vecPrSelec.size(), tamVecPrOrg=vecPrOrg.size();
+
+        for(int i=0; i<tamVecPrSelec; i++){
+            int cantPrSelec;
+            for(int a=0; a<tamVecPrOrg; a++){
+                if(vecPrOrg[a].GetIdProducto()==vecPrSelec[i].GetIdProducto()){
+                    cantPrSelec=vecPrOrg[a].GetStock()-vecPrSelec[i].GetStock();
+                    return cantPrSelec;
+                }
+            }
+        }
+    }
 
 
 

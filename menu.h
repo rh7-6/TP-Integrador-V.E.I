@@ -86,7 +86,7 @@ using namespace std;
 
     void BuscarVenta(int opcion);//
 
-    void GuardarRegistroVenta(Venta &v, const char *nombreArchivo);//   guarda y pregunta si se quiere continuar guardando productos
+    void GuardarRegistroVenta(Venta &v);
 
     void ListadoDeVentas();
 
@@ -94,13 +94,13 @@ using namespace std;
   DETALLE VENTAS
   ---------*/
 
-    void CargarDetalleVenta(int numVenta, DetalleVenta &dv);// si el numero de venta que se de como parametro es igual a 0 se ingresa luego de forma manual dentro de la funcion
+    void CargarDetalleVenta(DetalleVenta &dv, int NUMVENTA, int IDPRODUCTO, int CANTIDAD, bool opcionCarga);
 
     void MostrarDetalleVenta(DetalleVenta &dv);
 
     void BuscarDetalleVenta();
 
-    void GuardarRegistroDetalleVenta(DetalleVenta &dv, const char *nombreArchivo);//                 ||
+    void GuardarRegistroDetalleVenta(DetalleVenta &dv, bool opcionSeguir);
 
     void ListadoDetalleVentasPorNumeroDeVenta();
 
@@ -119,6 +119,10 @@ using namespace std;
     void MenuCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod);
 
     void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
+
+    double CalculoImporteTotal(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
+
+    int CalculoCantidadProductosSeleccionados(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
 
 
 /*---------

@@ -56,7 +56,7 @@ using namespace std;
         do{
         system("cls");
         TextoMenuCompra();
-        switch(SeleccionMenus(57,11,2,1)){
+        switch(SeleccionMenus(57,11,3,1)){
 
             case(0):{///////////PRODUCTOS/////////////
                 bool ban=true;
@@ -76,7 +76,11 @@ using namespace std;
             }
             break;
 
-            case(2):{///////////SALIDA///////////////
+            case(2):{///////////FINALIZAR/COMPRA///////////////
+                GuardarVentaCarrito(vecPrSelec,vecPrOrig);
+            }
+            break;
+            case(3):{///////////SALIDA///////////////
                 ban=false;
             }
             break;
@@ -210,7 +214,7 @@ using namespace std;
 
                 rlutil::showcursor();
                 if(CargarCliente(cl,0)==1){
-                GuardarRegistroCliente(cl, 1);
+                GuardarRegistroCliente(cl,true);
                 }
                 system("cls");
                 rlutil::hidecursor();
@@ -229,7 +233,7 @@ using namespace std;
                 }
 
                 CargarVenta(v, cl.GetCuit(), 0, 0);
-                GuardarRegistroVenta(v, "Ventas.dat");
+                GuardarRegistroVenta(v);
 
                 system("cls");
                 rlutil::hidecursor();
@@ -251,13 +255,13 @@ using namespace std;
                 break;
 
                 case(3):{/////////////guarda registro detalle de venta///////
-                DetalleVenta venDT;
+                DetalleVenta DT;
                 system("cls");
                 rlutil::showcursor();
-                CargarDetalleVenta(0, venDT);
+                CargarDetalleVenta(DT,0,0,0,false);
                 system("cls");
                 rlutil::hidecursor();
-                GuardarRegistroDetalleVenta(venDT, "DetalleVentas.dat");
+                GuardarRegistroDetalleVenta(DT,true);
                 }
                 break;
 
@@ -296,6 +300,8 @@ cout<<"Productos";
 rlutil::locate(58,12);
 cout<<"Carrito";
 rlutil::locate(58,13);
+cout<<"Finalizar Compra";
+rlutil::locate(58,14);
 cout<<"Volver";
 }
 
