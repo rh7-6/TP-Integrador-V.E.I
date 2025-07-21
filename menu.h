@@ -66,7 +66,7 @@ using namespace std;
   CLIENTES
   ---------*/
 
-    int CargarCliente(Cliente &cl);//  verifica si ya existe el cliente y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
+    int CargarCliente(Cliente &cl, bool opcionCarga);//  verifica si ya existe el cliente y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
 
     void MostrarCliente(Cliente &cl);
 
@@ -80,7 +80,7 @@ using namespace std;
   VENTAS
   ---------*/
 
-    void CargarVenta(Venta &v, const char *cuit, bool opcionFuncion);//(carrito=1 | carga simple o editar= 0) en caso de ingresar 0 podes ingresar una venta de forma manual o reingresar una existente.
+    void CargarVenta(Venta &v, const char *cuit, double IMPORTE, bool opcionFuncion);//(carrito=1 | carga simple o editar= 0) en caso de ingresar 0 podes ingresar una venta de forma manual o reingresar una existente.
                                                                      // En caso de ingresar 1 se establece automaticamente el numero de venta y podes ingresar los datos restantes de la nueva venta
     void MostrarVenta(Venta &v);
 
@@ -108,9 +108,15 @@ using namespace std;
     COMPRA
   ---------*/
 
-    vector<Producto> ListadoDeProductosCompra(int TipoProducto);
+    void CopiarYOrdenarProductos(vector<Producto> &vecPrMod);
 
+    void ListadoDeProductosCompra(vector<Producto> &vecPr);
 
+    int SeleccionDeProductoYCantidad(vector<Producto> &vecPrMod, vector<Producto> &vecPrSelec);
+
+    void ListadoDeProductosCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
+
+    void SeleccionCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod);
 
 
 

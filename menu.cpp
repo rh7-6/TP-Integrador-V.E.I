@@ -50,39 +50,39 @@ using namespace std;
     void comprar(){
 
         bool ban=true;
-        int IdYStock[25][2]{};
-        vector<Producto> vecPr;
+        vector<Producto> vecPrOrig;
+        vector<Producto> vecPrMod;
+        vector<Producto> vecPrSelec;
         do{
         system("cls");
         TextoMenuCompra();
         switch(SeleccionMenus(57,11,2,1)){
 
             case(0):{///////////PRODUCTOS/////////////
-            TextoTiposDeProducto();
-            int tipo=SeleccionMenus(56,8,9,1);tipo++;
+                bool ban=true;
 
-            vecPr= ListadoDeProductosCompra(tipo);
-            int TotalPr=vecPr.size();
-            int IndicePrSelec= SeleccionMenus(47,10,TotalPr-1,3); IndicePrSelec++;
-            system("cls");
+                do{
+                int tamVecPrMod=vecPrMod.size();
+                if(tamVecPrMod==0){CopiarYOrdenarProductos(vecPrMod); vecPrOrig=vecPrMod;}
 
-            int CantPrSelec= SeleccionCantidad(vecPr[IndicePrSelec].GetStock(),1);
-            vecPr[IndicePrSelec].SetStock(vecPr[IndicePrSelec].GetStock()-CantPrSelec);
+                if(SeleccionDeProductoYCantidad(vecPrMod,vecPrSelec)==-1){ban=false;}
 
-            system("pause");
-            system("cls");
+                system("pause");
+                system("cls");
+                }while(ban);
             }
             break;
 
             case(1):{///////////CARRITO//////////////
 
-            system("pause");
-            system("cls");
+                SeleccionCarrito(vecPrSelec,vecPrOrig,vecPrMod);
+                system("pause");
+                system("cls");
             }
             break;
 
             case(2):{///////////SALIDA///////////////
-            ban=false;
+                ban=false;
             }
             break;
             }
@@ -213,7 +213,7 @@ using namespace std;
                 system("cls");
 
                 rlutil::showcursor();
-                if(CargarCliente(cl)==1){
+                if(CargarCliente(cl,0)==1){
                 GuardarRegistroCliente(cl, 1);
                 }
                 system("cls");
@@ -228,11 +228,11 @@ using namespace std;
                 system("cls");
                 rlutil::showcursor();
 
-                if(CargarCliente(cl)==1){
+                if(CargarCliente(cl,0)==1){
                 GuardarRegistroCliente(cl, 0);
                 }
 
-                CargarVenta(v, cl.GetCuit(), 0);
+                CargarVenta(v, cl.GetCuit(), 0, 0);
                 GuardarRegistroVenta(v, "Ventas.dat");
 
                 system("cls");
@@ -473,7 +473,7 @@ cout<<"Volver";
         }while(!ban);
         system("cls");
         rlutil::showcursor();
-        return 12;
+        return -1;
     }
 
     int SeleccionCantidad(int Max, int Min){
@@ -487,6 +487,7 @@ cout<<"Volver";
         cout << "v";
         do{
 
+            if(cant<10){rlutil::locate(50,10);cout<<" ";}
             rlutil::locate(49,10);
             cout << cant;
             tecla = rlutil::getkey();
@@ -499,11 +500,16 @@ cout<<"Volver";
                break;
             case(15):///menos///
                cant--;
-               if(cant<Min){cant=Min;}
+               if(cant<Min){cant=Min;cant=Min;}
                break;
             case(1):///enter///
+                system("cls");
                 return cant;
+            case(0):
+                system("cls");
+                return -1;
             }
         }while(ban);
+        return -1;
     }
 

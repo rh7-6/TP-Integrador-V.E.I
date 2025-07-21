@@ -360,7 +360,7 @@ default:{}
 
                                 ///CLIENTE///
 //------------------------------------------------------------------------//
-    int CargarCliente(Cliente &cl){                                                           ///mejorar diseño pendiente///
+    int CargarCliente(Cliente &cl, bool opcionCarga){                                                           ///mejorar diseño pendiente///
 
         ArchivoClientes archCl("Clientes.dat");
 
@@ -371,7 +371,11 @@ default:{}
         rlutil::locate(40, 5);
         cout<<"Ingrese el cuit del cliente: ";
         cin>>cuil; LimpiarBuffer();
-        if(int posCl =archCl.BuscarCliente(cuil)>=0){
+
+        int posCl =archCl.BuscarCliente(cuil);
+        if(posCl>=0){
+
+            if(opcionCarga){archCl.LeerCliente(posCl, cl);return 0;}
             system("cls");
             rlutil::locate(34,5);
             cout << "Ya existe un cliente con el cuit:" << cuil << " Desea editarlo?" << endl;
@@ -398,48 +402,35 @@ default:{}
 
 
         system("cls");
-        rlutil::locate(40, 5);
-        cout<<"Ingrese el nombre del cliente: ";
+        rlutil::locate(40, 5); cout<<"Ingrese el nombre del cliente: ";
         cin.getline(nombre, 31);
         cl.SetNombre(nombre);
-        cout<<endl;
 
         system("cls");
-        rlutil::locate(40, 5);
-        cout<<"Ingrese el apellido del cliente: ";
+        rlutil::locate(40, 5); cout<<"Ingrese el apellido del cliente: ";
         cin.getline(apellido, 31);
         cl.SetApellido(apellido);
-        cout<<endl;
 
         system("cls");
-        rlutil::locate(40, 5);
-        cout<<"Ingrese el telefono del cliente: ";
+        rlutil::locate(40, 5); cout<<"Ingrese el telefono del cliente: ";
         cin.getline(telefono, 31);
         cl.SetTelefono(telefono);
-        cout<<endl;
 
         system("cls");
-        rlutil::locate(40, 5);
-        cout<<"Ingrese el mail del cliente: ";
+        rlutil::locate(40, 5); cout<<"Ingrese el mail del cliente: ";
         cin.getline(mail, 31);
         cl.SetMail(mail);
-        cout<<endl;
 
         system("cls");
-        rlutil::locate(40, 5);
-        cout<<"Ingrese la direccion del cliente: ";
+        rlutil::locate(40, 5); cout<<"Ingrese la direccion del cliente: ";
         cin.getline(direccion, 31);
         cl.SetDireccion(direccion);
-        cout<<endl;
 
 
         system("cls");
-        rlutil::locate(45, 5);
-        cout<<"Selecione el tipo de cliente";
-            rlutil::locate(57,8);
-            cout<<"particular";
-            rlutil::locate(57,9);
-            cout<<"empresa";
+        rlutil::locate(45, 5); cout<<"Selecione el tipo de cliente";
+            rlutil::locate(57,8); cout<<"Particular";
+            rlutil::locate(57,9); cout<<"Empresa";
             switch(SeleccionMenus(55,8,1,1))
                     {
                     case(0):{
@@ -453,14 +444,11 @@ default:{}
                     }
                     break;
                     }
-                    cout<<endl;
+
         system("cls");
-        rlutil::locate(43, 5);
-        cout <<"Ingrese estado del cliente ";
-            rlutil::locate(54,8);
-            cout<<"activo";
-            rlutil::locate(54,9);
-            cout<<"inactivo";
+        rlutil::locate(43, 5); cout <<"Seleccione estado del cliente ";
+            rlutil::locate(54,8); cout<<"Activo";
+            rlutil::locate(54,9); cout<<"Inactivo";
             switch(SeleccionMenus(53,8,1,1))
                     {
                     case(0):{
@@ -495,6 +483,7 @@ default:{}
        {
        cout<<"tipo de cliente Empresa"<<endl;
        }
+       cout<<"//////////////////////////////////////////////"<<endl;
     }
 
     void BuscarCliente(){
@@ -504,15 +493,13 @@ default:{}
         string Cuit;
         int pos;
 
-        rlutil::locate(41,5);
-        cout << "Ingrese el CUIT del cliente a buscar: ";
+        rlutil::locate(41,5); cout << "Ingrese el CUIT del cliente a buscar: ";
         cin >> Cuit; LimpiarBuffer();
         cout << endl;
 
         if((pos=archCl.BuscarCliente(Cuit.c_str()))<0){
             system("cls");
-            rlutil::locate(41,5);
-            cout << "Cliente inexistente reingrese Cuit: ";
+            rlutil::locate(41,5); cout << "Cliente inexistente reingrese Cuit: ";
             cin >> Cuit; LimpiarBuffer();
         }else{
 
@@ -548,7 +535,7 @@ default:{}
                     break;
                     }
             if(seguir){
-            seguir=CargarCliente(cl);
+            seguir=CargarCliente(cl,0);
                 }
             }
             }while(seguir);
@@ -575,8 +562,7 @@ default:{}
         for(int i; i<cantReg; i++){
         archCl.LeerCliente(i, cl);
             if(cl.GetEstado()==estado){
-                //MostrarCliente(cl);--------->inmprime una vez mas al final
-            cout<<"//////////////////////////////////////////////"<<endl;//no borrar
+                //MostrarCliente(cl);
                 ClOrdenados.push_back(cl);
                 }
             }
@@ -601,7 +587,7 @@ default:{}
 
                                 ///VENTA///
 //------------------------------------------------------------------------//
-    void CargarVenta(Venta &v, const char *cuit, bool opcionCarga){                          ///mejorar diseño pendiente///
+    void CargarVenta(Venta &v, const char *cuit, double IMPORTE, bool opcionCarga){                          ///mejorar diseño pendiente///
 
         ArchivoVentas archV("Ventas.dat");
 
@@ -619,12 +605,9 @@ default:{}
 
             bool opcion;
             system("cls");
-            rlutil::locate(35,5);
-            cout << "Desea igresar una venta nueva o editar una existente?" << endl;
-            rlutil::locate(57,8);
-            cout<<"Nueva Venta";
-            rlutil::locate(57,9);
-            cout<<"Editar Existente";
+            rlutil::locate(35,5); cout << "Desea igresar una venta nueva o editar una existente?" << endl;
+            rlutil::locate(57,8); cout << "Nueva Venta";
+            rlutil::locate(57,9); cout << "Editar Existente";
                     switch(SeleccionMenus(55, 8, 1, 1))
                     {
                     case(0):{
@@ -642,17 +625,14 @@ default:{}
                 numeroV=cantReg+1;
             }else{
                 system("cls");
-                rlutil::locate(35,5);
-                cout << "Ingrese numero de venta a editar: ";
+                rlutil::locate(35,5); cout << "Ingrese numero de venta a editar: ";
                 cin >> numeroV; LimpiarBuffer();
 
                 while(archV.BuscarVenta(numeroV-1)<0){
 
                     system("cls");
-                    rlutil::locate(43,5);
-                    cout << "Numero de venta inexistente" << endl;
-                    rlutil::locate(43,6);
-                    cout << "Reingrese numero de venta: ";
+                    rlutil::locate(43,5); cout << "Numero de venta inexistente" << endl;
+                    rlutil::locate(43,6); cout << "Reingrese numero de venta: ";
                     cin >> numeroV; LimpiarBuffer();
                 }
             }
@@ -662,44 +642,37 @@ default:{}
         cout << endl;
 
         system("cls");
-        rlutil::locate(40,5);
-        cout << "Ingrese dia de la venta: ";
+        rlutil::locate(40,5);cout << "Ingrese dia de la venta: ";
         cin >> dia; LimpiarBuffer();
-        cout << endl;
 
         system("cls");
-        rlutil::locate(40,5);
-        cout << "Ingrese mes de la venta:  ";
+        rlutil::locate(40,5); cout << "Ingrese mes de la venta:  ";
         cin >> mes; LimpiarBuffer();
-        cout << endl;
 
         system("cls");
-        rlutil::locate(40,5);
-        cout << "Ingrese anio de la venta: ";
+        rlutil::locate(40,5); cout << "Ingrese anio de la venta: ";
         cin >> siglo; LimpiarBuffer();
         v.SetFechaVenta(dia,mes,siglo);
         cout << endl;
 
+        if(opcionCarga){
+            v.SetImporteVenta(IMPORTE);
+        }else{
         system("cls");
-        rlutil::locate(40,5);
-        cout << "Ingrese importe de la venta: $";
+        rlutil::locate(40,5); cout << "Ingrese importe de la venta: $";
         cin >> importe; LimpiarBuffer();
-        while(v.SetImporteVenta(importe)==0)
-            {
+        while(v.SetImporteVenta(importe)==0){
                 system("cls");
-                rlutil::locate(40,5);
-                cout<<"el inporte de venta no puede ser 0 o menor a 0: ";
+                rlutil::locate(40,5); cout << "el importe de venta no puede ser 0 o menor a 0: ";
                 cin>>importe; LimpiarBuffer();
             }
         cout << endl;
+        }
 
         system("cls");
-        rlutil::locate(47,5);
-        cout << "Seleccione el estado de venta";
-            rlutil::locate(57,8);
-            cout<<"Activo";
-            rlutil::locate(57,9);
-            cout<<"Inactivo";
+        rlutil::locate(47,5); cout << "Seleccione el estado de venta";
+            rlutil::locate(57,8); cout << "Activo";
+            rlutil::locate(57,9); cout << "Inactivo";
                     switch(SeleccionMenus(55,8,1,1))
                     {
                     case(0):{
@@ -1096,37 +1069,38 @@ default:{}
 
                                 ///COMPRA///
 //------------------------------------------------------------------------//
-    vector<Producto> ListadoDeProductosCompra(int TipoProducto){
+    void CopiarYOrdenarProductos(vector<Producto> &vecPrMod){
 
         ArchivoProductos archPr("Productos.dat");
         int cantReg=archPr.CantidadRegistros(sizeof(Producto));
 
-        vector<Producto> PrOrdenados;
-
+        TextoTiposDeProducto();
+        int tipo=SeleccionMenus(56,8,9,1);tipo++;
         system("cls");
 
+        int tamVecProd=vecPrMod.size();
         Producto pr;
         for(int i=0; i<cantReg; i++){
             archPr.LeerProducto(i, pr);
-            if(pr.GetTipoEquipo()==TipoProducto&&pr.GetEstado()==1){
+            if(pr.GetTipoEquipo()==tipo&&pr.GetEstado()==1&&pr.GetStock()>0){
                 //MostrarProducto(pr);
-                PrOrdenados.push_back(pr);
+                vecPrMod.push_back(pr);
                 }
             }
 
         bool ban=true;
-        int tamVecProd=PrOrdenados.size();
+        tamVecProd=vecPrMod.size();
         while(ban){
 
                 int contPrOrdenados=0;
             for(int i=0; i<tamVecProd; i++){
 
                 if(i!=tamVecProd-1){
-                    if(PrOrdenados[i].GetStock()<PrOrdenados[i+1].GetStock()){
+                    if(vecPrMod[i].GetStock()<vecPrMod[i+1].GetStock()){
                         Producto p;
-                        p= PrOrdenados[i+1];
-                        PrOrdenados[i+1]=PrOrdenados[i];
-                        PrOrdenados[i]=p;
+                        p= vecPrMod[i+1];
+                        vecPrMod[i+1]=vecPrMod[i];
+                        vecPrMod[i]=p;
                         contPrOrdenados++;
                     }
                 }
@@ -1136,21 +1110,132 @@ default:{}
             }
         }
 
-        int SaltDeLin=0;
-        for(int i=0; i<tamVecProd; i++){
+    }
 
-            if(i!=0){SaltDeLin+=3;}
+    void ListadoDeProductosCompra(vector<Producto> &vecPr){
+
+        int tamVecPr=vecPr.size();
+        int SaltDeLin=0;
+
+        if(tamVecPr==0){
+            rlutil::locate(48,9);
+            cout << "Sin Productos que mostrar" << endl;
+        }
+
+        rlutil::locate(42,9);
+        cout << "|------------------------------------------------|" << endl;
+        for(int i=0; i<tamVecPr; i++){
+
+            if(i!=0){SaltDeLin+=4;}
             rlutil::locate(48,10+SaltDeLin);
-            cout << PrOrdenados[i].GetMarca()<< " " <<PrOrdenados[i].GetNombreProducto() << endl;
+            cout << vecPr[i].GetMarca()<< " " <<vecPr[i].GetNombreProducto() << endl;
             rlutil::locate(48,11+SaltDeLin);
-            cout << "Precio: " << PrOrdenados[i].GetPrecio() << endl;
+            cout << "Precio: " << vecPr[i].GetPrecio() << endl;
             rlutil::locate(48,12+SaltDeLin);
-            cout << "Stock: " << PrOrdenados[i].GetStock() << endl;
-            rlutil::locate(48,13+SaltDeLin);
+            cout << "Stock: " << vecPr[i].GetStock() << endl;
+            rlutil::locate(42,13+SaltDeLin);
             cout << "|------------------------------------------------|" << endl;
         }
-        return PrOrdenados;
+        SaltDeLin+=4;
+        rlutil::locate(48,10+SaltDeLin);
+        cout << "<SALIR>" << endl;
     }
+
+    int SeleccionDeProductoYCantidad(vector<Producto> &vecPrMod, vector<Producto> &vecPrSelec){
+
+        ListadoDeProductosCompra(vecPrMod);
+        int TotalPr=vecPrMod.size();
+        int IndicePrSelec= SeleccionMenus(47,10,TotalPr,4);
+        if(IndicePrSelec==TotalPr){return-1;}
+        system("cls");
+
+        int maximo=vecPrMod[IndicePrSelec].GetStock();
+        int CantPrSelec= SeleccionCantidad(maximo,1);
+        if(CantPrSelec==0){return-1;};
+        vecPrMod[IndicePrSelec].SetStock(vecPrMod[IndicePrSelec].GetStock()-CantPrSelec);
+
+        bool ban=true;
+        for(int i=0; i<vecPrSelec.size(); i++){
+            if(vecPrMod[IndicePrSelec].GetIdProducto()==vecPrSelec[i].GetIdProducto()){
+                vecPrSelec[i]=vecPrMod[IndicePrSelec];
+                ban=false;
+            }
+        }
+        if(ban){vecPrSelec.push_back(vecPrMod[IndicePrSelec]);}
+    }
+
+    void ListadoDeProductosCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){
+
+        int tamVecPr=vecPrSelec.size();
+        int SaltDeLin=0, cont=0;
+        double ImporteTotal=0;
+
+        if(tamVecPr==0){
+            rlutil::locate(48,9);
+            cout << "Carrito Vacio" << endl;
+            return;
+        }
+
+        rlutil::locate(42,9);
+        cout << "|------------------------------------------------|" << endl;
+        for(int i=0; i<tamVecPr; i++){
+
+            int cantPrSelec=vecPrOrg[i].GetStock()-vecPrSelec[i].GetStock();
+
+            if(vecPrSelec[i].GetEstado()==true){
+
+                cont++;
+                if(i!=0&&cont>1){SaltDeLin+=4;}
+                ImporteTotal+=vecPrSelec[i].GetPrecio()*cantPrSelec;
+                rlutil::locate(48,10+SaltDeLin);
+                cout << vecPrSelec[i].GetMarca()<< " " <<vecPrSelec[i].GetNombreProducto() << endl;
+                rlutil::locate(48,11+SaltDeLin);
+                cout << "Precio: " << vecPrSelec[i].GetPrecio() << endl;
+                rlutil::locate(48,12+SaltDeLin);
+                cout << "Cantidad: " << cantPrSelec << endl;
+                rlutil::locate(42,13+SaltDeLin);
+                cout << "|------------------------------------------------|" << endl;
+            }
+        }
+
+        SaltDeLin+=1;
+        rlutil::locate(48,13+SaltDeLin);
+        cout << "<SALIR>          |IMPORTE TOTAL:" << ImporteTotal << "|" << endl;
+    }
+
+    void SeleccionCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod){
+
+        bool ban=true;
+
+        int TotalPr=vecPrSelec.size();
+        do{
+            ListadoDeProductosCarrito(vecPrSelec,vecPrOrg);
+            int IndicePrSelec= SeleccionMenus(47,10,TotalPr,4);
+            if(IndicePrSelec==TotalPr){return;}
+
+            system("cls");
+
+            rlutil::locate(48,10);
+            cout << "Eliminar producto?" << endl;
+            rlutil::locate(48,11);
+            cout << "No" << endl;
+            rlutil::locate(48,12);
+            cout << "Si" << endl;
+            int opcion=SeleccionMenus(47,11,1,1);
+            switch(opcion){
+            case(1):
+                vecPrSelec[IndicePrSelec].SetEstado(false);
+                for(int i=0; i<vecPrMod.size(); i++){
+                    if(vecPrMod[i].GetIdProducto()==vecPrSelec[IndicePrSelec].GetIdProducto()){
+                        vecPrMod[i]=vecPrOrg[i];
+                    }
+                }
+                TotalPr--;
+            break;
+            }
+        }while(ban);
+    }
+
 
 
                                 ///INFORMES///
