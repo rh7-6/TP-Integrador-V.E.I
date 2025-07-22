@@ -1393,7 +1393,8 @@ default:{}
 //------------------------------------------------------------------------//
 
     void RecaudacionAnual(){
-     int anio=0,i=0,totalanual=0;
+     int anio=0,i=0;
+     float totalanual=0, importe=0;
      Fecha fech;
      Venta ven;
      ArchivoVentas archV("Ventas.dat");
@@ -1403,16 +1404,15 @@ default:{}
         for(i=0;i<cantReg;i++)
         {
         ven=archV.LeerVenta(i);
-        MostrarVenta(ven);
-        system("pause"); ///probando///no borrar
         fech=ven.GetFecha();
         if(fech.getAnio()==anio)
         {
-        MostrarVenta(ven);
+        importe=ven.GetImporteVenta();
+        totalanual=totalanual+importe;
+        }
+        }
+        cout<<"Lo que se recudo en total del "<<anio<<" es de: $"<<totalanual<<endl;
         system("pause");
-        }
-        }
-
 
     }
 
