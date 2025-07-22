@@ -188,8 +188,10 @@ using namespace std;
                         RecaudacionAnual();
                     break;
                     case(1):
+                        RecaudacionCliente();
                     break;
                     case(2):
+                        RecaudacionEquipo();
                     break;
                     case(3):
                     break;
@@ -397,7 +399,7 @@ cout<<"Volver";
         rlutil::locate(57,15);
         cout << "Fuentes" << endl;
         rlutil::locate(57,16);
-        cout << "Monitores" << endl;
+        cout << "Almacenamiento" << endl;
         rlutil::locate(57,17);
         cout << "Perifericos" << endl;
     }

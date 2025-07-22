@@ -132,6 +132,10 @@ using namespace std;
   ---------*/
 void RecaudacionAnual();
 
+void RecaudacionCliente();
+
+void RecaudacionEquipo();
+
 
   void LimpiarBuffer();
 

@@ -1330,7 +1330,8 @@ default:{}
      Venta ven;
      ArchivoVentas archV("Ventas.dat");
     int cantReg= archV.CantidadRegistros(sizeof(Venta));
-        cout<<"Ingrese el anio que desea consultar: "<<endl;
+        rlutil::locate(45,5);
+        cout<<"Ingrese el anio que desea consultar: ";
         cin>>anio; LimpiarBuffer();
         for(i=0;i<cantReg;i++)
         {
@@ -1342,14 +1343,96 @@ default:{}
         totalanual=totalanual+importe;
         }
         }
+        if(totalanual==0)
+        {
+        system("cls");
+        rlutil::locate(47,5);
+        cout<<"No se recaudo nada el anio "<<anio;
+        rlutil::getkey();
+        }
+        else
+        {
+        system("cls");
+        rlutil::locate(35,5);
         cout<<"Lo que se recudo en total del "<<anio<<" es de: $"<<totalanual<<endl;
-        system("pause");
+        rlutil::getkey();
+        }
+    }
+
+    void RecaudacionCliente(){
+    int i=0;
+    char cuit[50];
+     float total=0, importe=0;
+     Venta ven;
+     ArchivoVentas archV("Ventas.dat");
+    int cantReg= archV.CantidadRegistros(sizeof(Venta));
+        rlutil::locate(45,5);
+        cout<<"Ingrese el cuil del cliente: ";
+        cin>>cuit; LimpiarBuffer();
+        for(i=0;i<cantReg;i++)
+        {
+        ven=archV.LeerVenta(i);
+        if(strcmp(ven.GetCuit(),cuit)==0)
+        {
+        importe=ven.GetImporteVenta();
+        total=total+importe;
+        }
+        }
+        if(total==0)
+        {
+        system("cls");
+        rlutil::locate(47,5);
+        cout<<"No se recaudo nada con el cliente "<<cuit;
+        rlutil::getkey();
+        }
+        else
+        {
+        system("cls");
+        rlutil::locate(35,5);
+        cout<<"Lo que se recudo en total del cliente "<<cuit<<" es de: $"<<total<<endl;
+        rlutil::getkey();
+        }
 
     }
 
+    void RecaudacionEquipo(){
 
+    int i=0,equipo=0;
+    float total=0, importe=0;
+    DetalleVenta deven;
 
+    ArchivoDetalleVentas archD("DetalleVentas.dat");
+    int cantReg= archD.CantidadRegistros(sizeof(DetalleVenta));
 
+        rlutil::locate(45,5);
+        cout<<"seleccione el tipo de producto";
+        TextoTiposDeProducto();
+        equipo=SeleccionMenus(55,8,9,1);
+        for(i=0;i<cantReg;i++)
+        {
+        deven=archD.LeerDetalleDeVenta(i);
+        if(deven.GetIdProductoDT()==equipo)
+        {
+        importe=deven.GetPrecioProducto();
+        total=total+importe;
+        }
+        }
+        if(total==0)
+        {
+        system("cls");
+        rlutil::locate(47,5);
+        cout<<"No se recaudo nada con el producto";
+        rlutil::getkey();
+        }
+        else
+        {
+        system("cls");
+        rlutil::locate(35,5);
+        cout<<"Lo que se recudo en total del prodcuto es de: $"<<total<<endl;
+        rlutil::getkey();
+        }
+
+    }
 
 
 
