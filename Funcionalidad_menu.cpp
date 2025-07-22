@@ -671,6 +671,7 @@ default:{}
     cout<<"El numero de venta es: "<<Venta.GetNumeroVenta()<<endl;
     cout<<"El cuil de la venta es: "<<Venta.GetCuit()<<endl;
     Venta.MostrarVentafecha();
+    cout << std::fixed << std::setprecision(0);
     cout<<"El importe de la venta es: "<<Venta.GetImporteVenta()<<endl;
     cout<<"//////////////////////////////////////////////"<<endl;
     }
@@ -932,6 +933,7 @@ default:{}
 
     void MostrarDetalleVenta(DetalleVenta &dv){
        cout<<"El numero de venta es: "<<dv.GetNumeroVentaDT()<<endl;
+       cout << std::fixed << std::setprecision(0);
        cout<<"El precio del producto: $"<<dv.GetPrecioProducto()<<endl;
        cout<<"El numero de id del producto es: "<<dv.GetIdProductoDT()<<endl;
        cout<<"La cantidad de productos comprados: "<<dv.GetCantidad()<<endl;
