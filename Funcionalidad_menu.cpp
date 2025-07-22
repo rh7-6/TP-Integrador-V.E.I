@@ -698,6 +698,7 @@ default:{}
     cout<<"El cuil de la venta es: "<<Venta.GetCuit()<<endl;
     Venta.MostrarVentafecha();
     cout<<"El importe de la venta es: "<<Venta.GetImporteVenta()<<endl;
+    cout<<"//////////////////////////////////////////////"<<endl;
     }
 
     void BuscarVenta(int opcion){
@@ -734,7 +735,6 @@ default:{}
     case 1:{
 
         ArchivoClientes archCl("Clientes.dat");
-        Cliente cl;
         char CUIT[30]{};
 
         system("cls");
@@ -751,8 +751,10 @@ default:{}
             cin >> CUIT; LimpiarBuffer();
         }
 
-        cl=archCl.LeerCliente(pos);
-        MostrarCliente(cl);
+        for(int i=0; i<cantReg; i++){
+            v=archV.LeerVenta(i);
+            if(strcmp(v.GetCuit(),CUIT)==0){MostrarVenta(v);}
+        }
         system("pause");
         system("cls");
     }
@@ -937,6 +939,7 @@ default:{}
             p=archP.LeerProducto(posP);
             dv.SetNumeroVentaDT(NUMVENTA);  //  Carrito
             dv.SetIdProductoDT(IDPRODUCTO); //
+            dv.SetCantidad(CANTIDAD);
             dv.SetPrecioProductoDT(p.GetPrecio());
         }else{
             do{
@@ -983,6 +986,7 @@ default:{}
        cout<<"El precio del producto: $"<<dv.GetPrecioProducto()<<endl;
        cout<<"El numero de id del producto es: "<<dv.GetIdProductoDT()<<endl;
        cout<<"La cantidad de productos comprados: "<<dv.GetCantidad()<<endl;
+       cout<<"//////////////////////////////////////////////"<<endl;
        }
 
     void GuardarRegistroDetalleVenta(DetalleVenta &dv, bool opcionSeguir){
