@@ -62,6 +62,8 @@ using namespace std;
 
     void ListadoDeProductos(bool opcion); // opcion1= ordenados por precio, opcion0= ordenados por stock
 
+    void CargaDirecta();//carga de manera directa el producto copiado//
+
 /*---------
   CLIENTES
   ---------*/

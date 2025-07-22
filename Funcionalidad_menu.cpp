@@ -359,6 +359,22 @@ default:{}
 
     }
 
+    void CargaDirecta(){
+     ArchivoProductos archP("Productos.dat");
+     Producto p;
+
+      p.CargarProducto();
+      if(archP.GuardarProducto(p))
+        {
+         cout<<"producto guardado correctamente";
+        }
+      else
+        {
+         cout<<"fallo al guradardar el producto";
+        }
+
+}
+
                                 ///CLIENTE///
 //------------------------------------------------------------------------//
     int CargarCliente(Cliente &cl, bool opcionCarga){

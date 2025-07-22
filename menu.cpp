@@ -245,10 +245,25 @@ using namespace std;
                 system("cls");
 
                 rlutil::showcursor();
+
+                rlutil::locate(25,4);
+                cout<<"Nota:la carga directa es en caso de que tengas el producto copiado";
+
+                rlutil::locate(50,6);
+                cout<<"carga directa";
+                rlutil::locate(50,7);
+                cout<<"carga manual";
+
+
+                if(SeleccionMenus(48,6,1,1)==0){
+                CargaDirecta();
+                }
+                else
+                {
                 if(CargarProducto(p)==1){
                 GuardarRegistroProducto(p);
                 }
-
+                }
                 system("cls");
                 rlutil::hidecursor();
                 }
