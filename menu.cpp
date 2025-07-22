@@ -493,19 +493,19 @@ cout<<"Volver";
         return -1;
     }
 
-    int SeleccionCantidad(int Max, int Min){
+    int SeleccionCantidad(int ejeX, int ejeY, int Max, int Min){
 
         rlutil::hidecursor();
-        int cant=1, tecla;
+        int cant=Min, tecla;
         bool ban=true;
-        rlutil::locate(48,10);
+        rlutil::locate(ejeX,ejeY);
         cout << "^";
-        rlutil::locate(48,11);
+        rlutil::locate(ejeX,ejeY+1);
         cout << "v";
         do{
 
-            if(cant<10){rlutil::locate(50,10);cout<<" ";}
-            rlutil::locate(49,10);
+            if(cant<10){rlutil::locate(ejeX+2,ejeY);cout<<" ";}
+            rlutil::locate(ejeX+1,ejeY);
             cout << cant;
             tecla = rlutil::getkey();
 

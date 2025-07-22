@@ -74,6 +74,8 @@ using namespace std;
 
         rlutil::locate(20,5);
         cout<<"Ingrese la descripcion del producto(terminada en el caracter #): "<<endl;
+        rlutil::locate(20,6);
+        cout<<" ";
         cin.getline(descripcion,500, '#'); LimpiarBuffer();
         p.SetDescripcion(descripcion);
         cout<<endl;
@@ -534,40 +536,27 @@ default:{}
             archCl.GuardarCliente(cl);
             if(opcionSeg){
             system("cls");
-            rlutil::locate(45,5);
-            cout << "Desea ingresar otro cliente?";
-            rlutil::locate(56,7);
-            cout<<"si";
-            rlutil::locate(56,8);
-            cout<<"no";
-                    switch(SeleccionMenus(54,7,1,1))
-                    {
-                    case(0):{
-                    seguir=1;
-                    }
+            rlutil::locate(45,5); cout << "Desea ingresar otro cliente?";
+            rlutil::locate(56,7); cout<< "si";
+            rlutil::locate(56,8); cout<< "no";
+                    switch(SeleccionMenus(54,7,1,1)){
+                    case(0):{seguir=1;}
                     break;
-                    case(1):{
-                    seguir=0;
-                    }
+                    case(1):{seguir=0;}
                     break;
                     }
-            if(seguir){
-            seguir=CargarCliente(cl,0);
-                }
+            if(seguir){seguir=CargarCliente(cl,0);}
             }
-            }while(seguir);
-        }
+        }while(seguir);
+    }
 
     void ListadoDeClientes(){
 
         system("cls");
         bool estado;
-        rlutil::locate(40,5);
-        cout << "Selecione el estado del cliente" << endl;
-        rlutil::locate(50,8);
-        cout<<"Inactivos";
-        rlutil::locate(50,9);
-        cout<<"Activos";
+        rlutil::locate(40,5); cout << "Selecione el estado del cliente" << endl;
+        rlutil::locate(50,8); cout<<"Inactivos";
+        rlutil::locate(50,9); cout<<"Activos";
         estado=SeleccionMenus(48,8,1,1);
 
         ArchivoClientes archCl("Clientes.dat");
@@ -578,23 +567,16 @@ default:{}
         Cliente cl;
         for(int i; i<cantReg; i++){
         archCl.LeerCliente(i, cl);
-            if(cl.GetEstado()==estado){
-                //MostrarCliente(cl);
-                ClOrdenados.push_back(cl);
-                }
+            if(cl.GetEstado()==estado){ClOrdenados.push_back(cl);}
             }
 
         char abc[54]{'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'Ñ', 'ñ', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z'};
 
         int tamVecCl= ClOrdenados.size();
-
             for(int i=0; i<54; i++){
                 for(int a=0; a<tamVecCl; a++){
-
                     string Apellido= ClOrdenados[a].GetApellido();
-                    if(Apellido[0]==abc[i]){
-                            MostrarCliente(ClOrdenados[a]);
-                    }
+                    if(Apellido[0]==abc[i]){MostrarCliente(ClOrdenados[a]);}
                 }
             }
 
@@ -725,7 +707,6 @@ default:{}
 
         switch(opcion){
     case 0:{
-
         int numVenta;
         system("cls");
         rlutil::locate(35,5);
@@ -740,30 +721,26 @@ default:{}
         }
         for(int i=0; i<cantReg; i++){
             v= archV.LeerVenta(i);
-            if(v.GetNumeroVenta()==numVenta){
-                MostrarVenta(v);
-            }
+            if(v.GetNumeroVenta()==numVenta){MostrarVenta(v);}
         }
     }
     system("pause");
     system("cls");
     break;
-    case 1:{
 
+    case 1:{
         ArchivoClientes archCl("Clientes.dat");
         char CUIT[30]{};
 
         system("cls");
-        rlutil::locate(50,5);
-        cout << "Ingrese CUIT: ";
+        rlutil::locate(50,5); cout << "Ingrese CUIT: ";
         cin >> CUIT; LimpiarBuffer();
         cout << endl;
 
         int pos;
         while((pos=archCl.BuscarCliente(CUIT))<0){
             system("cls");
-            rlutil::locate(40,5);
-            cout << "Cliente inexistente reingrese CUIT: ";
+            rlutil::locate(40,5); cout << "Cliente inexistente reingrese CUIT: ";
             cin >> CUIT; LimpiarBuffer();
         }
 
@@ -775,79 +752,38 @@ default:{}
         system("cls");
     }
     break;
+
     case 2:{
         system("cls");
         vector<Venta> vecVtOrdenadas;
         int Dia1, Mes1, Anio1, Dia2, Mes2, Anio2;
 
-        rlutil::locate(40,5);
-        cout << "Ingrese la fecha inicial del rango: " << endl;
-        rlutil::locate(50,6);
-        cout << "Dia: ";
-        cin >> Dia1; LimpiarBuffer();
-        while(Dia1<1||Dia1>31){
-            rlutil::locate(70,6);
-            cout<<"        ";
-            rlutil::locate(40,6);
-            cout << "Ingrese un dia valido(1 a 31):";
-            cin >> Dia1; LimpiarBuffer();
-        }
-        rlutil::locate(50,7);
-        cout << "Mes: ";
-        cin >> Mes1; LimpiarBuffer();
-        while(Mes1<1||Mes1>12){
-            rlutil::locate(70,7);
-            cout<<"        ";
-            rlutil::locate(40,7);
-            cout << "Ingrese un mes valido(1 a 12): ";
-            cin >> Mes1; LimpiarBuffer();
-        }
-        rlutil::locate(50,8);
-        cout << "Anio: ";
-        cin >> Anio1; LimpiarBuffer();
-        while(Anio1<2020||Anio1>2028){
-             rlutil::locate(70,8);
-            cout<<"           ";
-            rlutil::locate(40,8);
-            cout << "Ingrese anio valido(2020 a 2028): ";
-            cin >> Anio1; LimpiarBuffer();
-        }
+        rlutil::locate(40,5); cout<<"Seleccione la fecha inicial del rango: "<<endl;
+        rlutil::locate(40,6); cout<<"Dia: ";
+        Dia1=SeleccionCantidad(45,6,31,1);
+
+        rlutil::locate(40,6); cout<<"Mes: ";
+        Mes1=SeleccionCantidad(45,6,12,1);
+
+        rlutil::locate(40,6); cout<<"Anio: ";
+        Anio1=SeleccionCantidad(45,6,2025,2022);
+
         cout << endl;
         Fecha fMin(Dia1,Mes1,Anio1);
+        system("cls");
         //----------------------------------------------------//
-        rlutil::locate(40,9);
-        cout << "Ingrese la fecha final del rango: " << endl;
-        rlutil::locate(50,10);
-        cout << "Dia: ";
-        cin >> Dia2; LimpiarBuffer();
-        while(Dia2<1||Dia2>31){
-            rlutil::locate(70,10);
-            cout<<"        ";
-            rlutil::locate(40,10);
-            cout << "Ingrese un dia valido(1 a 31): ";
-            cin >> Dia2; LimpiarBuffer();
-        }
-        rlutil::locate(50,11);
-        cout << "Mes: ";
-        cin >> Mes2; LimpiarBuffer();
-        while(Mes2<1||Mes2>12){
-            rlutil::locate(70,11);
-            cout<<"        ";
-            rlutil::locate(40,11);
-            cout << "Ingrese un mes valido(1 a 12): ";
-            cin >> Mes2; LimpiarBuffer();
-        }
-        rlutil::locate(50,12);
-        cout << "Anio: ";
-        cin >> Anio2; LimpiarBuffer();
-        while(Anio2<2020||Anio2>2028){
-            rlutil::locate(70,12);
-            cout<<"        ";
-            rlutil::locate(40,12);
-            cout << "Ingrese anio valido(2020 a 2028): ";
-            cin >> Anio2; LimpiarBuffer();
-        }
+
+        rlutil::locate(40,5); cout<<"Seleccione la fecha final del rango: "<<endl;
+        rlutil::locate(40,6); cout<<"Dia: ";
+        Dia2=SeleccionCantidad(45,6,31,1);
+
+        rlutil::locate(40,6); cout<<"Mes: ";
+        Mes2=SeleccionCantidad(45,6,12,1);
+
+        rlutil::locate(40,6); cout<<"Anio: ";
+        Anio2=SeleccionCantidad(45,6,2025,2022);
         cout << endl;
+
         Fecha fMax(Dia2,Mes2,Anio2);
 
         Fecha fAct;
@@ -1180,7 +1116,8 @@ default:{}
         system("cls");
 
         int maximo=vecPrMod[IndicePrSelec].GetStock();
-        int CantPrSelec= SeleccionCantidad(maximo,1);
+        rlutil::locate(48,10); cout << "Seleccione Cantidad:";
+        int CantPrSelec= SeleccionCantidad(48,11,maximo,0);
         if(CantPrSelec==0){return-1;};
 
         vecPrMod[IndicePrSelec].SetStock(vecPrMod[IndicePrSelec].GetStock()-CantPrSelec);
