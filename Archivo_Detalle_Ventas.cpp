@@ -6,6 +6,11 @@ using namespace std;
 
         int pos=BuscarDetalleDeVenta(dv.GetNumeroVentaDT(), dv.GetIdProductoDT());
         if(pos>=0){
+
+            DetalleVenta dvOrig;
+            dvOrig=LeerDetalleDeVenta(pos);
+            dv.SetCantidad(dv.GetCantidad()+dvOrig.GetCantidad());
+
             FILE *pfile;
             pfile = fopen(GetNombreArchivo(),"rb+");
             if(pfile == NULL){
