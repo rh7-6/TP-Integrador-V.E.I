@@ -72,9 +72,8 @@ using namespace std;
         cout<<endl;
         system("cls");
 
-        rlutil::locate(20,5);
+        rlutil::locate(2,5);
         cout<<"Ingrese la descripcion del producto(terminada en el caracter #): "<<endl;
-        for(int i=6;i<32;i++){rlutil::locate(20,i);cout<<" ";}
         cin.getline(descripcion,500, '#'); LimpiarBuffer();
         p.SetDescripcion(descripcion);
         cout<<endl;
@@ -617,6 +616,7 @@ default:{}
 
                 numeroV=cantReg+1;
                 v.SetNumeroVenta(numeroV);
+                v.SetImporteVenta(0);
             }else{
                 system("cls");
                 rlutil::locate(35,5); cout << "Ingrese numero de venta a editar: ";
@@ -637,7 +637,7 @@ default:{}
         v.SetCuit(cuit);
         cout << endl;
 
-        rlutil::locate(40,5); cout<<"Seleccione la fecha inicial del rango: "<<endl;
+        rlutil::locate(40,5); cout<<"Seleccione la fecha de la venta: "<<endl;
         rlutil::locate(40,6); cout<<"Dia: ";
         dia=SeleccionCantidad(45,6,31,1);
 
@@ -652,16 +652,6 @@ default:{}
 
         if(opcionCarga){
             v.SetImporteVenta(IMPORTE);
-        }else{
-        system("cls");
-        rlutil::locate(40,5); cout << "Ingrese importe de la venta: $";
-        cin >> importe; LimpiarBuffer();
-        while(v.SetImporteVenta(importe)==0){
-                system("cls");
-                rlutil::locate(40,5); cout << "el importe de venta no puede ser 0 o menor a 0: ";
-                cin>>importe; LimpiarBuffer();
-            }
-        cout << endl;
         }
 
         system("cls");
@@ -924,6 +914,20 @@ default:{}
         }
         p.SetStock(p.GetStock()-dv.GetCantidad());
         archP.GuardarProducto(p);
+        if(!opcionCarga){
+            Venta v;
+            for(int i=0; i<cantRegV; i++){
+                v=archV.LeerVenta(i);
+                if(v.GetNumeroVenta()==dv.GetNumeroVentaDT()){
+                    double importeActulizado;
+                    importeActulizado=v.GetImporteVenta()+dv.GetPrecioProducto()*dv.GetCantidad();
+                    v.SetImporteVenta(importeActulizado);
+                    archV.GuardarVenta(v);
+                    return;
+                }
+            }
+
+        }
     }
 
     void MostrarDetalleVenta(DetalleVenta &dv){

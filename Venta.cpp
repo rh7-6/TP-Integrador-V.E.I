@@ -33,7 +33,7 @@ using namespace std;
 
     }
 
-    int Venta::SetImporteVenta(float v){
+    int Venta::SetImporteVenta(double v){
             if(v>0)
             {
                 _ImporteVenta=v;
