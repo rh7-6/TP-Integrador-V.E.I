@@ -1401,12 +1401,16 @@ default:{}
 
     void RecaudacionEquipo(){
 
-    int i=0,equipo=0;
+    int i=0,f=0,equipo=0;
     float total=0, importe=0;
     DetalleVenta deven;
+    Producto prod;
 
     ArchivoDetalleVentas archD("DetalleVentas.dat");
+    ArchivoProductos archprod("Productos.dat");
     int cantReg= archD.CantidadRegistros(sizeof(DetalleVenta));
+    int cantReg1= archprod.CantidadRegistros(sizeof(Producto));
+
 
         rlutil::locate(45,5);
         cout<<"seleccione el tipo de producto";
@@ -1414,11 +1418,16 @@ default:{}
         equipo=SeleccionMenus(55,8,9,1);
         for(i=0;i<cantReg;i++)
         {
+        for(f=0;f<cantReg1;f++){
         deven=archD.LeerDetalleDeVenta(i);
-        if(deven.GetIdProductoDT()==equipo)
+        prod=archprod.LeerProducto(f);
+        if(deven.GetIdProductoDT()==prod.GetIdProducto()){
+        if(prod.GetTipoEquipo()==equipo+1)
         {
         importe=deven.GetPrecioProducto();
         total=total+importe;
+        }
+        }
         }
         }
         if(total==0)
@@ -1438,7 +1447,54 @@ default:{}
 
     }
 
+    void informetipocliente(){
+    int tipocliente=0,acumulador=0,contador=0;
+    DetalleVenta deven;
+    Cliente cli;
+    Venta ven;
+    ArchivoVentas arch1("Ventas.dat");
+    ArchivoClientes arch2("Clientes.dat");
+    ArchivoDetalleVentas arch3("DetalleVentas.dat");
+    int cantReg1= arch3.CantidadRegistros(sizeof(DetalleVenta));
+    int cantReg2= arch2.CantidadRegistros(sizeof(Cliente));
+    int cantReg3= arch1.CantidadRegistros(sizeof(Venta));
+    rlutil::locate(45,5);
+    cout<<"selecione el tipo de cliente";
+    rlutil::locate(40,7);
+    cout<<"Empresa";
+    rlutil::locate(40,8);
+    cout<<"Particular";
+    tipocliente=SeleccionMenus(38,7,1,1);
 
+    for(int i=0;i<cantReg2;i++)
+    {
+    cli=arch2.LeerCliente(i);
+    if(cli.GetTipoCliente()==tipocliente)
+    {
+    for(int f=0;f<cantReg3;f++)
+        {
+            ven=arch1.LeerVenta(f);
+            if(strcmp(ven.GetCuit(),cli.GetCuit())==0)
+            {
+                for(int a=0;a<cantReg1;a++)
+                    {
+                    deven=arch3.LeerDetalleDeVenta(a);
+                        if(ven.GetNumeroVenta()==deven.GetNumeroVentaDT())
+                        {
+                        contador=deven.GetCantidad();
+                        acumulador=acumulador+contador;
+                        }
+                    }
+            }
+        }
+
+    }
+
+    }
+   cout<<"La cantidad de equipos vendidos por tipo de cliente es de: "<<acumulador;
+   rlutil::getkey();
+
+    }
 
 
 

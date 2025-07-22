@@ -136,6 +136,8 @@ void RecaudacionCliente();
 
 void RecaudacionEquipo();
 
+void informetipocliente();
+
 
   void LimpiarBuffer();
 

@@ -194,6 +194,7 @@ using namespace std;
                         RecaudacionEquipo();
                     break;
                     case(3):
+                        informetipocliente();
                     break;
                     case(4):
                     bandera1=false;
