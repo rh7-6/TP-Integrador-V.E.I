@@ -77,7 +77,7 @@ using namespace std;
             break;
 
             case(2):{///////////FINALIZAR/COMPRA///////////////
-                GuardarVentaCarrito(vecPrSelec,vecPrOrig);
+                GuardarVentaCarrito(vecPrSelec,vecPrOrig,ban);
             }
             break;
             case(3):{///////////SALIDA///////////////

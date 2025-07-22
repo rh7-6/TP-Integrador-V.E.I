@@ -853,7 +853,6 @@ default:{}
 
             for(int i=0; i<tamVecV; i++){
                 MostrarVenta(VtOrdenadas[i]);
-                cout<<"///////////////////////////////////////////"<<endl;
             }
 
         system("pause");
@@ -918,6 +917,8 @@ default:{}
             cout << endl;
             dv.SetPrecioProductoDT(p.GetPrecio());
         }
+        p.SetStock(p.GetStock()-dv.GetCantidad());
+        archP.GuardarProducto(p);
     }
 
     void MostrarDetalleVenta(DetalleVenta &dv){
@@ -1199,7 +1200,7 @@ default:{}
         }while(ban);
     }
 
-    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){
+    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, bool &salida){
 
         int tamVecPrselec=vecPrSelec.size(), cantPrSelec;
         rlutil::locate(48,10); cout << "Guardar y finalizar compra? " << endl;
@@ -1236,6 +1237,7 @@ default:{}
             GuardarRegistroVenta(v);
             for(int i=0;i<tamVecPrselec; i++){if(vecPrSelec[i].GetEstado()==true){GuardarRegistroDetalleVenta(VecDv[i],false);}}
         }
+        salida=false;
     }
 
     double CalculoImporteTotal(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){

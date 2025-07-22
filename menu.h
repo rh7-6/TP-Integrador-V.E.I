@@ -120,7 +120,7 @@ using namespace std;
 
     void MenuCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod);
 
-    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
+    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, bool &salida);
 
     double CalculoImporteTotal(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
 
