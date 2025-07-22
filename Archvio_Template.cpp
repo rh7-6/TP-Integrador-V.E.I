@@ -8,7 +8,7 @@ using namespace std;
         pfile = fopen(_NombreArchivo.getTexto(),"rb");
 
         if(pfile==NULL){
-            return -1;
+            return 0;
         }
 
         fseek(pfile, 0, SEEK_END);

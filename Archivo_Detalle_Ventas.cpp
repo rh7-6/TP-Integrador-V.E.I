@@ -42,7 +42,7 @@ using namespace std;
         }
 
         DetalleVenta dv;
-        int posDTV=0, cantReg= CantidadRegistros(sizeof(dv));
+        int posDTV=0, cantReg= CantidadRegistros(sizeof(DetalleVenta));
 
         for(int i=0; i<cantReg; i++){
             fread(&dv, sizeof(DetalleVenta), 1, pfile);

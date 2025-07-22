@@ -122,7 +122,7 @@ using namespace std;
 
     double CalculoImporteTotal(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
 
-    int CalculoCantidadProductosSeleccionados(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
+    int CalculoCantidadProductosSeleccionados(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, int indice);
 
 
 /*---------
