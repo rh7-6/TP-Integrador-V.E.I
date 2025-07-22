@@ -228,7 +228,7 @@ using namespace std;
                 system("cls");
                 rlutil::showcursor();
 
-                if(CargarCliente(cl,0)==1){
+                if(CargarCliente(cl,1)==1){
                 GuardarRegistroCliente(cl, 0);
                 }
 
