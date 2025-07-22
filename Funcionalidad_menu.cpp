@@ -602,21 +602,15 @@ default:{}
             numeroV=cantReg+1;                              //
             v.SetNumeroVenta(numeroV);
         }else{
-
             bool opcion;
             system("cls");
             rlutil::locate(35,5); cout << "Desea igresar una venta nueva o editar una existente?" << endl;
             rlutil::locate(57,8); cout << "Nueva Venta";
             rlutil::locate(57,9); cout << "Editar Existente";
-                    switch(SeleccionMenus(55, 8, 1, 1))
-                    {
-                    case(0):{
-                    opcion=1;
-                    }
+                    switch(SeleccionMenus(55, 8, 1, 1)){
+                    case(0):{opcion=1;}
                     break;
-                    case(1):{
-                    opcion=0;
-                    }
+                    case(1):{opcion=0;}
                     break;
                     }
 
@@ -639,21 +633,21 @@ default:{}
                 v.SetNumeroVenta(numeroV);
             }
         }
-            system("cls");
+
+        system("cls");
         v.SetCuit(cuit);
         cout << endl;
 
-        system("cls");
-        rlutil::locate(40,5);cout << "Ingrese dia de la venta: ";
-        cin >> dia; LimpiarBuffer();
+        rlutil::locate(40,5); cout<<"Seleccione la fecha inicial del rango: "<<endl;
+        rlutil::locate(40,6); cout<<"Dia: ";
+        dia=SeleccionCantidad(45,6,31,1);
 
-        system("cls");
-        rlutil::locate(40,5); cout << "Ingrese mes de la venta:  ";
-        cin >> mes; LimpiarBuffer();
+        rlutil::locate(40,6); cout<<"Mes: ";
+        mes=SeleccionCantidad(45,6,12,1);
 
-        system("cls");
-        rlutil::locate(40,5); cout << "Ingrese anio de la venta: ";
-        cin >> siglo; LimpiarBuffer();
+        rlutil::locate(40,6); cout<<"Anio: ";
+        siglo=SeleccionCantidad(45,6,2025,2022);
+
         v.SetFechaVenta(dia,mes,siglo);
         cout << endl;
 
@@ -672,20 +666,13 @@ default:{}
         }
 
         system("cls");
-        rlutil::locate(47,5); cout << "Seleccione el estado de venta";
+            rlutil::locate(47,5); cout << "Seleccione el estado de venta";
             rlutil::locate(57,8); cout << "Activo";
             rlutil::locate(57,9); cout << "Inactivo";
-                    switch(SeleccionMenus(55,8,1,1))
-                    {
-                    case(0):{
-                    estado=1;
-                    v.SetEstado(estado);
-                    }
+                    switch(SeleccionMenus(55,8,1,1)){
+                    case(0):{estado=1;v.SetEstado(estado);}
                     break;
-                    case(1):{
-                    estado=0;
-                    v.SetEstado(estado);
-                    }
+                    case(1):{estado=0;v.SetEstado(estado);}
                     break;
                     }
         cout << endl;
