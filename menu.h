@@ -64,6 +64,8 @@ using namespace std;
 
     void CargaDirecta();//carga de manera directa el producto copiado//
 
+    void MenuRegistroProducto();
+
 /*---------
   CLIENTES
   ---------*/
@@ -78,6 +80,8 @@ using namespace std;
 
     void ListadoDeClientes();
 
+    void MenuRegistroCliente();
+
 /*---------
   VENTAS
   ---------*/
@@ -91,6 +95,8 @@ using namespace std;
     void GuardarRegistroVenta(Venta &v);
 
     void ListadoDeVentas();
+
+    void MenuRegistroVentas();
 
 /*---------
   DETALLE VENTAS

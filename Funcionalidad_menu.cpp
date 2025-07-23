@@ -356,7 +356,46 @@ default:{}
             }
             system("pause");
             system("cls");
+    }
 
+    void MenuRegistroProducto(){
+
+        system("cls");
+        rlutil::locate(50,6);cout<<"<Guardar/Editar registro>"<<endl;
+        rlutil::locate(50,7);cout<<"<Eliminar Registro>"<<endl;
+        int opcion=SeleccionMenus(49,6,1,1);
+
+
+        Producto p;
+        if(opcion==0){
+                rlutil::locate(25,4); cout<<"Nota:la carga directa es en caso de copia y pega de datos";
+                rlutil::locate(50,6); cout<<"Carga directa";
+                rlutil::locate(50,7); cout<<"Carga manual";
+
+                if(SeleccionMenus(48,6,1,1)==0){CargaDirecta();}
+                else{if(CargarProducto(p)==1){GuardarRegistroProducto(p);}}
+                system("cls");
+                rlutil::hidecursor();
+        }else{
+            int idPr;
+            ArchivoProductos archP("Productos.dat");
+            rlutil::locate(40, 5);
+            cout<<"Ingrese el id del producto: ";
+            cin>>idPr; LimpiarBuffer();
+
+            int posP=archP.BuscarProducto(idPr);
+            while(posP<0){
+                rlutil::locate(40, 5);
+                cout<<"Producto inexistente reingrese id de producto: ";
+                cin>>idPr; LimpiarBuffer();
+                posP =archP.BuscarProducto(idPr);
+                system("cls");
+            }
+
+            p=archP.LeerProducto(posP);
+            p.SetEstado(false);
+            archP.GuardarProducto(p);
+        }
     }
 
     void CargaDirecta(){
@@ -565,6 +604,38 @@ default:{}
 
         system("pause");
         system("cls");
+    }
+
+    void MenuRegistroCliente(){
+
+        system("cls");
+        rlutil::locate(50,6);cout<<"<Guardar/Editar registro>"<<endl;
+        rlutil::locate(50,7);cout<<"<Eliminar Registro>"<<endl;
+        int opcion=SeleccionMenus(49,6,1,1);
+
+        Cliente cl;
+        if(opcion==0){
+            if(CargarCliente(cl,0)==1){GuardarRegistroCliente(cl,true);}
+        }else{
+            char cuil[31]{};
+            ArchivoClientes archCl("Clientes.dat");
+            rlutil::locate(40, 5);
+            cout<<"Ingrese el cuit del cliente: ";
+            cin>>cuil; LimpiarBuffer();
+
+            int posCl=archCl.BuscarCliente(cuil);
+            while(posCl<0){
+                posCl =archCl.BuscarCliente(cuil);
+                rlutil::locate(40, 5);
+                cout<<"Cliente inexistente reingrese cuit: ";
+                cin>>cuil; LimpiarBuffer();
+                system("cls");
+            }
+
+            cl=archCl.LeerCliente(posCl);
+            cl.SetEstado(false);
+            archCl.GuardarCliente(cl);
+        }
     }
 
                                 ///VENTA///
@@ -832,6 +903,40 @@ default:{}
         system("cls");
     }
 
+    void MenuRegistroVentas(){
+
+        system("cls");
+        rlutil::locate(50,6);cout<<"<Guardar/Editar registro>"<<endl;
+        rlutil::locate(50,7);cout<<"<Eliminar Registro>"<<endl;
+        int opcion=SeleccionMenus(49,6,1,1);
+
+        Venta v;
+        Cliente cl;
+        if(opcion==0){
+                if(CargarCliente(cl,1)==1){GuardarRegistroCliente(cl, 0);}
+                CargarVenta(v, cl.GetCuit(), 0, 0);
+                GuardarRegistroVenta(v);
+        }else{
+            int numVent;
+            ArchivoVentas archV("Ventas.dat");
+            rlutil::locate(40, 5);
+            cout<<"Ingrese el numero de venta: ";
+            cin>>numVent; LimpiarBuffer();
+
+            int posV=archV.BuscarVenta(numVent);
+            while(posV<0){
+                cout<<"Venta inexistente reingrese numero de venta: ";
+                cin>>numVent; LimpiarBuffer();
+                posV =archV.BuscarVenta(numVent);
+                system("cls");
+            }
+
+            v=archV.LeerVenta(posV);
+            v.SetEstado(false);
+            archV.GuardarVenta(v);
+        }
+    }
+
                                 ///DETALLE VENTA///
 //------------------------------------------------------------------------//
     bool CargarDetalleVenta(DetalleVenta &dv, int NUMVENTA, int IDPRODUCTO, int CANTIDAD, bool opcionCarga){
@@ -920,6 +1025,7 @@ default:{}
             }
         }
         rlutil::hidecursor(); system("cls");
+        return true;
     }
 
     void MostrarDetalleVenta(DetalleVenta &dv){
@@ -1004,9 +1110,12 @@ default:{}
 
         system("cls");
         while(numeroventa<0||numeroventa>cantRegV){
-        rlutil::locate(35,6);
-        cout << "Ingrese un numero de venta entre 1 y " << cantRegV << ": ";
-        cin >> numeroventa; LimpiarBuffer();
+            rlutil::locate(35,6);
+            cout << "Reingrese un numero de venta entre 1 y " << cantRegV << ": ";
+            cin >> numeroventa; LimpiarBuffer();
+            int pos=archV.BuscarVenta(numeroventa);
+            Venta v=archV.LeerVenta(pos);
+            if(v.GetEstado()==false){rlutil::locate(35,7); cout<<"Venta inactiva"; rlutil::getkey(); system("cls");}
         }
 
         DetalleVenta dv;
@@ -1020,6 +1129,7 @@ default:{}
         system("cls");
         rlutil::hidecursor();
     }
+
 
                                 ///COMPRA///
 //------------------------------------------------------------------------//
@@ -1372,7 +1482,6 @@ default:{}
      ArchivoClientes archCl("Clientes.dat");
      ArchivoVentas archV("Ventas.dat");
     int cantReg= archV.CantidadRegistros(sizeof(Venta));
-    int cantReg1= archCl.CantidadRegistros(sizeof(Cliente));
         rlutil::locate(45,5);
         cout<<"Ingrese el cuil del cliente: ";
         cin>>cuit; LimpiarBuffer();

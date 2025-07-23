@@ -210,40 +210,23 @@ using namespace std;
         do{
             system("cls");
             TextoMenuCargarRegistro();
-            switch(SeleccionMenus(45,10,4,1)){
-                case(0):{/////////////guarda registro de cliente/////////////
-                Cliente cl;
-                if(CargarCliente(cl,0)==1){GuardarRegistroCliente(cl,true);}
+            switch(SeleccionMenus(52,10,4,1)){
+                case(0):{/////////////Clientes/////////////
+                    MenuRegistroCliente();
                 }
                 break;
 
-                case(1):{/////////////guarda registro de venta///////////////
-                Venta v;
-                Cliente cl;
-
-                if(CargarCliente(cl,1)==1){GuardarRegistroCliente(cl, 0);}
-
-                CargarVenta(v, cl.GetCuit(), 0, 0);
-                GuardarRegistroVenta(v);
+                case(1):{/////////////Productos///////////////
+                    MenuRegistroProducto();
                 }
                 break;
 
-                case(2):{/////////////guarda registro de producto////////////
-                Producto p;
-                system("cls");
-
-                rlutil::locate(25,4); cout<<"Nota:la carga directa es en caso de copia y pega de datos";
-                rlutil::locate(50,6); cout<<"Carga directa";
-                rlutil::locate(50,7); cout<<"Carga manual";
-
-                if(SeleccionMenus(48,6,1,1)==0){CargaDirecta();}
-                else{if(CargarProducto(p)==1){GuardarRegistroProducto(p);}}
-                system("cls");
-                rlutil::hidecursor();
+                case(2):{/////////////Ventas////////////
+                    MenuRegistroVentas();
                 }
                 break;
 
-                case(3):{/////////////guarda registro detalle de venta///////
+                case(3):{/////////////Detalles de venta///////
                 DetalleVenta DT;
                 if(CargarDetalleVenta(DT,0,0,0,false)){GuardarRegistroDetalleVenta(DT,true);};
                 }
@@ -335,15 +318,15 @@ cout<<"Volver";
 void TextoMenuCargarRegistro(){
     Pilares();
 ///opciones de listado///
-rlutil::locate(46,10);
-cout<<"Cargar registro de cliente";
-rlutil::locate(46,11);
-cout<<"Cargar registro de venta";
-rlutil::locate(46,12);
-cout<<"Cargar registro de producto";
-rlutil::locate(46,13);
-cout<<"Cargar registro detalle de venta";
-rlutil::locate(46,14);
+rlutil::locate(54,10);
+cout<<"Cliente";
+rlutil::locate(54,11);
+cout<<"Producto";
+rlutil::locate(54,12);
+cout<<"Venta";
+rlutil::locate(54,13);
+cout<<"Detalle de venta";
+rlutil::locate(54,14);
 cout<<"Volver";
 }
 
