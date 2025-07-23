@@ -96,7 +96,7 @@ using namespace std;
   DETALLE VENTAS
   ---------*/
 
-    void CargarDetalleVenta(DetalleVenta &dv, int NUMVENTA, int IDPRODUCTO, int CANTIDAD, bool opcionCarga);
+    bool CargarDetalleVenta(DetalleVenta &dv, int NUMVENTA, int IDPRODUCTO, int CANTIDAD, bool opcionCarga);
 
     void MostrarDetalleVenta(DetalleVenta &dv);
 

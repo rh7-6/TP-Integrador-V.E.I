@@ -59,14 +59,14 @@ using namespace std;
         switch(SeleccionMenus(57,11,3,1)){
 
             case(0):{///////////PRODUCTOS/////////////
-                bool ban=true;
+                bool banP=true;
                 do{
                 int tamVecPrMod=vecPrMod.size();
                 if(tamVecPrMod==0){CopiarYOrdenarProductos(vecPrMod); vecPrOrig=vecPrMod;}
 
-                if(MenuProductosCompra(vecPrMod,vecPrSelec)==-1){ban=false;}
+                if(MenuProductosCompra(vecPrMod,vecPrSelec)==-1){banP=false;}
                 system("cls");
-                }while(ban);
+                }while(banP);
             }
             break;
 
@@ -213,33 +213,18 @@ using namespace std;
             switch(SeleccionMenus(45,10,4,1)){
                 case(0):{/////////////guarda registro de cliente/////////////
                 Cliente cl;
-                system("cls");
-
-                rlutil::showcursor();
-                if(CargarCliente(cl,0)==1){
-                GuardarRegistroCliente(cl,true);
-                }
-                system("cls");
-                rlutil::hidecursor();
-                //cin.ignore(numeric_limits<streamsize>::max(), '\n');//por que?
+                if(CargarCliente(cl,0)==1){GuardarRegistroCliente(cl,true);}
                 }
                 break;
 
                 case(1):{/////////////guarda registro de venta///////////////
                 Venta v;
                 Cliente cl;
-                system("cls");
-                rlutil::showcursor();
 
-                if(CargarCliente(cl,1)==1){
-                GuardarRegistroCliente(cl, 0);
-                }
+                if(CargarCliente(cl,1)==1){GuardarRegistroCliente(cl, 0);}
 
                 CargarVenta(v, cl.GetCuit(), 0, 0);
                 GuardarRegistroVenta(v);
-
-                system("cls");
-                rlutil::hidecursor();
                 }
                 break;
 
@@ -247,26 +232,12 @@ using namespace std;
                 Producto p;
                 system("cls");
 
-                rlutil::showcursor();
+                rlutil::locate(25,4); cout<<"Nota:la carga directa es en caso de copia y pega de datos";
+                rlutil::locate(50,6); cout<<"Carga directa";
+                rlutil::locate(50,7); cout<<"Carga manual";
 
-                rlutil::locate(25,4);
-                cout<<"Nota:la carga directa es en caso de que tengas el producto copiado";
-
-                rlutil::locate(50,6);
-                cout<<"carga directa";
-                rlutil::locate(50,7);
-                cout<<"carga manual";
-
-
-                if(SeleccionMenus(48,6,1,1)==0){
-                CargaDirecta();
-                }
-                else
-                {
-                if(CargarProducto(p)==1){
-                GuardarRegistroProducto(p);
-                }
-                }
+                if(SeleccionMenus(48,6,1,1)==0){CargaDirecta();}
+                else{if(CargarProducto(p)==1){GuardarRegistroProducto(p);}}
                 system("cls");
                 rlutil::hidecursor();
                 }
@@ -274,12 +245,7 @@ using namespace std;
 
                 case(3):{/////////////guarda registro detalle de venta///////
                 DetalleVenta DT;
-                system("cls");
-                rlutil::showcursor();
-                CargarDetalleVenta(DT,0,0,0,false);
-                system("cls");
-                rlutil::hidecursor();
-                GuardarRegistroDetalleVenta(DT,true);
+                if(CargarDetalleVenta(DT,0,0,0,false)){GuardarRegistroDetalleVenta(DT,true);};
                 }
                 break;
 
@@ -305,7 +271,7 @@ cout<<"BUSQUEDAS";
 rlutil::locate(55,13);
 cout<<"INFORMES";
 rlutil::locate(55,14);
-cout<<"CARGAR UN REGISTO";
+cout<<"REGISTROS";
 rlutil::locate(55,15);
 cout<<"SALIR";
 }
@@ -530,6 +496,7 @@ cout<<"Volver";
                 return 0;
             }
         }while(ban);
+        rlutil::showcursor();
         return -1;
     }
 
