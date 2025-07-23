@@ -1086,6 +1086,7 @@ default:{}
             rlutil::locate(48,10+SaltDeLin);
             cout << vecPr[i].GetMarca()<< " " <<vecPr[i].GetNombreProducto() << endl;
             rlutil::locate(48,11+SaltDeLin);
+            cout << std::fixed << std::setprecision(0);
             cout << "Precio: " << vecPr[i].GetPrecio() << endl;
             rlutil::locate(48,12+SaltDeLin);
             cout << "Stock: " << vecPr[i].GetStock() << endl;
@@ -1156,6 +1157,7 @@ default:{}
                 rlutil::locate(48,10+SaltDeLin);
                 cout << vecPrSelec[i].GetMarca()<< " " <<vecPrSelec[i].GetNombreProducto() << endl;
                 rlutil::locate(48,11+SaltDeLin);
+                cout << std::fixed << std::setprecision(0);
                 cout << "Precio: " << vecPrSelec[i].GetPrecio() << endl;
                 rlutil::locate(48,12+SaltDeLin);
                 cout << "Cantidad: " << cantPrSelec << endl;
@@ -1170,7 +1172,8 @@ default:{}
         }
         SaltDeLin+=1;
         rlutil::locate(48,13+SaltDeLin);
-        cout << "<SALIR>          |IMPORTE TOTAL:" << ImporteTotal << "|" << endl;
+        cout << std::fixed << std::setprecision(0);
+        cout << "<SALIR>          |IMPORTE TOTAL: $" << ImporteTotal << "|" << endl;
     }
 
     void MenuCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod){
@@ -1337,7 +1340,7 @@ default:{}
         {
         ven=archV.LeerVenta(i);
         fech=ven.GetFecha();
-        if(fech.getAnio()==anio)
+        if(fech.getAnio()==anio&&ven.GetEstado()==true)
         {
         importe=ven.GetImporteVenta();
         totalanual=totalanual+importe;
@@ -1354,6 +1357,7 @@ default:{}
         {
         system("cls");
         rlutil::locate(35,5);
+        cout << std::fixed << std::setprecision(0);
         cout<<"Lo que se recaudo en total del "<<anio<<" es de: $"<<totalanual<<endl;
         rlutil::getkey();
         }
@@ -1363,19 +1367,32 @@ default:{}
     int i=0;
     char cuit[50];
      float total=0, importe=0;
+     Cliente clie;
      Venta ven;
+     ArchivoClientes archCl("Clientes.dat");
      ArchivoVentas archV("Ventas.dat");
     int cantReg= archV.CantidadRegistros(sizeof(Venta));
+    int cantReg1= archCl.CantidadRegistros(sizeof(Cliente));
         rlutil::locate(45,5);
         cout<<"Ingrese el cuil del cliente: ";
         cin>>cuit; LimpiarBuffer();
+        archCl.LeerCliente(archCl.BuscarCliente(cuit),clie);
+        if(clie.GetEstado()==false||archCl.BuscarCliente(cuit)<0)
+        {
+        cout<<"cliente borrado o inexistente";
+        rlutil::getkey();
+        return;
+        }
+
         for(i=0;i<cantReg;i++)
         {
         ven=archV.LeerVenta(i);
+        if(clie.GetEstado()==true){
         if(strcmp(ven.GetCuit(),cuit)==0)
         {
         importe=ven.GetImporteVenta();
         total=total+importe;
+        }
         }
         }
         if(total==0)
@@ -1389,6 +1406,7 @@ default:{}
         {
         system("cls");
         rlutil::locate(35,5);
+        cout << std::fixed << std::setprecision(0);
         cout<<"Lo que se recaudo en total del cliente "<<cuit<<" es de: $"<<total<<endl;
         rlutil::getkey();
         }
@@ -1418,7 +1436,7 @@ default:{}
         deven=archD.LeerDetalleDeVenta(i);
         prod=archprod.LeerProducto(f);
         if(deven.GetIdProductoDT()==prod.GetIdProducto()){
-        if(prod.GetTipoEquipo()==equipo+1)
+        if(prod.GetTipoEquipo()==equipo+1&&prod.GetEstado()==true)
         {
         importe=deven.GetPrecioProducto()*deven.GetCantidad();
         total=total+importe;
@@ -1437,6 +1455,7 @@ default:{}
         {
         system("cls");
         rlutil::locate(35,5);
+        cout << std::fixed << std::setprecision(0);
         cout<<"Lo que se recaudo en total del producto es de: $"<<total<<endl;
         rlutil::getkey();
         }
@@ -1488,6 +1507,7 @@ default:{}
     }
 
     }
+    cout << std::fixed << std::setprecision(0);
    cout<<"La cantidad de equipos vendidos por tipo de cliente es de: "<<acumulador;
    rlutil::getkey();
 
