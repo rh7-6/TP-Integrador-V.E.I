@@ -1474,20 +1474,26 @@ default:{}
     }
 
     void RecaudacionCliente(){
-    int i=0;
+    int i=0,anio=0;
     char cuit[50];
      float total=0, importe=0;
      Cliente clie;
      Venta ven;
+     Fecha fech;
      ArchivoClientes archCl("Clientes.dat");
      ArchivoVentas archV("Ventas.dat");
     int cantReg= archV.CantidadRegistros(sizeof(Venta));
         rlutil::locate(45,5);
         cout<<"Ingrese el cuil del cliente: ";
         cin>>cuit; LimpiarBuffer();
+        rlutil::locate(35,5);
+        cout<<"Ingrese el anio que desea ver de la recaudacion del cliente: ";
+        cin>>anio; LimpiarBuffer();
         archCl.LeerCliente(archCl.BuscarCliente(cuit),clie);
         if(clie.GetEstado()==false||archCl.BuscarCliente(cuit)<0)
         {
+        system("cls");
+        rlutil::locate(45,5);
         cout<<"cliente borrado o inexistente";
         rlutil::getkey();
         return;
@@ -1496,7 +1502,8 @@ default:{}
         for(i=0;i<cantReg;i++)
         {
         ven=archV.LeerVenta(i);
-        if(clie.GetEstado()==true){
+        fech=ven.GetFecha();
+        if(clie.GetEstado()==true&&fech.getAnio()==anio){
         if(strcmp(ven.GetCuit(),cuit)==0)
         {
         importe=ven.GetImporteVenta();
