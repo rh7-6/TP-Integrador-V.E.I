@@ -1,8 +1,6 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 #include "vector"
-//#include "Fecha.h"
-//#include "cadena.h"
 #include "Producto.h"
 #include "Clientes.h"
 #include "Venta.h"
@@ -15,6 +13,8 @@ using namespace std;
     void Menu();
 
     void Pilares();
+
+    void Pilares2();
 
     void comprar();
 
@@ -52,7 +52,7 @@ using namespace std;
   PRODUCTOS
   ---------*/
 
-    int CargarProducto(Producto &p); // verifica si ya existe el producto y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
+    int CargarProducto(Producto &p);
 
     void MostrarProducto(Producto &p);
 

@@ -243,7 +243,7 @@ using namespace std;
 
 
 void TextoMenuPrincipal(){
-    Pilares();
+    Pilares2();
 ///opciones///
 rlutil::locate(55,10);
 cout<<"COMPRA";
@@ -400,6 +400,24 @@ cout<<"Volver";
         ///columna inferior///
         rlutil::locate(40,18);
         cout<<"///////////////////////////////////////////";
+    }
+
+    void Pilares2(){
+        ///columna superior///
+        for(int i=0;i<40;i++){rlutil::locate(41+i,8);cout<<(char)196;}
+
+        ///pilar izquierdo///
+        rlutil::locate(40,8);cout<<(char)218;
+        for(int i=0;i<9;i++){rlutil::locate(40,9+i);cout<<(char)179;}
+        rlutil::locate(40,18);cout<<(char)192;
+
+        ///pilar derecho///
+        rlutil::locate(81,8);cout<<(char)191;
+        for(int i=0;i<9;i++){rlutil::locate(81,9+i);cout<<(char)179;}
+        rlutil::locate(81,18);cout<<(char)217;
+
+        ///columna inferior///
+        for(int i=0;i<40;i++){rlutil::locate(41+i,18);cout<<(char)196;}
     }
 
     int SeleccionMenus(int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
