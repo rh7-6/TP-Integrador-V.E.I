@@ -92,7 +92,7 @@ using namespace std;
 
 int main(){
 
-    //Menu();
+    Menu();
 
 //    // Cuadrado sólido
 //    cout << "Cuadrado solido (ASCII 219): " << (char)219 << endl;

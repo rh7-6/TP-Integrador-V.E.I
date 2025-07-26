@@ -243,7 +243,7 @@ using namespace std;
 
 
 void TextoMenuPrincipal(){
-    Pilares2();
+    DibujarCaja(40,8,10,40);
 ///opciones///
 rlutil::locate(55,10);
 cout<<"COMPRA";
@@ -402,22 +402,30 @@ cout<<"Volver";
         cout<<"///////////////////////////////////////////";
     }
 
-    void Pilares2(){
-        ///columna superior///
-        for(int i=0;i<40;i++){rlutil::locate(41+i,8);cout<<(char)196;}
+    void DibujarCaja(int EjX, int EjY, int TamP, int TamC){
 
         ///pilar izquierdo///
-        rlutil::locate(40,8);cout<<(char)218;
-        for(int i=0;i<9;i++){rlutil::locate(40,9+i);cout<<(char)179;}
-        rlutil::locate(40,18);cout<<(char)192;
+        rlutil::locate(EjX,EjY);cout<<(char)218;
+        for(int i=1;i<=TamP;i++){rlutil::locate(EjX,EjY+i);cout<<(char)179;
+        if(i==TamP){rlutil::locate(EjX,EjY+i);cout<<(char)192;}}
 
-        ///pilar derecho///
-        rlutil::locate(81,8);cout<<(char)191;
-        for(int i=0;i<9;i++){rlutil::locate(81,9+i);cout<<(char)179;}
-        rlutil::locate(81,18);cout<<(char)217;
+        ///columna superior///
+        for(int a=1;a<=TamC;a++){rlutil::locate(EjX+a,EjY);cout<<(char)196;
+            if(a==TamC){
+                ///pilar derecho///
+                rlutil::locate(EjX*2,EjY);cout<<(char)191;
+                for(int b=1;b<=TamP;b++){rlutil::locate(EjX+a,EjY+b);cout<<(char)179;
+                if(b==TamP){
+                    rlutil::locate(EjX*2,EjY+b);cout<<(char)217;
+                    ///columna inferior///
+                for(int c=1;c<TamC;c++){rlutil::locate(EjX+c,EjY+b);cout<<(char)196;}
+                    }
+                }
+            }
+        }
 
-        ///columna inferior///
-        for(int i=0;i<40;i++){rlutil::locate(41+i,18);cout<<(char)196;}
+
+
     }
 
     int SeleccionMenus(int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){

@@ -14,7 +14,7 @@ using namespace std;
 
     void Pilares();
 
-    void Pilares2();
+    void DibujarCaja(int EjX, int EjY, int TamP, int TamC);
 
     void comprar();
 
