@@ -38,11 +38,11 @@ using namespace std;
 
     void TextoMenuListado(Cadena *opciones);
 
-    void TextoMenuBusqueda();
+    void TextoMenuBusqueda(Cadena *opciones);
 
-    void TextoMenuInformes();
+    void TextoMenuInformes(Cadena *opciones);
 
-    void TextoMenuCargarRegistro();
+    void TextoMenuCargarRegistro(Cadena *opciones);
 
     void TextoTiposDeProducto();
 
