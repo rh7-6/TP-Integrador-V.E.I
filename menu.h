@@ -14,7 +14,7 @@ using namespace std;
 
     void Pilares();
 
-    void DibujarCaja(int EjX, int EjY, int TamP, int TamC);
+    void DibujarCaja(int EjX, int EjY, int TamH, int TamV);
 
     void comprar();
 
@@ -28,13 +28,15 @@ using namespace std;
 
     int SeleccionMenus(int EjeX, int EjeY, int CntOpc, int SaltosDeLinea);
 
+    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc,int SaltosDeLinea);
+
     int SeleccionCantidad(int ejeX, int ejeY, int Max,int Min);
 
-    void TextoMenuPrincipal();
+    void TextoMenuPrincipal(Cadena *opciones);
 
-    void TextoMenuCompra();
+    void TextoMenuCompra(Cadena *opciones);
 
-    void TextoMenuListado();
+    void TextoMenuListado(Cadena *opciones);
 
     void TextoMenuBusqueda();
 

@@ -7,8 +7,9 @@ using namespace std;
         bool bandera=true;
         do{
         system("cls");
-        TextoMenuPrincipal();
-            switch(SeleccionMenus(54,10,5,1)){
+        Cadena opciones[6];
+        TextoMenuPrincipal(opciones);
+            switch(SeleccionMenuAnim(opciones,54,10,5,1)){
             case(0):{//////////////////////COMPRAR/////////////////////////////
               comprar();
             }
@@ -55,8 +56,9 @@ using namespace std;
         vector<Producto> vecPrSelec;
         do{
         system("cls");
-        TextoMenuCompra();
-        switch(SeleccionMenus(57,11,3,1)){
+        Cadena opciones[4];
+        TextoMenuCompra(opciones);
+        switch(SeleccionMenuAnim(opciones,57,11,3,1)){
 
             case(0):{///////////PRODUCTOS/////////////
                 bool banP=true;
@@ -95,8 +97,9 @@ using namespace std;
         bool ban=true;
             do{
             system("cls");
-            TextoMenuListado();
-                switch(SeleccionMenus(49,10,4,1)){
+            Cadena opciones[5];
+            TextoMenuListado(opciones);
+                switch(SeleccionMenuAnim(opciones,49,10,4,1)){
 
                 case(0):{///////////PRODUCTOS///////////
                     bool opcion;
@@ -242,50 +245,32 @@ using namespace std;
 ///----------------------------------------------------------------------------------------///
 
 
-void TextoMenuPrincipal(){
-    DibujarCaja(40,8,10,40);
-///opciones///
-rlutil::locate(55,10);
-cout<<"COMPRA";
-rlutil::locate(55,11);
-cout<<"LISTADOS";
-rlutil::locate(55,12);
-cout<<"BUSQUEDAS";
-rlutil::locate(55,13);
-cout<<"INFORMES";
-rlutil::locate(55,14);
-cout<<"REGISTROS";
-rlutil::locate(55,15);
-cout<<"SALIR";
-}
+    void TextoMenuPrincipal(Cadena *opciones){
+        ///opciones///
+        opciones[0].setTexto("COMPRA");
+        opciones[1].setTexto("LISTADOS");
+        opciones[2].setTexto("BUSQUEDAS");
+        opciones[3].setTexto("INFORMES");
+        opciones[4].setTexto("REGISTROS");
+        opciones[5].setTexto("SALIR");
+    }
 
-void TextoMenuCompra(){
-    Pilares();
-///opciones de Compra///
-rlutil::locate(58,11);
-cout<<"Productos";
-rlutil::locate(58,12);
-cout<<"Carrito";
-rlutil::locate(58,13);
-cout<<"Finalizar Compra";
-rlutil::locate(58,14);
-cout<<"Volver";
-}
+    void TextoMenuCompra(Cadena *opciones){
+        ///opciones de Compra///
+        opciones[0].setTexto("Productos");
+        opciones[1].setTexto("Carrito");
+        opciones[2].setTexto("Finalizar Compra");
+        opciones[3].setTexto("Volver");
+    }
 
-void TextoMenuListado(){
-    Pilares();
-///opciones de listado///
-rlutil::locate(50,10);
-cout<<"Listado de Productos";
-rlutil::locate(50,11);
-cout<<"Listado de clientes";
-rlutil::locate(50,12);
-cout<<"Listado de ventas";
-rlutil::locate(50,13);
-cout<<"Listado detalle de venta";
-rlutil::locate(50,14);
-cout<<"Volver";
-}
+    void TextoMenuListado(Cadena *opciones){
+        ///opciones de listado///
+        opciones[0].setTexto("Listado de Productos");
+        opciones[1].setTexto("Listado de Clientes");
+        opciones[2].setTexto("Listado de ventas");
+        opciones[3].setTexto("Listado Detalles de venta");
+        opciones[4].setTexto("Volver");
+    }
 
 void TextoMenuBusqueda(){
     Pilares();
@@ -402,30 +387,26 @@ cout<<"Volver";
         cout<<"///////////////////////////////////////////";
     }
 
-    void DibujarCaja(int EjX, int EjY, int TamP, int TamC){
+    void DibujarCaja(int EjX, int EjY, int TamV, int TamH){
 
-        ///pilar izquierdo///
+        rlutil::setBackgroundColor(rlutil::LIGHTBLUE);
+        ///Primera Linea Vertical///
         rlutil::locate(EjX,EjY);cout<<(char)218;
-        for(int i=1;i<=TamP;i++){rlutil::locate(EjX,EjY+i);cout<<(char)179;
-        if(i==TamP){rlutil::locate(EjX,EjY+i);cout<<(char)192;}}
+        for(int i=1;i<=TamV;i++){rlutil::locate(EjX,EjY+i);cout<<(char)179;
+        if(i==TamV){rlutil::locate(EjX,EjY+i);cout<<(char)192;}}
 
-        ///columna superior///
-        for(int a=1;a<=TamC;a++){rlutil::locate(EjX+a,EjY);cout<<(char)196;
-            if(a==TamC){
-                ///pilar derecho///
-                rlutil::locate(EjX*2,EjY);cout<<(char)191;
-                for(int b=1;b<=TamP;b++){rlutil::locate(EjX+a,EjY+b);cout<<(char)179;
-                if(b==TamP){
-                    rlutil::locate(EjX*2,EjY+b);cout<<(char)217;
-                    ///columna inferior///
-                for(int c=1;c<TamC;c++){rlutil::locate(EjX+c,EjY+b);cout<<(char)196;}
-                    }
-                }
-            }
+        ///Primera Linea Horizontal///
+        for(int a=1;a<=TamH;a++){rlutil::locate(EjX+a,EjY);cout<<(char)196;}
+
+        ///Segunda Linea Vertical///
+        rlutil::locate(EjX+TamH,EjY);cout<<(char)191;
+        for(int b=1;b<=TamV;b++){rlutil::locate(EjX+TamH,EjY+b);cout<<(char)179;
+        if(b==TamV){rlutil::locate(EjX+TamH,EjY+b);cout<<(char)217;}
         }
+        ///Segunda Linea Horizontal///
+        for(int c=1;c<TamH;c++){rlutil::locate(EjX+c,EjY+TamV);cout<<(char)196;}
 
-
-
+        rlutil::setBackgroundColor(rlutil::BLACK);
     }
 
     int SeleccionMenus(int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
@@ -471,15 +452,105 @@ cout<<"Volver";
         return -1;
     }
 
+    void MostrYRsaltTxt(const char *txt, int EjeX, int EjeY,bool selec){
+
+        if(selec){
+            rlutil::setBackgroundColor(rlutil::DARKGREY);
+            rlutil::setColor(rlutil::WHITE);
+        }else{rlutil::setBackgroundColor(rlutil::BLACK);rlutil::setColor(rlutil::GREY);}
+        rlutil::locate(EjeX,EjeY);
+        cout<<txt<<endl;
+        rlutil::setBackgroundColor(rlutil::BLACK);
+    }
+
+    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
+
+        rlutil::hidecursor();
+        int y=0, tecla, maxCarctrs;
+        for(int i=0; i<=CantOpc; i++){
+            if(i==0){maxCarctrs=strlen(opciones[0].getTexto());}else{
+                if((strlen(opciones[i].getTexto()))>maxCarctrs){maxCarctrs=strlen(opciones[i].getTexto());}
+            }
+        }
+        DibujarCaja(EjeX-4,EjeY-2,CantOpc*SaltosDeLinea+4,maxCarctrs+6);
+        do{
+            for(int i=0; i<=CantOpc; i++){
+                MostrYRsaltTxt(opciones[i].getTexto(),EjeX,EjeY+(i*SaltosDeLinea),y/SaltosDeLinea==i);
+            }
+            while(1){
+                if(kbhit()){tecla=getch();break;};
+                rlutil::locate(EjeX-2,EjeY+y);cout<<" "<<char(175);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::locate(EjeX-2,EjeY+y);cout<<char(175)<<" ";
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+            }
+
+            switch(tecla){
+
+                case(72):///arriba///
+                    rlutil::locate(EjeX-2,EjeY+y);
+                    cout<<"  "<<endl;
+                    y=y-SaltosDeLinea;
+                    if(y<0){y=CantOpc*SaltosDeLinea;}
+                break;
+
+                case(80):///abajo///
+                    rlutil::locate(EjeX-2,EjeY+y);
+                    cout<<"  "<<endl;
+                    y=y+SaltosDeLinea;
+                    if(y>CantOpc*SaltosDeLinea){y=0;}
+                break;
+
+                case(13):///enter///
+                    system("cls");
+                    if(y==CantOpc*SaltosDeLinea){return CantOpc;}
+                    return y/SaltosDeLinea;
+                break;
+
+                case(27):
+                    system("cls");
+                    return 0;
+                break;
+            }
+        }while(1);
+        system("cls");
+        rlutil::showcursor();
+        return 0;
+    }
+
     int SeleccionCantidad(int ejeX, int ejeY, int Max, int Min){
 
         rlutil::hidecursor();
         int cant=Min, tecla;
         bool ban=true;
         rlutil::locate(ejeX,ejeY);
-        cout << "^";
+        cout << char(24);
         rlutil::locate(ejeX,ejeY+1);
-        cout << "v";
+        cout << char(25);
         do{
 
             if(cant<10){rlutil::locate(ejeX+2,ejeY);cout<<" ";}
