@@ -458,8 +458,31 @@ using namespace std;
         rlutil::setBackgroundColor(ClFnd);
     }
 
-    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
+    void SeleccionYAnimFlecha(int EjeX1, int EjeY1, int &tecla, int EjeX2, int EjeY2){ //, int EjeX2, int EjeY2
+        while(1){
+                if(kbhit()){tecla=getch();break;};
+                rlutil::locate(EjeX1,EjeY1);cout<<" "<<char(175);
+                rlutil::locate(EjeX2,EjeY2);cout<<char(174)<<" ";
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+                rlutil::locate(EjeX1,EjeY1);cout<<char(175)<<" ";
+                rlutil::locate(EjeX2,EjeY2);cout<<" "<<char(174);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
+                if(kbhit()){tecla=getch();break;};
+            }
+    }
 
+    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
         rlutil::hidecursor();
         int y=0, tecla, maxCarctrs;
         for(int i=0; i<=CantOpc; i++){
@@ -472,30 +495,13 @@ using namespace std;
             for(int i=0; i<=CantOpc; i++){
                 MostrYRsaltTxt(opciones[i].getTexto(),EjeX,EjeY+(i*SaltosDeLinea),y/SaltosDeLinea==i,rlutil::GREY,rlutil::BLACK,rlutil::DARKGREY);
             }
-            while(1){
-                if(kbhit()){tecla=getch();break;};
-                rlutil::locate(EjeX-2,EjeY+y);cout<<" "<<char(175);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};
-                rlutil::locate(EjeX-2,EjeY+y);cout<<char(175)<<" ";
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
-                if(kbhit()){tecla=getch();break;};
-            }
-
+            SeleccionYAnimFlecha(EjeX-2,EjeY+y,tecla,EjeX+strlen(opciones[y/SaltosDeLinea].getTexto()),EjeY+y);
             switch(tecla){
 
                 case(72):///arriba///
                     rlutil::locate(EjeX-2,EjeY+y);
+                    cout<<"  "<<endl;
+                    rlutil::locate(EjeX+strlen(opciones[y/SaltosDeLinea].getTexto()),EjeY+y);
                     cout<<"  "<<endl;
                     y=y-SaltosDeLinea;
                     if(y<0){y=CantOpc*SaltosDeLinea;}
@@ -503,6 +509,8 @@ using namespace std;
 
                 case(80):///abajo///
                     rlutil::locate(EjeX-2,EjeY+y);
+                    cout<<"  "<<endl;
+                    rlutil::locate(EjeX+strlen(opciones[y/SaltosDeLinea].getTexto()),EjeY+y);
                     cout<<"  "<<endl;
                     y=y+SaltosDeLinea;
                     if(y>CantOpc*SaltosDeLinea){y=0;}
