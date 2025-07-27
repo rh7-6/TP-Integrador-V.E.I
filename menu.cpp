@@ -416,9 +416,17 @@ using namespace std;
         rlutil::showcursor();
         return -1;
     }
-    void DibujarCaja(int EjX, int EjY, int TamH, int TamV){
 
-        rlutil::setBackgroundColor(rlutil::LIGHTBLUE);
+    void DibujarCaja(int EjX, int EjY, int TamH, int TamV, int ClRelln, int ClExtr){
+
+        for(int Y=1;Y<TamV;Y++){
+            for(int H=1;H<TamH;H++){
+                rlutil::setBackgroundColor(ClRelln);
+                rlutil::locate(EjX+H,EjY+Y);
+                cout<<" ";
+            }
+        }
+        rlutil::setBackgroundColor(ClExtr);
         rlutil::setColor(rlutil::BLACK);
         ///Primera Linea Vertical///
         rlutil::locate(EjX,EjY);cout<<(char)218;
@@ -440,15 +448,14 @@ using namespace std;
         rlutil::setColor(rlutil::WHITE);
     }
 
-    void MostrYRsaltTxt(const char *txt, int EjeX, int EjeY,bool selec){
-
+    void MostrYRsaltTxt(const char *txt, int EjeX, int EjeY,bool selec, int ClRslt, int ClLtr, int ClFnd){
         if(selec){
-            rlutil::setBackgroundColor(rlutil::DARKGREY);
-            rlutil::setColor(rlutil::WHITE);
-        }else{rlutil::setBackgroundColor(rlutil::BLACK);rlutil::setColor(rlutil::GREY);}
+            rlutil::setBackgroundColor(ClRslt);
+            rlutil::setColor(ClLtr);
+        }else{rlutil::setBackgroundColor(ClFnd);rlutil::setColor(ClLtr);}
         rlutil::locate(EjeX,EjeY);
         cout<<txt<<endl;
-        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setBackgroundColor(ClFnd);
     }
 
     int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
@@ -460,10 +467,10 @@ using namespace std;
                 if((strlen(opciones[i].getTexto()))>maxCarctrs){maxCarctrs=strlen(opciones[i].getTexto());}
             }
         }
-        DibujarCaja(EjeX-8,EjeY-3,maxCarctrs+15,CantOpc*SaltosDeLinea+6);
+        DibujarCaja(EjeX-8,EjeY-3,maxCarctrs+15,CantOpc*SaltosDeLinea+6,rlutil::DARKGREY,rlutil::WHITE);
         do{
             for(int i=0; i<=CantOpc; i++){
-                MostrYRsaltTxt(opciones[i].getTexto(),EjeX,EjeY+(i*SaltosDeLinea),y/SaltosDeLinea==i);
+                MostrYRsaltTxt(opciones[i].getTexto(),EjeX,EjeY+(i*SaltosDeLinea),y/SaltosDeLinea==i,rlutil::GREY,rlutil::BLACK,rlutil::DARKGREY);
             }
             while(1){
                 if(kbhit()){tecla=getch();break;};
@@ -502,12 +509,16 @@ using namespace std;
                 break;
 
                 case(13):///enter///
+                    rlutil::setColor(rlutil::WHITE);
+                    rlutil::setBackgroundColor(rlutil::BLACK);
                     system("cls");
                     if(y==CantOpc*SaltosDeLinea){return CantOpc;}
                     return y/SaltosDeLinea;
                 break;
 
                 case(27):
+                    rlutil::setColor(rlutil::WHITE);
+                    rlutil::setBackgroundColor(rlutil::BLACK);
                     system("cls");
                     return CantOpc*SaltosDeLinea;
                 break;
@@ -519,7 +530,6 @@ using namespace std;
     }
 
     int SeleccionCantidad(int ejeX, int ejeY, int Max, int Min){
-
         rlutil::hidecursor();
         int cant=Min, tecla;
         bool ban=true;
