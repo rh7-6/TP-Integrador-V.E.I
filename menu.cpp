@@ -480,6 +480,10 @@ using namespace std;
                 if(kbhit()){tecla=getch();break;};rlutil::msleep(50);
                 if(kbhit()){tecla=getch();break;};
             }
+            rlutil::locate(EjeX1,EjeY2);
+            cout<<"  "<<endl;
+            rlutil::locate(EjeX2,EjeY2);
+            cout<<"  "<<endl;
     }
 
     int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
@@ -487,7 +491,8 @@ using namespace std;
         int y=0, tecla, maxCarctrs;
         for(int i=0; i<=CantOpc; i++){
             if(i==0){maxCarctrs=strlen(opciones[0].getTexto());}else{
-                if((strlen(opciones[i].getTexto()))>maxCarctrs){maxCarctrs=strlen(opciones[i].getTexto());}
+                    int TamTxtActual=strlen(opciones[i].getTexto());
+                if(TamTxtActual>maxCarctrs){maxCarctrs=TamTxtActual;}
             }
         }
         DibujarCaja(EjeX-8,EjeY-3,maxCarctrs+15,CantOpc*SaltosDeLinea+6,rlutil::DARKGREY,rlutil::WHITE);
@@ -499,19 +504,11 @@ using namespace std;
             switch(tecla){
 
                 case(72):///arriba///
-                    rlutil::locate(EjeX-2,EjeY+y);
-                    cout<<"  "<<endl;
-                    rlutil::locate(EjeX+strlen(opciones[y/SaltosDeLinea].getTexto()),EjeY+y);
-                    cout<<"  "<<endl;
                     y=y-SaltosDeLinea;
                     if(y<0){y=CantOpc*SaltosDeLinea;}
                 break;
 
                 case(80):///abajo///
-                    rlutil::locate(EjeX-2,EjeY+y);
-                    cout<<"  "<<endl;
-                    rlutil::locate(EjeX+strlen(opciones[y/SaltosDeLinea].getTexto()),EjeY+y);
-                    cout<<"  "<<endl;
                     y=y+SaltosDeLinea;
                     if(y>CantOpc*SaltosDeLinea){y=0;}
                 break;
@@ -532,7 +529,6 @@ using namespace std;
                 break;
             }
         }while(1);
-        system("cls");
         rlutil::showcursor();
         return 0;
     }
