@@ -9,7 +9,7 @@ using namespace std;
         system("cls");
         Cadena opciones[6];
         TextoMenuPrincipal(opciones);
-            switch(SeleccionMenuAnim(opciones,54,12,5,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK, rlutil::WHITE)){
+            switch(SeleccionMenuAnim(opciones,54,12,5,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
             case(0):{//////////////////////COMPRAR/////////////////////////////
               comprar();
             }
@@ -58,7 +58,7 @@ using namespace std;
         system("cls");
         Cadena opciones[4];
         TextoMenuCompra(opciones);
-        switch(SeleccionMenuAnim(opciones,54,12,3,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+        switch(SeleccionMenuAnim(opciones,54,12,3,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
 
             case(0):{///////////PRODUCTOS/////////////
                 bool banP=true;
@@ -99,7 +99,7 @@ using namespace std;
             system("cls");
             Cadena opciones[5];
             TextoMenuListado(opciones);
-                switch(SeleccionMenuAnim(opciones,54,12,4,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+                switch(SeleccionMenuAnim(opciones,54,12,4,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
 
                 case(0):{///////////PRODUCTOS///////////
                     bool opcion;
@@ -144,7 +144,7 @@ using namespace std;
             system("cls");
             Cadena opciones[4];
             TextoMenuBusqueda(opciones);
-                    switch(SeleccionMenuAnim(opciones,54,12,3,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+                    switch(SeleccionMenuAnim(opciones,54,12,3,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
                         case(0):{////////////////////////////PRODUCTO///////////////////////////
                             bool opcion;
                             rlutil::locate(43,5);
@@ -188,7 +188,7 @@ using namespace std;
             system("cls");
             Cadena opciones[5];
             TextoMenuInformes(opciones);
-                switch(SeleccionMenuAnim(opciones,54,12,4,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+                switch(SeleccionMenuAnim(opciones,54,12,4,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
                     case(0):
                         RecaudacionAnual();
                     break;
@@ -216,7 +216,7 @@ using namespace std;
             system("cls");
             Cadena opciones[5];
             TextoMenuCargarRegistro(opciones);
-            switch(SeleccionMenuAnim(opciones,54,12,4,2,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+            switch(SeleccionMenuAnim(opciones,54,12,4,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
                 case(0):{/////////////Clientes/////////////
                     MenuRegistroCliente();
                 }
@@ -250,12 +250,12 @@ using namespace std;
 
     void TextoMenuPrincipal(Cadena *opciones){
         ///opciones///
-        opciones[0].setTexto("COMPRA");
-        opciones[1].setTexto("LISTADOS");
-        opciones[2].setTexto("BUSQUEDAS");
-        opciones[3].setTexto("INFORMES");
-        opciones[4].setTexto("REGISTROS");
-        opciones[5].setTexto("SALIR");
+        opciones[0].setTexto("C O M P R A");
+        opciones[1].setTexto("L I S T A D O S");
+        opciones[2].setTexto("B U S Q U E D A S");
+        opciones[3].setTexto("I N F O R M E S");
+        opciones[4].setTexto("R E G I S T R O S");
+        opciones[5].setTexto("S A L I R");
     }
 
     void TextoMenuCompra(Cadena *opciones){
@@ -439,7 +439,7 @@ using namespace std;
         cout<<"  "<<endl;
     }
 
-    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc, int SaltosDeLinea, int ClRell, int ClExtr, int ClRslt, int ClLtr, int ClFlch){
+    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc, int SaltosDeLinea, int TamCj, int ClRell, int ClExtr, int ClRslt, int ClLtr, int ClFlch){
         rlutil::hidecursor();
         int y=0, tecla, maxCarctrs;
 
@@ -449,8 +449,7 @@ using namespace std;
                 if(TamTxtActual>maxCarctrs){maxCarctrs=TamTxtActual;}
             }
         }
-
-        DibujarCaja(EjeX-8,EjeY-3,maxCarctrs+15,CantOpc*SaltosDeLinea+6,ClRell,ClExtr);
+        DibujarCaja(EjeX-(TamCj*2),EjeY-(TamCj-1),maxCarctrs+((TamCj*4)-1),CantOpc*SaltosDeLinea+((TamCj-1)*2),ClRell,ClExtr);
         int mtdCj=(maxCarctrs)/2;
 
         do{
