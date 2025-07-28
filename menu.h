@@ -28,7 +28,7 @@ using namespace std;
 
     int SeleccionMenus(int EjeX, int EjeY, int CntOpc, int SaltosDeLinea);
 
-    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc,int SaltosDeLinea, int ClRell, int ClExtr, int ClRslt, int ClLtr);
+    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc,int SaltosDeLinea, int ClRell, int ClExtr, int ClRslt, int ClLtr, int ClFlch);
 
     int SeleccionCantidad(int ejeX, int ejeY, int Max,int Min);
 
