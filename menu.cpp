@@ -9,7 +9,7 @@ using namespace std;
         system("cls");
         Cadena opciones[6];
         TextoMenuPrincipal(opciones);
-            switch(SeleccionMenuAnim(opciones,54,12,5,1,rlutil::GREY,rlutil::WHITE,rlutil::DARKGREY,rlutil::BLACK)){
+            switch(SeleccionMenuAnim(opciones,54,12,5,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK)){
             case(0):{//////////////////////COMPRAR/////////////////////////////
               comprar();
             }
@@ -58,7 +58,7 @@ using namespace std;
         system("cls");
         Cadena opciones[4];
         TextoMenuCompra(opciones);
-        switch(SeleccionMenuAnim(opciones,54,12,3,1,rlutil::GREY,rlutil::WHITE,rlutil::DARKGREY,rlutil::BLACK)){
+        switch(SeleccionMenuAnim(opciones,54,12,3,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK)){
 
             case(0):{///////////PRODUCTOS/////////////
                 bool banP=true;
@@ -99,7 +99,7 @@ using namespace std;
             system("cls");
             Cadena opciones[5];
             TextoMenuListado(opciones);
-                switch(SeleccionMenuAnim(opciones,54,12,4,1,rlutil::GREY,rlutil::WHITE,rlutil::DARKGREY,rlutil::BLACK)){
+                switch(SeleccionMenuAnim(opciones,54,12,4,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK)){
 
                 case(0):{///////////PRODUCTOS///////////
                     bool opcion;
@@ -144,7 +144,7 @@ using namespace std;
             system("cls");
             Cadena opciones[4];
             TextoMenuBusqueda(opciones);
-                    switch(SeleccionMenuAnim(opciones,54,12,3,1,rlutil::GREY,rlutil::WHITE,rlutil::DARKGREY,rlutil::BLACK)){
+                    switch(SeleccionMenuAnim(opciones,54,12,3,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK)){
                         case(0):{////////////////////////////PRODUCTO///////////////////////////
                             bool opcion;
                             rlutil::locate(43,5);
@@ -188,7 +188,7 @@ using namespace std;
             system("cls");
             Cadena opciones[5];
             TextoMenuInformes(opciones);
-                switch(SeleccionMenuAnim(opciones,54,12,4,1,rlutil::GREY,rlutil::WHITE,rlutil::DARKGREY,rlutil::BLACK)){
+                switch(SeleccionMenuAnim(opciones,54,12,4,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK)){
                     case(0):
                         RecaudacionAnual();
                     break;
@@ -216,7 +216,7 @@ using namespace std;
             system("cls");
             Cadena opciones[5];
             TextoMenuCargarRegistro(opciones);
-            switch(SeleccionMenuAnim(opciones,54,12,4,1,rlutil::GREY,rlutil::WHITE,rlutil::DARKGREY,rlutil::BLACK)){
+            switch(SeleccionMenuAnim(opciones,54,12,4,1,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK)){
                 case(0):{/////////////Clientes/////////////
                     MenuRegistroCliente();
                 }
@@ -324,55 +324,6 @@ using namespace std;
         rlutil::locate(57,17);
         cout << "Perifericos" << endl;
     }
-
-    void Pilares(){
-
-        ///columna superior///
-        rlutil::locate(40,8);
-        cout<<"///////////////////////////////////////////";
-        ///pilar izquierdo///
-        rlutil::locate(40,9);
-        cout<<"//";
-        rlutil::locate(40,10);
-        cout<<"//";
-        rlutil::locate(40,11);
-        cout<<"//";
-        rlutil::locate(40,12);
-        cout<<"//";
-        rlutil::locate(40,13);
-        cout<<"//";
-        rlutil::locate(40,14);
-        cout<<"//";
-        rlutil::locate(40,15);
-        cout<<"//";
-        rlutil::locate(40,16);
-        cout<<"//";
-        rlutil::locate(40,17);
-        cout<<"//";
-        ///pilar derecho///
-        rlutil::locate(81,9);
-        cout<<"//";
-        rlutil::locate(81,10);
-        cout<<"//";
-        rlutil::locate(81,11);
-        cout<<"//";
-        rlutil::locate(81,12);
-        cout<<"//";
-        rlutil::locate(81,13);
-        cout<<"//";
-        rlutil::locate(81,14);
-        cout<<"//";
-        rlutil::locate(81,15);
-        cout<<"//";
-        rlutil::locate(81,16);
-        cout<<"//";
-        rlutil::locate(81,17);
-        cout<<"//";
-        ///columna inferior///
-        rlutil::locate(40,18);
-        cout<<"///////////////////////////////////////////";
-    }
-
 
     int SeleccionMenus(int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
 
