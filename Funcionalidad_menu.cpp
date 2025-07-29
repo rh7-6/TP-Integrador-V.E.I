@@ -610,7 +610,7 @@ default:{}
 
         system("cls");
         rlutil::locate(50,6);cout<<"<Guardar/Editar registro>"<<endl;
-        rlutil::locate(50,7);cout<<"<Eliminar Registro>"<<endl;
+        rlutil::locate(50,7);cout<<"<Eliminar Registro/Restaurar>"<<endl;
         int opcion=SeleccionMenus(49,6,1,1);
 
         Cliente cl;
@@ -631,10 +631,28 @@ default:{}
                 cin>>cuil; LimpiarBuffer();
                 system("cls");
             }
-
             cl=archCl.LeerCliente(posCl);
+            if(cl.GetEstado()==false)
+            {
+            system("cls");
+            rlutil::locate(40,5);
+            cout<<"restaurar archibo de cliente?";
+            rlutil::locate(55,7);
+            cout<<"Si";
+            rlutil::locate(55,8);
+            cout<<"No";
+            if(SeleccionMenus(53,7,1,1)==0)
+            {
+            cl.SetEstado(true);
+            archCl.GuardarCliente(cl);
+            }
+            }
+            else
+            {
             cl.SetEstado(false);
             archCl.GuardarCliente(cl);
+            }
+            system("cls");
         }
     }
 
@@ -1438,7 +1456,7 @@ default:{}
 
     void RecaudacionAnual(){
      int anio=0,i=0;
-     float totalanual=0, importe=0;
+     float importe=0,meses[12]={0};
      Fecha fech;
      Venta ven;
      ArchivoVentas archV("Ventas.dat");
@@ -1448,15 +1466,77 @@ default:{}
         cin>>anio; LimpiarBuffer();
         for(i=0;i<cantReg;i++)
         {
-        ven=archV.LeerVenta(i);
+        archV.LeerVenta(i,ven);
         fech=ven.GetFecha();
         if(fech.getAnio()==anio&&ven.GetEstado()==true)
         {
-        importe=ven.GetImporteVenta();
-        totalanual=totalanual+importe;
+        switch(fech.getMes())
+        {
+    case(1):
+        {
+        meses[0]=meses[0]+ven.GetImporteVenta();
+        }
+    break;
+    case(2):
+        {
+        meses[1]=meses[1]+ven.GetImporteVenta();
+        }
+    break;
+    case(3):
+        {
+        meses[2]=meses[2]+ven.GetImporteVenta();
+        }
+    break;
+    case(4):
+        {
+        meses[3]=meses[3]+ven.GetImporteVenta();
+        }
+    break;
+    case(5):
+        {
+        meses[4]=meses[4]+ven.GetImporteVenta();
+        }
+    break;
+    case(6):
+        {
+        meses[5]=meses[5]+ven.GetImporteVenta();
+        }
+    break;
+    case(7):
+        {
+        meses[6]=meses[6]+ven.GetImporteVenta();
+        }
+    break;
+    case(8):
+        {
+        meses[7]=meses[7]+ven.GetImporteVenta();
+        }
+    break;
+    case(9):
+        {
+        meses[8]=meses[8]+ven.GetImporteVenta();
+        }
+    break;
+    case(10):
+        {
+        meses[9]=meses[9]+ven.GetImporteVenta();
+        }
+    break;
+    case(11):
+        {
+        meses[10]=meses[10]+ven.GetImporteVenta();
+        }
+    break;
+    case(12):
+        {
+        meses[11]=meses[11]+ven.GetImporteVenta();
+        }
+    break;
+        }
+        importe=importe+ven.GetImporteVenta();
         }
         }
-        if(totalanual==0)
+        if(importe==0)
         {
         system("cls");
         rlutil::locate(47,5);
@@ -1466,9 +1546,33 @@ default:{}
         else
         {
         system("cls");
-        rlutil::locate(35,5);
         cout << std::fixed << std::setprecision(0);
-        cout<<"Lo que se recaudo en total del "<<anio<<" es de: $"<<totalanual<<endl;
+        rlutil::locate(52,5);
+        cout<<"Enero= $"<<meses[0];
+        rlutil::locate(52,6);
+        cout<<"Febrero= $"<<meses[1];
+        rlutil::locate(52,7);
+        cout<<"Marzo= $"<<meses[2];
+        rlutil::locate(52,8);
+        cout<<"Abril= $"<<meses[3];
+        rlutil::locate(52,9);
+        cout<<"Mayo= $"<<meses[4];
+        rlutil::locate(52,10);
+        cout<<"Junio= $"<<meses[5];
+        rlutil::locate(52,11);
+        cout<<"Julio= $"<<meses[6];
+        rlutil::locate(52,12);
+        cout<<"Agosto= $"<<meses[7];
+        rlutil::locate(52,13);
+        cout<<"Septiembre= $"<<meses[8];
+        rlutil::locate(52,14);
+        cout<<"Octubre= $"<<meses[9];
+        rlutil::locate(52,15);
+        cout<<"Noviembre= $"<<meses[10];
+        rlutil::locate(52,16);
+        cout<<"Diciembre= $"<<meses[11];
+        rlutil::locate(35,18);
+        cout<<"Lo que se recaudo en total del "<<anio<<" es de: $"<<importe;
         rlutil::getkey();
         }
     }
