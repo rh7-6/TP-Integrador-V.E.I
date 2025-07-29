@@ -8,123 +8,105 @@ using namespace std;
 
                                 ///PRODUCTO///
 //------------------------------------------------------------------------//
-    int CargarProducto(Producto &p){
+    int CargarProducto(Producto &p, int switchEdit, bool opcCarga){
 
         ArchivoProductos archP("Productos.dat");
         int id,tipo=0,stock;
         float precio;
         char nombre[50]{},descripcion[500]{}, marca[20]{};
-        rlutil::locate(30,5);
-        cout<<"Ingrese el id del producto o equipo igual o mayor a 0: ";
-        cin>>id; LimpiarBuffer();
 
-        while(p.SetIdProducto(id)==0){
-            rlutil::locate(20,5);
-            cout<<"el numero tiene que ser mayor o igual a 0 por favor vuelva a cargar el numero: ";
-            cin>>id; LimpiarBuffer();
-        }
-        cout<<endl;
-        system("cls");
-
-        if(archP.BuscarProducto(id)>=0){
-
-            system("cls");
+        if(opcCarga==1){
             rlutil::locate(30,5);
-            cout << "Ya existe un producto con el Id: " << id << " Desea reingresarlo?" << endl;
+            cout<<"Ingrese id del producto: ";
+            cin>>id; LimpiarBuffer();
 
-            bool ban=true;
-            do{
-                rlutil::hidecursor();
-                rlutil::locate(57,8);
-                cout<<"NO";
-                rlutil::locate(57,9);
-                cout<<"SI";
-                    switch(SeleccionMenus(56,8,1,1)){
-
-                    case(0):{return 0;}
-                    break;
-
-                    case(1):{ban=false;}
-                    break;
-                    }
-                }while(ban);
-        }
-        rlutil::showcursor();
-        system("cls");
-
-
-        rlutil::locate(35,5);
-        cout << "Ingrese nombre del producto: ";
-        cin.getline(nombre, 50);
-        p.SetNombreProducto(nombre);
-        cout<<endl;
-        system("cls");
-
-        rlutil::locate(20,5);
-        cout<<"Ingrese el precio del producto tienen que ser igual o mayor a 100: $";
-        cin>>precio;
-        while(p.SetPrecio(precio)==0){
-            system("cls");
-            rlutil::locate(20,5);
-            cout<<"el precio tiene que ser minimo 100 por favor vuelva a cargar el precio: $";
-            cin>>precio; LimpiarBuffer();
-        }
-        cout<<endl;
-        system("cls");
-
-        rlutil::locate(2,5);
-        cout<<"Ingrese la descripcion del producto(terminada en el caracter #): "<<endl;
-        cin.getline(descripcion,500, '#'); LimpiarBuffer();
-        p.SetDescripcion(descripcion);
-        cout<<endl;
-        system("cls");
-
-        rlutil::locate(20,5);
-        cout<<"Ingrese la marca a la que pertenece el producto: ";
-        cin.getline(marca,20);
-        p.SetMarca(marca);
-        cout<<endl;
-        system("cls");
-
-        rlutil::locate(50,7);
-        cout<<"Selecione el tipo de producto";
-        TextoTiposDeProducto();
-        tipo=SeleccionMenus(56,8,9,1);
-        tipo++;
-        p.SetTipoEquipo(tipo);
-        system("cls");
-
-        rlutil::locate(35,5);
-        cout<<"Ingrese el stock del producto: ";
-        cin>>stock; LimpiarBuffer();
-        while(p.SetStock(stock)==0){
-            rlutil::locate(20,5);
-            cout<<"el stock no puede ser menor a 0 por favor vuelva a ingresar el stock: ";
-            cin>>stock; LimpiarBuffer();
-        }
-        cout<<endl;
-        system("cls");
-
-        rlutil::locate(45,5);
-        cout<<"Selecione el estado del producto";
-            rlutil::locate(56,7);
-            cout<<"inactivo";
-            rlutil::locate(56,8);
-            cout<<"activo";
-            switch(SeleccionMenus(54,7,1,1))
-                    {
-                    case(0):{
-                    p.SetEstado(0);
-                    }
-                    break;
-                    case(1):{
-                    p.SetEstado(1);
-                    }
-                    break;
-                    }
-        cout<<endl;
-        return 1;
+            while(p.SetIdProducto(id)==0){
+                rlutil::locate(20,5);
+                cout<<"Ingrese un numero mayor a 0: ";
+                cin>>id; LimpiarBuffer();
+                system("cls");
             }
+        }
+        do{
+            switch(switchEdit){
+                case(0):{
+                    rlutil::locate(35,5);
+                    cout << "Ingrese nombre del producto: ";
+                    cin.getline(nombre, 50);
+                    p.SetNombreProducto(nombre);
+                    system("cls");
+                }break;
+
+                case(1):{
+                    rlutil::locate(20,5);
+                    cout<<"Ingrese el precio del producto tienen que ser igual o mayor a 100: $";
+                    cin>>precio;
+                    while(p.SetPrecio(precio)==0){
+                        system("cls");
+                        rlutil::locate(20,5);
+                        cout<<"el precio debe ser mayor a 100 por favor vuelva a ingresar el precio: $";
+                        cin>>precio; LimpiarBuffer();
+                    }
+                    system("cls");
+                }break;
+
+                case(2):{
+                    rlutil::locate(2,5);
+                    cout<<"Ingrese la descripcion del producto(terminada en el caracter #): "<<endl;
+                    cin.getline(descripcion,500, '#'); LimpiarBuffer();
+                    p.SetDescripcion(descripcion);
+                    system("cls");
+                }break;
+
+                case(3):{
+                    rlutil::locate(20,5);
+                    cout<<"Ingrese la marca a la que pertenece el producto: ";
+                    cin.getline(marca,20);
+                    p.SetMarca(marca);
+                    system("cls");
+                }break;
+
+                case(4):{
+                    rlutil::locate(50,7);
+                    cout<<"Selecione el tipo de producto";
+                    TextoTiposDeProducto();
+                    tipo=SeleccionMenus(56,8,9,1);
+                    tipo++;
+                    p.SetTipoEquipo(tipo);
+                    system("cls");
+                }break;
+
+                case(5):{
+                    rlutil::locate(35,5);
+                    cout<<"Ingrese el stock del producto: ";
+                    cin>>stock; LimpiarBuffer();
+                    while(p.SetStock(stock)==0){
+                        rlutil::locate(20,5);
+                        cout<<"El stock no puede ser menor a 0 por favor vuelva a ingresar el stock: ";
+                        cin>>stock; LimpiarBuffer();
+                    }
+                    system("cls");
+                }break;
+
+                case(6):{
+                    rlutil::locate(45,5);
+                    cout<<"Selecione el estado del producto";
+                    rlutil::locate(56,7);
+                    cout<<"inactivo";
+                    rlutil::locate(56,8);
+                    cout<<"activo";
+                    switch(SeleccionMenus(54,7,1,1)){
+                    case(0):{p.SetEstado(0);}break;
+
+                    case(1):{p.SetEstado(1);}break;
+                    }
+                    cout<<endl;
+                    }break;
+            }
+            switchEdit++;
+        }while(opcCarga);
+        return 1;
+    }
 
     void MostrarProducto(Producto &p){
     cout<<"Id del producto: "<<p.GetIdProducto()<<endl<< endl;
@@ -234,31 +216,7 @@ default:{}
         ArchivoProductos archP("Productos.dat");
         bool seguir=true;
 
-        while(seguir){
-                system("cls");
-            archP.GuardarProducto(p);
-            rlutil::locate(45,5);
-            cout << "¿Desea ingresar otro producto?";
-            rlutil::locate(56,7);
-            cout<<"si";
-            rlutil::locate(56,8);
-            cout<<"no";
-                    switch(SeleccionMenus(55,7,1,1))
-                    {
-                    case(0):{
-                    seguir=1;
-                    }
-                    break;
-                    case(1):{
-                    seguir=0;
-                    }
-                    break;
-                    }
-
-            if(seguir){
-            CargarProducto(p);
-            }
-        }
+        archP.GuardarProducto(p);
     }
 
     void ListadoDeProductos(bool opcion){
@@ -361,19 +319,42 @@ default:{}
     void MenuRegistroProducto(){
 
         system("cls");
-        rlutil::locate(50,6);cout<<"<Guardar/Editar registro>"<<endl;
-        rlutil::locate(50,7);cout<<"<Eliminar Registro>"<<endl;
-        int opcion=SeleccionMenus(49,6,1,1);
-
+        ArchivoProductos archP("Productos.dat");
+        Cadena Opc[2];
+        Opc[0].setTexto("Guardar/Editar registro");
+        Opc[1].setTexto("Eliminar/Restaurar Registro");
+        int opcion=SeleccionMenuAnim(Opc,54,12,1,1,4,8,15,15,0,15);
 
         Producto p;
         if(opcion==0){
-                rlutil::locate(25,4); cout<<"Nota:la carga directa es en caso de copia y pega de datos";
-                rlutil::locate(50,6); cout<<"Carga directa";
-                rlutil::locate(50,7); cout<<"Carga manual";
+                Cadena Opc1[2];
+                Opc1[0].setTexto("Ingresar nuevo");
+                Opc1[1].setTexto("Editar existente");
 
-                if(SeleccionMenus(48,6,1,1)==0){CargaDirecta();}
-                else{if(CargarProducto(p)==1){GuardarRegistroProducto(p);}}
+                if(SeleccionMenuAnim(Opc1,54,12,1,1,4,8,15,15,0,15)==0){
+                    CargarProducto(p,0,1);
+                    }else{
+                        Cadena OpcPr[30];
+                        for(int i=0;i<30;i++){OpcPr[i].setTexto("");}
+                        vector<Producto> VecPr;
+                        Cadena Opc2[10]; TextoTiposDeProducto2(Opc2);
+                        int TpPr=SeleccionMenuAnim(Opc2,54,12,9,1,4,8,15,15,0,15)+1;
+                        CopiarYOrdenarProductos(VecPr,TpPr,1);
+                        CopiarYOrdenarProductos(VecPr,TpPr,0);
+                        for(int i=0;i<VecPr.size();i++){
+                            string estado;
+                            if(VecPr[i].GetEstado()==0){estado="inactivo";}else{estado="activo";}
+                            string s="ID:"+to_string(VecPr[i].GetIdProducto())+"|"+VecPr[i].GetMarca()+" "+VecPr[i].GetNombreProducto()+"|"+estado;
+                            OpcPr[i].setTexto(s.c_str());
+                        }
+                        int PrSelec=SeleccionMenuAnim(OpcPr,54,12,VecPr.size()-1,2,4,8,15,15,0,15);
+                        p=VecPr[PrSelec];
+                        Cadena TxtEdit[8];
+                        TxtEditProducto(TxtEdit);
+                        int SwitchEdit=SeleccionMenuAnim(TxtEdit,54,12,6,2,4,8,15,15,0,15);
+                        CargarProducto(p,SwitchEdit,0);
+                    }
+                archP.GuardarProducto(p);
                 system("cls");
                 rlutil::hidecursor();
         }else{
@@ -636,7 +617,7 @@ default:{}
             {
             system("cls");
             rlutil::locate(40,5);
-            cout<<"restaurar archibo de cliente?";
+            cout<<"Restaurar registro de cliente?";
             rlutil::locate(55,7);
             cout<<"Si";
             rlutil::locate(55,8);
@@ -1151,20 +1132,16 @@ default:{}
 
                                 ///COMPRA///
 //------------------------------------------------------------------------//
-    void CopiarYOrdenarProductos(vector<Producto> &vecPrMod){
+    void CopiarYOrdenarProductos(vector<Producto> &vecPrMod, int tipoPr, bool estado){
 
         ArchivoProductos archPr("Productos.dat");
         int cantReg=archPr.CantidadRegistros(sizeof(Producto));
-
-        TextoTiposDeProducto();
-        int tipo=SeleccionMenus(56,8,9,1);tipo++;
-        system("cls");
 
         int tamVecProd=vecPrMod.size();
         Producto pr;
         for(int i=0; i<cantReg; i++){
             archPr.LeerProducto(i, pr);
-            if(pr.GetTipoEquipo()==tipo&&pr.GetEstado()==1&&pr.GetStock()>0){
+            if(pr.GetTipoEquipo()==tipoPr&&pr.GetEstado()==estado&&pr.GetStock()>0){
                 //MostrarProducto(pr);
                 vecPrMod.push_back(pr);
                 }
@@ -1334,11 +1311,11 @@ default:{}
         }while(ban);
     }
 
-    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, bool &salida){
+    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod, bool &salida){
 
-        int tamVecPrselec=vecPrSelec.size(), cantPrSelec, contadorParaSalida=0;
+        int tamVecPrselec=vecPrSelec.size(),tamVecPrMod=vecPrMod.size(), cantPrSelec, contadorParaSalida=0;
         for(int i=0;i<tamVecPrselec;i++){if(vecPrSelec[i].GetEstado()==true){contadorParaSalida++;}}
-        if(tamVecPrselec==0||contadorParaSalida==0){ rlutil::locate(48,10); cout << "|CARRITO VACIO|";rlutil::getkey();return;}
+        if(tamVecPrselec==0||contadorParaSalida==0){ rlutil::locate(48,10); cout << "|CARRITO VACIO|";rlutil::locate(50,10);system("pause");return;}
         rlutil::locate(48,10); cout << "Guardar y finalizar compra? " << endl;
         rlutil::locate(48,11); cout << "No" << endl;
         rlutil::locate(48,12); cout << "Si" << endl;
@@ -1372,6 +1349,7 @@ default:{}
             GuardarRegistroCliente(cl,false);
             GuardarRegistroVenta(v);
             for(int i=0;i<tamVecPrselec; i++){if(vecPrSelec[i].GetEstado()==true){GuardarRegistroDetalleVenta(VecDv[i],false);}}
+            for(int i=0;i<tamVecPrMod; i++){if(vecPrMod[i].GetStock()==0){vecPrMod[i].SetEstado(0);}GuardarRegistroProducto(vecPrMod[i]);}
         }
         salida=false;
     }

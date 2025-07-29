@@ -46,7 +46,9 @@ using namespace std;
 
     void TextoTiposDeProducto();
 
+    void TextoTiposDeProducto2(Cadena *opciones);
 
+    void TxtEditProducto(Cadena *opciones);
 
 /// funcionalidad ///
 
@@ -54,7 +56,7 @@ using namespace std;
   PRODUCTOS
   ---------*/
 
-    int CargarProducto(Producto &p);
+    int CargarProducto(Producto &p, int switchEdit, bool opcCarga);
 
     void MostrarProducto(Producto &p);
 
@@ -118,7 +120,7 @@ using namespace std;
     COMPRA
   ---------*/
 
-    void CopiarYOrdenarProductos(vector<Producto> &vecPrMod);
+    void CopiarYOrdenarProductos(vector<Producto> &vecPrMod, int tipoPr, bool estado);
 
     void ListadoDeProductosCompra(vector<Producto> &vecPr);
 
@@ -128,7 +130,7 @@ using namespace std;
 
     void MenuCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod);
 
-    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, bool &salida);
+    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod, bool &salida);
 
     double CalculoImporteTotal(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
 

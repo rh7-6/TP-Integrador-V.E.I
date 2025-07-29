@@ -58,13 +58,16 @@ using namespace std;
         system("cls");
         Cadena opciones[4];
         TextoMenuCompra(opciones);
-        switch(SeleccionMenuAnim(opciones,54,12,3,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+        switch(SeleccionMenuAnim(opciones,54,12,3,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
 
             case(0):{///////////PRODUCTOS/////////////
                 bool banP=true;
                 do{
                 int tamVecPrMod=vecPrMod.size();
-                if(tamVecPrMod==0){CopiarYOrdenarProductos(vecPrMod); vecPrOrig=vecPrMod;}
+                if(tamVecPrMod==0){
+                    Cadena Opc[10]; TextoTiposDeProducto2(Opc);
+                    int TpPr=SeleccionMenuAnim(Opc,54,12,9,1,4,8,15,15,0,15)+1;
+                    CopiarYOrdenarProductos(vecPrMod,TpPr,1); vecPrOrig=vecPrMod;}
 
                 if(MenuProductosCompra(vecPrMod,vecPrSelec)==-1){banP=false;}
                 system("cls");
@@ -79,7 +82,7 @@ using namespace std;
             break;
 
             case(2):{///////////FINALIZAR/COMPRA///////////////
-                GuardarVentaCarrito(vecPrSelec,vecPrOrig,ban);
+                GuardarVentaCarrito(vecPrSelec,vecPrOrig,vecPrMod,ban);
             }
             break;
             case(3):{///////////SALIDA///////////////
@@ -99,7 +102,7 @@ using namespace std;
             system("cls");
             Cadena opciones[5];
             TextoMenuListado(opciones);
-                switch(SeleccionMenuAnim(opciones,54,12,4,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+                switch(SeleccionMenuAnim(opciones,54,12,4,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
 
                 case(0):{///////////PRODUCTOS///////////
                     bool opcion;
@@ -144,7 +147,7 @@ using namespace std;
             system("cls");
             Cadena opciones[4];
             TextoMenuBusqueda(opciones);
-                    switch(SeleccionMenuAnim(opciones,54,12,3,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+                    switch(SeleccionMenuAnim(opciones,54,12,3,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
                         case(0):{////////////////////////////PRODUCTO///////////////////////////
                             bool opcion;
                             rlutil::locate(43,5);
@@ -188,7 +191,7 @@ using namespace std;
             system("cls");
             Cadena opciones[5];
             TextoMenuInformes(opciones);
-                switch(SeleccionMenuAnim(opciones,54,12,4,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+                switch(SeleccionMenuAnim(opciones,54,12,4,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
                     case(0):
                         RecaudacionAnual();
                     break;
@@ -216,7 +219,7 @@ using namespace std;
             system("cls");
             Cadena opciones[5];
             TextoMenuCargarRegistro(opciones);
-            switch(SeleccionMenuAnim(opciones,54,12,4,1,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+            switch(SeleccionMenuAnim(opciones,54,12,4,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
                 case(0):{/////////////Clientes/////////////
                     MenuRegistroCliente();
                 }
@@ -260,69 +263,83 @@ using namespace std;
 
     void TextoMenuCompra(Cadena *opciones){
         ///opciones de Compra///
-        opciones[0].setTexto("Productos");
-        opciones[1].setTexto("Carrito");
-        opciones[2].setTexto("Finalizar Compra");
-        opciones[3].setTexto("Volver");
+        opciones[0].setTexto("P r o d u c t o s");
+        opciones[1].setTexto("C a r r i t o");
+        opciones[2].setTexto("F i n a l i z a r | C o m p r a");
+        opciones[3].setTexto("V o l v e r");
     }
 
     void TextoMenuListado(Cadena *opciones){
         ///opciones de listado///
-        opciones[0].setTexto("Listado de Productos");
-        opciones[1].setTexto("Listado de Clientes");
-        opciones[2].setTexto("Listado de Ventas");
-        opciones[3].setTexto("Listado Detalles de venta");
-        opciones[4].setTexto("Volver");
+        opciones[0].setTexto("L i s t a d o | P r o d u c t o s");
+        opciones[1].setTexto("L i s t a d o | C l i e n t e s");
+        opciones[2].setTexto("L i s t a d o | V e n t a s");
+        opciones[3].setTexto("L i s t a d o | D e t a l l e s | V e n t a");
+        opciones[4].setTexto("V o l v e r");
     }
 
     void TextoMenuBusqueda(Cadena *opciones){
         ///opciones de listado///
-        opciones[0].setTexto("Busqueda de Producto");
-        opciones[1].setTexto("Busqueda de Cliente");
-        opciones[2].setTexto("Busqueda de Venta");
-        opciones[3].setTexto("Volver");
+        opciones[0].setTexto("B u s q u e d a | P r o d u c t o");
+        opciones[1].setTexto("B u s q u e d a | C l i e n t e");
+        opciones[2].setTexto("B u s q u e d a | V e n t a");
+        opciones[3].setTexto("V o l v e r");
     }
 
     void TextoMenuInformes(Cadena *opciones){
         ///opciones de listado///
-        opciones[0].setTexto("Recaudacion anual");
-        opciones[1].setTexto("Recaudacion por cliente");
-        opciones[2].setTexto("Recaudacion por tipo de equipo");
-        opciones[3].setTexto("Equipos vendidos por tipo de cliente");
-        opciones[4].setTexto("Volver");
+        opciones[0].setTexto("R e c a u d o | A n u a l");
+        opciones[1].setTexto("R e c a u d o | C l i e n t e");
+        opciones[2].setTexto("R e c a u d o | T i p o | E q u i p o");
+        opciones[3].setTexto("U n i d a d e s | T i p o | C l i e n t e");
+        opciones[4].setTexto("V o l v e r");
     }
 
     void TextoMenuCargarRegistro(Cadena *opciones){
         ///opciones de listado///
-        opciones[0].setTexto("Cliente");
-        opciones[1].setTexto("Producto");
-        opciones[2].setTexto("Venta");
-        opciones[3].setTexto("Detalle de venta");
-        opciones[4].setTexto("Volver");
+        opciones[0].setTexto("C l i e n t e");
+        opciones[1].setTexto("P r o d u c t o");
+        opciones[2].setTexto("V e n t a");
+        opciones[3].setTexto("D e t a l l  e | V e n t a ");
+        opciones[4].setTexto("V o l v e r");
     }
 
     void TextoTiposDeProducto(){
+        rlutil::locate(57,8); cout << "Equipos" << endl;
+        rlutil::locate(57,9); cout << "Notebooks" << endl;
+        rlutil::locate(57,10); cout << "Procesadores" << endl;
+        rlutil::locate(57,11); cout << "Mothers" << endl;
+        rlutil::locate(57,12); cout << "Placas de video" << endl;
+        rlutil::locate(57,13); cout << "Memorias RAM" << endl;
+        rlutil::locate(57,14); cout << "Gabinetes" << endl;
+        rlutil::locate(57,15); cout << "Fuentes" << endl;
+        rlutil::locate(57,16); cout << "Almacenamiento" << endl;
+        rlutil::locate(57,17); cout << "Perifericos" << endl;
+    }
 
-        rlutil::locate(57,8);
-        cout << "Equipos" << endl;
-        rlutil::locate(57,9);
-        cout << "Notebooks" << endl;
-        rlutil::locate(57,10);
-        cout << "Procesadores" << endl;
-        rlutil::locate(57,11);
-        cout << "Mothers" << endl;
-        rlutil::locate(57,12);
-        cout << "Placas de video" << endl;
-        rlutil::locate(57,13);
-        cout << "Memorias RAM" << endl;
-        rlutil::locate(57,14);
-        cout << "Gabinetes" << endl;
-        rlutil::locate(57,15);
-        cout << "Fuentes" << endl;
-        rlutil::locate(57,16);
-        cout << "Almacenamiento" << endl;
-        rlutil::locate(57,17);
-        cout << "Perifericos" << endl;
+    void TextoTiposDeProducto2(Cadena *opciones){
+
+        opciones[0].setTexto("Equipos");
+        opciones[1].setTexto("Notebooks");
+        opciones[2].setTexto("Procesadores");
+        opciones[3].setTexto("Mothers");
+        opciones[4].setTexto("Placas de Video");
+        opciones[5].setTexto("Memorias RAM");
+        opciones[6].setTexto("Gabinetes");
+        opciones[7].setTexto("Fuentes");
+        opciones[8].setTexto("Almacenamiento");
+        opciones[9].setTexto("Perifericos");
+    }
+
+    void TxtEditProducto(Cadena *opciones){
+
+        opciones[0].setTexto("Nombre");
+        opciones[1].setTexto("Precio");
+        opciones[2].setTexto("Descripcion");
+        opciones[3].setTexto("Marca");
+        opciones[4].setTexto("Tipo de Producto");
+        opciones[5].setTexto("Stock");
+        opciones[6].setTexto("Estado");
     }
 
     int SeleccionMenus(int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
@@ -458,8 +475,9 @@ using namespace std;
                 MostrYRsaltTxt(opciones[i].getTexto(),(EjeX+mtdCj)-CantTxt,EjeY+(i*SaltosDeLinea),y/SaltosDeLinea==i,ClRslt,ClLtr,ClRell);
             }
 
-            int ClcPosX=(EjeX+mtdCj)-strlen(opciones[y/SaltosDeLinea].getTexto())/2;
-            SeleccionYAnimFlecha(ClcPosX-2,EjeY+y,tecla,ClcPosX+strlen(opciones[y/SaltosDeLinea].getTexto()),EjeY+y,ClFlch);
+            int tamTxtAct=strlen(opciones[y/SaltosDeLinea].getTexto());
+                int ClcPosX=(EjeX+mtdCj)-tamTxtAct/2;
+                SeleccionYAnimFlecha(ClcPosX-2,EjeY+y,tecla,ClcPosX+tamTxtAct,EjeY+y,ClFlch);
 
             switch(tecla){
 
@@ -485,7 +503,7 @@ using namespace std;
                     rlutil::setColor(rlutil::WHITE);
                     rlutil::setBackgroundColor(rlutil::BLACK);
                     system("cls");
-                    return CantOpc*SaltosDeLinea;
+                    return CantOpc;
                 break;
             }
         }while(1);
