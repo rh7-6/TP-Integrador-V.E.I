@@ -111,7 +111,7 @@ using namespace std;
                     rlutil::locate(50,8);
                     cout<<"Listar por stock";
                     rlutil::locate(50,9);
-                    cout<<"Listar por rango de precio";
+                    cout<<"Listar por precio";
                     opcion=SeleccionMenus(48,8,1,1);
                     ListadoDeProductos(opcion);
                     }

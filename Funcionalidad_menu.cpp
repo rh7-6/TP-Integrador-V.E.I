@@ -109,11 +109,11 @@ using namespace std;
     }
 
     void MostrarProducto(Producto &p){
-    cout<<"Id del producto: "<<p.GetIdProducto()<<endl<< endl;
-    cout<<"Precio del producto: $"<<fixed << setprecision(0)<<p.GetPrecio()<<endl<< endl;
-    cout<<"Descripcion del producto: "<< endl << p.GetDescripcion();
+    cout<<"Id: "<<p.GetIdProducto()<<endl<< endl;
+    cout<<"Nombre y Marca: "<<p.GetMarca()<<endl<< endl;
+    cout<<"Precio: $"<<fixed << setprecision(0)<<p.GetPrecio()<<endl<< endl;
+    cout<< p.GetDescripcion();
     cout<< endl << endl;
-    cout<<"Marca del producto: "<<p.GetMarca()<<endl<< endl;
 
  switch(p.GetTipoEquipo()){
 case 1:
@@ -149,6 +149,9 @@ case 10:
 default:{}
     }
     cout << endl;
+    cout << "Stock: " << p.GetStock() << endl;
+
+    cout<<"//////////////////////////////////////////////"<<endl;
 
     }
 
@@ -214,7 +217,6 @@ default:{}
     void GuardarRegistroProducto(Producto &p){
 
         ArchivoProductos archP("Productos.dat");
-        bool seguir=true;
 
         archP.GuardarProducto(p);
     }
@@ -343,7 +345,7 @@ default:{}
                         CopiarYOrdenarProductos(VecPr,TpPr,0);
                         for(int i=0;i<VecPr.size();i++){
                             string estado;
-                            if(VecPr[i].GetEstado()==0){estado="inactivo";}else{estado="activo";}
+                            if(VecPr[i].GetEstado()==0){estado="Borrado";}else{estado="listado";}
                             string s="ID:"+to_string(VecPr[i].GetIdProducto())+"|"+VecPr[i].GetMarca()+" "+VecPr[i].GetNombreProducto()+"|"+estado;
                             OpcPr[i].setTexto(s.c_str());
                         }
@@ -374,8 +376,16 @@ default:{}
             }
 
             p=archP.LeerProducto(posP);
-            p.SetEstado(false);
-            archP.GuardarProducto(p);
+            if(p.GetEstado()==false){
+                system("cls");
+                rlutil::locate(40,5); cout<<"El registro ya se elimino desea restauralo?";
+                rlutil::locate(55,7); cout<<"Si";
+                rlutil::locate(55,8); cout<<"No";
+                if(SeleccionMenus(53,7,1,1)==0){
+                p.SetEstado(true);
+                archP.GuardarProducto(p);
+                }
+            }else{p.SetEstado(false);archP.GuardarProducto(p);}
         }
     }
 
@@ -613,26 +623,16 @@ default:{}
                 system("cls");
             }
             cl=archCl.LeerCliente(posCl);
-            if(cl.GetEstado()==false)
-            {
-            system("cls");
-            rlutil::locate(40,5);
-            cout<<"Restaurar registro de cliente?";
-            rlutil::locate(55,7);
-            cout<<"Si";
-            rlutil::locate(55,8);
-            cout<<"No";
-            if(SeleccionMenus(53,7,1,1)==0)
-            {
-            cl.SetEstado(true);
-            archCl.GuardarCliente(cl);
-            }
-            }
-            else
-            {
-            cl.SetEstado(false);
-            archCl.GuardarCliente(cl);
-            }
+            if(cl.GetEstado()==false){
+                system("cls");
+                rlutil::locate(40,5); cout<<"El registro ya se elimino desea restauralo?";
+                rlutil::locate(55,7); cout<<"Si";
+                rlutil::locate(55,8); cout<<"No";
+                if(SeleccionMenus(53,7,1,1)==0){
+                cl.SetEstado(true);
+                archCl.GuardarCliente(cl);
+                }
+            }else{cl.SetEstado(false);archCl.GuardarCliente(cl);}
             system("cls");
         }
     }
@@ -655,7 +655,7 @@ default:{}
             v.SetNumeroVenta(numeroV);
         }else{
             bool opcion;
-            rlutil::locate(35,5); cout << "Desea igresar una venta nueva o editar una existente?" << endl;
+            rlutil::locate(35,5); cout << "Desea ingresar una venta nueva o editar una existente?" << endl;
             rlutil::locate(57,8); cout << "Nueva Venta";
             rlutil::locate(57,9); cout << "Editar Existente";
                     switch(SeleccionMenus(55, 8, 1, 1)){
@@ -862,7 +862,7 @@ default:{}
         vector<Venta> VtOrdenadas;
 
         Venta v;
-        for(int i; i<cantReg; i++){
+        for(int i=0; i<cantReg; i++){
             archV.LeerVenta(i, v);
             if(v.GetEstado()==estado){
                 //MostrarVenta(v);
