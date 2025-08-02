@@ -7,9 +7,9 @@ using namespace std;
         bool bandera=true;
         do{
         system("cls");
-        Cadena opciones[6];
-        TextoMenuPrincipal(opciones);
-            switch(SeleccionMenuAnim(opciones,54,12,5,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+        MVector vec;
+        TextoMenuPrincipal(vec);
+            switch(SeleccionMenuAnim(vec.GetCd(),54,12,5,2,6)){
             case(0):{//////////////////////COMPRAR/////////////////////////////
               comprar();
             }
@@ -56,9 +56,9 @@ using namespace std;
         vector<Producto> vecPrSelec;
         do{
         system("cls");
-        Cadena opciones[4];
-        TextoMenuCompra(opciones);
-        switch(SeleccionMenuAnim(opciones,54,12,3,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+        MVector vec;
+        TextoMenuCompra(vec);
+        switch(SeleccionMenuAnim(vec.GetCd(),54,12,3,2,6)){
 
             case(0):{///////////PRODUCTOS/////////////
                 bool banP=true;
@@ -66,7 +66,7 @@ using namespace std;
                 int tamVecPrMod=vecPrMod.size();
                 if(tamVecPrMod==0){
                     Cadena Opc[10]; TextoTiposDeProducto2(Opc);
-                    int TpPr=SeleccionMenuAnim(Opc,54,12,9,1,4,8,15,15,0,15)+1;
+                    int TpPr=SeleccionMenuAnim(Opc,54,12,9,1,4,8)+1;
                     CopiarYOrdenarProductos(vecPrMod,TpPr,1); vecPrOrig=vecPrMod;}
 
                 if(MenuProductosCompra(vecPrMod,vecPrSelec)==-1){banP=false;}
@@ -100,9 +100,9 @@ using namespace std;
         bool ban=true;
             do{
             system("cls");
-            Cadena opciones[5];
-            TextoMenuListado(opciones);
-                switch(SeleccionMenuAnim(opciones,54,12,4,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+            MVector vec;
+            TextoMenuListado(vec);
+                switch(SeleccionMenuAnim(vec.GetCd(),54,12,4,2,6)){
 
                 case(0):{///////////PRODUCTOS///////////
                     bool opcion;
@@ -145,9 +145,9 @@ using namespace std;
         bool bandera1=true;
             do{
             system("cls");
-            Cadena opciones[4];
-            TextoMenuBusqueda(opciones);
-                    switch(SeleccionMenuAnim(opciones,54,12,3,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+            MVector vec;
+            TextoMenuBusqueda(vec);
+                    switch(SeleccionMenuAnim(vec.GetCd(),54,12,3,2,6)){
                         case(0):{////////////////////////////PRODUCTO///////////////////////////
                             bool opcion;
                             rlutil::locate(43,5);
@@ -189,9 +189,9 @@ using namespace std;
         bool bandera1=true;
             do{
             system("cls");
-            Cadena opciones[5];
-            TextoMenuInformes(opciones);
-                switch(SeleccionMenuAnim(opciones,54,12,4,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+            MVector vec;
+            TextoMenuInformes(vec);
+                switch(SeleccionMenuAnim(vec.GetCd(),54,12,4,2,6)){
                     case(0):
                         RecaudacionAnual();
                     break;
@@ -217,9 +217,9 @@ using namespace std;
         bool bandera1=false;
         do{
             system("cls");
-            Cadena opciones[5];
-            TextoMenuCargarRegistro(opciones);
-            switch(SeleccionMenuAnim(opciones,54,12,4,2,6,rlutil::GREY,rlutil::WHITE,rlutil::WHITE,rlutil::BLACK,rlutil::WHITE)){
+            MVector vec;
+            TextoMenuCargarRegistro(vec);
+            switch(SeleccionMenuAnim(vec.GetCd(),54,12,4,2,6)){
                 case(0):{/////////////Clientes/////////////
                     MenuRegistroCliente();
                 }
@@ -251,57 +251,63 @@ using namespace std;
 ///----------------------------------------------------------------------------------------///
 
 
-    void TextoMenuPrincipal(Cadena *opciones){
+    void TextoMenuPrincipal(MVector &vec){
         ///opciones///
-        opciones[0].setTexto("C O M P R A");
-        opciones[1].setTexto("L I S T A D O S");
-        opciones[2].setTexto("B U S Q U E D A S");
-        opciones[3].setTexto("I N F O R M E S");
-        opciones[4].setTexto("R E G I S T R O S");
-        opciones[5].setTexto("S A L I R");
+        Cadena c;
+        c.setTexto("C O M P R A");vec.Agregar(c);
+        c.setTexto("L I S T A D O S");vec.Agregar(c);
+        c.setTexto("B U S Q U E D A S");vec.Agregar(c);
+        c.setTexto("I N F O R M E S");vec.Agregar(c);
+        c.setTexto("R E G I S T R O S");vec.Agregar(c);
+        c.setTexto("S A L I R");vec.Agregar(c);
     }
 
-    void TextoMenuCompra(Cadena *opciones){
+    void TextoMenuCompra(MVector &vec){
         ///opciones de Compra///
-        opciones[0].setTexto("P r o d u c t o s");
-        opciones[1].setTexto("C a r r i t o");
-        opciones[2].setTexto("F i n a l i z a r | C o m p r a");
-        opciones[3].setTexto("V o l v e r");
+        Cadena c;
+        c.setTexto("P r o d u c t o s");vec.Agregar(c);
+        c.setTexto("C a r r i t o");vec.Agregar(c);
+        c.setTexto("F i n a l i z a r | C o m p r a");vec.Agregar(c);
+        c.setTexto("V o l v e r");vec.Agregar(c);
     }
 
-    void TextoMenuListado(Cadena *opciones){
+    void TextoMenuListado(MVector &vec){
         ///opciones de listado///
-        opciones[0].setTexto("L i s t a d o | P r o d u c t o s");
-        opciones[1].setTexto("L i s t a d o | C l i e n t e s");
-        opciones[2].setTexto("L i s t a d o | V e n t a s");
-        opciones[3].setTexto("L i s t a d o | D e t a l l e s | V e n t a");
-        opciones[4].setTexto("V o l v e r");
+        Cadena c;
+        c.setTexto("L i s t a d o | P r o d u c t o s");vec.Agregar(c);
+        c.setTexto("L i s t a d o | C l i e n t e s");vec.Agregar(c);
+        c.setTexto("L i s t a d o | V e n t a s");vec.Agregar(c);
+        c.setTexto("L i s t a d o | D e t a l l e s | V e n t a");vec.Agregar(c);
+        c.setTexto("V o l v e r");vec.Agregar(c);
     }
 
-    void TextoMenuBusqueda(Cadena *opciones){
+    void TextoMenuBusqueda(MVector &vec){
         ///opciones de listado///
-        opciones[0].setTexto("B u s q u e d a | P r o d u c t o");
-        opciones[1].setTexto("B u s q u e d a | C l i e n t e");
-        opciones[2].setTexto("B u s q u e d a | V e n t a");
-        opciones[3].setTexto("V o l v e r");
+        Cadena c;
+        c.setTexto("B u s q u e d a | P r o d u c t o");vec.Agregar(c);
+        c.setTexto("B u s q u e d a | C l i e n t e");vec.Agregar(c);
+        c.setTexto("B u s q u e d a | V e n t a");vec.Agregar(c);
+        c.setTexto("V o l v e r");vec.Agregar(c);
     }
 
-    void TextoMenuInformes(Cadena *opciones){
+    void TextoMenuInformes(MVector &vec){
         ///opciones de listado///
-        opciones[0].setTexto("R e c a u d o | A n u a l");
-        opciones[1].setTexto("R e c a u d o | C l i e n t e");
-        opciones[2].setTexto("R e c a u d o | T i p o | E q u i p o");
-        opciones[3].setTexto("U n i d a d e s | T i p o | C l i e n t e");
-        opciones[4].setTexto("V o l v e r");
+        Cadena c;
+        c.setTexto("R e c a u d o | A n u a l");vec.Agregar(c);
+        c.setTexto("R e c a u d o | C l i e n t e");vec.Agregar(c);
+        c.setTexto("R e c a u d o | T i p o | E q u i p o");vec.Agregar(c);
+        c.setTexto("U n i d a d e s | T i p o | C l i e n t e");vec.Agregar(c);
+        c.setTexto("V o l v e r");vec.Agregar(c);
     }
 
-    void TextoMenuCargarRegistro(Cadena *opciones){
+    void TextoMenuCargarRegistro(MVector &vec){
         ///opciones de listado///
-        opciones[0].setTexto("C l i e n t e");
-        opciones[1].setTexto("P r o d u c t o");
-        opciones[2].setTexto("V e n t a");
-        opciones[3].setTexto("D e t a l l  e | V e n t a ");
-        opciones[4].setTexto("V o l v e r");
+        Cadena c;
+        c.setTexto("C l i e n t e");vec.Agregar(c);
+        c.setTexto("P r o d u c t o");vec.Agregar(c);
+        c.setTexto("V e n t a");vec.Agregar(c);
+        c.setTexto("D e t a l l  e | V e n t a ");vec.Agregar(c);
+        c.setTexto("V o l v e r");vec.Agregar(c);
     }
 
     void TextoTiposDeProducto(){
@@ -455,6 +461,8 @@ using namespace std;
         rlutil::locate(EjeX2,EjeY2);
         cout<<"  "<<endl;
     }
+
+    //7,15,15,0,15
 
     int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc, int SaltosDeLinea, int TamCj, int ClRell, int ClExtr, int ClRslt, int ClLtr, int ClFlch){
         rlutil::hidecursor();

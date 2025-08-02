@@ -325,7 +325,7 @@ default:{}
         Cadena Opc[2];
         Opc[0].setTexto("Guardar/Editar registro");
         Opc[1].setTexto("Eliminar/Restaurar Registro");
-        int opcion=SeleccionMenuAnim(Opc,54,12,1,1,4,8,15,15,0,15);
+        int opcion=SeleccionMenuAnim(Opc,54,12,1,1,4,8);
 
         Producto p;
         if(opcion==0){
@@ -333,14 +333,14 @@ default:{}
                 Opc1[0].setTexto("Ingresar nuevo");
                 Opc1[1].setTexto("Editar existente");
 
-                if(SeleccionMenuAnim(Opc1,54,12,1,1,4,8,15,15,0,15)==0){
+                if(SeleccionMenuAnim(Opc1,54,12,1,1,4,8)==0){
                     CargarProducto(p,0,1);
                     }else{
                         Cadena OpcPr[30];
                         for(int i=0;i<30;i++){OpcPr[i].setTexto("");}
                         vector<Producto> VecPr;
                         Cadena Opc2[10]; TextoTiposDeProducto2(Opc2);
-                        int TpPr=SeleccionMenuAnim(Opc2,54,12,9,1,4,8,15,15,0,15)+1;
+                        int TpPr=SeleccionMenuAnim(Opc2,54,12,9,1,4,8)+1;
                         CopiarYOrdenarProductos(VecPr,TpPr,1);
                         CopiarYOrdenarProductos(VecPr,TpPr,0);
                         for(int i=0;i<VecPr.size();i++){
@@ -349,11 +349,11 @@ default:{}
                             string s="ID:"+to_string(VecPr[i].GetIdProducto())+"|"+VecPr[i].GetMarca()+" "+VecPr[i].GetNombreProducto()+"|"+estado;
                             OpcPr[i].setTexto(s.c_str());
                         }
-                        int PrSelec=SeleccionMenuAnim(OpcPr,54,12,VecPr.size()-1,2,4,8,15,15,0,15);
+                        int PrSelec=SeleccionMenuAnim(OpcPr,54,12,VecPr.size()-1,2,4,8);
                         p=VecPr[PrSelec];
                         Cadena TxtEdit[8];
                         TxtEditProducto(TxtEdit);
-                        int SwitchEdit=SeleccionMenuAnim(TxtEdit,54,12,6,2,4,8,15,15,0,15);
+                        int SwitchEdit=SeleccionMenuAnim(TxtEdit,54,12,6,2,4,8);
                         CargarProducto(p,SwitchEdit,0);
                     }
                 archP.GuardarProducto(p);

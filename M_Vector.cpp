@@ -1,0 +1,86 @@
+#include <iostream>
+#include "M_Vector.h"
+using namespace std;
+
+    void MVector::Agregar(Cadena &cd){
+        _TamCad++;
+        Cadena *NCad= new Cadena[_TamCad];
+        if(_TamCad!=0){for(int i=0; i<_TamCad-1; i++){NCad[i]=_Cad[i];}}
+        NCad[_TamCad-1]=cd;
+        if(_Cad!=nullptr){delete[] _Cad;}
+        _Cad=NCad;
+    }
+
+    Cadena* MVector::GetCd(){
+        return _Cad;
+    }
+
+    void MVector::Agregar(Producto &pr){
+        _TamProd++;
+        Producto *NProd= new Producto[_TamProd];
+        if(_TamProd!=0){for(int i=0; i<_TamProd-1; i++){NProd[i]=_Prod[i];}}
+        NProd[_TamProd-1]=pr;
+        if(_Prod!=nullptr){delete[] _Prod;}
+        _Prod=NProd;
+    }
+
+    Producto *MVector::GetPr(){
+        return _Prod;
+    }
+
+    void MVector::Agregar(Cliente &cl){
+        _TamCl++;
+        Cliente *NCl= new Cliente[_TamCl];
+        if(_TamCl!=0){for(int i=0; i<_TamCl-1; i++){NCl[i]=_Cl[i];}}
+        NCl[_TamCl-1]=cl;
+        if(_Cl!=nullptr){delete[] _Cl;}
+        _Cl=NCl;
+    }
+
+    Cliente *MVector::GetCl(){
+        return _Cl;
+    }
+
+    void MVector::Agregar(Venta &vt){
+        _TamVt++;
+        Venta *NVt= new Venta[_TamVt];
+        if(_TamVt!=0){for(int i=0; i<_TamVt-1; i++){NVt[i]=_Vt[i];}}
+        NVt[_TamVt-1]=vt;
+        if(_Vt!=nullptr){delete[] _Vt;}
+        _Vt=NVt;
+    }
+
+    Venta *MVector::GetVt(){
+        return _Vt;
+    }
+
+    void MVector::Agregar(DetalleVenta &dtv){
+        _TamDtV++;
+        DetalleVenta *NDtV= new DetalleVenta[_TamDtV];
+        if(_TamDtV!=0){for(int i=0; i<_TamDtV-1; i++){NDtV[i]=_DtV[i];}}
+        NDtV[_TamDtV-1]=dtv;
+        if(_DtV!=nullptr){delete[] _DtV;}
+        _DtV=NDtV;
+    }
+
+    DetalleVenta *MVector::GetDtV(){
+        return _DtV;
+    }
+
+    int MVector::GetTam(int sizeOfObj){
+
+        if(sizeOfObj==sizeof(Cadena)){return _TamCad;}
+        if(sizeOfObj==sizeof(Producto)){return _TamProd;}
+        if(sizeOfObj==sizeof(Cliente)){return _TamCl;}
+        if(sizeOfObj==sizeof(Venta)){return _TamVt;}
+        if(sizeOfObj==sizeof(DetalleVenta)){return _TamDtV;}
+        return -1;
+    }
+
+    MVector::~MVector(){
+        delete[] _Cad;
+        delete[] _Prod;
+        delete[] _Cl;
+        delete[] _Vt;
+        delete[] _DtV;
+    }

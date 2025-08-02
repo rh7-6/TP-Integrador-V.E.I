@@ -1,5 +1,6 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
+#include "M_Vector.h"
 #include "vector"
 #include "Producto.h"
 #include "Clientes.h"
@@ -28,21 +29,21 @@ using namespace std;
 
     int SeleccionMenus(int EjeX, int EjeY, int CntOpc, int SaltosDeLinea);
 
-    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc,int SaltosDeLinea, int TamCj, int ClRell, int ClExtr, int ClRslt, int ClLtr, int ClFlch);
+    int SeleccionMenuAnim(Cadena *opciones,int EjeX, int EjeY, int CantOpc,int SaltosDeLinea, int TamCj, int ClRell=7, int ClExtr=15, int ClRslt=15, int ClLtr=0, int ClFlch=15);
 
     int SeleccionCantidad(int ejeX, int ejeY, int Max,int Min);
 
-    void TextoMenuPrincipal(Cadena *opciones);
+    void TextoMenuPrincipal(MVector &vec);
 
-    void TextoMenuCompra(Cadena *opciones);
+    void TextoMenuCompra(MVector &vec);
 
-    void TextoMenuListado(Cadena *opciones);
+    void TextoMenuListado(MVector &vec);
 
-    void TextoMenuBusqueda(Cadena *opciones);
+    void TextoMenuBusqueda(MVector &vec);
 
-    void TextoMenuInformes(Cadena *opciones);
+    void TextoMenuInformes(MVector &vec);
 
-    void TextoMenuCargarRegistro(Cadena *opciones);
+    void TextoMenuCargarRegistro(MVector &vec);
 
     void TextoTiposDeProducto();
 
