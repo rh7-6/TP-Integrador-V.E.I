@@ -47,9 +47,9 @@ using namespace std;
 
     void TextoTiposDeProducto();
 
-    void TextoTiposDeProducto2(Cadena *opciones);
+    void TextoTiposDeProducto2(MVector &vec);
 
-    void TxtEditProducto(Cadena *opciones);
+    void TxtEditProducto(MVector &vec);
 
 /// funcionalidad ///
 
@@ -121,21 +121,21 @@ using namespace std;
     COMPRA
   ---------*/
 
-    void CopiarYOrdenarProductos(vector<Producto> &vecPrMod, int tipoPr, bool estado);
+    void CopiarYOrdenarProductos(MVector &vecPrMod, int tipoPr, bool estado);
 
-    void ListadoDeProductosCompra(vector<Producto> &vecPr);
+    void ListadoDeProductosCompra(MVector &vecPr);
 
-    int MenuProductosCompra(vector<Producto> &vecPrMod, vector<Producto> &vecPrSelec);
+    int MenuProductosCompra(MVector &vecPrMod, MVector &vecPrSelec);
 
-    void ListadoDeProductosCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
+    void ListadoDeProductosCarrito(MVector &vecPrSelec, MVector &vecPrOrg);
 
-    void MenuCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod);
+    void MenuCarrito(MVector &vecPrSelec, MVector &vecPrOrg, MVector &vecPrMod);
 
-    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod, bool &salida);
+    void GuardarVentaCarrito(MVector &vecPrSelec, MVector &vecPrOrg, MVector &vecPrMod, bool &salida);
 
-    double CalculoImporteTotal(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg);
+    double CalculoImporteTotal(MVector &vecPrSelec, MVector &vecPrOrg);
 
-    int CalculoCantidadProductosSeleccionados(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, int indice);
+    int CalculoCantidadProductosSeleccionados(MVector &vecPrSelec, MVector &vecPrOrg, int indice);
 
 
 /*---------

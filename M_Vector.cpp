@@ -11,6 +11,16 @@ using namespace std;
         _Cad=NCad;
     }
 
+    void MVector::Agregar(const char *t){
+        Cadena cd(t);
+        _TamCad++;
+        Cadena *NCad= new Cadena[_TamCad];
+        if(_TamCad!=0){for(int i=0; i<_TamCad-1; i++){NCad[i]=_Cad[i];}}
+        NCad[_TamCad-1]=cd;
+        if(_Cad!=nullptr){delete[] _Cad;}
+        _Cad=NCad;
+    }
+
     Cadena* MVector::GetCd(){
         return _Cad;
     }
@@ -23,6 +33,7 @@ using namespace std;
         if(_Prod!=nullptr){delete[] _Prod;}
         _Prod=NProd;
     }
+
 
     Producto *MVector::GetPr(){
         return _Prod;
@@ -75,6 +86,20 @@ using namespace std;
         if(sizeOfObj==sizeof(Venta)){return _TamVt;}
         if(sizeOfObj==sizeof(DetalleVenta)){return _TamDtV;}
         return -1;
+    }
+
+    void MVector::operator=(MVector &mvec){
+        _TamCad=mvec.GetTam(sizeof(Cadena)); _TamProd=mvec.GetTam(sizeof(Producto)); _TamCl=mvec.GetTam(sizeof(Cliente)); _TamVt=mvec.GetTam(sizeof(Venta)); _TamDtV=mvec.GetTam(sizeof(DetalleVenta));
+
+        Cadena *arrCd=mvec.GetCd(); Producto *arrPr=mvec.GetPr(); Cliente *arrCl=mvec.GetCl(); Venta *arrVt=mvec.GetVt(); DetalleVenta *arrDtV=mvec.GetDtV();
+
+        _Cad= new Cadena[_TamCad]; _Prod= new Producto[_TamProd]; _Cl= new Cliente[_TamCl]; _Vt= new Venta[_TamVt]; _DtV= new DetalleVenta[_TamDtV];
+
+        for(int i=0; i<_TamCad; i++){_Cad[i]=arrCd[i];}
+        for(int i=0; i<_TamProd; i++){_Prod[i]=arrPr[i];}
+        for(int i=0; i<_TamCl; i++){_Cl[i]=arrCl[i];}
+        for(int i=0; i<_TamVt; i++){_Vt[i]=arrVt[i];}
+        for(int i=0; i<_TamDtV; i++){_DtV[i]=arrDtV[i];}
     }
 
     MVector::~MVector(){

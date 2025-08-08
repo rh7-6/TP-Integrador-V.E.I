@@ -322,38 +322,43 @@ default:{}
 
         system("cls");
         ArchivoProductos archP("Productos.dat");
-        Cadena Opc[2];
-        Opc[0].setTexto("Guardar/Editar registro");
-        Opc[1].setTexto("Eliminar/Restaurar Registro");
-        int opcion=SeleccionMenuAnim(Opc,54,12,1,1,4,8);
+        Cadena txt;
+        MVector vecOp;
+        txt.setTexto("Guardar/Editar registro");vecOp.Agregar(txt);
+        txt.setTexto("Eliminar/Restaurar Registro");vecOp.Agregar(txt);
+        int opcion=SeleccionMenuAnim(vecOp.GetCd(),54,12,1,1,4,8);
 
         Producto p;
         if(opcion==0){
-                Cadena Opc1[2];
-                Opc1[0].setTexto("Ingresar nuevo");
-                Opc1[1].setTexto("Editar existente");
+                Cadena txt1;
+                MVector vecOp1;
+                txt1.setTexto("Ingresar nuevo");vecOp1.Agregar(txt1);
+                txt1.setTexto("Editar existente");vecOp1.Agregar(txt1);
 
-                if(SeleccionMenuAnim(Opc1,54,12,1,1,4,8)==0){
+                if(SeleccionMenuAnim(vecOp1.GetCd(),54,12,1,1,4,8)==0){
                     CargarProducto(p,0,1);
                     }else{
-                        Cadena OpcPr[30];
-                        for(int i=0;i<30;i++){OpcPr[i].setTexto("");}
-                        vector<Producto> VecPr;
-                        Cadena Opc2[10]; TextoTiposDeProducto2(Opc2);
-                        int TpPr=SeleccionMenuAnim(Opc2,54,12,9,1,4,8)+1;
+                        MVector VecPr;
+                        MVector vecTxTpPr;
+                        TextoTiposDeProducto2(vecTxTpPr);
+                        int TpPr=SeleccionMenuAnim(vecTxTpPr.GetCd(),54,12,9,1,4,8)+1;
                         CopiarYOrdenarProductos(VecPr,TpPr,1);
                         CopiarYOrdenarProductos(VecPr,TpPr,0);
-                        for(int i=0;i<VecPr.size();i++){
+
+                        int tamVecPr=VecPr.GetTam(sizeof(Producto));
+                        Producto *ArrPr=VecPr.GetPr();
+                        MVector OpcPrTxt;
+                        for(int i=0;i<tamVecPr;i++){
                             string estado;
-                            if(VecPr[i].GetEstado()==0){estado="Borrado";}else{estado="listado";}
-                            string s="ID:"+to_string(VecPr[i].GetIdProducto())+"|"+VecPr[i].GetMarca()+" "+VecPr[i].GetNombreProducto()+"|"+estado;
-                            OpcPr[i].setTexto(s.c_str());
+                            if(ArrPr[i].GetEstado()==0){estado="Borrado";}else{estado="listado";}
+                            string s="ID:"+to_string(ArrPr[i].GetIdProducto())+"|"+ArrPr[i].GetMarca()+" "+ArrPr[i].GetNombreProducto()+"|"+estado;
+                            OpcPrTxt.Agregar(s.c_str());
                         }
-                        int PrSelec=SeleccionMenuAnim(OpcPr,54,12,VecPr.size()-1,2,4,8);
-                        p=VecPr[PrSelec];
-                        Cadena TxtEdit[8];
-                        TxtEditProducto(TxtEdit);
-                        int SwitchEdit=SeleccionMenuAnim(TxtEdit,54,12,6,2,4,8);
+                        int PrSelec=SeleccionMenuAnim(OpcPrTxt.GetCd(),54,12,tamVecPr-1,2,4,8);
+                        p=ArrPr[PrSelec];
+                        MVector vecEdt;
+                        TxtEditProducto(vecEdt);
+                        int SwitchEdit=SeleccionMenuAnim(vecEdt.GetCd(),54,12,6,2,4,8);
                         CargarProducto(p,SwitchEdit,0);
                     }
                 archP.GuardarProducto(p);
@@ -1132,34 +1137,35 @@ default:{}
 
                                 ///COMPRA///
 //------------------------------------------------------------------------//
-    void CopiarYOrdenarProductos(vector<Producto> &vecPrMod, int tipoPr, bool estado){
+    void CopiarYOrdenarProductos(MVector &vecPrMod, int tipoPr, bool estado){
 
         ArchivoProductos archPr("Productos.dat");
         int cantReg=archPr.CantidadRegistros(sizeof(Producto));
 
-        int tamVecProd=vecPrMod.size();
+        int tamVecProd=vecPrMod.GetTam(sizeof(Producto));
         Producto pr;
         for(int i=0; i<cantReg; i++){
             archPr.LeerProducto(i, pr);
             if(pr.GetTipoEquipo()==tipoPr&&pr.GetEstado()==estado&&pr.GetStock()>0){
                 //MostrarProducto(pr);
-                vecPrMod.push_back(pr);
+                vecPrMod.Agregar(pr);
                 }
             }
 
         bool ban=true;
-        tamVecProd=vecPrMod.size();
+        tamVecProd=vecPrMod.GetTam(sizeof(Producto));
+        Producto *arrPrMod=vecPrMod.GetPr();
         while(ban){
 
                 int contPrOrdenados=0;
             for(int i=0; i<tamVecProd; i++){
 
                 if(i!=tamVecProd-1){
-                    if(vecPrMod[i].GetStock()<vecPrMod[i+1].GetStock()){
+                    if(arrPrMod[i].GetStock()<arrPrMod[i+1].GetStock()){
                         Producto p;
-                        p= vecPrMod[i+1];
-                        vecPrMod[i+1]=vecPrMod[i];
-                        vecPrMod[i]=p;
+                        p= arrPrMod[i+1];
+                        arrPrMod[i+1]=arrPrMod[i];
+                        arrPrMod[i]=p;
                         contPrOrdenados++;
                     }
                 }
@@ -1171,9 +1177,9 @@ default:{}
 
     }
 
-    void ListadoDeProductosCompra(vector<Producto> &vecPr){
+    void ListadoDeProductosCompra(MVector &vecPr){
 
-        int tamVecPr=vecPr.size();
+        int tamVecPr=vecPr.GetTam(sizeof(Producto));
         int SaltDeLin=0;
 
         rlutil::locate(42,9);
@@ -1185,16 +1191,17 @@ default:{}
             return;
         }
 
+        Producto *ArrPrs=vecPr.GetPr();
         for(int i=0; i<tamVecPr; i++){
 
             if(i!=0){SaltDeLin+=4;}
             rlutil::locate(48,10+SaltDeLin);
-            cout << vecPr[i].GetMarca()<< " " <<vecPr[i].GetNombreProducto() << endl;
+            cout << ArrPrs[i].GetMarca()<< " " <<ArrPrs[i].GetNombreProducto() << endl;
             rlutil::locate(48,11+SaltDeLin);
             cout << std::fixed << std::setprecision(0);
-            cout << "Precio: " << vecPr[i].GetPrecio() << endl;
+            cout << "Precio: " << ArrPrs[i].GetPrecio() << endl;
             rlutil::locate(48,12+SaltDeLin);
-            cout << "Stock: " << vecPr[i].GetStock() << endl;
+            cout << "Stock: " << ArrPrs[i].GetStock() << endl;
             rlutil::locate(42,13+SaltDeLin);
             cout << "|------------------------------------------------|" << endl;
         }
@@ -1203,36 +1210,39 @@ default:{}
         cout << "<SALIR>" << endl;
     }
 
-    int MenuProductosCompra(vector<Producto> &vecPrMod, vector<Producto> &vecPrSelec){
+    int MenuProductosCompra(MVector &vecPrMod, MVector &vecPrSelec){
 
         ListadoDeProductosCompra(vecPrMod);
-        int TotalPr=vecPrMod.size();
+        int TotalPr=vecPrMod.GetTam(sizeof(Producto));
         int IndicePrSelec= SeleccionMenus(47,10,TotalPr,4);
         if(IndicePrSelec==TotalPr){return-1;}
         system("cls");
 
-        int maximo=vecPrMod[IndicePrSelec].GetStock();
+        Producto *prM=vecPrMod.GetPr();
+        Producto *prS=vecPrSelec.GetPr();
+
+        int maximo=prM[IndicePrSelec].GetStock();
         rlutil::locate(48,10); cout << "Seleccione Cantidad:";
         int CantPrSelec= SeleccionCantidad(48,11,maximo,0);
         if(CantPrSelec==0){return-1;};
 
-        vecPrMod[IndicePrSelec].SetStock(vecPrMod[IndicePrSelec].GetStock()-CantPrSelec);
+        prM[IndicePrSelec].SetStock(prM[IndicePrSelec].GetStock()-CantPrSelec);
 
         bool ban=true;
-        int tamVecPrSelec=vecPrSelec.size();
+        int tamVecPrSelec=vecPrSelec.GetTam(sizeof(Producto));
         for(int i=0; i<tamVecPrSelec; i++){
-            if(vecPrMod[IndicePrSelec].GetIdProducto()==vecPrSelec[i].GetIdProducto()){
-                vecPrSelec[i]=vecPrMod[IndicePrSelec];
+            if(prM[IndicePrSelec].GetIdProducto()==prS[i].GetIdProducto()){
+                prS[i]=prM[IndicePrSelec];
                 ban=false;
             }
         }
-        if(ban){vecPrSelec.push_back(vecPrMod[IndicePrSelec]);}
+        if(ban){vecPrSelec.Agregar(prM[IndicePrSelec]);}
         return 0;
     }
 
-    void ListadoDeProductosCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){
+    void ListadoDeProductosCarrito(MVector &vecPrSelec, MVector &vecPrOrg){
 
-        int tamVecPrSelec=vecPrSelec.size(), tamVecPrOrg=vecPrOrg.size();
+        int tamVecPrSelec=vecPrSelec.GetTam(sizeof(Producto));
         int SaltDeLin=0, cont=0;
         double ImporteTotal=0;
 
@@ -1244,26 +1254,22 @@ default:{}
             return;
         }
 
+        int cantPrSelec;
+        Producto *arrPrS=vecPrSelec.GetPr();
         for(int i=0; i<tamVecPrSelec; i++){
 
-            int cantPrSelec;
-            for(int a=0; a<tamVecPrOrg; a++){
-                if(vecPrOrg[a].GetIdProducto()==vecPrSelec[i].GetIdProducto()){
-                    cantPrSelec=vecPrOrg[a].GetStock()-vecPrSelec[i].GetStock();
-                }
-            }
+            cantPrSelec=CalculoCantidadProductosSeleccionados(vecPrSelec,vecPrOrg,i);
 
-
-            if(vecPrSelec[i].GetEstado()==true){
+            if(arrPrS[i].GetEstado()==true){
 
                 cont++;
                 if(i!=0&&cont>1){SaltDeLin+=4;}
-                ImporteTotal+=vecPrSelec[i].GetPrecio()*cantPrSelec;
+                ImporteTotal+=arrPrS[i].GetPrecio()*cantPrSelec;
                 rlutil::locate(48,10+SaltDeLin);
-                cout << vecPrSelec[i].GetMarca()<< " " <<vecPrSelec[i].GetNombreProducto() << endl;
+                cout << arrPrS[i].GetMarca()<< " " <<arrPrS[i].GetNombreProducto() << endl;
                 rlutil::locate(48,11+SaltDeLin);
                 cout << std::fixed << std::setprecision(0);
-                cout << "Precio: " << vecPrSelec[i].GetPrecio() << endl;
+                cout << "Precio: " << arrPrS[i].GetPrecio() << endl;
                 rlutil::locate(48,12+SaltDeLin);
                 cout << "Cantidad: " << cantPrSelec << endl;
                 rlutil::locate(42,13+SaltDeLin);
@@ -1281,13 +1287,14 @@ default:{}
         cout << "<SALIR>          |IMPORTE TOTAL: $" << ImporteTotal << "|" << endl;
     }
 
-    void MenuCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod){
+    void MenuCarrito(MVector &vecPrSelec, MVector &vecPrOrg, MVector &vecPrMod){
 
         bool ban=true;
+        Producto *arrPrSelec=vecPrSelec.GetPr(),*arrPrOrg=vecPrOrg.GetPr(),*arrPrMod=vecPrMod.GetPr();
 
         do{
-            int TamVecPrSelec=vecPrSelec.size(), TotalPr=0;
-            for(int i=0; i<TamVecPrSelec; i++){if(vecPrSelec[i].GetEstado()==true){TotalPr++;}}
+            int TamVecPrSelec=vecPrSelec.GetTam(sizeof(Producto)), TotalPr=0;
+            for(int i=0; i<TamVecPrSelec; i++){if(arrPrSelec[i].GetEstado()==true){TotalPr++;}}
             ListadoDeProductosCarrito(vecPrSelec,vecPrOrg);
             int IndicePrSelec= SeleccionMenus(47,10,TotalPr,4);
             if(IndicePrSelec==TotalPr){return;}
@@ -1299,11 +1306,11 @@ default:{}
             int opcion=SeleccionMenus(47,11,1,1);
             switch(opcion){
             case(1):
-                vecPrSelec[IndicePrSelec].SetEstado(false);
-                int tamVecPrMod=vecPrMod.size();
+                arrPrSelec[IndicePrSelec].SetEstado(false);
+                int tamVecPrMod=vecPrMod.GetTam(sizeof(Producto));
                 for(int i=0; i<tamVecPrMod; i++){
-                    if(vecPrMod[i].GetIdProducto()==vecPrSelec[IndicePrSelec].GetIdProducto()){
-                        vecPrMod[i]=vecPrOrg[i];
+                    if(arrPrMod[i].GetIdProducto()==arrPrSelec[IndicePrSelec].GetIdProducto()){
+                        arrPrMod[i]=arrPrOrg[i];
                     }
                 }
             break;
@@ -1311,11 +1318,12 @@ default:{}
         }while(ban);
     }
 
-    void GuardarVentaCarrito(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, vector<Producto> &vecPrMod, bool &salida){
+    void GuardarVentaCarrito(MVector &vecPrSelec, MVector &vecPrOrg, MVector &vecPrMod, bool &salida){
 
-        int tamVecPrselec=vecPrSelec.size(),tamVecPrMod=vecPrMod.size(), cantPrSelec, contadorParaSalida=0;
-        for(int i=0;i<tamVecPrselec;i++){if(vecPrSelec[i].GetEstado()==true){contadorParaSalida++;}}
-        if(tamVecPrselec==0||contadorParaSalida==0){ rlutil::locate(48,10); cout << "|CARRITO VACIO|";rlutil::locate(50,10);system("pause");return;}
+        int tamVecPrselec=vecPrSelec.GetTam(sizeof(Producto)), tamVecPrMod=vecPrMod.GetTam(sizeof(Producto)), contadorParaSalida=0;
+        Producto *arrPrSelec=vecPrSelec.GetPr(), *arrPrMod=vecPrMod.GetPr();
+        for(int i=0;i<tamVecPrselec;i++){if(arrPrSelec[i].GetEstado()==true){contadorParaSalida++;}}
+        if(tamVecPrselec==0||contadorParaSalida==0){ rlutil::locate(48,10); cout << "|CARRITO VACIO|";rlutil::locate(48,11);system("pause");return;}
         rlutil::locate(48,10); cout << "Guardar y finalizar compra? " << endl;
         rlutil::locate(48,11); cout << "No" << endl;
         rlutil::locate(48,12); cout << "Si" << endl;
@@ -1323,7 +1331,8 @@ default:{}
 
         Cliente cl;
         Venta v;
-        vector<DetalleVenta> VecDv(tamVecPrselec);
+        //DetalleVenta dv;
+        MVector vecDv;
 
         if(opcion==0){return;}else{
             double ImporteTotal= CalculoImporteTotal(vecPrSelec,vecPrOrg);
@@ -1333,9 +1342,10 @@ default:{}
             CargarVenta(v,cl.GetCuit(),ImporteTotal,true);
 
             for(int i=0; i<tamVecPrselec; i++){
-                if(vecPrSelec[i].GetEstado()==true){
-                cantPrSelec= CalculoCantidadProductosSeleccionados(vecPrSelec,vecPrOrg,i);
-                CargarDetalleVenta(VecDv[i],v.GetNumeroVenta(),vecPrSelec[i].GetIdProducto(),cantPrSelec,true);
+                if(arrPrSelec[i].GetEstado()==true){
+                int cantPrSelec= CalculoCantidadProductosSeleccionados(vecPrSelec,vecPrOrg,i);
+                DetalleVenta dv(v.GetNumeroVenta(),arrPrSelec[i].GetPrecio()*cantPrSelec,arrPrSelec[i].GetIdProducto(),cantPrSelec);
+                vecDv.Agregar(dv);
                 }
             }
         }
@@ -1345,40 +1355,39 @@ default:{}
         rlutil::locate(48,12); cout << "Si" << endl;
         int opcion1=SeleccionMenus(47,11,1,1);
 
+        int tamVecDv=vecDv.GetTam(sizeof(DetalleVenta));
+        DetalleVenta *arrDv=vecDv.GetDtV();
         if(opcion1==0){return;}else{
             GuardarRegistroCliente(cl,false);
             GuardarRegistroVenta(v);
-            for(int i=0;i<tamVecPrselec; i++){if(vecPrSelec[i].GetEstado()==true){GuardarRegistroDetalleVenta(VecDv[i],false);}}
-            for(int i=0;i<tamVecPrMod; i++){if(vecPrMod[i].GetStock()==0){vecPrMod[i].SetEstado(0);}GuardarRegistroProducto(vecPrMod[i]);}
+            for(int i=0;i<tamVecDv; i++){GuardarRegistroDetalleVenta(arrDv[i],false);}
+            for(int i=0;i<tamVecPrMod; i++){if(arrPrMod[i].GetStock()==0){arrPrMod[i].SetEstado(0);}GuardarRegistroProducto(arrPrMod[i]);}
         }
         salida=false;
     }
 
-    double CalculoImporteTotal(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg){
+    double CalculoImporteTotal(MVector &vecPrSelec, MVector &vecPrOrg){
 
-        int tamVecSelec=vecPrSelec.size(), tamVecPrOrg=vecPrOrg.size();
-        double ImporteTotal;
+        int tamVecSelec=vecPrSelec.GetTam(sizeof(Producto));
+        Producto *arrPrSelec=vecPrSelec.GetPr();
+        double ImporteTotal; int cantPrSelec;
 
         for(int i=0; i<tamVecSelec; i++){
-            int cantPrSelec;
-            for(int a=0; a<tamVecPrOrg; a++){
-                if(vecPrOrg[a].GetIdProducto()==vecPrSelec[i].GetIdProducto()){
-                    cantPrSelec=vecPrOrg[a].GetStock()-vecPrSelec[i].GetStock();
-                }
-            }
-            if(vecPrSelec[i].GetEstado()==true){ImporteTotal+=vecPrSelec[i].GetPrecio()*cantPrSelec;}
+            cantPrSelec=CalculoCantidadProductosSeleccionados(vecPrSelec,vecPrOrg,i);
+            if(arrPrSelec[i].GetEstado()==true){ImporteTotal+=arrPrSelec[i].GetPrecio()*cantPrSelec;}
         }
         return ImporteTotal;
     }
 
-    int CalculoCantidadProductosSeleccionados(vector<Producto> &vecPrSelec, vector<Producto> &vecPrOrg, int indice){
+    int CalculoCantidadProductosSeleccionados(MVector &vecPrSelec, MVector &vecPrOrg, int indice){
 
-        int tamVecPrOrg=vecPrOrg.size();
+        int tamVecPrOrg=vecPrOrg.GetTam(sizeof(Producto));
+        Producto *arrPrs=vecPrSelec.GetPr(), *arrPrOg=vecPrOrg.GetPr();
 
             int cantPrSelec;
             for(int a=0; a<tamVecPrOrg; a++){
-                if(vecPrOrg[a].GetIdProducto()==vecPrSelec[indice].GetIdProducto()){
-                    cantPrSelec=vecPrOrg[a].GetStock()-vecPrSelec[indice].GetStock();
+                if(arrPrOg[a].GetIdProducto()==arrPrs[indice].GetIdProducto()){
+                    cantPrSelec=arrPrOg[a].GetStock()-arrPrs[indice].GetStock();
                     return cantPrSelec;
                 }
             }

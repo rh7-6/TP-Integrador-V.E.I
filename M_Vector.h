@@ -11,10 +11,12 @@ class MVector{
 public:
 
     void Agregar(Cadena &cd);
+    void Agregar(const char *t);
     Cadena *GetCd();
 
     void Agregar(Producto &pr);
     Producto *GetPr();
+    void operator=(MVector &mvec);
 
     void Agregar(Cliente &cl);
     Cliente *GetCl();
