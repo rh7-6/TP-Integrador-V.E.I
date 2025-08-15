@@ -123,9 +123,9 @@ using namespace std;
 
     void CopiarYOrdenarProductos(MVector &vecPrMod, int tipoPr, bool estado);
 
-    void ListadoDeProductosCompra(MVector &vecPr);
+    void ListadoDeProductosCompra(MVector &vecPr, int tipoPr);
 
-    int MenuProductosCompra(MVector &vecPrMod, MVector &vecPrSelec);
+    void MenuProductosCompra(MVector &vecPrMod, MVector &vecPrSelec);
 
     void ListadoDeProductosCarrito(MVector &vecPrSelec, MVector &vecPrOrg);
 

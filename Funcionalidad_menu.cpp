@@ -1146,11 +1146,17 @@ default:{}
         Producto pr;
         for(int i=0; i<cantReg; i++){
             archPr.LeerProducto(i, pr);
-            if(pr.GetTipoEquipo()==tipoPr&&pr.GetEstado()==estado&&pr.GetStock()>0){
-                //MostrarProducto(pr);
-                vecPrMod.Agregar(pr);
+            if(tipoPr==-1){
+                if(pr.GetEstado()==estado&&pr.GetStock()>0){
+                    vecPrMod.Agregar(pr);
+                    }
+            }else{
+                if(pr.GetTipoEquipo()==tipoPr&&pr.GetEstado()==estado&&pr.GetStock()>0){
+                    //MostrarProducto(pr);
+                    vecPrMod.Agregar(pr);
+                    }
                 }
-            }
+        }
 
         bool ban=true;
         tamVecProd=vecPrMod.GetTam(sizeof(Producto));
@@ -1177,10 +1183,10 @@ default:{}
 
     }
 
-    void ListadoDeProductosCompra(MVector &vecPr){
+    void ListadoDeProductosCompra(MVector &vecPr, int tipoPr){
 
         int tamVecPr=vecPr.GetTam(sizeof(Producto));
-        int SaltDeLin=0;
+        int SaltDeLin=0, cont=0;
 
         rlutil::locate(42,9);
         cout << "|------------------------------------------------|" << endl;
@@ -1191,40 +1197,63 @@ default:{}
             return;
         }
 
-        Producto *ArrPrs=vecPr.GetPr();
+        Producto *ArrPrM=vecPr.GetPr();
         for(int i=0; i<tamVecPr; i++){
-
-            if(i!=0){SaltDeLin+=4;}
-            rlutil::locate(48,10+SaltDeLin);
-            cout << ArrPrs[i].GetMarca()<< " " <<ArrPrs[i].GetNombreProducto() << endl;
-            rlutil::locate(48,11+SaltDeLin);
-            cout << std::fixed << std::setprecision(0);
-            cout << "Precio: " << ArrPrs[i].GetPrecio() << endl;
-            rlutil::locate(48,12+SaltDeLin);
-            cout << "Stock: " << ArrPrs[i].GetStock() << endl;
-            rlutil::locate(42,13+SaltDeLin);
-            cout << "|------------------------------------------------|" << endl;
+            if(ArrPrM[i].GetTipoEquipo()==tipoPr){
+                if(cont!=0){SaltDeLin+=4;}
+                rlutil::locate(48,10+SaltDeLin);
+                cout << ArrPrM[i].GetMarca()<< " " <<ArrPrM[i].GetNombreProducto() << endl;
+                rlutil::locate(48,11+SaltDeLin);
+                cout << std::fixed << std::setprecision(0);
+                cout << "Precio: " << ArrPrM[i].GetPrecio() << endl;
+                rlutil::locate(48,12+SaltDeLin);
+                cout << "Stock: " << ArrPrM[i].GetStock() << endl;
+                rlutil::locate(42,13+SaltDeLin);
+                cout << "|------------------------------------------------|" << endl;
+                cont++;
+            }
         }
         SaltDeLin+=4;
         rlutil::locate(48,10+SaltDeLin);
         cout << "<SALIR>" << endl;
     }
 
-    int MenuProductosCompra(MVector &vecPrMod, MVector &vecPrSelec){
+    int CalculoPrsXTipo(MVector &vecPrMod, int TpPr){
+        int TotalPrs=vecPrMod.GetTam(sizeof(Producto)), cont=0;
+        Producto *prM=vecPrMod.GetPr();
+        for(int i=0; i<TotalPrs; i++){if(prM[i].GetTipoEquipo()==TpPr){cont++;}}
+        return cont;
+    }
 
-        ListadoDeProductosCompra(vecPrMod);
-        int TotalPr=vecPrMod.GetTam(sizeof(Producto));
-        int IndicePrSelec= SeleccionMenus(47,10,TotalPr,4);
-        if(IndicePrSelec==TotalPr){return-1;}
+    int CalculoIndice(MVector &vecPrMod, int TpPr, int PrSelec){
+        int TotalPrs=vecPrMod.GetTam(sizeof(Producto)), cont=0;
+        Producto *prM=vecPrMod.GetPr();
+        for(int i=0; i<TotalPrs; i++){
+            if(prM[i].GetTipoEquipo()==TpPr&&cont==PrSelec){
+                return i;}else {if(prM[i].GetTipoEquipo()==TpPr){cont++;}}
+            }
+        return -1;
+    }
+
+    void MenuProductosCompra(MVector &vecPrMod, MVector &vecPrSelec){
+        MVector vecTPr; TextoTiposDeProducto2(vecTPr);
+        int TpPr=SeleccionMenuAnim(vecTPr.GetCd(),54,12,9,1,4,8)+1,CantPrSelec;
+
+        do{
+        ListadoDeProductosCompra(vecPrMod,TpPr);
+        int TotalPrXTp=CalculoPrsXTipo(vecPrMod,TpPr);
+        int indiceMenuPr=SeleccionMenus(47,10,TotalPrXTp,4);
+        int IndicePrSelec= CalculoIndice(vecPrMod,TpPr,indiceMenuPr);
+        if(indiceMenuPr==TotalPrXTp||IndicePrSelec==-1){return;}
         system("cls");
 
         Producto *prM=vecPrMod.GetPr();
-        Producto *prS=vecPrSelec.GetPr();
+        Producto *prS=vecPrSelec.GetPr() ;
 
         int maximo=prM[IndicePrSelec].GetStock();
         rlutil::locate(48,10); cout << "Seleccione Cantidad:";
-        int CantPrSelec= SeleccionCantidad(48,11,maximo,0);
-        if(CantPrSelec==0){return-1;};
+        CantPrSelec= SeleccionCantidad(48,11,maximo,0);
+        if(CantPrSelec==0){return;};
 
         prM[IndicePrSelec].SetStock(prM[IndicePrSelec].GetStock()-CantPrSelec);
 
@@ -1237,7 +1266,7 @@ default:{}
             }
         }
         if(ban){vecPrSelec.Agregar(prM[IndicePrSelec]);}
-        return 0;
+        }while(CantPrSelec);
     }
 
     void ListadoDeProductosCarrito(MVector &vecPrSelec, MVector &vecPrOrg){

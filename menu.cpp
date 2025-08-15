@@ -61,17 +61,11 @@ using namespace std;
         switch(SeleccionMenuAnim(vec.GetCd(),54,12,3,2,6)){
 
             case(0):{///////////PRODUCTOS/////////////
-                bool banP=true;
-                do{
                 int tamVecPrMod=vecPrMod.GetTam(sizeof(Producto));
-                if(tamVecPrMod==0){
-                    MVector vecTPr; TextoTiposDeProducto2(vecTPr);
-                    int TpPr=SeleccionMenuAnim(vecTPr.GetCd(),54,12,9,1,4,8)+1;
-                    CopiarYOrdenarProductos(vecPrMod,TpPr,1); vecPrOrig=vecPrMod;}
+                if(tamVecPrMod==0){CopiarYOrdenarProductos(vecPrMod,-1,1); vecPrOrig=vecPrMod;}
 
-                if(MenuProductosCompra(vecPrMod,vecPrSelec)==-1){banP=false;}
+                MenuProductosCompra(vecPrMod,vecPrSelec);
                 system("cls");
-                }while(banP);
             }
             break;
 
