@@ -16,6 +16,7 @@ public:
 
     void Agregar(Producto &pr);
     Producto *GetPr();
+
     void operator=(MVector &mvec);
 
     void Agregar(Cliente &cl);
@@ -28,6 +29,8 @@ public:
     DetalleVenta *GetDtV();
 
     int GetTam(int sizeOfObj);
+
+    int GetTam();
 
     ~MVector();
 

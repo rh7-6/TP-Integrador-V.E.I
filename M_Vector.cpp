@@ -88,6 +88,16 @@ using namespace std;
         return -1;
     }
 
+    int MVector::GetTam(){
+
+        if(_TamCad>0){return _TamCad;}
+        else if(_TamProd>0){return _TamProd;}
+        else if(_TamCl>0){return _TamCl;}
+        else if(_TamVt>0){return _TamVt;}
+        else if(_TamDtV>0){return _TamDtV;}
+        else return 0;
+    }
+
     void MVector::operator=(MVector &mvec){
         _TamCad=mvec.GetTam(sizeof(Cadena)); _TamProd=mvec.GetTam(sizeof(Producto)); _TamCl=mvec.GetTam(sizeof(Cliente)); _TamVt=mvec.GetTam(sizeof(Venta)); _TamDtV=mvec.GetTam(sizeof(DetalleVenta));
 
