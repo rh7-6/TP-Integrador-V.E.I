@@ -325,16 +325,6 @@ using namespace std;
         vec.Agregar("Perifericos");
     }
 
-    void TxtEditProducto(MVector &vec){
-
-        vec.Agregar("Nombre");
-        vec.Agregar("Precio");
-        vec.Agregar("Descripcion");
-        vec.Agregar("Marca");
-        vec.Agregar("Tipo de Producto");
-        vec.Agregar("Stock");
-        vec.Agregar("Estado");
-    }
 
     int SeleccionMenus(int EjeX, int EjeY, int CantOpc, int SaltosDeLinea){
 
