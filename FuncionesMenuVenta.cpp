@@ -276,7 +276,7 @@ using namespace std;
         Venta v;
         Cliente cl;
         if(opcion==0){
-                if(CargarCliente(cl,1)==1){GuardarRegistroCliente(cl, 0);}
+                if(CargarCliente(cl,0,1)==1){GuardarRegistroCliente(cl, 0);}
                 CargarVenta(v, cl.GetCuit(), 0, 0);
                 GuardarRegistroVenta(v);
         }else{

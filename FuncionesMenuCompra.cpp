@@ -234,7 +234,7 @@ using namespace std;
         if(opcion==0){return;}else{
             double ImporteTotal= CalculoImporteTotal(vecPrSelec,vecPrOrg);
 
-            CargarCliente(cl,true);
+            CargarCliente(cl,0,true);
 
             CargarVenta(v,cl.GetCuit(),ImporteTotal,true);
 

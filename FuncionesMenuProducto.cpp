@@ -11,7 +11,7 @@ using namespace std;
         int id,tipo=0,stock;
         float precio;
         char nombre[50]{},descripcion[500]{}, marca[20]{};
-
+                                                                    //falta verificar si ya existe el producto
         if(opcCarga==1){
             rlutil::locate(30,5);
             cout<<"Ingrese id del producto: ";
@@ -101,6 +101,7 @@ using namespace std;
                     }break;
             }
             switchEdit++;
+            if(switchEdit>6){opcCarga=false;}
         }while(opcCarga);
         return 1;
     }
@@ -393,6 +394,17 @@ default:{}
                 }
             }else{p.SetEstado(false);archP.GuardarProducto(p);}
         }
+    }
+
+     void TxtEditProducto(MVector &vec){
+
+        vec.Agregar("Nombre");
+        vec.Agregar("Precio");
+        vec.Agregar("Descripcion");
+        vec.Agregar("Marca");
+        vec.Agregar("Tipo de Producto");
+        vec.Agregar("Stock");
+        vec.Agregar("Estado");
     }
 
     void CargaDirecta(){

@@ -4,7 +4,7 @@ using namespace std;
 
                                 ///CLIENTE///
 //------------------------------------------------------------------------//
-    int CargarCliente(Cliente &cl, bool opcionCarga){
+    int CargarCliente(Cliente &cl, int switchEdit, bool opcionCarga){
 
         system("cls");
         ArchivoClientes archCl("Clientes.dat");
@@ -12,85 +12,99 @@ using namespace std;
         int tc;
         char cuil[31]{}, nombre[31]{}, apellido[31]{}, telefono[31]{}, mail[31]{}, direccion[31]{};
 
-        rlutil::locate(40, 5);
-        cout<<"Ingrese el cuit del cliente: ";
-        cin>>cuil; LimpiarBuffer();
 
-        int posCl =archCl.BuscarCliente(cuil);
-        if(posCl>=0){
+        if(opcionCarga){
+            rlutil::locate(40, 5);
+            cout<<"Ingrese el cuit del cliente: ";
+            cin>>cuil; LimpiarBuffer();
 
-            if(opcionCarga){archCl.LeerCliente(posCl, cl);return 0;}
-            system("cls");
-            rlutil::locate(34,5);
-            cout << "Ya existe un cliente con el cuit:" << cuil << " Desea editarlo?" << endl;
-            rlutil::locate(57,8);
-            cout<<"NO";
-            rlutil::locate(57,9);
-            cout<<"SI";
-                switch(SeleccionMenus(55,8,1,1)){
-                    case(0):{archCl.LeerCliente(posCl, cl);return 0;}
-                    break;
 
-                    case(1):{cl.SetCuil(cuil);}
-                    break;
-                    }
+            int posCl =archCl.BuscarCliente(cuil);
+            archCl.LeerCliente(posCl, cl);
+            if(posCl>=0){
+                system("cls");
+                rlutil::locate(34,5);
+                cout << "Ya existe un cliente con el cuit:" << cuil << endl;
+                system("pause");
+                opcionCarga=false;switchEdit=-1;
+                return 0;}
+                else {
+                    cl.SetCuil(cuil);
+                    rlutil::showcursor();
+                    system("cls");
+                }
         }
-        cl.SetCuil(cuil);
-        rlutil::showcursor();
-        system("cls");
+        do{
+                switch(switchEdit){
+                case(0):{
+                    system("cls");
+                    rlutil::locate(40, 5); cout<<"Ingrese el nombre del cliente: ";
+                    cin.getline(nombre, 31);
+                    cl.SetNombre(nombre);
+                }break;
 
+                case(1):{
+                    system("cls");
+                    rlutil::locate(40, 5); cout<<"Ingrese el apellido del cliente: ";
+                    cin.getline(apellido, 31);
+                    cl.SetApellido(apellido);
+                }break;
 
-        system("cls");
-        rlutil::locate(40, 5); cout<<"Ingrese el nombre del cliente: ";
-        cin.getline(nombre, 31);
-        cl.SetNombre(nombre);
+                case(2):{
+                    system("cls");
+                    rlutil::locate(40, 5); cout<<"Ingrese el telefono del cliente: ";
+                    cin.getline(telefono, 31);
+                    cl.SetTelefono(telefono);
 
-        system("cls");
-        rlutil::locate(40, 5); cout<<"Ingrese el apellido del cliente: ";
-        cin.getline(apellido, 31);
-        cl.SetApellido(apellido);
+                }break;
 
-        system("cls");
-        rlutil::locate(40, 5); cout<<"Ingrese el telefono del cliente: ";
-        cin.getline(telefono, 31);
-        cl.SetTelefono(telefono);
+                case(3):{
+                    system("cls");
+                    rlutil::locate(40, 5); cout<<"Ingrese el mail del cliente: ";
+                    cin.getline(mail, 31);
+                    cl.SetMail(mail);
+                }break;
 
-        system("cls");
-        rlutil::locate(40, 5); cout<<"Ingrese el mail del cliente: ";
-        cin.getline(mail, 31);
-        cl.SetMail(mail);
+                case(4):{
+                    system("cls");
+                    rlutil::locate(40, 5); cout<<"Ingrese la direccion del cliente: ";
+                    cin.getline(direccion, 31);
+                    cl.SetDireccion(direccion);
+                }break;
 
-        system("cls");
-        rlutil::locate(40, 5); cout<<"Ingrese la direccion del cliente: ";
-        cin.getline(direccion, 31);
-        cl.SetDireccion(direccion);
+                case(5):{
+                    system("cls");
+                    rlutil::locate(45, 5); cout<<"Selecione el tipo de cliente";
+                    rlutil::locate(57,8); cout<<"Particular";
+                    rlutil::locate(57,9); cout<<"Empresa";
+                    switch(SeleccionMenus(55,8,1,1)){
+                            case(0):{tc=1;cl.SetTipoCliente(tc);}
+                            break;
 
+                            case(1):{tc=2;cl.SetTipoCliente(tc);}
+                            break;
+                            }
+                }break;
 
-        system("cls");
-        rlutil::locate(45, 5); cout<<"Selecione el tipo de cliente";
-            rlutil::locate(57,8); cout<<"Particular";
-            rlutil::locate(57,9); cout<<"Empresa";
-            switch(SeleccionMenus(55,8,1,1)){
-                    case(0):{tc=1;cl.SetTipoCliente(tc);}
-                    break;
+                case(6):{
+                    system("cls");
+                    rlutil::locate(43, 5); cout <<"Seleccione estado del cliente ";
+                    rlutil::locate(54,8); cout<<"Activo";
+                    rlutil::locate(54,9); cout<<"Inactivo";
+                    switch(SeleccionMenus(53,8,1,1)){
+                            case(0):{cl.SetEstado(1);}
+                            break;
 
-                    case(1):{tc=2;cl.SetTipoCliente(tc);}
-                    break;
+                            case(1):{cl.SetEstado(0);}
+                            break;
                     }
-
-        system("cls");
-        rlutil::locate(43, 5); cout <<"Seleccione estado del cliente ";
-            rlutil::locate(54,8); cout<<"Activo";
-            rlutil::locate(54,9); cout<<"Inactivo";
-            switch(SeleccionMenus(53,8,1,1)){
-                    case(0):{cl.SetEstado(1);}
-                    break;
-
-                    case(1):{cl.SetEstado(0);}
-                    break;
-                    }
-        rlutil::hidecursor();
-        system("cls");
+                    rlutil::hidecursor();
+                    system("cls");
+                }break;
+            }
+            switchEdit++;
+            if(switchEdit>6){opcionCarga=0;}
+        }while(opcionCarga);
         return 1;
     }
 
@@ -154,7 +168,7 @@ using namespace std;
                     case(1):{seguir=0;}
                     break;
                     }
-            if(seguir){seguir=CargarCliente(cl,0);}
+            if(seguir){seguir=CargarCliente(cl,0,0);}
             }
         }while(seguir);
         system("cls");
@@ -182,6 +196,7 @@ using namespace std;
 
         char abc[54]{'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'Ñ', 'ñ', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z'};
 
+
         int tamVecCl= ClOrdenados.GetTam();
         Cliente *ClOr= ClOrdenados.GetCl();
             for(int i=0; i<54; i++){
@@ -198,28 +213,61 @@ using namespace std;
     void MenuRegistroCliente(){
 
         system("cls");
-        rlutil::locate(50,6);cout<<"<Guardar/Editar registro>"<<endl;
-        rlutil::locate(50,7);cout<<"<Eliminar Registro/Restaurar>"<<endl;
-        int opcion=SeleccionMenus(49,6,1,1);
+        ArchivoClientes archCl("Clientes.dat");
+        Cadena txt;
+        MVector vecOpc;
+        txt.setTexto("Guardar/Editar registro");vecOpc.Agregar(txt);
+        txt.setTexto("Eliminar/Restaurar Registro");vecOpc.Agregar(txt);
+        int opcion=SeleccionMenuAnim(vecOpc.GetCd(),54,12,1,1,4,8);
 
         Cliente cl;
         if(opcion==0){
-            if(CargarCliente(cl,0)==1){GuardarRegistroCliente(cl,true);}
-        }else{
-            char cuil[31]{};
-            ArchivoClientes archCl("Clientes.dat");
-            rlutil::locate(40, 5);
-            cout<<"Ingrese el cuit del cliente: ";
-            cin>>cuil; LimpiarBuffer();
+                Cadena txt1;
+                MVector vecOp1;
+                txt1.setTexto("Ingresar nuevo");vecOp1.Agregar(txt1);
+                txt1.setTexto("Editar existente");vecOp1.Agregar(txt1);
 
-            int posCl=archCl.BuscarCliente(cuil);
+                if(SeleccionMenuAnim(vecOp1.GetCd(),54,12,1,1,4,8)==0){
+                    CargarCliente(cl,0,1);
+                    }else{
+                        MVector VecCl;
+                        CopiarYOrdenarClientes(VecCl);
+
+                        int tamVecCl=VecCl.GetTam();
+                        Cliente *ArrCl=VecCl.GetCl();
+                        MVector OpcClTxt;
+                        for(int i=0;i<tamVecCl;i++){
+                            string TipoCliente;
+                            if(ArrCl[i].GetTipoCliente()==1){TipoCliente="Particular";}else{TipoCliente="Empresa";}
+                            string s=string("Cuit:")+ArrCl[i].GetCuit()+"|"+ArrCl[i].GetNombre()+" "+ArrCl[i].GetApellido()+"|"+TipoCliente;
+                            OpcClTxt.Agregar(s.c_str());
+                        }
+                        int ClSelec=SeleccionMenuAnim(OpcClTxt.GetCd(),54,12,tamVecCl-1,2,4,8);
+                        cl=ArrCl[ClSelec];
+                        MVector vecEdt;
+                        TxtEditCliente(vecEdt);
+                        int SwitchEdit=SeleccionMenuAnim(vecEdt.GetCd(),54,12,6,2,4,8);
+                        CargarCliente(cl,SwitchEdit,0);
+                    }
+                archCl.GuardarCliente(cl);
+                system("cls");
+                rlutil::hidecursor();
+        }else{
+            char Cuit[31];
+            ArchivoClientes archP("Clientes.dat");
+            rlutil::locate(40, 5);
+            cout<<"Ingrese el Cuit del Cliente: ";
+            cin.getline(Cuit,31);
+
+            int posCl=archCl.BuscarCliente(Cuit);
             while(posCl<0){
-                posCl =archCl.BuscarCliente(cuil);
                 rlutil::locate(40, 5);
-                cout<<"Cliente inexistente reingrese cuit: ";
-                cin>>cuil; LimpiarBuffer();
+                cout<<"Cliente inexistente reingrese Cuit del cliente: ";
+                cin.getline(Cuit,31);
+                posCl =archCl.BuscarCliente(Cuit);
                 system("cls");
             }
+
             cl=archCl.LeerCliente(posCl);
             if(cl.GetEstado()==false){
                 system("cls");
@@ -231,6 +279,50 @@ using namespace std;
                 archCl.GuardarCliente(cl);
                 }
             }else{cl.SetEstado(false);archCl.GuardarCliente(cl);}
-            system("cls");
         }
+    }
+
+    void CopiarYOrdenarClientes(MVector &vecCl){
+
+        system("cls");
+        int TipoCliente;
+        rlutil::locate(40,5); cout << "Selecione tipo de cliente" << endl;
+        rlutil::locate(50,8); cout<<"Particular";
+        rlutil::locate(50,9); cout<<"Empresa";
+        TipoCliente=SeleccionMenus(48,8,1,1)+1;
+
+        ArchivoClientes archCl("Clientes.dat");
+        int cantReg=archCl.CantidadRegistros(sizeof(Cliente));
+
+        MVector ClOrdenados;
+
+        Cliente cl;
+        for(int i; i<cantReg; i++){
+        archCl.LeerCliente(i, cl);
+            if(cl.GetTipoCliente()==TipoCliente){ClOrdenados.Agregar(cl);}
+            }
+
+        char abc[54]{'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'Ñ', 'ñ', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z'};
+
+
+        int tamVecCl= ClOrdenados.GetTam();
+        Cliente *ClOr= ClOrdenados.GetCl();
+            for(int i=0; i<54; i++){
+                for(int a=0; a<tamVecCl; a++){
+                    string Apellido= ClOr[a].GetApellido();
+                    if(Apellido[0]==abc[i]){vecCl.Agregar(ClOr[a]);}
+                }
+            }
+        system("cls");
+    }
+
+    void TxtEditCliente(MVector &vec){
+
+        vec.Agregar("Nombre");
+        vec.Agregar("Apellido");
+        vec.Agregar("Telefono");
+        vec.Agregar("Mail");
+        vec.Agregar("Direccion");
+        vec.Agregar("Tipo de cliente");
+        vec.Agregar("Estado");
     }

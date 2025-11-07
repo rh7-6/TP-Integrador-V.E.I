@@ -52,7 +52,6 @@ using namespace std;
 
     void TextoTiposDeProducto2(MVector &vec);
 
-    void TxtEditProducto(MVector &vec);
 
 /// funcionalidad ///
 
@@ -74,11 +73,13 @@ using namespace std;
 
     void MenuRegistroProducto();
 
+    void TxtEditProducto(MVector &vec);
+
 /*---------
   CLIENTES
   ---------*/
 
-    int CargarCliente(Cliente &cl, bool opcionCarga);//  verifica si ya existe el cliente y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
+    int CargarCliente(Cliente &cl, int switchEdit, bool opcionCarga);//  verifica si ya existe el cliente y pregunta si se quiere reingresar el mismo(en el caso de que se quiera actualizar o corregir un error)
 
     void MostrarCliente(Cliente &cl);
 
@@ -89,6 +90,10 @@ using namespace std;
     void ListadoDeClientes();
 
     void MenuRegistroCliente();
+
+    void CopiarYOrdenarClientes(MVector &vecCl);
+
+    void TxtEditCliente(MVector &vec);
 
 /*---------
   VENTAS
