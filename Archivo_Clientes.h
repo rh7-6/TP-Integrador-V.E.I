@@ -10,6 +10,7 @@ public:
     int BuscarCliente(const char *CUIT);
     Cliente LeerCliente(int pos);
     LeerCliente(int pos, Cliente &cl);
+    int BuscarCliente(int num);
 
     ArchivoClientes(const char *t);
     ArchivoClientes();

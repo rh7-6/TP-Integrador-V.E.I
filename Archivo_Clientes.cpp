@@ -99,3 +99,27 @@ using namespace std;
 
     ArchivoClientes::ArchivoClientes(){
     }
+
+    int ArchivoClientes::BuscarCliente(int num){
+
+        FILE *pfile;
+        pfile = fopen(GetNombreArchivo(),"rb");
+
+        if(pfile==NULL){
+            return -1;
+        }
+
+        Cliente cl;
+        int posCliente=0, cantReg=CantidadRegistros(sizeof(cl));
+
+        for(int i=0; i<cantReg; i++){
+            fread(&cl, sizeof(Cliente), 1, pfile);
+            if(cl.GetNumeroDeCliente()==num){
+                fclose(pfile);
+                return posCliente;
+            }
+            posCliente++;
+        }
+        fclose(pfile);
+        return -2;
+    }

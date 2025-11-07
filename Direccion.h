@@ -2,20 +2,18 @@
 #define CLIENTES_H_INCLUDED
 #include "cadena.h"
 
-class Cliente {
+class Direccion {
 public:
 
-    void SetNumeroDeCliente(int tc);
-    void SetCuil(const char *t);
-    void SetNombre(const char *t);
-    void SetApellido(const char *t);
+    void Set(const char *t);
+    void Set(const char *t);
+    void Set(const char *t);
     void SetTelefono(const char *t);
     void SetMail(const char *t);
     void SetDireccion(const char *t);
     void SetTipoCliente(int tc);
     void SetEstado(bool estado);
 
-    int GetNumeroDeCliente();
     const char *GetCuit();
     const char *GetNombre();
     const char *GetApellido();
@@ -26,13 +24,13 @@ public:
     bool GetEstado();
 
     Cliente();
-    Cliente(int NumeroDeCliente, const char *CUIT, const char *nombre, const char *apellido, const char *telefono, const char *mail, const char *direccion, int tipoCliente, bool estado);
+    Cliente(const char *CUIT, const char *nombre, const char *apellido, const char *telefono, const char *mail, const char *direccion, int tipoCliente, bool estado);
 
     void CargarCliente();
     void MostrarCliente();
 
 private:
-    int _NumeroDeCliente;
+
     Cadena _Cuit;
     Cadena _Nombre;
     Cadena _Apellido;
@@ -44,4 +42,4 @@ private:
 
 
 };
-#endif // CLIENTES_H_INCLUDED
+#endif // DIRECCION_H_INCLUDED

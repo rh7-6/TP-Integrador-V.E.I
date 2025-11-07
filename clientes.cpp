@@ -2,8 +2,15 @@
 #include "cstring"
 #include "cadena.h"
 #include "Clientes.h"
+#include "Archivo_Clientes.h"
 #include <limits>
 using namespace std;
+
+    void Cliente::SetNumeroDeCliente(int tc){
+
+        _NumeroDeCliente=tc;
+
+    }
 
     void Cliente::SetCuil(const char *t){
 
@@ -67,6 +74,11 @@ using namespace std;
     }
 
 ///--------------------------------------------------------------------------------------------------
+    int Cliente::GetNumeroDeCliente(){
+
+        return _NumeroDeCliente;
+
+    }
 
     const char *Cliente::GetCuit(){
         return _Cuit.getTexto();
@@ -114,6 +126,7 @@ using namespace std;
     }
 
     Cliente::Cliente(){
+        _NumeroDeCliente=-1;
         _Cuit.setTexto("");
         _Nombre.setTexto("");
         _Apellido.setTexto("");
@@ -123,7 +136,9 @@ using namespace std;
         _TipoCliente=1;
         _Estado=true;
     }
-    Cliente::Cliente(const char *CUIT, const char *nombre, const char *apellido, const char *telefono, const char *mail, const char *direccion, int tipoCliente, bool estado){
+    Cliente::Cliente(int NumeroDeCliente, const char *CUIT, const char *nombre, const char *apellido, const char *telefono, const char *mail, const char *direccion, int tipoCliente, bool estado){
+
+        _NumeroDeCliente=NumeroDeCliente;
         _Cuit.setTexto(CUIT);
         _Nombre.setTexto(nombre);
         _Apellido.setTexto(apellido);
@@ -137,8 +152,21 @@ using namespace std;
 ///--------------------------------------------------------------------------------------------------
 
 void Cliente::CargarCliente(){
-int tc;
+ArchivoClientes arch("Clientes.dat");
+int tc,NumeroDeCliente=0;
 char *cuil= new char[31], *nombre= new char[31], *apellido= new char[31], *telefono= new char[31], *mail=new char[31], *direccion=new char[31];
+
+
+ ///////////////////////////////////////////////////
+ //////////////////////////////////////////////////
+///Lo deje acaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///no tocar///////////////////////////////////////
+if(arch.BuscarCliente(NumeroDeCliente)==-2)
+{}
+
+
 
 cout<<"Ingrese el cuit del cliente: ";
 cin.getline(cuil, 31);
