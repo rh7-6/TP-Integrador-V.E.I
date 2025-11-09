@@ -112,9 +112,11 @@ using namespace std;
         Cliente cl;
         int posCliente=0, cantReg=CantidadRegistros(sizeof(cl));
 
-        for(int i=0; i<cantReg; i++){
+        for(int i=0; i<cantReg; i++)
+        {
             fread(&cl, sizeof(Cliente), 1, pfile);
-            if(cl.GetNumeroDeCliente()==num){
+            if(cl.GetNumeroDeCliente()==num)
+            {
                 fclose(pfile);
                 return posCliente;
             }

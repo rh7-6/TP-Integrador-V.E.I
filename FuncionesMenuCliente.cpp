@@ -9,29 +9,63 @@ using namespace std;
         system("cls");
         ArchivoClientes archCl("Clientes.dat");
 
-        int tc;
+        bool bandera=true;
+        int tc,NumeroDeCliente=1;
         char cuil[31]{}, nombre[31]{}, apellido[31]{}, telefono[31]{}, mail[31]{}, direccion[31]{};
 
+        ///////////////////////
+do{
+cout<<"el numero de cliente:"<<NumeroDeCliente<<endl;
+    if(archCl.BuscarCliente(NumeroDeCliente)==-2)
+    {
+    cl.SetNumeroDeCliente(NumeroDeCliente);
+    bandera=false;
+    }
+    else
+    {
+        if(archCl.BuscarCliente(NumeroDeCliente)==-1)
+        {
+        cl.SetNumeroDeCliente(NumeroDeCliente);
+        bandera=false;
+        }
+        else
+        {
+        NumeroDeCliente++;
+        }
+    }
 
-        if(opcionCarga){
+
+
+
+}while(bandera==true);
+
+
+
+
+        if(opcionCarga)
+            {
             rlutil::locate(40, 5);
+            cout<<"el numero de cliente:"<<cl.GetNumeroDeCliente()<<endl;
             cout<<"Ingrese el cuit del cliente: ";
             cin>>cuil; LimpiarBuffer();
 
 
             int posCl =archCl.BuscarCliente(cuil);
             archCl.LeerCliente(posCl, cl);
-            if(posCl>=0){
+            if(posCl>=0)
+                {
                 system("cls");
                 rlutil::locate(34,5);
                 cout << "Ya existe un cliente con el cuit:" << cuil << endl;
                 system("pause");
                 opcionCarga=false;switchEdit=-1;
-                return 0;}
-                else {
-                    cl.SetCuil(cuil);
-                    rlutil::showcursor();
-                    system("cls");
+                return 0;
+                }
+                else
+                {
+                cl.SetCuil(cuil);
+                rlutil::showcursor();
+                system("cls");
                 }
         }
         do{

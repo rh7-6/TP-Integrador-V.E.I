@@ -153,18 +153,31 @@ using namespace std;
 
 void Cliente::CargarCliente(){
 ArchivoClientes arch("Clientes.dat");
-int tc,NumeroDeCliente=0;
+int tc,NumeroDeCliente=1;
+bool bandera=true;
 char *cuil= new char[31], *nombre= new char[31], *apellido= new char[31], *telefono= new char[31], *mail=new char[31], *direccion=new char[31];
 
-
- ///////////////////////////////////////////////////
- //////////////////////////////////////////////////
-///Lo deje acaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa////
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-///no tocar///////////////////////////////////////
+do{
 if(arch.BuscarCliente(NumeroDeCliente)==-2)
-{}
+{
+ SetNumeroDeCliente(NumeroDeCliente);
+ bandera=false;
+}
+else
+{
+if(arch.BuscarCliente(NumeroDeCliente)==-1)
+    {
+     SetNumeroDeCliente(1);
+     bandera=false;
+    }
+    else
+    {
+     NumeroDeCliente++;
+    }
+}
+
+}while(bandera==true);
+
 
 
 
