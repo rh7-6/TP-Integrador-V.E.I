@@ -5,41 +5,29 @@
 class Direccion {
 public:
 
-    void Set(const char *t);
-    void Set(const char *t);
-    void Set(const char *t);
-    void SetTelefono(const char *t);
-    void SetMail(const char *t);
-    void SetDireccion(const char *t);
-    void SetTipoCliente(int tc);
-    void SetEstado(bool estado);
+    void SetCalle(const char *t);
+    void SetAltura(const char *t);
+    void SetPiso(int tc);
+    void SetLocalidad(const char *t);
 
-    const char *GetCuit();
-    const char *GetNombre();
-    const char *GetApellido();
-    const char *GetTelefono();
-    const char *GetMail();
-    const char *GetDireccion();
-    int GetTipoCliente();
-    bool GetEstado();
+    const char *GetCalle();
+    const char *GetAltura();
+    int GetPiso();
+    const char *GetLocalidad();
 
-    Cliente();
-    Cliente(const char *CUIT, const char *nombre, const char *apellido, const char *telefono, const char *mail, const char *direccion, int tipoCliente, bool estado);
+    Direccion();
+    Direccion(const char *Calle, const char *Altura, int Piso, const char *Localidad);
 
-    void CargarCliente();
-    void MostrarCliente();
+    void CargarDireccion();
+    void MostrarDireccion();
 
 private:
 
-    Cadena _Cuit;
-    Cadena _Nombre;
-    Cadena _Apellido;
-    Cadena _Telefono;
-    Cadena _Mail;
-    Cadena _Direccion;
-    int _TipoCliente;
-    bool _Estado;
-
+    Cadena _Calle;
+    Cadena _Altura;
+    int _Piso;
+    Cadena _Localidad;
 
 };
+
 #endif // DIRECCION_H_INCLUDED

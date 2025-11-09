@@ -126,7 +126,7 @@ using namespace std;
     }
 
     Cliente::Cliente(){
-        _NumeroDeCliente=-1;
+        _NumeroDeCliente=1;
         _Cuit.setTexto("");
         _Nombre.setTexto("");
         _Apellido.setTexto("");
