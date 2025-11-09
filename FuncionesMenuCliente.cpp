@@ -10,44 +10,15 @@ using namespace std;
         ArchivoClientes archCl("Clientes.dat");
 
         bool bandera=true;
-        int tc,NumeroDeCliente=1;
+        int tc,NumeroDeCliente=1, resultadoBusqueda=0;
         char cuil[31]{}, nombre[31]{}, apellido[31]{}, telefono[31]{}, mail[31]{}, direccion[31]{};
-
-        ///////////////////////
-do{
-cout<<"el numero de cliente:"<<NumeroDeCliente<<endl;
-    if(archCl.BuscarCliente(NumeroDeCliente)==-2)
-    {
-    cl.SetNumeroDeCliente(NumeroDeCliente);
-    bandera=false;
-    }
-    else
-    {
-        if(archCl.BuscarCliente(NumeroDeCliente)==-1)
-        {
-        cl.SetNumeroDeCliente(NumeroDeCliente);
-        bandera=false;
-        }
-        else
-        {
-        NumeroDeCliente++;
-        }
-    }
-
-
-
-
-}while(bandera==true);
-
-
-
 
         if(opcionCarga)
             {
             rlutil::locate(40, 5);
-            cout<<"el numero de cliente:"<<cl.GetNumeroDeCliente()<<endl;
             cout<<"Ingrese el cuit del cliente: ";
             cin>>cuil; LimpiarBuffer();
+
 
 
             int posCl =archCl.BuscarCliente(cuil);
@@ -134,6 +105,28 @@ cout<<"el numero de cliente:"<<NumeroDeCliente<<endl;
                     }
                     rlutil::hidecursor();
                     system("cls");
+////////////////////////////////////////////numero de cliente automatico/////////////////////
+    do{
+    cout << "el numero de cliente:" << NumeroDeCliente << endl;
+    system("pause");
+    resultadoBusqueda = archCl.BuscarCliente(NumeroDeCliente);
+    if(resultadoBusqueda == -5)
+    {
+        cl.SetNumeroDeCliente(NumeroDeCliente);
+        bandera = false;
+    }
+    else if(resultadoBusqueda == -1)
+    {
+        cl.SetNumeroDeCliente(NumeroDeCliente);
+        bandera = false;
+    }
+    else
+    {
+        NumeroDeCliente++;
+    }
+} while(bandera == true);
+/////////////////////////////////////////////////////////////////////////////////////////////
+
                 }break;
             }
             switchEdit++;

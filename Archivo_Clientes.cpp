@@ -123,5 +123,5 @@ using namespace std;
             posCliente++;
         }
         fclose(pfile);
-        return -2;
+        return -5;
     }
