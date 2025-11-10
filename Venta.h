@@ -1,9 +1,9 @@
 #ifndef VENTA_H_INCLUDED
 #define VENTA_H_INCLUDED
 #include "cadena.h"
-#include "Fecha.h"
-#include "cstring"
 
+#include "cstring"
+#include "Fecha.h"
 class Venta {
 public:
 

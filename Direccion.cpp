@@ -63,11 +63,45 @@ Direccion::Direccion(const char *Calle, const char *Altura, int Piso, const char
     _Calle.setTexto(Calle);
     _Altura.setTexto(Altura);
     _Piso=Piso;
-//    _Localida.setTexto(Localidad);
+    _Localidad.setTexto(Localidad);
 }
 
 ///--------------------------------------------------------------------------------------------------
 
+void Direccion::CargarDireccion()
+{
+int piso=0;
+char *calle= new char[31], *altura= new char[31], *localidad= new char[31];
 
+cout<<"Ingrese la calle del cliente: ";
+cin.getline(calle, 31);
+SetCalle(calle);
+cout<<endl;
 
+cout<<"Ingrese la altura del cliente: ";
+cin.getline(altura, 31);
+SetAltura(altura);
+cout<<endl;
 
+cout<<"Ingrese el piso del cliente: ";
+cin>>piso;
+SetPiso(piso);
+cout<<endl;
+
+cout<<"Ingrese la localidad del cliente: ";
+cin.getline(localidad, 31);
+SetLocalidad(localidad);
+cout<<endl;
+
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+void Direccion::MostrarDireccion()
+{
+
+  cout<<"Calle del cliente: "<<GetCalle()<<endl;
+  cout<<"Altura del cliente: "<<GetAltura()<<endl;
+  cout<<"Piso del cliente: "<<GetPiso()<<endl;
+  cout<<"Localidad del cliente: "<<GetLocalidad()<<endl;
+
+}

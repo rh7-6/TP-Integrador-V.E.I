@@ -2,7 +2,16 @@
 #define CLIENTES_H_INCLUDED
 #include "cadena.h"
 
+
+
 class Direccion {
+private:
+
+    Cadena _Calle;
+    Cadena _Altura;
+    int _Piso;
+    Cadena _Localidad;
+
 public:
 
     void SetCalle(const char *t);
@@ -21,12 +30,7 @@ public:
     void CargarDireccion();
     void MostrarDireccion();
 
-private:
 
-    Cadena _Calle;
-    Cadena _Altura;
-    int _Piso;
-    Cadena _Localidad;
 
 };
 

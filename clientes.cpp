@@ -155,7 +155,7 @@ void Cliente::CargarCliente(){
 ArchivoClientes arch("Clientes.dat");
 int tc,NumeroDeCliente=1;
 bool bandera=true;
-char *cuil= new char[31], *nombre= new char[31], *apellido= new char[31], *telefono= new char[31], *mail=new char[31], *direccion=new char[31];
+char *cuil= new char[31], *nombre= new char[31], *apellido= new char[31], *telefono= new char[31], *mail=new char[31], *direccion= new char[31];
 
 do{
 if(arch.BuscarCliente(NumeroDeCliente)==-2)
