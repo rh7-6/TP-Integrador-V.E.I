@@ -11,11 +11,12 @@ using namespace std;
         ArchivoVentas archV("Ventas.dat");
         ArchivoProductos archP("Productos.dat");
 
-        int cantRegV= archV.CantidadRegistros(sizeof(Venta));
+        int cantRegV= archV.CantidadRegistros(sizeof(Venta)), cantRegDv= archDV.CantidadRegistros(sizeof(DetalleVenta));
         int numeroventa, idproducto, cantidad;
         Producto p;
         int posP;
 
+        dv.SetIdDetalle(30);
         if(opcionCarga){
             posP=archP.BuscarProducto(IDPRODUCTO);
             p=archP.LeerProducto(posP);
@@ -94,9 +95,11 @@ using namespace std;
     }
 
     void MostrarDetalleVenta(DetalleVenta &dv){
+
+       cout<<"El ID de Detalle es: "<<dv.GetIdDetalle()<<endl;
        cout<<"El numero de venta es: "<<dv.GetNumeroVentaDT()<<endl;
        cout << std::fixed << std::setprecision(0);
-       cout<<"El precio del producto: $"<<dv.GetPrecioProducto()<<endl;
+       cout<<"El precio de productos: $"<<dv.GetPrecioProducto()<<endl;
        cout<<"El numero de id del producto es: "<<dv.GetIdProductoDT()<<endl;
        cout<<"La cantidad de productos comprados: "<<dv.GetCantidad()<<endl;
        cout<<"//////////////////////////////////////////////"<<endl;

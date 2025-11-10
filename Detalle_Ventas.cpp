@@ -2,6 +2,11 @@
 #include "Detalle_Venta.h"
 using namespace std;
 
+    void DetalleVenta::SetIdDetalle(int n){
+
+        _IdDetalle=n;
+    }
+
     void DetalleVenta::SetNumeroVentaDT(int n){
 
         _NumeroVenta=n;
@@ -41,6 +46,10 @@ using namespace std;
 
 ///--------------------------------------------------------------------------------------------------
 
+    int DetalleVenta::GetIdDetalle(){
+        return _IdDetalle;
+    }
+
     int DetalleVenta::GetNumeroVentaDT(){
 
         return _NumeroVenta;
@@ -66,8 +75,9 @@ using namespace std;
     }
 
     DetalleVenta::DetalleVenta(){}
-    DetalleVenta::DetalleVenta(int numeroVenta, float precioProducto, int idProducto, int cantidad){
+    DetalleVenta::DetalleVenta(int idDetalle, int numeroVenta, float precioProducto, int idProducto, int cantidad){
 
+        _IdDetalle= idDetalle;
         _NumeroVenta=numeroVenta;
         _PrecioProducto=precioProducto;
         _IdProducto=idProducto;

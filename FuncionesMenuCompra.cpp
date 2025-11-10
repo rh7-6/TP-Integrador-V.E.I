@@ -241,7 +241,7 @@ using namespace std;
             for(int i=0; i<tamVecPrselec; i++){
                 if(arrPrSelec[i].GetEstado()==true){
                 int cantPrSelec= CalculoCantidadProductosSeleccionados(vecPrSelec,vecPrOrg,i);
-                DetalleVenta dv(v.GetNumeroVenta(),arrPrSelec[i].GetPrecio()*cantPrSelec,arrPrSelec[i].GetIdProducto(),cantPrSelec);
+                DetalleVenta dv(i+1,v.GetNumeroVenta(),arrPrSelec[i].GetPrecio()*cantPrSelec,arrPrSelec[i].GetIdProducto(),cantPrSelec);
                 vecDv.Agregar(dv);
                 }
             }
