@@ -107,8 +107,8 @@ using namespace std;
                     system("cls");
 ////////////////////////////////////////////numero de cliente automatico/////////////////////
     do{
-    cout << "el numero de cliente:" << NumeroDeCliente << endl;
-    system("pause");
+//    cout << "el numero de cliente:" << NumeroDeCliente << endl;
+//    system("pause");
     resultadoBusqueda = archCl.BuscarCliente(NumeroDeCliente);
     if(resultadoBusqueda == -5)
     {
