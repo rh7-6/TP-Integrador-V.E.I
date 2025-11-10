@@ -27,7 +27,8 @@ using namespace std;
         do{
             switch(switchEdit){
                 case(0):{
-                    rlutil::locate(35,5);
+                    system("cls");
+                    rlutil::locate(20,5);
                     cout << "Ingrese nombre del producto: ";
                     cin.getline(nombre, 50);
                     p.SetNombreProducto(nombre);
@@ -48,7 +49,7 @@ using namespace std;
                 }break;
 
                 case(2):{
-                    rlutil::locate(2,5);
+                    rlutil::locate(20,5);
                     cout<<"Ingrese la descripcion del producto(terminada en el caracter #): "<<endl;
                     cin.getline(descripcion,500, '#'); LimpiarBuffer();
                     p.SetDescripcion(descripcion);
@@ -74,7 +75,7 @@ using namespace std;
                 }break;
 
                 case(5):{
-                    rlutil::locate(35,5);
+                    rlutil::locate(20,5);
                     cout<<"Ingrese el stock del producto: ";
                     cin>>stock; LimpiarBuffer();
                     while(p.SetStock(stock)==0){

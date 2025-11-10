@@ -166,16 +166,16 @@ using namespace std;
         cin >> Cuit; LimpiarBuffer();
         cout << endl;
 
-        if((pos=archCl.BuscarCliente(Cuit.c_str()))<0){
+        pos=archCl.BuscarCliente(Cuit.c_str());
+        while(pos<0){
             system("cls");
             rlutil::locate(41,5); cout << "Cliente inexistente reingrese Cuit: ";
             cin >> Cuit; LimpiarBuffer();
-        }else{
-
+            pos=archCl.BuscarCliente(Cuit.c_str());
+        }
             cl=archCl.LeerCliente(pos);
             MostrarCliente(cl);
             system("pause");
-        }
     }
 
     void GuardarRegistroCliente(Cliente &cl, bool opcionSeg){
