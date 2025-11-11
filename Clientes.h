@@ -3,6 +3,7 @@
 #include "Direcciones.h"
 #include "cadena.h"
 
+
 class Cliente {
 public:
 
@@ -12,6 +13,7 @@ public:
     void SetApellido(const char *t);
     void SetTelefono(const char *t);
     void SetMail(const char *t);
+    void SetDireccion(const char *Calle, int Altura, int Piso, const char *Localidad);
 ///-------------------------------- incluir set calle, altura, piso y localidad o uno solo que pida los 3
     void SetTipoCliente(int tc);
     void SetEstado(bool estado);
@@ -22,6 +24,7 @@ public:
     const char *GetApellido();
     const char *GetTelefono();
     const char *GetMail();
+    Direccion  GetDireccion();
 //-----------------------------lo mismo para el get
     int GetTipoCliente();
     bool GetEstado();

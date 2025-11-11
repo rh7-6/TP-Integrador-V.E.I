@@ -44,6 +44,15 @@ using namespace std;
 
 /// incluir funciones para setear direccion
 
+    void Cliente::SetDireccion(const char *Calle, int Altura, int Piso, const char *Localidad){
+
+    _Direccion.SetCalle(Calle);
+    _Direccion.SetAltura(Altura);
+    _Direccion.SetPiso(Piso);
+    _Direccion.SetLocalidad(Localidad);
+
+    }
+
     void Cliente::SetTipoCliente(int tc){
         bool a=false;
         while(a==false)
@@ -104,6 +113,10 @@ using namespace std;
 
     }
 
+    Direccion Cliente::GetDireccion(){
+
+        return _Direccion;
+    }
 
     int Cliente::GetTipoCliente(){
 

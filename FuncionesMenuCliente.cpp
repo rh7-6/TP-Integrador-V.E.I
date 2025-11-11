@@ -10,8 +10,9 @@ using namespace std;
         ArchivoClientes archCl("Clientes.dat");
 
         bool bandera=true;
-        int tc,NumeroDeCliente=1, resultadoBusqueda=0;
-        char cuil[31]{}, nombre[31]{}, apellido[31]{}, telefono[31]{}, mail[31]{}, direccion[31]{};
+        Direccion dir;
+        int tc,NumeroDeCliente=1, resultadoBusqueda=0, altura=0, piso=0;
+        char cuil[31]{}, nombre[31]{}, apellido[31]{}, telefono[31]{}, mail[31]{}, Calle[31]{}, Localidad[31]{};
 
         if(opcionCarga)
             {
@@ -72,9 +73,19 @@ using namespace std;
 
                 case(4):{
                     system("cls");
-                    rlutil::locate(40, 5); cout<<"Ingrese la direccion del cliente: ";
-                    cin.getline(direccion, 31);
-                    //cl.SetDireccion(direccion);---------------- hay que actulizarlo para que funcione con el nuevo objeto direccion
+                    rlutil::locate(40, 5); cout<<"Ingrese la calle del cliente: ";///crear if si quiere ingresar direccion
+                    cin.getline(Calle, 31);
+                    system("cls");
+                    rlutil::locate(40, 5); cout<<"Ingrese la Altura del cliente: ";
+                    cin>>altura;
+                    system("cls");
+                    rlutil::locate(40, 5); cout<<"Ingrese el piso del cliente: ";
+                    cin>>piso;
+                    system("cls");
+                    LimpiarBuffer();
+                    rlutil::locate(40, 5); cout<<"Ingrese el Localidad del cliente: ";
+                    cin.getline(Localidad, 31);
+                    cl.SetDireccion(Calle, altura, piso, Localidad);
                 }break;
 
                 case(5):{
@@ -107,9 +118,7 @@ using namespace std;
                     system("cls");
 ////////////////////////////////////////////numero de cliente automatico/////////////////////
     do{
-//    cout << "el numero de cliente:" << NumeroDeCliente << endl;
-//    system("pause");
-    resultadoBusqueda = archCl.BuscarCliente(NumeroDeCliente);
+resultadoBusqueda = archCl.BuscarCliente(NumeroDeCliente);
     if(resultadoBusqueda == -5)
     {
         cl.SetNumeroDeCliente(NumeroDeCliente);
@@ -142,8 +151,11 @@ using namespace std;
        cout<<"Apellido del cliente: "<<cl.GetApellido()<<endl;
        cout<<"Telefono del cliente: "<<cl.GetTelefono()<<endl;
        cout<<"Mail del cliente: "<<cl.GetMail()<<endl;
-       //cout<<"Direccion del cliente: "<<cl.GetDireccion()<<endl; ---------- falta actulizar para que funcione con direccion
-
+       Direccion dir=cl.GetDireccion();//verificacion de si se cargo o no un cliente
+       cout<<"La calle del cliente es: "<<dir.GetCalle()<<endl;
+       cout<<"La altura del cliente es: "<<dir.GetAltura()<<endl;
+       cout<<"El piso del cliente es: "<<dir.GetPiso()<<endl;
+       cout<<"La localidad del cliente es: "<<dir.GetLocalidad()<<endl;
        if(cl.GetTipoCliente()==1)
        {
        cout<<"tipo de cliente Particular"<<endl;

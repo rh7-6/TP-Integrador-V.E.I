@@ -10,9 +10,9 @@ void Direccion::SetCalle(const char *t){
 
 }
 
-void Direccion::SetAltura(const char *t){
+void Direccion::SetAltura(int tc){
 
-        _Altura.setTexto(t);
+        _Altura=tc;
 
 }
 
@@ -34,8 +34,8 @@ const char *Direccion::GetCalle(){
     return _Calle.getTexto();
 }
 
-const char *Direccion::GetAltura(){
-    return _Altura.getTexto();
+int Direccion::GetAltura(){
+    return _Altura;
 }
 
 int Direccion::GetPiso(){
@@ -52,15 +52,15 @@ const char *Direccion::GetLocalidad(){
 
 Direccion::Direccion(){
         _Calle.setTexto("");
-        _Altura.setTexto("");
+        _Altura=0;
         _Piso=0;
         _Localidad.setTexto("");
 }
 
-Direccion::Direccion(const char *Calle, const char *Altura, int Piso, const char *Localidad){
+Direccion::Direccion(const char *Calle, int Altura, int Piso, const char *Localidad){
 
     _Calle.setTexto(Calle);
-    _Altura.setTexto(Altura);
+    _Altura=Altura;
     _Piso=Piso;
     _Localidad.setTexto(Localidad);
 }
@@ -69,8 +69,8 @@ Direccion::Direccion(const char *Calle, const char *Altura, int Piso, const char
 
 void Direccion::CargarDireccion()
 {
-int piso=0;
-char *calle= new char[31], *altura= new char[31], *localidad= new char[31];
+int piso=0, altura=0;
+char *calle= new char[31], *localidad= new char[31];
 
 cout<<"Ingrese la calle del cliente: ";
 cin.getline(calle, 31);
@@ -78,7 +78,7 @@ SetCalle(calle);
 cout<<endl;
 
 cout<<"Ingrese la altura del cliente: ";
-cin.getline(altura, 31);
+cin>>altura;
 SetAltura(altura);
 cout<<endl;
 
