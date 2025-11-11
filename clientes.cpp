@@ -42,11 +42,7 @@ using namespace std;
 
     }
 
-    void Cliente::SetDireccion(const char *t){
-
-        _Direccion.setTexto(t);
-
-    }
+/// incluir funciones para setear direccion
 
     void Cliente::SetTipoCliente(int tc){
         bool a=false;
@@ -108,11 +104,6 @@ using namespace std;
 
     }
 
-    const char *Cliente::GetDireccion(){
-
-        return _Direccion.getTexto();
-
-    }
 
     int Cliente::GetTipoCliente(){
 
@@ -132,7 +123,7 @@ using namespace std;
         _Apellido.setTexto("");
         _Telefono.setTexto("");
         _Mail.setTexto("");
-        _Direccion.setTexto("");
+        //_Direccion.setTexto(""); no olvidarse de seteralo vacio
         _TipoCliente=1;
         _Estado=true;
     }
@@ -144,7 +135,7 @@ using namespace std;
         _Apellido.setTexto(apellido);
         _Telefono.setTexto(telefono);
         _Mail.setTexto(mail);
-        _Direccion.setTexto(direccion);
+        //_Direccion.setTexto(direccion); yamentiende
         _TipoCliente=tipoCliente;
         _Estado=estado;
     }
@@ -203,7 +194,7 @@ SetMail(mail);
 cout<<endl;
 cout<<"Ingrese la direccion del cliente: ";
 cin.getline(direccion, 31);
-SetDireccion(direccion);
+//SetDireccion(direccion); ---------------------- y aca
 cout<<endl;
 cout<<"ingrese el tipo de cliente 1-particular o 2-empresa: ";
 cin>>tc;
@@ -219,7 +210,7 @@ cout<<"Nombre del cliente: "<<GetNombre()<<endl;
 cout<<"Apellido del cliente: "<<GetApellido()<<endl;
 cout<<"Telefono del cliente: "<<GetTelefono()<<endl;
 cout<<"Mail del cliente: "<<GetMail()<<endl;
-cout<<"Direccion del cliente: "<<GetDireccion()<<endl;
+//cout<<"Direccion del cliente: "<<GetDireccion()<<endl; -------- tambien aca
 if(GetTipoCliente()==1)
 {
 cout<<"tipo de cliente Particular"<<endl;

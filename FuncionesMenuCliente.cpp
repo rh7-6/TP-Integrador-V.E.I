@@ -74,7 +74,7 @@ using namespace std;
                     system("cls");
                     rlutil::locate(40, 5); cout<<"Ingrese la direccion del cliente: ";
                     cin.getline(direccion, 31);
-                    cl.SetDireccion(direccion);
+                    //cl.SetDireccion(direccion);---------------- hay que actulizarlo para que funcione con el nuevo objeto direccion
                 }break;
 
                 case(5):{
@@ -142,7 +142,7 @@ using namespace std;
        cout<<"Apellido del cliente: "<<cl.GetApellido()<<endl;
        cout<<"Telefono del cliente: "<<cl.GetTelefono()<<endl;
        cout<<"Mail del cliente: "<<cl.GetMail()<<endl;
-       cout<<"Direccion del cliente: "<<cl.GetDireccion()<<endl;
+       //cout<<"Direccion del cliente: "<<cl.GetDireccion()<<endl; ---------- falta actulizar para que funcione con direccion
 
        if(cl.GetTipoCliente()==1)
        {

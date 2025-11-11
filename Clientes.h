@@ -1,6 +1,6 @@
 #ifndef CLIENTES_H_INCLUDED
 #define CLIENTES_H_INCLUDED
-#include "Direccion.h"
+#include "Direcciones.h"
 #include "cadena.h"
 
 class Cliente {
@@ -12,7 +12,7 @@ public:
     void SetApellido(const char *t);
     void SetTelefono(const char *t);
     void SetMail(const char *t);
-    void SetDireccion(const char *t);
+///-------------------------------- incluir set calle, altura, piso y localidad o uno solo que pida los 3
     void SetTipoCliente(int tc);
     void SetEstado(bool estado);
 
@@ -22,7 +22,7 @@ public:
     const char *GetApellido();
     const char *GetTelefono();
     const char *GetMail();
-    const char *GetDireccion();
+//-----------------------------lo mismo para el get
     int GetTipoCliente();
     bool GetEstado();
 
@@ -39,7 +39,7 @@ private:
     Cadena _Apellido;
     Cadena _Telefono;
     Cadena _Mail;
-    Cadena _Direccion;
+    Direccion _Direccion;
     int _TipoCliente;
     bool _Estado;
 

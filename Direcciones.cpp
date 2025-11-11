@@ -1,7 +1,6 @@
 #include <iostream>
 #include "cstring"
-#include "cadena.h"
-#include "Direccion.h"
+#include "Direcciones.h"
 #include <limits>
 using namespace std;
 

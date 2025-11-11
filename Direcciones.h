@@ -1,8 +1,6 @@
-#ifndef CLIENTES_H_INCLUDED
-#define CLIENTES_H_INCLUDED
+#ifndef DIRECCIONES_H_INCLUDED
+#define DIRECCIONES_H_INCLUDED
 #include "cadena.h"
-
-
 
 class Direccion {
 private:
@@ -34,4 +32,4 @@ public:
 
 };
 
-#endif // DIRECCION_H_INCLUDED
+#endif // DIRECCIONES_H_INCLUDED

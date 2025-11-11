@@ -45,8 +45,8 @@
 		<Unit filename="Clientes.h" />
 		<Unit filename="Detalle_Venta.h" />
 		<Unit filename="Detalle_Ventas.cpp" />
-		<Unit filename="Direccion.cpp" />
-		<Unit filename="Direccion.h" />
+		<Unit filename="Direcciones.cpp" />
+		<Unit filename="Direcciones.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
 		<Unit filename="FuncionesMenuCliente.cpp" />
