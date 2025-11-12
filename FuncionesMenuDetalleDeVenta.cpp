@@ -25,13 +25,21 @@ using namespace std;
             dv.SetCantidad(CANTIDAD);
             dv.SetPrecioProductoDT(p.GetPrecio());
         }else{
-            do{
-                rlutil::locate(30, 5);
-                cout<<"Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";
-                cin>>numeroventa; LimpiarBuffer(); cout<<endl;
-                system("cls");
-            }while(numeroventa<0||numeroventa>cantRegV);
-            dv.SetNumeroVentaDT(numeroventa);
+//            do{
+//                rlutil::locate(30, 5);
+//                cout<<"Ingrese un numero de venta existente (entre 1 y " << cantRegV << "): ";
+//                cin>>numeroventa; LimpiarBuffer(); cout<<endl;
+//                system("cls");
+//            }while(numeroventa<0||numeroventa>cantRegV);
+
+            dv.SetNumeroVentaDT(cantRegV);
+
+            DetalleVenta DVl; int contDV=1;
+            for(int i=0; i<cantRegDv; i++){
+                DVl= archDV.LeerDetalleDeVenta(i);
+                if(DVl.GetNumeroVentaDT()==cantRegV){contDV++;}
+            }
+            dv.SetIdDetalle(contDV);
 
             rlutil::locate(30,5);
             cout<<"Ingrese el numero de id del producto: ";
@@ -42,6 +50,7 @@ using namespace std;
                     system("cls");
                     rlutil::locate(35,5); cout<<"Producto inexistente reingrese id: ";
                     cin>>idproducto; LimpiarBuffer();
+                    posP=archP.BuscarProducto(idproducto);
                 }
                 p=archP.LeerProducto(posP);
                 if(p.GetEstado()==false){
