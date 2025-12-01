@@ -12,7 +12,7 @@ using namespace std;
 
         int numeroV,dia,mes,siglo;
         Fecha fech;
-        bool estado;
+        //bool estado;
         int cantReg= archV.CantidadRegistros(sizeof(Venta));
 
         if(opcionCarga){                                    //
@@ -73,16 +73,17 @@ using namespace std;
         }
 
         system("cls");
-            rlutil::locate(47,5); cout << "Seleccione el estado de venta";
-            rlutil::locate(57,8); cout << "Activo";
-            rlutil::locate(57,9); cout << "Inactivo";
-                    switch(SeleccionMenus(55,8,1,1)){
-                    case(0):{estado=1;v.SetEstado(estado);}
-                    break;
-                    case(1):{estado=0;v.SetEstado(estado);}
-                    break;
-                    }
-        cout << endl;
+//            rlutil::locate(47,5); cout << "Seleccione el estado de venta";
+//            rlutil::locate(57,8); cout << "Activo";
+//            rlutil::locate(57,9); cout << "Inactivo";
+//                    switch(SeleccionMenus(55,8,1,1)){
+//                    case(0):{estado=1;v.SetEstado(estado);}
+//                    break;
+//                    case(1):{estado=0;v.SetEstado(estado);}
+//                    break;
+//                    }
+//        cout << endl;
+        v.SetEstado(true);
         rlutil::hidecursor();
         system("cls");
     }

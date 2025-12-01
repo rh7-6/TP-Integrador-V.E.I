@@ -24,8 +24,15 @@ using namespace std;
 
             int posCl =archCl.BuscarCliente(cuil);
             archCl.LeerCliente(posCl, cl);
+                while(posCl>=0&&cl.GetEstado()==false){
+                cout <<"Cliente borrado reingrese CUIT: "<< endl;
+                cin>>cuil; LimpiarBuffer();
+                posCl =archCl.BuscarCliente(cuil);
+                archCl.LeerCliente(posCl, cl);
+                }
             if(posCl>=0)
                 {
+
                 system("cls");
                 rlutil::locate(34,5);
                 cout << "Ya existe un cliente con el cuit:" << cuil << endl;
@@ -186,7 +193,14 @@ resultadoBusqueda = archCl.BuscarCliente(NumeroDeCliente);
             pos=archCl.BuscarCliente(Cuit.c_str());
         }
             cl=archCl.LeerCliente(pos);
+            if(cl.GetEstado()==true)
+            {
             MostrarCliente(cl);
+            }
+            else
+            {
+            cout<<"el cliente esta inactivo"<<endl;
+            }
             system("pause");
     }
 
